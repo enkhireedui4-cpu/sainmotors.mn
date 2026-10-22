@@ -25,7 +25,7 @@ export default async function HomePage({ params }: Props) {
   return <div className="corporate-home">
     <section className="corporate-hero container" aria-labelledby="home-title">
       <div className="corporate-hero__copy">
-        <p className="corporate-hero__kicker" data-status={hero.kicker.status}><strong translate="no">SAIN MOTORS</strong> {hero.kicker.value[locale]}</p>
+        <p className="corporate-hero__kicker" data-status={hero.kicker.status}><strong translate="no">SAIN MOTORS</strong> {hero.kicker.value[locale].split(/(\d+)/).map((part, i) => /^\d+$/.test(part) ? <span key={i} className="corporate-hero__count">{part}</span> : part)}</p>
         <h1 id="home-title" data-status={hero.title.status}>{hero.title.value[locale].split("\n").map((line, i, lines) => <span key={i}>{line}{i < lines.length - 1 ? " " : ""}</span>)}</h1>
         <p className="corporate-hero__lead" data-status={hero.text.status}>{hero.text.value[locale]}</p>
         <div className="actions"><Link className="button button--primary" href={pageHref(locale, "brands")} prefetch={false}>{hero.cta.label[locale]}<Icon name="arrowUpRight" size={19} /></Link>

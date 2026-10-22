@@ -70,9 +70,14 @@ ul,ol{padding:0;margin:0;list-style:none} svg{flex-shrink:0}
 .site-footer a:hover{color:#ff8a91}.site-footer__base{border-top:1px solid #39454b;padding-top:1.5rem;display:flex;justify-content:space-between;gap:1rem;color:#b9c2c7;font-size:.75rem}
 .corporate-hero{display:grid;grid-template-columns:1fr 1.06fr;gap:3rem;align-items:center;padding-block:3.5rem 1.5rem;background:var(--surface);box-shadow:0 0 0 100vmax var(--surface);clip-path:inset(0 -100vmax)}
 .corporate-hero__copy{padding-block:1rem}
-/* Kicker: the company name over the confirmed fact, quiet so the headline leads. */
-.corporate-hero__kicker{margin-bottom:1.5rem;font-size:.95rem;font-weight:500;line-height:1.6;color:var(--text-2)}
-.corporate-hero__kicker strong{display:block;margin-bottom:.15rem;font-size:.8rem;font-weight:700;letter-spacing:.08em;color:var(--text)}
+/* Kicker: a credential signed with the SAIN italic. A red stroke at the logo's slant runs beside the
+   company name (Zona, like the logotype) and the confirmed fact; only the count is lifted to ink. */
+.corporate-hero__kicker{position:relative;padding-left:1.1rem;margin-bottom:1.75rem;font-size:.95rem;font-weight:500;line-height:1.5;color:var(--text-2)}
+.corporate-hero__kicker:before{content:"";position:absolute;left:0;top:.15em;bottom:.15em;width:3px;background:var(--red);transform:skewX(-14deg);transform-origin:50% 100%}
+.corporate-hero__kicker strong{display:block;margin-bottom:.2rem;font-family:var(--font-display);font-size:.8rem;font-weight:700;letter-spacing:.16em;color:var(--text)}
+.corporate-hero__count{font-weight:700;color:var(--text);font-variant-numeric:lining-nums tabular-nums}
+@media(prefers-reduced-motion:no-preference){.corporate-hero__kicker:before{animation:kicker-stroke .55s var(--ease) .15s both}}
+@keyframes kicker-stroke{from{transform:skewX(-14deg) scaleY(0)}}
 /* A narrow measure stacks the headline into three short, even lines at every width. */
 .corporate-hero h1{max-width:7.2em;font-size:clamp(2.6rem,4.2vw,3.75rem);line-height:1.06;letter-spacing:-.03em}.corporate-hero h1 span{display:block}
 .corporate-hero__lead{font-size:1.0625rem;line-height:1.75;color:var(--text-2);max-width:33rem;margin-block:1.6rem 2.25rem}
@@ -171,7 +176,7 @@ html[data-review] [data-status=draft]{outline:1px dashed #c65300;outline-offset:
 }
 @media(max-width:639px){
   :root{--header-h:4.5rem}.site-logo img{width:9rem}.site-header__inner{gap:.7rem}.menu-button{margin-left:.5rem}
-  .corporate-hero{grid-template-columns:1fr;gap:1.75rem;padding-top:2rem;padding-bottom:.5rem}.corporate-hero__copy{padding:0}.corporate-hero h1{font-size:2.5rem}.corporate-hero__kicker{font-size:.875rem;margin-bottom:1.1rem}.corporate-hero__lead{margin-block:1rem 1.5rem;font-size:.98rem}.corporate-hero .button{padding-inline:1rem;font-size:.8rem}
+  .corporate-hero{grid-template-columns:1fr;gap:1.75rem;padding-top:2rem;padding-bottom:.5rem}.corporate-hero__copy{padding:0}.corporate-hero h1{font-size:2.5rem}.corporate-hero__kicker{font-size:.875rem;margin-bottom:1.25rem;padding-left:1rem}.corporate-hero__lead{margin-block:1rem 1.5rem;font-size:.98rem}.corporate-hero .button{padding-inline:1rem;font-size:.8rem}
   .hero-gallery__frame{border-radius:1rem}.hero-gallery__arrow{width:2.5rem;height:2.5rem;margin-top:-1.25rem}.hero-gallery__arrow--previous{left:.75rem}.hero-gallery__arrow--next{right:.75rem}
   .home-brands{padding-top:2.5rem}.brand-panel{grid-template-columns:repeat(3,minmax(0,1fr));--mark-base:1.1rem}.brand-panel a{aspect-ratio:4/3;padding:.5rem}.brand-panel .brand-mark{max-width:90%}.brand-panel-frame:before{height:auto;bottom:-30rem}.section-head--split{display:block}.section-head--split p{margin-top:1rem}.section-head--split>.text-link{margin-top:.5rem}.section-head{margin-bottom:1.5rem}
   .brand-mark{height:1.7rem}.brand-mark-plate{padding:.5rem}
