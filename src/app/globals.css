@@ -105,10 +105,9 @@ ul,ol{padding:0;margin:0;list-style:none} svg{flex-shrink:0}
 .brand-panel a{display:grid;place-items:center;aspect-ratio:3/2;padding:1.25rem;transition:background-color .16s var(--ease)}
 .brand-panel a:hover{background:#f9fafb}.brand-panel a:focus-visible{outline:2px solid var(--focus);outline-offset:-6px}
 .brand-panel .brand-mark{height:calc(var(--mark-base) * var(--mark-scale,1));max-width:72%}
-/* Twelfth cell: the COMING SOON teaser, its Mongolian line as spaced text matching the graphic. */
-.brand-panel__soon{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;aspect-ratio:3/2;padding:1.25rem}
-.brand-panel__soon img{width:68%;height:auto;mix-blend-mode:multiply}
-.brand-panel__soon span{padding-left:.42em;font-size:.72rem;font-weight:600;letter-spacing:.42em;color:var(--text-3)}
+/* Twelfth cell: a quiet one-line COMING SOON in #737B80, smaller than the brand marks so the brands lead. */
+.brand-panel__soon{display:grid;place-items:center;aspect-ratio:3/2;padding:1.25rem}
+.brand-panel__soon img{width:190px;max-width:100%;height:auto}
 .brand-mark{object-fit:contain;object-position:center;width:auto;max-width:100%;height:2.2rem;max-height:4rem}
 .brand-mark--small{height:1.7rem;max-width:8rem}.brand-mark--large{height:3.3rem;max-width:19rem;max-height:5rem}
 .brand-mark-plate{display:inline-flex;background:#192227;border-radius:2px;padding:.7rem .9rem;align-items:center;max-width:100%}
@@ -173,7 +172,7 @@ html[data-review] [data-status=draft]{outline:1px dashed #c65300;outline-offset:
   /* Phone/tablet header: a quiet MN / EN pair, current language in ink, then a bare menu icon. */
   .site-header__inner>.lang-switch{margin-left:auto;font-size:.95rem;font-weight:500;letter-spacing:.02em}.site-header__inner>.lang-switch a{color:var(--text-3)}.site-header__inner>.lang-switch [aria-current]{color:var(--text);font-weight:600}
   .corporate-hero{grid-template-columns:1fr 1.05fr;gap:1.5rem;padding-block:2.5rem 1rem}.corporate-hero h1{font-size:2.4rem}.hero-gallery__frame{aspect-ratio:4/3}
-  .brand-panel{grid-template-columns:repeat(3,minmax(0,1fr));--mark-base:1.65rem}.brand-panel-frame{--band-overlap:5rem}
+  .brand-panel{grid-template-columns:repeat(3,minmax(0,1fr));--mark-base:1.65rem}.brand-panel__soon img{width:160px}.brand-panel-frame{--band-overlap:5rem}
   .editorial-split{gap:2rem}.editorial-copy .display-2{font-size:2rem}.editorial-photo{aspect-ratio:.9}
   .site-footer__grid{grid-template-columns:1fr 1fr}.prose-grid{grid-template-columns:1fr;gap:2rem}.services-page{gap:2rem;grid-template-columns:1fr 1fr}
   .location{grid-template-columns:1fr 1fr}.location__name{grid-column:1/-1}.contact-more{gap:2rem}
@@ -182,7 +181,7 @@ html[data-review] [data-status=draft]{outline:1px dashed #c65300;outline-offset:
   :root{--header-h:4.5rem}.site-logo img{width:9rem}.site-header__inner{gap:.7rem}.menu-button{margin-left:.5rem}
   .corporate-hero{grid-template-columns:1fr;gap:1.75rem;padding-top:2rem;padding-bottom:.5rem}.corporate-hero__copy{padding:0}.corporate-hero h1{font-size:2.5rem}.corporate-hero__kicker{font-size:.875rem;margin-bottom:1.25rem;padding-left:1rem}.corporate-hero__lead{margin-block:1rem 1.5rem;font-size:.98rem}.corporate-hero .button{padding-inline:1rem;font-size:.8rem}
   .hero-gallery__frame{border-radius:1rem}.hero-gallery__arrow{width:2.5rem;height:2.5rem;margin-top:-1.25rem}.hero-gallery__arrow--previous{left:.75rem}.hero-gallery__arrow--next{right:.75rem}
-  .home-brands{padding-top:2.5rem}.brand-panel{grid-template-columns:repeat(3,minmax(0,1fr));--mark-base:1.1rem}.brand-panel a,.brand-panel__soon{aspect-ratio:4/3;padding:.5rem}.brand-panel__soon{gap:.4rem}.brand-panel__soon img{width:86%}.brand-panel__soon span{font-size:.56rem;letter-spacing:.22em;padding-left:.22em}.brand-panel .brand-mark{max-width:90%}.brand-panel-frame:before{height:auto;bottom:-30rem}.section-head--split{display:block}.section-head--split p{margin-top:1rem}.section-head--split>.text-link{margin-top:.5rem}.section-head{margin-bottom:1.5rem}
+  .home-brands{padding-top:2.5rem}.brand-panel{grid-template-columns:repeat(3,minmax(0,1fr));--mark-base:1.1rem}.brand-panel a,.brand-panel__soon{aspect-ratio:4/3;padding:.5rem}.brand-panel__soon img{width:90px}.brand-panel .brand-mark{max-width:90%}.brand-panel-frame:before{height:auto;bottom:-30rem}.section-head--split{display:block}.section-head--split p{margin-top:1rem}.section-head--split>.text-link{margin-top:.5rem}.section-head{margin-bottom:1.5rem}
   .brand-mark{height:1.7rem}.brand-mark-plate{padding:.5rem}
   .editorial-split{grid-template-columns:1fr;gap:2rem}.editorial-photo{aspect-ratio:4/3}.editorial-copy h2{max-width:19ch}.editorial-split--service .editorial-photo{grid-row:1}.editorial-copy .display-2{font-size:1.85rem}
   .company-numbers{gap:3rem;margin-bottom:1rem}.company-numbers dd{font-size:2.25rem}
