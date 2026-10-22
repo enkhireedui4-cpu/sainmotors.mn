@@ -1,4 +1,5 @@
 import { collectStatuses, getBrands, getLogo } from "@/content";
+import { evaluateRelease } from "./release-policy";
 
 /**
  * Problems that must be fixed before a release build. Everything shown on the
@@ -6,13 +7,7 @@ import { collectStatuses, getBrands, getLogo } from "@/content";
  * its supplied logo.
  */
 export function releaseProblems(): string[] {
-  const problems = collectStatuses()
-    .filter((item) => item.status !== "approved")
-    .map((item) => `${item.path}: ${item.status}`);
-  for (const brand of getBrands()) {
-    if (!getLogo(brand.slug)) problems.push(`brands.${brand.slug}: logo missing`);
-  }
-  return problems;
+  return evaluateRelease(collectStatuses(), getBrands(), (slug) => Boolean(getLogo(slug) ?? getLogo(slug, true)));
 }
 
 export function assertReleasable(): void {

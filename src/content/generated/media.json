@@ -1290,6 +1290,130 @@
         ]
       ]
     },
+    "sain-front-lineup": {
+      "width": 4096,
+      "height": 2308,
+      "color": "#181818",
+      "srcset": [
+        [
+          480,
+          "/media/sain-front-lineup-480.webp"
+        ],
+        [
+          768,
+          "/media/sain-front-lineup-768.webp"
+        ],
+        [
+          1080,
+          "/media/sain-front-lineup-1080.webp"
+        ],
+        [
+          1440,
+          "/media/sain-front-lineup-1440.webp"
+        ],
+        [
+          1920,
+          "/media/sain-front-lineup-1920.webp"
+        ],
+        [
+          2560,
+          "/media/sain-front-lineup-2560.webp"
+        ]
+      ]
+    },
+    "sain-front-ramp": {
+      "width": 4096,
+      "height": 2732,
+      "color": "#f8f8f8",
+      "srcset": [
+        [
+          480,
+          "/media/sain-front-ramp-480.webp"
+        ],
+        [
+          768,
+          "/media/sain-front-ramp-768.webp"
+        ],
+        [
+          1080,
+          "/media/sain-front-ramp-1080.webp"
+        ],
+        [
+          1440,
+          "/media/sain-front-ramp-1440.webp"
+        ],
+        [
+          1920,
+          "/media/sain-front-ramp-1920.webp"
+        ],
+        [
+          2560,
+          "/media/sain-front-ramp-2560.webp"
+        ]
+      ]
+    },
+    "sain-event-aerial": {
+      "width": 3828,
+      "height": 2131,
+      "color": "#282838",
+      "srcset": [
+        [
+          480,
+          "/media/sain-event-aerial-480.webp"
+        ],
+        [
+          768,
+          "/media/sain-event-aerial-768.webp"
+        ],
+        [
+          1080,
+          "/media/sain-event-aerial-1080.webp"
+        ],
+        [
+          1440,
+          "/media/sain-event-aerial-1440.webp"
+        ],
+        [
+          1920,
+          "/media/sain-event-aerial-1920.webp"
+        ],
+        [
+          2560,
+          "/media/sain-event-aerial-2560.webp"
+        ]
+      ]
+    },
+    "test-drive-lineup": {
+      "width": 4096,
+      "height": 2308,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/test-drive-lineup-480.webp"
+        ],
+        [
+          768,
+          "/media/test-drive-lineup-768.webp"
+        ],
+        [
+          1080,
+          "/media/test-drive-lineup-1080.webp"
+        ],
+        [
+          1440,
+          "/media/test-drive-lineup-1440.webp"
+        ],
+        [
+          1920,
+          "/media/test-drive-lineup-1920.webp"
+        ],
+        [
+          2560,
+          "/media/test-drive-lineup-2560.webp"
+        ]
+      ]
+    },
     "mtd7-river-crossing": {
       "width": 1920,
       "height": 1080,
@@ -1362,6 +1486,15 @@
       "density": 0.472,
       "optical": 1,
       "color": "#090505",
+      "ink": "original"
+    },
+    "soueast": {
+      "src": "/media/brand-soueast.png",
+      "width": 641,
+      "height": 43,
+      "density": 0.446,
+      "optical": 1,
+      "color": "#111111",
       "ink": "original"
     },
     "chery": {

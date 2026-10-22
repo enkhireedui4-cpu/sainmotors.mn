@@ -12,8 +12,9 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://sainmotors
  */
 export const IS_RELEASE = process.env.SITE_RELEASE === "1";
 
-/** Only the production origin may be indexed; staging copies say noindex. */
+/** Origin alone does not authorize indexing: review builds always say noindex. */
 export const IS_PRODUCTION_ORIGIN = SITE_URL === "https://sainmotors.mn";
+export const IS_INDEXABLE = IS_RELEASE && IS_PRODUCTION_ORIGIN;
 
 export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path.startsWith("/") ? "" : "/"}${path}`;

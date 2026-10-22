@@ -20,6 +20,7 @@ const TYPES = {
   ".svg": "image/svg+xml",
   ".ico": "image/x-icon",
   ".woff2": "font/woff2",
+  ".mp4": "video/mp4",
 };
 
 if (!fs.existsSync(ROOT)) {

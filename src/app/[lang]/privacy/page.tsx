@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { draftAttr } from "@/components/HomeSections";
+import { draftAttr } from "@/lib/content-status";
 import { PageHero } from "@/components/PageHero";
 import { contact, pages, ui } from "@/content";
 import type { Locale } from "@/lib/i18n";

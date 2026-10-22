@@ -1,47 +1,36 @@
-# Sain Motors — static export on Apache shared hosting.
-# Copied into out/ by `next build`. Not yet tested on the production host.
-
+# Preview/review static export. Never enables indexing or host redirects.
+# Apache 2.4; requires AllowOverride for Options/FileInfo/Indexes.
 Options -Indexes
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
-
+AddDefaultCharset utf-8
 AddType image/webp .webp
+AddType image/avif .avif
 AddType font/woff2 .woff2
 AddType application/manifest+json .webmanifest
-AddDefaultCharset utf-8
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-
-  # Enable both blocks once a valid certificate for sainmotors.mn is installed
-  # (on 2026-10-15 the host served an expired *.webhost.mn certificate).
-  # RewriteCond %{HTTPS} !=on
-  # RewriteRule ^ https://sainmotors.mn%{REQUEST_URI} [R=301,L]
-  # RewriteCond %{HTTP_HOST} ^www\.sainmotors\.mn$ [NC]
-  # RewriteRule ^ https://sainmotors.mn%{REQUEST_URI} [R=301,L]
-
-  # The site lives under /mn/ and /en/; "/" goes to Mongolian.
   RewriteRule ^$ /mn/ [R=302,L]
 </IfModule>
 
 <IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, nofollow, noarchive"
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
-
-  # Pages: always revalidate so content fixes show up immediately.
   <FilesMatch "\.(html|xml|txt)$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
-
-  # Build output with content hashes in the file name never changes.
   <If "%{REQUEST_URI} =~ m#^/_next/static/#">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </If>
-
-  # Photos and logos keep their names when replaced; cache for a week.
-  <If "%{REQUEST_URI} =~ m#^/media/#">
+  <If "%{REQUEST_URI} =~ m#^/(media|video|fonts)/#">
     Header set Cache-Control "public, max-age=604800"
   </If>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml
 </IfModule>

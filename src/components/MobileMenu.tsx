@@ -53,7 +53,7 @@ export function MobileMenu({ locale, links, homeHref, logo, labels, phone, email
       <dialog
         id="mobile-menu"
         ref={dialogRef}
-        className="mobile-menu on-dark"
+        className="mobile-menu"
         aria-label={labels.menu}
         onClose={() => setOpen(false)}
       >

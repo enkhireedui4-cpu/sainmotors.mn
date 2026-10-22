@@ -181,7 +181,7 @@ No edition has a registration link: all are over (`src/lib/events.ts`, Asia/Ulaa
 | BYD, RIDDARA | variant 2 (black) / variant 1 wordmark of the supplied SVG sheet | Drive Logo folders |
 | JETOUR, CHERY | banner-derived files | company brand banner, 2026-10-15 |
 | AITO | black/white wordmark band from its SVG sheet | Desktop `3brand/Aito/Logo/AITO_logo 1.svg` |
-| SOUEAST | Official white wordmark for homepage cards; light-background version still pending | SOUEAST global S09 header |
+| SOUEAST | Official black wordmark on light surfaces (`brand-soueast.png`); official white wordmark on dark surfaces | SOUEAST global site header: `img/header_logo.png` (its light-header logo) and S09 `header_logo_w.png`, 2026-10-22 |
 
 Dark-context marks use the supplied white variants. Five PNG pairs were copied from Desktop
 `brands6`; BYD, RIDDARA and AITO are extracted from Desktop `3brand` presentation sheets with
@@ -190,7 +190,7 @@ their background panels excluded. Original geometry and colours are preserved.
 ## 5. Still needed
 
 - Written publication approval for everything above (status → `approved`).
-- SOUEAST: light-background logo, local introduction; confirmation that its showroom shares the JETOUR C1 building (the map link searches for the Holiday Inn until a pin is confirmed).
+- SOUEAST: local introduction; confirmation that its showroom shares the JETOUR C1 building (the map link searches for the Holiday Inn until a pin is confirmed).
 - CHERY: approval of the introduction and showroom details. The homepage card uses the user-supplied
   TIGGO 7 PRO MAX image (`37620.png`); the dedicated brand page uses the separately supplied
   TIGGO 7 PRO MAX road photograph (`37628.png`). Both originals are preserved; the prior TIGGO 8 source is archived.

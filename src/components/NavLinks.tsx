@@ -26,6 +26,7 @@ export function NavLinks({ links, label }: { links: NavLinkItem[]; label: string
         <Link
           key={link.href}
           href={link.href}
+          prefetch={false}
           className="site-nav__link"
           aria-current={isCurrentSection(pathname, link.href) ? "page" : undefined}
         >

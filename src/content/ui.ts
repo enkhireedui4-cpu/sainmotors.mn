@@ -3,6 +3,8 @@ import type { Localized } from "@/lib/i18n";
 /** Interface labels. Reviewed with the rest of the copy, but not release-gated. */
 export const ui = {
   nav: {
+    locations: { mn: "Салбарууд", en: "Locations" },
+    news: { mn: "Мэдээ", en: "News" },
     about: { mn: "Бидний тухай", en: "About" },
     brands: { mn: "Брэндүүд", en: "Brands" },
     services: { mn: "Үйлчилгээ", en: "Services" },

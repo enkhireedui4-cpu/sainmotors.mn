@@ -108,11 +108,11 @@ export const pages = {
         value: {
           mn: {
             heading: "Хаана байрладаг вэ",
-            body: "Улаанбаатар, Дархан хотод шоурумтай бөгөөд Улаанбаатарт JETOUR-ын үйлчилгээний төвтэй. Брэнд бүрийн шоурум, утсыг холбоо барих хуудаснаас харна уу.",
+            body: "Улаанбаатар, Дархан хотод шоурумтай бөгөөд Улаанбаатарт JETOUR-ын үйлчилгээний төвтэй. Брэнд бүрийн шоурум, утсыг салбарын хуудаснаас харна уу.",
           },
           en: {
             heading: "Where we are",
-            body: "We have showrooms in Ulaanbaatar and Darkhan, and a JETOUR service centre in Ulaanbaatar. Each brand’s showroom and phone number are on the contact page.",
+            body: "We have showrooms in Ulaanbaatar and Darkhan, and a JETOUR service centre in Ulaanbaatar. Each brand’s showroom and phone number are on the locations page.",
           },
         },
       },
@@ -120,8 +120,8 @@ export const pages = {
     closing: {
       status: "draft",
       value: {
-        mn: { heading: "Шоурумд уулзъя", body: "Брэнд бүрийн шоурум, борлуулалтын утас холбоо барих хуудсанд байна." },
-        en: { heading: "Visit a showroom", body: "Every brand’s showroom and sales line is on the contact page." },
+        mn: { heading: "Шоурумд уулзъя", body: "Брэнд бүрийн шоурум, борлуулалтын утас салбарын хуудсанд байна." },
+        en: { heading: "Visit a showroom", body: "Every brand’s showroom and sales line is on the locations page." },
       },
     } satisfies Section,
     milestones: {
@@ -215,6 +215,44 @@ export const pages = {
       value: {
         mn: "Брэнд бүр өөрийн шоурум, борлуулалтын утастай. Очихоосоо өмнө залгаж лавлана уу.",
         en: "Each brand has its own showroom and sales line. Call before you visit.",
+      },
+    } satisfies Block,
+  },
+
+  locations: {
+    meta: {
+      status: "draft",
+      source: "Existing company.ts location records; web-team directory description, 2026-10-22",
+      value: {
+        mn: { title: "Байршлууд", description: "Сайн Моторс-ын шоурум, үйлчилгээний төвийг брэнд, хотоор хайж, хаяг, утас, ажиллах цагтай танилцаарай." },
+        en: { title: "Locations", description: "Find Sain Motors showrooms and service locations by brand and city, with addresses, phone numbers and available opening hours." },
+      },
+    } satisfies Meta,
+    lead: {
+      status: "draft",
+      source: "Existing company.ts location records; web-team directory introduction, 2026-10-22",
+      value: {
+        mn: "Шоурум, үйлчилгээний төвийг брэнд болон хотоор хайгаарай. Очихоосоо өмнө хаяг, холбоо барих мэдээлэл, ажиллах цагийг шалгана уу.",
+        en: "Find a showroom or service centre by brand and city. Check the address, contact details and opening hours before you visit.",
+      },
+    } satisfies Block,
+  },
+
+  news: {
+    meta: {
+      status: "draft",
+      source: "Existing events.ts MEGA TEST DRIVE edition records; web-team editorial description, 2026-10-22",
+      value: {
+        mn: { title: "Мэдээ, арга хэмжээ", description: "Сайн Моторс-ын MEGA TEST DRIVE арга хэмжээний огноо, байршил болон долоо дахь удаагийн off-road бичлэгтэй танилцаарай." },
+        en: { title: "News and events", description: "Read Sain Motors MEGA TEST DRIVE edition dates and locations, and watch the supplied film of the seventh off-road edition." },
+      },
+    } satisfies Meta,
+    lead: {
+      status: "draft",
+      source: "Existing events.ts edition dates/venues and supplied edition 7 film; no new attendance or outcome claims",
+      value: {
+        mn: "MEGA TEST DRIVE арга хэмжээний мэдээлэл, огноо болон бичлэг.",
+        en: "Dates, locations and film from the MEGA TEST DRIVE editions.",
       },
     } satisfies Block,
   },

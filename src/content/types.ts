@@ -27,6 +27,8 @@ export interface Photo {
   key: PhotoKey;
   alt: Localized;
   status: ContentStatus;
+  /** Exact supplied file, official URL or source inventory reference, when recorded. */
+  source?: string;
   note?: string;
   /** CSS object-position for frames that crop the image, e.g. "60% 55%". */
   focus?: string;
@@ -46,6 +48,8 @@ export interface Link {
 
 /** Corporate statement with a supporting decorative ribbon, shared by MN/EN. */
 export interface Hero {
+  /** Short line above the heading. */
+  kicker: Block;
   title: Block;
   text: Block;
   cta: Link;
@@ -69,6 +73,8 @@ export type LocationId = "dolgoon-nuur" | "sansar" | "byd-4s" | "chery-narny" | 
 
 export interface Brand {
   slug: string;
+  /** Review of the non-copy facts: channels, phone, showroom, models and year. */
+  factsReview?: { status: ContentStatus; source: string };
   /** The brand's own spelling, used for alt text and captions. */
   name: string;
   /** Unpublished brands are left out of every listing, route and sitemap. */

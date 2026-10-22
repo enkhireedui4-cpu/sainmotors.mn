@@ -15,7 +15,7 @@ export const metadata: Metadata = {
  * language of a broken URL is unknown, so the page speaks both.
  */
 export default function GlobalNotFound() {
-  const logo = sainLogos["sain-on-dark"];
+  const logo = sainLogos["sain-color"];
   return (
     <html lang="mn" className={`${zona.variable} ${inter.variable}`}>
       <body>

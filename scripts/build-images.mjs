@@ -79,6 +79,11 @@ const PHOTOS = {
   "service-training-hv": { file: "site/service-training-hv.webp" },
   "service-training-group": { file: "site/service-training-group.webp" },
   "service-under-lift": { file: "site/service-under-lift.webp" },
+  // Home hero photographs (folder 1, chosen 2026-10-22), not used anywhere else on the site.
+  "sain-front-lineup": { file: "site/sain-front-lineup.webp" },
+  "sain-front-ramp": { file: "site/sain-front-ramp.webp" },
+  "sain-event-aerial": { file: "site/sain-event-aerial.webp" },
+  "test-drive-lineup": { file: "site/test-drive-lineup.webp" },
   // MEGA TEST DRIVE 7 (off-road edition) film, Desktop SnapSave_App_1366867448896240_1080p.mp4:
   // frames at 0:54 and 0:24, used as the poster of the teaser loop and the full film.
   "mtd7-river-crossing": { file: "site/mtd7-river-crossing.webp" },
@@ -104,6 +109,7 @@ const PHOTOS = {
  */
 const LOGOS = {
   jetour: { file: "brand-jetour.svg", band: "all", mask: "alpha", ink: "original" },
+  soueast: { file: "brand-soueast.png", band: "all", mask: "alpha", ink: "original" },
   chery: { file: "brand-chery.png", band: "last", mask: "alpha", ink: "original", optical: 0.92 },
   byd: { file: "brand-byd.svg", band: 1, mask: "alpha", ink: "original" },
   riddara: { file: "brand-riddara.svg", band: 0, mask: "alpha", ink: "original", gap: 0.004 },

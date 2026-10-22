@@ -7,7 +7,7 @@ import { MobileMenu } from "./MobileMenu";
 import { NavLinks } from "./NavLinks";
 
 export function SiteHeader({ locale }: { locale: Locale }) {
-  const logo = sainLogos["sain-on-dark"];
+  const logo = sainLogos["sain-color"];
   const homeHref = pageHref(locale, "home");
   const links = navPages.map((page) => ({ href: pageHref(locale, page), label: ui.nav[page][locale] }));
 
@@ -23,7 +23,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           locale={locale}
           links={links}
           homeHref={homeHref}
-          logo={sainLogos["sain-on-dark"]}
+          logo={logo}
           phone={contact.phone}
           email={contact.email}
           labels={{

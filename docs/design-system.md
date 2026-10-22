@@ -1,65 +1,39 @@
-# Design system (2026-10-17)
+﻿# Sain Motors — corporate design system, 2026-10-22
 
-Dark, editorial automotive corporate site. Reference studied: AWR Automotive (awrgroup.com/automotive):
-serif display over a grotesk body, warm charcoal surfaces, label-left/statement-right introductions,
-logos on neutral plates, image with an overlapping text card, black footer. Not taken: mega-menus,
-logo carousels, unverified stat blocks, large empty bands.
+Энэ баримт өмнөх харанхуй editorial чиглэлийг орлоно. Хэрэглэгчийн баталсан шинэ чиглэл: цагаан, цайвар саарал, хар саарал бичвэр; улаан өнгийг гол үйлдэл ба сонгосон хэсэгт хэрэглэнэ.
 
-All values are design decisions, not official brand facts. Tokens live at the top of `src/app/globals.css`.
+## Суурь
 
-## Colour
+| Үүрэг | Утга |
+|---|---|
+| Суурь | #FFFFFF |
+| Хоёрдогч гадаргуу | #F3F5F6 |
+| Бичвэр | #172126 |
+| Туслах бичвэр | #566169 |
+| Хүрээ | #DFE4E7 |
+| Гол үйлдэл | #E20A17 |
+| Footer | #192227 |
 
-| Token | Value | Use |
-|---|---|---|
-| ink | `#171614` | page background, header, hero |
-| ink-alt | `#1D1B18` | alternating band (brands, other brands, about timeline) |
-| charcoal | `#211F1C` | services band |
-| raised / raised-2 | `#2A2723` / `#34302B` | cards, panels, "all brands" cell |
-| footer | `#100F0D` | footer |
-| cream / sand / stone | `#F2EFE8` / `#B9B4AA` / `#8F8A80` | primary, secondary, meta text (stone only on ink/ink-alt/charcoal) |
-| plate | `#D9D4CA` (hover `#E7E3DB`) | the surface every brand logo sits on, so official colours never change |
-| signal | `#E20A17` (press `#C20914`) | Sain Motors red, from the logotype: primary buttons, carousel progress, current-page marks, one statement rule |
+Эдгээр нь вэбийн дизайн сонголт; үйлдвэрлэгчдийн албан палетт гэсэн баталгаа биш. Logo-ны эх өнгийг өөрчлөхгүй. SOUEAST цайвар дэвсгэр дээр үйлдвэрлэгчийн албан сайтын хар логог (`img/header_logo.png`), бараан дэвсгэр дээр цагаан хувилбарыг ашиглана. Шинэ лого зохиохгүй.
 
-No gold or metallic accent, no glass, no decorative gradients. The only gradients are the hero scrims.
+Гарчиг: нийлүүлсэн Zona Pro. Биеийн бичвэр/товч: Inter. Локал WOFF2, Cyrillic Ө ө Ү ү glyph. Үндсэн body 16px, line-height1.65; гарчгууд clamp-аар дасан зохицно. Гарын үсэгтэй typeface-ийн түгээх эрхийг нийтлэх баг батална.
 
-## Type
+## Зохион байгуулалт
 
-- **Display (2026-10-20):** Zona Pro SemiBold/Bold, the typeface named in the Sain Motors brand guideline
-  (`src/fonts/zona-pro-*.woff2`, 17 KB each). Page titles, section titles, hero, timeline years, brand headlines,
-  mobile menu. It has no ₮; Inter supplies that glyph. Source Serif 4 is archived in `assets/_superseded/`.
-- **Text/UI:** Inter, 400–600. Body 16 px (17 px from 1024 px), lead 17–21 px.
-- Mongolian Ө ө Ү ү verified in Zona Pro and Inter, and in Chrome's rendered output (docs/fonts.md).
-- No all-caps labels, no letter-spaced eyebrows.
+82rem max-width, дэлгэцийн өргөнөөс хамаарах20–72px gutter. Нүүрийн split hero нь компанийн барилга, богино гарчиг, хоёр үйлдэлтэй. Улаан налуу тэмдэг нь Sain Motors-ын логоны урагш чиглэсэн хэлбэртэй холбоотой жижиг деталь.
 
-## Layout
+Брэндүүд hover/click carousel хүлээлгүй бүгд харагдана: desktop6 багана, tablet4, phone3. Брэндийн индекс фото3/2/1 багана. Дэлгэрэнгүй дээр зураг contain; автомашиныг таслахгүй. Footer-ээс бусад дэлгэц цайвар.
 
-- Container 84 rem with fluid gutters; section padding 72–136 px.
-- Patterns, each used for a different job: hero (full-bleed), split masthead (4/8), section head
-  (title 7 / text 5), plate grid, image + overlapping card, four-column service row, location rows,
-  directory rows, brand hero (plate 5 / copy 7) with a facts band.
-- Photographs: square corners. Interactive surfaces (buttons, plates, panels): 6 px radius.
+Үйлчилгээний coverage нь эх мэдээлэлд байгаа брэндээр хязгаарлагдана. Салбарын товч48px-аас доошгүй; баталгаатай pin-ийг Directions, landmark хайлтыг Search map гэж ялгана. Цаг дутуу бол call-ahead. Мэдээний зураг нь зөвхөн тухайн үйл явдлын эх зураг; өөр өдөрлөгийн зураг ашиглаж төөрөгдүүлэхгүй.
 
-## Motion (2026-10-20)
+## Хөдөлгөөн ба хүртээмж
 
-Scroll-driven depth with Motion (`motion/react`), on native scrolling: no scroll-jacking, no loaders, no
-second animation engine. What is "3D" here is CSS perspective applied to real photographs and film; there is
-no vehicle model.
+Хөдөлгөөн зөвхөн hover/focus/press-д:140–220ms өнгө, хүрээ, сумны2px шилжилт. Авто carousel/background video/pinned scroll/3D canvas байхгүй. Video зөвхөн хэрэглэгчийн play-аар, preload none.
 
-- **Hero:** "{count} брэндийн / албан ёсны дистрибьютер" in two tiers (the count follows brands.ts), with all
-  brand marks along its foot. One CSS load sequence: the photograph settles, each tier rises out of its mask,
-  the copy follows and the marks arrive 40 ms apart. On scroll the photograph lays back (scale + rotateX in a
-  1400px perspective) and the headline rises faster.
-- **Showroom walk:** six photographs stand one behind another; the scroll moves the camera through them.
-- **MEGA TEST DRIVE:** the homepage's one expanding moment: a framed muted loop opens to full bleed; the
-  full film loads only in its dialog.
-- **Parallax windows** (services) and a pinned sideways strip (services page; a swipe strip on phones).
-- **Reveals:** section heads lift in once, and only content still below the fold after hydration is hidden.
+prefers-reduced-motion: reduce үед transition/animation унтарна. Native dialog нь Escape/focus trap/return focus-той. URL state бүхий filter нь Back/reload/language switch-д хадгалагдана. Серверийн HTML бүх салбарыг харуулна; JavaScriptгүй үед энэ baseline ашиглагдана.
 
-`prefers-reduced-motion`: every scene becomes a still layout (grids, open frames, poster instead of loop);
-nothing is bound to the scroll.
+## Хэрэгжүүлэлт ба шалгалт
 
-Timing follows the Motion AI Kit best practices: entrances ≤0.6 s (hero lines 0.6 s, 90 ms stagger),
-reveals as a critically damped spring (`bounce: 0, visualDuration: 0.5`, no overshoot for a corporate
-brand), dialog 260 ms. Scroll scenes map progress with `useTransform(value, input, output)`; one root
-`MotionConfig reducedMotion="user"`. MotionScore (local `npx motionscore <url> --no-upload`, 2026-10-20): home S (90/100),
-services S (95/100), every animation S-tier, no layout thrashing.
+globals.css нь shared tokens, үндсэн layout; brands.css ба locations.css нь scoped page rules. Server components үндсэн агуулгыг гаргана. Client islands: native mobile menu, active nav, language suffix, location filters.
+
+Хамрах хүрээ: MN/EN,360/390/768/1440/1920px; нэг h1, canonical/hreflang, хагарсан asset/overflow/runtime error, keyboard/menu/filter/real route checks. Эдгээр нь бодит утасны network/assistive technology шалгалтыг орлохгүй. Preview noindex; зөвхөн батлагдсан release индексжих эрхтэй.

@@ -25,9 +25,10 @@ interface BrandMarkProps {
   onDark?: boolean;
 }
 
-/** The supplied logo, or the brand name set in type while the logo is pending (SOUEAST). */
+/** The supplied logo, or the brand name set in type while a brand's logo is pending. */
 export function BrandMark({ brand, locale, size = "tile", decorative = false, lazy = true, onDark = false }: BrandMarkProps) {
-  const logo = getLogo(brand.slug, onDark);
+  const regularLogo = getLogo(brand.slug, onDark);
+  const logo = regularLogo ?? getLogo(brand.slug, true);
   const sizeClass = size === "tile" ? "brand-mark" : `brand-mark brand-mark--${size}`;
 
   if (!logo) {
@@ -41,7 +42,7 @@ export function BrandMark({ brand, locale, size = "tile", decorative = false, la
 
   const scale = opticalScale(logo.width, logo.height, logo.density) * logo.optical;
   const style = { "--mark-scale": scale.toFixed(3) } as CSSProperties;
-  return (
+  const mark = (
     <img
       className={sizeClass}
       src={logo.src}
@@ -53,4 +54,5 @@ export function BrandMark({ brand, locale, size = "tile", decorative = false, la
       style={style}
     />
   );
+  return !regularLogo && logo ? <span className="brand-mark-plate">{mark}</span> : mark;
 }

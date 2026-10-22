@@ -1,0 +1,42 @@
+# Production release only. Package script installs this after content/export checks.
+# Apache 2.4; requires AllowOverride for Options/FileInfo/Indexes.
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+AddDefaultCharset utf-8
+AddType image/webp .webp
+AddType image/avif .avif
+AddType font/woff2 .woff2
+AddType application/manifest+json .webmanifest
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Use only with direct Apache TLS and a valid certificate for BOTH hosts.
+  # TLS termination at a proxy requires host-specific configuration to avoid loops.
+  RewriteCond %{HTTP_HOST} ^www\.sainmotors\.mn$ [NC,OR]
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://sainmotors.mn%{REQUEST_URI} [R=301,L]
+  RewriteRule ^$ /mn/ [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always unset X-Robots-Tag
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <If "%{REQUEST_URI} =~ m#^/_next/static/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  <If "%{REQUEST_URI} =~ m#^/(media|video|fonts)/#">
+    Header set Cache-Control "public, max-age=604800"
+  </If>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
+

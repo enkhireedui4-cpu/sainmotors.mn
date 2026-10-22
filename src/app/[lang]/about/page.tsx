@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BrandMark } from "@/components/BrandMark";
-import { draftAttr } from "@/components/HomeSections";
+import { draftAttr } from "@/lib/content-status";
 import { Icon } from "@/components/Icon";
 import { PageHero } from "@/components/PageHero";
 import { Picture } from "@/components/Picture";
@@ -87,8 +87,8 @@ export default async function AboutPage({ params }: Props) {
             <h2 className="heading-2">{page.closing.value[locale].heading}</h2>
             <p>{page.closing.value[locale].body}</p>
             <div className="flex flex-wrap gap-3 pt-2">
-              <Link className="button button--primary" href={pageHref(locale, "contact")}>
-                {ui.nav.contact[locale]}
+              <Link className="button button--primary" href={pageHref(locale, "locations")}>
+                {ui.nav.locations[locale]}
                 <Icon name="chevronRight" size={18} />
               </Link>
               <Link className="button button--outline" href={pageHref(locale, "brands")}>

@@ -6,7 +6,7 @@ import type { Photo } from "./types";
 // company building, showroom life and the first service-centre photographs.
 // Provenance: docs/content-sources.md. Alt text describes only what is visible.
 export const sitePhotos = {
-  /** Home hero: the company's own building with several brands' cars in front; no single brand leads. */
+  /** Contact page: the company's own building with several brands' cars in front; no single brand leads. */
   hero: {
     key: "sain-hq-aerial",
     alt: {
@@ -16,6 +16,45 @@ export const sitePhotos = {
     status: "sourced",
     focus: "62% 50%",
   },
+  /** Home hero: photographs the visitor switches between, led by the company rather than one brand and shown nowhere else. */
+  homeHero: [
+    {
+      key: "sain-front-lineup",
+      alt: {
+        mn: "Сайн Моторс-ын барилгын өмнө улаан хивсэн дээр эгнэн зогсох шинэ автомашинууд",
+        en: "New cars lined up on red carpets in front of the Sain Motors building",
+      },
+      status: "sourced",
+      focus: "50% 60%",
+    },
+    {
+      key: "sain-front-ramp",
+      alt: {
+        mn: "Сайн Моторс-ын барилгын өмнө налуу тавцан дээр зогсох улбар шар пикап, ард нь эгнэн зогсох автомашинууд",
+        en: "An orange pickup on a display ramp in front of the Sain Motors building, with cars lined up behind it",
+      },
+      status: "sourced",
+      focus: "45% 60%",
+    },
+    {
+      key: "sain-event-aerial",
+      alt: {
+        mn: "Сайн Моторс-ын барилгын өмнөх талбайд цугларсан автомашин, зочид. Дроноор авсан зураг",
+        en: "Cars and visitors across the forecourt of the Sain Motors building, seen from a drone",
+      },
+      status: "sourced",
+      focus: "50% 40%",
+    },
+    {
+      key: "test-drive-lineup",
+      alt: {
+        mn: "TEST DRIVE бичигтэй хар жийп, улбар шар пикап; ард нь SAIN MOTORS × BYD самбар",
+        en: "A black off-roader marked TEST DRIVE and an orange pickup, with the SAIN MOTORS × BYD sign behind",
+      },
+      status: "sourced",
+      focus: "45% 55%",
+    },
+  ],
   story: {
     key: "showroom-lounge",
     alt: {

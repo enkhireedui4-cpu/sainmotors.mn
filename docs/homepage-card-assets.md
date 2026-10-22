@@ -67,7 +67,9 @@ CHERY retains the supplied red wordmark. No CSS inversion is applied to coloured
   The black presentation panels and RIDDARA's small endorsement are excluded by luminance/band masks.
 - JETOUR: official header's monochrome CSS mask from https://www.jetourglobal.com/,
   rendered in white as in the manufacturer's dark header; geometry unchanged.
-- SOUEAST: https://www.soueast-motor.com/img-page/car/s09/header_logo_w.png.
+- SOUEAST: https://www.soueast-motor.com/img-page/car/s09/header_logo_w.png (dark surfaces) and
+  https://www.soueast-motor.com/img/header_logo.png (light surfaces; the global site's own
+  light-header logo, downloaded 2026-10-22, SHA-256 405a9d44…d0ea, used as delivered).
 - AITO: black and white wordmark band from `3brand/Aito/Logo/AITO_logo 1.svg`; extracted from
   the emblem sheet at vector resolution, without its black presentation background.
 

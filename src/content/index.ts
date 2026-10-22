@@ -8,10 +8,12 @@ import { homeDiscover, homeExperience, homeServices } from "./home";
 import { pages } from "./pages";
 import { sitePhotos } from "./photos";
 import media from "./generated/media.json";
-import type { Brand, BrandLink, ContentStatus, Location, Phone, PhotoKey } from "./types";
+import type { Brand, BrandLink, Location, Phone, PhotoKey } from "./types";
+import { collectContentReview } from "./registry";
 
 export { company, contact, socials, services, hero, homeDiscover, homeExperience, homeServices, pages, sitePhotos, driveEvents, testDrive };
 export { ui } from "./ui";
+export { collectContentReview, contentRegistry } from "./registry";
 
 export function getBrands(): Brand[] {
   return brands.filter((b) => b.published).sort((a, b) => a.order - b.order);
@@ -76,18 +78,6 @@ export const socialImage = media.social;
  * the content checklist. A "status-bearing item" is any object with a
  * `status` field.
  */
-export function collectStatuses(): { path: string; status: ContentStatus }[] {
-  const out: { path: string; status: ContentStatus }[] = [];
-  const walk = (node: unknown, path: string) => {
-    if (!node || typeof node !== "object") return;
-    if (Array.isArray(node)) {
-      node.forEach((child, i) => walk(child, `${path}[${i}]`));
-      return;
-    }
-    const record = node as Record<string, unknown>;
-    if (typeof record.status === "string") out.push({ path, status: record.status as ContentStatus });
-    for (const [key, child] of Object.entries(record)) walk(child, path ? `${path}.${key}` : key);
-  };
-  walk({ company, contact, locations, services, hero, homeDiscover, homeExperience, homeServices, pages, sitePhotos, driveEvents, testDrive, brands: getBrands() }, "");
-  return out;
+export function collectStatuses() {
+  return collectContentReview().map(({ path, status }) => ({ path, status }));
 }

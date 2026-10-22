@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   brandsAt,
   collectStatuses,
@@ -156,26 +156,25 @@ describe("brands", () => {
 });
 
 describe("hero", () => {
-  it("has a statement, description and brand action in both languages", () => {
+  it("has a kicker, statement, description and brand action in both languages", () => {
+    expect(filled(hero.kicker.value)).toBe(true);
     expect(filled(hero.title.value)).toBe(true);
     expect(filled(hero.text.value)).toBe(true);
     expect(filled(hero.cta.label)).toBe(true);
     expect(hero.cta.href).toBe("brands");
     expect(filled(hero.secondaryCta.label)).toBe(true);
-    expect(hero.secondaryCta.href).toBe("#showroom");
+    expect(hero.secondaryCta.href).toBe("locations");
   });
 
-  it("leads with the number of brands represented, counted from the brand list, without a single-brand hero", () => {
-    expect(hero.title.value.mn).toBe("{count} брэндийн\nалбан ёсны дистрибьютер");
-    for (const value of Object.values(hero.title.value)) {
-      expect(value.split("\n")).toHaveLength(2);
-      expect(value.startsWith("{count} ")).toBe(true);
-    }
-    for (const value of Object.values(hero.text.value)) expect(value).toContain("{count}");
+  it("keeps the confirmed eleven-brand fact in the kicker, separate from draft editorial wording", () => {
+    expect(hero.kicker.status).toBe("approved");
+    expect(company.distributorClaim.status).toBe("approved");
+    expect(hero.title.status).toBe("draft");
+    expect(hero.text.status).toBe("draft");
+    for (const value of Object.values(hero.kicker.value)) expect(value).toContain("11");
     expect(getBrands()).toHaveLength(11);
     expect(hero).not.toHaveProperty("photo");
   });
-
   it("provides concise bilingual copy for every published brand", () => {
     for (const brand of getBrands()) {
       expect(brand.cardCopy, brand.slug).toBeDefined();
@@ -286,9 +285,9 @@ describe("release gate", () => {
     for (const item of pending) expect(problems).toContain(`${item.path}: ${item.status}`);
   });
 
-  it("blocks the one brand whose logo has not been supplied", () => {
-    const missing = getBrands().filter((b) => !getLogo(b.slug)).map((b) => b.slug);
-    expect(missing).toEqual(["soueast"]);
-    expect(releaseProblems()).toContain("brands.soueast: logo missing");
+  it("gives SOUEAST its official light-background logo alongside the dark variant", () => {
+    expect(getLogo("soueast")?.src).toBe("/media/brand-soueast.png");
+    expect(getLogo("soueast", true)?.src).toBe("/media/brand-soueast-on-dark.png");
+    expect(releaseProblems()).not.toContain("brands.soueast: logo missing");
   });
 });

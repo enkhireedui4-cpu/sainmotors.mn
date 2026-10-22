@@ -4,9 +4,9 @@ import { brandPhone, getBrands, getLocation, liveLinks, ui } from "@/content";
 import type { Brand, BrandLink } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 import { displayHost, pageHref } from "@/lib/routes";
-import { BrandStrip } from "./BrandGrid";
+import { CorporateBrands } from "./CorporateBrands";
 import { BrandMark } from "./BrandMark";
-import { draftAttr } from "./HomeSections";
+import { draftAttr } from "@/lib/content-status";
 import { Icon } from "./Icon";
 import { LocationCard } from "./LocationCard";
 import { Breadcrumb } from "./PageHero";
@@ -53,7 +53,7 @@ export function BrandDetail({ brand, locale }: { brand: Brand; locale: Locale })
           <div className="brand-hero__grid">
             <div className="brand-hero__copy">
               <h1 className="brand-hero__identity">
-                <BrandMark brand={brand} locale={locale} size="large" lazy={false} onDark />
+                <BrandMark brand={brand} locale={locale} size="large" lazy={false} />
               </h1>
               <p className="brand-hero__headline" data-status={draftAttr(brand.headline ?? brand.cardCopy ?? brand.teaser)}>
                 {headline}
@@ -144,7 +144,7 @@ export function BrandDetail({ brand, locale }: { brand: Brand; locale: Locale })
       {location && (
         <section className="section" aria-labelledby="enquiries-heading">
           <div className="container">
-            <h2 id="enquiries-heading" className="display-3 mb-8">
+            <h2 id="enquiries-heading" className="display-3 section-head">
               {ui.brand.enquiries[locale]}
             </h2>
             <div className="location-list">
@@ -156,11 +156,11 @@ export function BrandDetail({ brand, locale }: { brand: Brand; locale: Locale })
 
       <section className="section section--alt" aria-labelledby="others-heading">
         <div className="container">
-          <h2 id="others-heading" className="display-3 mb-8">
+          <h2 id="others-heading" className="display-3 section-head">
             {ui.brand.others[locale]}
           </h2>
           <nav aria-labelledby="others-heading">
-            <BrandStrip brands={others} locale={locale} />
+            <CorporateBrands brands={others} locale={locale} />
           </nav>
         </div>
       </section>

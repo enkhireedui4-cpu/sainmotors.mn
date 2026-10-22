@@ -1,14 +1,13 @@
-import type { Metadata, Viewport } from "next";
+﻿import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { MotionRoot } from "@/components/MotionRoot";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ui } from "@/content";
 import { inter, zona } from "@/lib/fonts";
 import { isLocale, locales } from "@/lib/i18n";
 import { assertReleasable } from "@/lib/release";
-import { IS_PRODUCTION_ORIGIN, IS_RELEASE, SITE_URL } from "@/lib/site";
+import { IS_INDEXABLE, IS_RELEASE, SITE_URL } from "@/lib/site";
 import "../globals.css";
 
 export const dynamicParams = false;
@@ -22,11 +21,11 @@ export const metadata: Metadata = {
   title: { default: "Sain Motors", template: "%s | Sain Motors" },
   applicationName: "Sain Motors",
   formatDetection: { telephone: false, email: false, address: false },
-  ...(IS_PRODUCTION_ORIGIN ? {} : { robots: { index: false, follow: false } }),
+  ...(IS_INDEXABLE ? {} : { robots: { index: false, follow: false } }),
 };
 
 export const viewport: Viewport = {
-  themeColor: "#171614",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };
@@ -56,10 +55,11 @@ export default async function LangLayout({
         </a>
         <SiteHeader locale={lang} />
         <main id="main" tabIndex={-1}>
-          <MotionRoot>{children}</MotionRoot>
+          {children}
         </main>
         <SiteFooter locale={lang} />
       </body>
     </html>
   );
 }
+

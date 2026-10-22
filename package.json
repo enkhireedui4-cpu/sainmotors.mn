@@ -6,14 +6,19 @@
   "scripts": {
     "dev": "node scripts/build-images.mjs --if-missing && next dev -p 3200",
     "images": "node scripts/build-images.mjs",
-    "build": "node scripts/build-images.mjs && next build && node scripts/fix-export-segments.mjs",
+    "build": "node scripts/build-images.mjs && next build --webpack && node scripts/fix-export-segments.mjs",
     "preview": "node scripts/serve-out.mjs",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
+    "test": "vitest run --configLoader runner",
     "test:e2e": "node --test --test-concurrency=1 tests/e2e/",
     "build:release": "node scripts/release-build.mjs",
-    "content:checklist": "node scripts/content-checklist.mjs"
+    "content:checklist": "node scripts/content-checklist.mjs",
+    "release:check": "node scripts/release-check.mjs",
+    "check:export": "node scripts/check-export.mjs",
+    "package:preview": "node scripts/package-export.mjs",
+    "package:release": "node scripts/package-export.mjs --release",
+    "health:check": "node scripts/health-check.mjs"
   },
   "dependencies": {
     "motion": "^14.4.0",

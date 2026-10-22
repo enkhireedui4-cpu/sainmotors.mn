@@ -1,4 +1,4 @@
-import type { Block, ContentStatus, Location, Service } from "./types";
+﻿import type { Block, ContentStatus, Location, Service } from "./types";
 
 // Sources (details in docs/content-sources.md):
 //  - jetour.mn (repo jetour-sain: src/lib/branches.ts), confirmed there 2026-10-05:
@@ -17,6 +17,14 @@ const mapSearch = (query: string) =>
 
 export const company = {
   name: "Sain Motors",
+  distributorClaim: {
+    status: "approved",
+    source: "User's explicit confirmation on 2026-10-22: Sain Motors is the official distributor of 11 brands",
+    value: {
+      mn: "Сайн Моторс нь Монгол Улсад автомашины 11 брэндийн албан ёсны дистрибьютер юм.",
+      en: "Sain Motors is the official distributor of 11 automotive brands in Mongolia.",
+    },
+  } satisfies Block,
   legalName: {
     status: "sourced",
     source: JETOUR_SITE,
@@ -27,8 +35,8 @@ export const company = {
     status: "draft",
     source: `${DRIVE}; jetour.mn`,
     value: {
-      mn: "Сайн Моторс ХХК олон улсын автомашины брэндүүдийг Монголд албан ёсны эрхтэйгээр борлуулдаг.\n\nJETOUR, CHERY, HONGQI, BYD, AITO, RIDDARA, 212, BESTUNE, MAXUS, RELY брэндийн автомашиныг Улаанбаатар, Дархан дахь шоурумуудаараа санал болгодог. Брэнд бүр өөрийн шоурум, борлуулалтын утастай бөгөөд ихэнх брэнд үйлдвэрийн баталгаа, борлуулалтын дараах үйлчилгээтэй. Загвар, тоноглолын дэлгэрэнгүйг брэндийн албан ёсны сайтаас үзнэ үү.",
-      en: "Sain Motors LLC sells international car brands in Mongolia under official rights from each brand.\n\nWe offer JETOUR, CHERY, HONGQI, BYD, AITO, RIDDARA, 212, BESTUNE, MAXUS and RELY through our showrooms in Ulaanbaatar and Darkhan. Each brand has its own showroom and sales line, and most come with factory warranty and after-sales service. For full model details, visit each brand’s official website.",
+      mn: "Сайн Моторс ХХК олон улсын автомашины брэндүүдийг Монголд албан ёсны эрхтэйгээр борлуулдаг.\n\nJETOUR, CHERY, HONGQI, BYD, AITO, RIDDARA, 212, BESTUNE, MAXUS, RELY, SOUEAST брэндийн автомашиныг Улаанбаатар, Дархан дахь шоурумуудаараа санал болгодог. Брэнд бүр өөрийн шоурум, борлуулалтын утастай бөгөөд ихэнх брэнд үйлдвэрийн баталгаа, борлуулалтын дараах үйлчилгээтэй. Загвар, тоноглолын дэлгэрэнгүйг брэндийн албан ёсны сайтаас үзнэ үү.",
+      en: "Sain Motors LLC sells international car brands in Mongolia under official rights from each brand.\n\nWe offer JETOUR, CHERY, HONGQI, BYD, AITO, RIDDARA, 212, BESTUNE, MAXUS, RELY and SOUEAST through our showrooms in Ulaanbaatar and Darkhan. Each brand has its own showroom and sales line, and most come with factory warranty and after-sales service. For full model details, visit each brand’s official website.",
     },
   } satisfies Block,
   /**
@@ -253,3 +261,4 @@ export const services: Service[] = [
     source: `${JETOUR_SITE}; ${DRIVE}: BYD`,
   },
 ];
+

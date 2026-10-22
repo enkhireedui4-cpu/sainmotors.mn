@@ -1,22 +1,27 @@
-import type { Hero } from "./types";
+﻿import type { Hero } from "./types";
 
-// Corporate copy based on the brand-team distributor statements and showroom records.
-// "{count}" is the number of published brands (Hero fills it in), so the claim follows brands.ts.
+// The user confirmed the eleven-brand distributor fact on 2026-10-22 and wrote the hero
+// copy the same day. The kicker states that confirmed fact in the user's own words; the
+// heading and lead are new editorial copy and stay draft until the content owner signs off.
 export const hero: Hero = {
+  kicker: {
+    status: "approved",
+    source: "User's own wording, 2026-10-22, of the confirmed eleven-brand distributor fact (company.distributorClaim)",
+    value: { mn: "11 брэндийн албан ёсны дистрибьютер", en: "Official distributor of 11 brands" },
+  },
   title: {
     status: "draft",
-    source: "ikon.mn 2026-06-23 (Sain Motors, official distributor of 11 brands); brand list in brands.ts",
-    value: { mn: "{count} брэндийн\nалбан ёсны дистрибьютер", en: "{count} brands.\nOne official distributor." },
+    source: "User-supplied hero copy (MN), 2026-10-22; EN translated by the web team",
+    value: { mn: "Олон сонголтоос\nөөрийнхөө машиныг.", en: "From many choices,\nthe car that’s yours." },
   },
   text: {
     status: "draft",
-    source: "Distributor statements (Drive brand sheets); jetour.mn",
+    source: "User-supplied hero copy (MN), 2026-10-22; EN translated by the web team",
     value: {
-      mn: "Сайн Моторс олон улсын {count} автомашины брэндийг Монголд албан ёсоор төлөөлж, Улаанбаатар, Дархан дахь шоурумуудаараа танд хүргэнэ.",
-      en: "Sain Motors officially represents {count} international car brands in Mongolia, with showrooms in Ulaanbaatar and Darkhan.",
+      mn: "Хотод унах, гэр бүлээрээ аялах, ажил хэрэгтээ ашиглах — танд ямар автомашин хэрэгтэй вэ? Манай брэндүүдтэй танилцаж, өөрт тохирох загвараа сонгоорой.",
+      en: "Driving in the city, travelling with family, putting it to work — what kind of car do you need? Explore our brands and choose the model that suits you.",
     },
   },
-  cta: { label: { mn: "Брэндүүдтэй танилцах", en: "Explore our brands" }, href: "brands" },
-  // Down to the homepage's showroom walk, whose own action then leads to the contact page.
-  secondaryCta: { label: { mn: "Шоурум", en: "Showrooms" }, href: "#showroom" },
+  cta: { label: { mn: "Брэндүүд үзэх", en: "Explore brands" }, href: "brands" },
+  secondaryCta: { label: { mn: "Салбар олох", en: "Find a location" }, href: "locations" },
 };
