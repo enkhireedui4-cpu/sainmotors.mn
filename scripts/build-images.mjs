@@ -148,8 +148,8 @@ const SAIN = {
 };
 /** The SVGs sit on a 3850-unit square artboard; render them large enough to trim and downscale cleanly. */
 const SAIN_DENSITY = 300;
-/** Sain Motors' teaser for the empty twelfth brand cell: the user's one-line "COMING SOON" (Desktop "ChatGPT Image
- * Oct 22, 2026, 05_14_56 PM.png", 2026-10-22), trimmed and tinted #737B80 as the user specified; the alpha is kept. */
+/** Sain Motors' teaser for the empty twelfth brand cell: the bar and "COMING SOON" cropped from the user's graphic
+ * (Desktop "ChatGPT Image Oct 22, 2026, 05_04_09 PM.png", 2026-10-22); its small "ТУН УДАХГҮЙ" line is set as page text. */
 const MARKS = { "coming-soon": "coming-soon.png" };
 
 async function ensureDir(dir) {

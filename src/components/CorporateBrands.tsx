@@ -17,6 +17,8 @@ export function CorporateBrands({ brands, locale, comingSoon = false }: { brands
     </li>)}
     {comingSoon && <li className="brand-panel__soon">
       <img src={comingSoonMark.src} width={comingSoonMark.width} height={comingSoonMark.height} alt="COMING SOON" loading="lazy" decoding="async" />
+      {/* The graphic's Mongolian line, set as text so it stays legible at cell size. */}
+      <span lang="mn">ТУН УДАХГҮЙ</span>
     </li>}
   </ul>;
 }
