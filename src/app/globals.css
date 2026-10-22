@@ -148,7 +148,7 @@ ul,ol{padding:0;margin:0;list-style:none} svg{flex-shrink:0}
 .location__name h2,.location__name h3{font-size:1.1rem;margin-bottom:.5rem}.location__name>p{font-size:.75rem;color:var(--text-2)}
 .location__address,.location__reach{font-size:.85rem}.location__address>p+p{margin-top:.5rem;color:var(--text-2)}
 .location__address .text-link{font-size:.8rem}.location__brands{display:flex;flex-wrap:wrap;gap:.5rem;font-size:.7rem;margin-top:.75rem}.location__brands a{min-height:2rem}
-.phone-link{display:inline-flex;gap:.5rem;align-items:center;min-height:2.75rem;font-weight:600}
+.phone-link{display:inline-flex;gap:.5rem;align-items:center;min-height:2.75rem;font-weight:600}.location__reach .phone-link{margin-right:1.25rem}
 .brand-lines li{display:flex;justify-content:space-between;gap:1rem;align-items:center;font-size:.75rem}.brand-lines a{min-height:2.75rem;display:flex;align-items:center}
 .location__hours{margin-top:.75rem;color:var(--text-2);font-size:.75rem}.hours>div{display:flex;justify-content:space-between;gap:1rem}
 .location-list--stacked .location{display:block;background:var(--surface)}.location-list--stacked .location>div+div{margin-top:1rem}

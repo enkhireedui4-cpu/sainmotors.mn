@@ -10,7 +10,6 @@
 const JETOUR_SITE = "jetour.mn — src/lib/branches.ts";
 const DRIVE = "Drive brand sheets (2026-10-16)";
 const CHERY_SITE = "Sain Motors CHERY site (Desktop chery) — lib/content.ts site";
-const SOUEAST_FB = "SOUEAST Mongolia - Sain Motors Facebook page intro (screenshot supplied by the user, 2026-10-20)";
 
 const mapSearch = (query: string) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
@@ -41,7 +40,7 @@ export const company = {
   } satisfies Block,
   /**
    * The year Sain Motors began selling each brand under official rights,
-   * from the brand sheets. JETOUR, CHERY and SOUEAST have no year on record.
+   * from the brand sheets (SOUEAST's from its own sheet, supplied 2026-10-22). JETOUR and CHERY have no year on record.
    */
   milestones: {
     status: "sourced" as ContentStatus,
@@ -49,7 +48,7 @@ export const company = {
     items: [
       { year: 2024, brands: ["hongqi"] },
       { year: 2025, brands: ["byd", "aito", "riddara", "212", "bestune", "maxus"] },
-      { year: 2026, brands: ["rely"] },
+      { year: 2026, brands: ["rely", "soueast"] },
     ],
   },
 };
@@ -100,24 +99,6 @@ export const locations: Location[] = [
     },
     status: "sourced",
     source: JETOUR_SITE,
-  },
-  {
-    // Same district, khoroo and landmark as the JETOUR showroom, but SOUEAST publishes its own hours and line.
-    id: "soueast",
-    kind: "showroom",
-    name: { mn: "SOUEAST шоурум", en: "SOUEAST showroom" },
-    city: UB,
-    address: { mn: "Чингэлтэй дүүрэг, 5-р хороо", en: "5th khoroo, Chingeltei district" },
-    landmark: { mn: "Holiday Inn зочид буудлын урд", en: "In front of the Holiday Inn hotel" },
-    hours: [
-      { days: { mn: "Даваа – Баасан", en: "Monday – Friday" }, time: { mn: "10:00 – 19:00", en: "10:00 – 19:00" } },
-      { days: { mn: "Бямба", en: "Saturday" }, time: { mn: "13:00 – 18:00", en: "13:00 – 18:00" } },
-      { days: { mn: "Ням", en: "Sunday" }, time: { mn: "Амарна", en: "Closed" } },
-    ],
-    phone: { display: "7299-8866", href: "tel:+97672998866" },
-    map: { url: mapSearch("Holiday Inn Ulaanbaatar"), precision: "search" },
-    status: "sourced",
-    source: SOUEAST_FB,
   },
   {
     id: "dolgoon-nuur",

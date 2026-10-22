@@ -44,9 +44,9 @@ test("locations routes have complete server-rendered contact rows in both langua
       const response = await page.goto(`${BASE}/${locale}/locations/`);
       assert.equal(response.status(), 200);
       assert.equal(await page.locator("h1").count(), 1);
-      assert.equal(await page.locator(".location-directory__row").count(), 8);
-      assert.equal(await page.locator(".location-directory__row a[href^='tel:']").count(), 12);
-      assert.equal(await page.locator(".location-directory__map").count(), 8);
+      assert.equal(await page.locator(".location-directory__row").count(), 7);
+      assert.equal(await page.locator(".location-directory__row a[href^='tel:']").count(), 11);
+      assert.equal(await page.locator(".location-directory__map").count(), 7);
       assert.equal(await page.locator("noscript").count() > 0, true);
     }
   } finally { await context.close(); }
@@ -77,7 +77,7 @@ test("brand and city filters intersect, create a shareable URL, and restore afte
     await page.waitForFunction(() => document.querySelectorAll(".location-directory__row").length === 2);
     assert.equal(await page.getByLabel("City", { exact: true }).inputValue(), "");
     await page.getByRole("button", { name: "Clear filters", exact: true }).click();
-    await page.waitForFunction(() => document.querySelectorAll(".location-directory__row").length === 8);
+    await page.waitForFunction(() => document.querySelectorAll(".location-directory__row").length === 7);
     assert.equal(new URL(page.url()).searchParams.has("brand"), false);
     assert.equal(new URL(page.url()).searchParams.get("utm_source"), "partner");
     assert.deepEqual(errors, []);
@@ -97,7 +97,7 @@ test("direct location links use the same city keys in MN and EN and retain liter
     }
     await page.goto(`${BASE}/en/locations/?brand=unknown&city=unknown`);
     await page.locator(".location-directory[data-ready='true']").waitFor();
-    assert.equal(await page.locator(".location-directory__row").count(), 8);
+    assert.equal(await page.locator(".location-directory__row").count(), 7);
   } finally { await context.close(); }
 });
 

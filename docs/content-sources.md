@@ -22,7 +22,7 @@ distributor statement, official web link, sales phone, hero headline), a Logo fo
 | Brand (public name) | Sheet (Drive ID) | Sain Motors relationship, per sheet | Showroom, per sheet | Sales line | Links verified 2026-10-17 |
 |---|---|---|---|---|---|
 | JETOUR | — (no Drive folder) | Official distributor (jetour.mn page title) | C1 TV building, Chingeltei (jetour.mn) | 7010-8855 (jetour.mn) | jetour.mn ✓ |
-| SOUEAST | — (no Drive folder) | On the company brand banner; its Facebook intro names Sain Motors LLC official distributor | 5th khoroo, Chingeltei, in front of the Holiday Inn (the JETOUR building); Mon–Fri 10:00–19:00, Sat 13:00–18:00, Sun closed (Facebook intro, 2026-10-20) | 7299-8866 (Facebook intro) | Facebook page ✓ |
+| SOUEAST | SOUEAST BRAND sheet (screenshot supplied by the user, 2026-10-22) | Sheet: founded 1995 in Fuzhou, Fujian; official distributor since 2026; models S06, S07, S08 | JETOUR showroom (sheet) | 7277-8855 (sheet; supersedes the Facebook intro's 7299-8866) | Facebook page ✓ |
 | CHERY | — (Chery team folder empty). Read 2026-10-18 from Sain Motors' own CHERY site project, Desktop `chery` (`lib/content.ts` `site`, `PRODUCT.md`, `messages/mn.json`) | Official distributor (`site.role`); TIGGO 2, 4, 7, 8; factory warranty 3 years or 100,000 km; leasing from 10% down, up to 96 months | Narny Khoroolol, Parko Riveria, 26th khoroo, Bayangol (map pin 47.904448, 106.902714); Mon–Fri 09:00–21:00, Sat 09:00–19:00 | 7255-8855 | chery.mn ✗ (no DNS on 10-17 and 10-18) |
 | BYD | Мэдээлэл BYD `1ROO7xP1…` | Official distributor **since 2025**; TI 7, Shark 6, Sealion 6, Atto 3 with factory warranty, after-sales service, professional repair and parts | BYD 4S showroom, Moscow Street, Bayangol (SW of Tsambagarav centre) | 7250 8855 | byd.com/en ✓ |
 | RIDDARA | Мэдээлэл Riddara `1OFghaed…` | Official distributor **since 2025**; warranty, after-sales service, advice | Dolgoon Nuur, opposite Computer Mall, Chingeltei | 7270 8855 | riddara.com ✓ |
@@ -77,7 +77,7 @@ facebook.com refuses anonymous requests.
 | HONGQI | facebook.com/HongqiMongolia1 | "Hongqi Mongolia - Sain motors" (the sheet's hyperlink points at the 212 page; its text is right) |
 | RIDDARA | facebook.com/p/Riddara-Mongolia-Sain-Motors-61572981115327 | "Riddara Mongolia - Sain Motors", 4.8K followers; address supplied by the user (the RIDDARA sheet carries BYD's hyperlink) |
 | AITO | facebook.com/p/AITO-Mongolia-Sain-Motors-61575759152945 | "AITO Mongolia - Sain Motors", 3.1K followers; address supplied by the user; the page's phone 7211 8855 matches AITO's sales line |
-| SOUEAST | facebook.com/people/SOUEAST-Mongolia-Sain-Motors/61584232004745 | "SOUEAST Mongolia - Sain Motors", 2.1K followers; address supplied by the user. Its intro lists the showroom in front of the Holiday Inn, Chingeltei (the JETOUR C1 address), hours Mon–Fri 10:00–19:00, Sat 13:00–18:00, and phone 7299 8866; on the site since 2026-10-20 as the `soueast` location, counted with JETOUR's building as one showroom |
+| SOUEAST | facebook.com/people/SOUEAST-Mongolia-Sain-Motors/61584232004745 | "SOUEAST Mongolia - Sain Motors", 2.1K followers; address supplied by the user. Its intro lists the showroom in front of the Holiday Inn, Chingeltei (the JETOUR C1 address), hours Mon–Fri 10:00–19:00, Sat 13:00–18:00, and phone 7299 8866; on the site 2026-10-20 to 2026-10-22 as a separate `soueast` location; since 2026-10-22 the brand sheet places SOUEAST in the JETOUR showroom with 7277-8855, so that location and the Facebook hours/phone were removed |
 
 ## 3. Images
 
@@ -191,7 +191,7 @@ their background panels excluded. Original geometry and colours are preserved.
 ## 5. Still needed
 
 - Written publication approval for everything above (status → `approved`).
-- SOUEAST: local introduction; confirmation that its showroom shares the JETOUR C1 building (the map link searches for the Holiday Inn until a pin is confirmed).
+- SOUEAST: publication approval of the 2026-10-22 brand sheet details (introduction, S06/S07/S08, JETOUR showroom, 7277-8855); whether the Facebook page's 7299-8866 should be retired.
 - CHERY: approval of the introduction and showroom details. The homepage card uses the user-supplied
   TIGGO 7 PRO MAX image (`37620.png`); the dedicated brand page uses the separately supplied
   TIGGO 7 PRO MAX road photograph (`37628.png`). Both originals are preserved; the prior TIGGO 8 source is archived.

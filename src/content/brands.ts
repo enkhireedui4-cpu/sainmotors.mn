@@ -13,6 +13,7 @@ const CHECKED = "2026-10-17";
 
 const DRIVE_212 = "Desktop brands6 / supplied brand-team sheets (also held in Drive: 212 team)";
 const DRIVE_BYD = "Desktop 3brand / supplied brand-team sheets (also held in Drive: BYD team)";
+const SOUEAST_SHEET = "SOUEAST BRAND sheet (screenshot supplied by the user, 2026-10-22)";
 
 /** Mongolian Facebook pages confirmed by name ("… Mongolia - Sain Motors") through Facebook's public page plugin. */
 const PAGES_CHECKED = "2026-10-20";
@@ -84,25 +85,38 @@ export const brands: Brand[] = [
     order: 2,
     accent: GRAPHITE,
     summary: {
-      status: "draft",
+      status: "sourced",
+      source: `${SOUEAST_SHEET} / Брэндийн товч танилцуулга (spacing and "технологи-ийг" normalised)`,
       value: {
-        mn: "SOUEAST брэндийн загвар, худалдан авалтын нөхцөлийг Holiday Inn зочид буудлын урдах SOUEAST шоурумаас эсвэл борлуулалтын утсаар лавлана уу.",
-        en: "Ask about SOUEAST models and buying options at the SOUEAST showroom in front of the Holiday Inn, or call its sales line.",
+        mn: "SOUEAST брэнд нь БНХАУ-ын Фужянь мужийн Фүжөү хотод 1995 онд байгуулагдсан. Автомашин үйлдвэрлэл, хөгжүүлэлтийн чиглэлээр олон улсын зах зээлд үйл ажиллагаагаа явуулж байна. 2024 онд олон улсын зах зээлд чиглэсэн шинэ шатны хөгжлөө эхлүүлсэн. SOUEAST нь орчин үеийн хотын амьдралын хэв маягт нийцсэн загварлаг орчин үеийн дизайн, тав тухтай хэрэглээ, ухаалаг технологийг нэгтгэн, хэрэглэгчдэд илүү хялбар, таатай жолоодлогын туршлага бий болгосон SUV ангиллын автомашины үйлдвэрлэл, хөгжүүлэлтэд төвлөрсөн брэнд юм.",
+        en: "SOUEAST was founded in 1995 in Fuzhou, Fujian province, China, and builds and develops cars for international markets. In 2024 it began a new stage of growth aimed at those markets. SOUEAST focuses on SUVs that bring together modern design suited to city life, everyday comfort and smart technology for an easier, more enjoyable drive.",
       },
     },
+    statement: {
+      status: "sourced",
+      source: `MN from ${SOUEAST_SHEET} ("S06, 07" written as S06, S07; "ххк" as ХХК); EN by the web team`,
+      value: {
+        mn: "Сайн Моторс ХХК нь 2026 оноос эхлэн SOUEAST брэндийн Монгол дахь албан ёсны дистрибьютероор ажиллаж байна. S06, S07, S08 гэсэн 3 загварыг үйлдвэрийн баталгаа, борлуулалтын дараах үйлчилгээ, мэргэжлийн засвар, сэлбэгийн хамт санал болгодог.",
+        en: "Sain Motors has been the official distributor of SOUEAST in Mongolia since 2026. We offer the S06, S07 and S08 with factory warranty, after-sales service, professional repairs and spare parts.",
+      },
+    },
+    since: 2026,
+    models: ["S06", "S07", "S08"],
     teaser: {
       status: "draft",
-      source: "Condensed by the web team from the company brand banner and the SOUEAST Facebook page intro (2026-10-20)",
+      source: `Condensed by the web team from ${SOUEAST_SHEET}`,
       value: {
-        mn: "SOUEAST нь Сайн Моторс-ын брэндийн багцад багтдаг. Шоурум нь Чингэлтэй дүүрэгт, Holiday Inn зочид буудлын урд байрладаг. Загвар, бэлэн байдал, худалдан авалтын нөхцөлийг шоурумаас эсвэл борлуулалтын утсаар лавлана уу.",
-        en: "SOUEAST is part of the Sain Motors portfolio. Its showroom is in Chingeltei, in front of the Holiday Inn. Ask there or call its sales line about models, availability and buying options.",
+        mn: "1995 онд Фүжөү хотод байгуулагдсан SOUEAST нь хотын хэрэглээнд зориулсан SUV-д төвлөрдөг. Сайн Моторс 2026 оноос албан ёсны дистрибьютероор нь ажиллаж, S06, S07, S08 загварыг JETOUR шоурумд санал болгож байна.",
+        en: "Founded in Fuzhou in 1995, SOUEAST focuses on SUVs for city life. Sain Motors has been its official distributor since 2026, offering the S06, S07 and S08 at the JETOUR showroom.",
       },
     },
+    factsReview: { status: "sourced", source: `${SOUEAST_SHEET}: models, JETOUR showroom and 7277-8855` },
     // "SOUEAST Mongolia - Sain Motors", address supplied by the user (2026-10-20).
     links: [facebook("https://www.facebook.com/people/SOUEAST-Mongolia-Sain-Motors/61584232004745/", PAGES_CHECKED)],
-    // Showroom and line from the same page's intro.
-    location: "soueast",
-    phone: phone("72998866"),
+    // The brand sheet places SOUEAST in the JETOUR showroom with its own sales line; it supersedes the
+    // Facebook intro's separate showroom entry and 7299-8866.
+    location: "jetour-c1",
+    phone: phone("72778855"),
   },
   {
     slug: "chery",

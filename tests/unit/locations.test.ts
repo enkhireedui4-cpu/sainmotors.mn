@@ -40,7 +40,7 @@ describe("location directory", () => {
     expect(readLocationFilters("?city=unknown&brand=JETOUR", locations, brands))
       .toEqual({ brand: "", city: "" });
     expect(filterLocations(locations, brands, readLocationFilters("?city=unknown", locations, brands)))
-      .toHaveLength(8);
+      .toHaveLength(locations.length);
   });
 
   it("updates only directory query keys and clears them without losing review or referral state", () => {

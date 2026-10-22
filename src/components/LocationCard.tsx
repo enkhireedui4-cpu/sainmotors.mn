@@ -43,10 +43,11 @@ export function LocationCard({ location, locale, headingLevel = "h3" }: Location
                 <span className="sr-only">{ui.location.brands[locale]}: </span>
                 {brands.map((brand, i) => (
                   <span key={brand.slug}>
-                    {i > 0 && ", "}
                     <Link href={brandHref(locale, brand.slug)} translate="no">
                       {brand.name}
                     </Link>
+                    {/* The comma closes this item; the flex gap supplies the space after it. */}
+                    {i < brands.length - 1 && ","}
                   </span>
                 ))}
               </p>

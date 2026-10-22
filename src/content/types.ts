@@ -69,7 +69,7 @@ export interface BrandLink {
   checked: string;
 }
 
-export type LocationId = "dolgoon-nuur" | "sansar" | "byd-4s" | "chery-narny" | "jetour-c1" | "soueast" | "darkhan" | "service-centre";
+export type LocationId = "dolgoon-nuur" | "sansar" | "byd-4s" | "chery-narny" | "jetour-c1" | "darkhan" | "service-centre";
 
 export interface Brand {
   slug: string;
