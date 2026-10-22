@@ -46,7 +46,9 @@ test("native mobile menu supports Escape, return focus, real route selection and
  await page.goto(BASE+"/en/");
  const button=page.getByRole("button",{name:"Menu",exact:true});await button.click();
  assert.equal(await page.locator("#mobile-menu").evaluate(d=>d.open),true);
- await page.keyboard.press("Escape");assert.equal(await button.getAttribute("aria-expanded"),"false");assert.equal(await button.evaluate(b=>b===document.activeElement),true);
+ // aria-expanded follows the dialog's close event, so wait for it instead of reading it in the same tick.
+ await page.keyboard.press("Escape");await page.waitForFunction(()=>{const b=document.querySelector(".menu-button");return b?.getAttribute("aria-expanded")==="false"&&b===document.activeElement;},null,{timeout:2000});
+ assert.equal(await button.getAttribute("aria-expanded"),"false");assert.equal(await button.evaluate(b=>b===document.activeElement),true);
  await button.click();await page.locator("#mobile-menu").getByRole("link",{name:"Locations",exact:true}).click();
  await page.waitForURL("**/en/locations/");assert.equal(await page.locator("#mobile-menu").evaluate(d=>d.open),false);
  await page.close();
