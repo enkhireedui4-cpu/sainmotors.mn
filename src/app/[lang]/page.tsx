@@ -37,7 +37,7 @@ export default async function HomePage({ params }: Props) {
     </section>
     <section className="section home-brands brand-band" aria-labelledby="brands-heading"><div className="container">
       <div className="section-head"><h2 id="brands-heading" className="display-2">{copy.brands}</h2><p className="home-brands__note">{copy.brandsNote}</p></div>
-      <div className="brand-panel-frame"><CorporateBrands brands={getBrands()} locale={locale} /></div>
+      <div className="brand-panel-frame"><CorporateBrands brands={getBrands()} locale={locale} comingSoon /></div>
     </div></section>
     <section className="section section--alt" aria-labelledby="home-company-heading"><div className="container editorial-split">
       <figure className="editorial-photo"><Picture photo={sitePhotos.story} locale={locale} sizes="(min-width: 64rem) 44vw, 92vw" /></figure>

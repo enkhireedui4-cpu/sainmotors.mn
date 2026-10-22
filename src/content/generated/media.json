@@ -1710,6 +1710,13 @@
       "height": 120
     }
   },
+  "marks": {
+    "coming-soon": {
+      "src": "/media/coming-soon.png",
+      "width": 1087,
+      "height": 120
+    }
+  },
   "social": {
     "src": "/media/social-default.jpg",
     "width": 1200,

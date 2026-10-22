@@ -71,6 +71,7 @@ export function getLogo(slug: string, onDark = false): LogoAsset | undefined {
 }
 
 export const sainLogos = media.sain;
+export const comingSoonMark = media.marks["coming-soon"];
 export const socialImage = media.social;
 
 /**

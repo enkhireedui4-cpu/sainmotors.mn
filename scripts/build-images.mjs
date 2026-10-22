@@ -148,6 +148,9 @@ const SAIN = {
 };
 /** The SVGs sit on a 3850-unit square artboard; render them large enough to trim and downscale cleanly. */
 const SAIN_DENSITY = 300;
+/** Sain Motors' teaser for the empty twelfth brand cell: the bar and "COMING SOON" cropped from the user's graphic
+ * (Desktop "ChatGPT Image Oct 22, 2026, 05_04_09 PM.png", 2026-10-22); its small "ТУН УДАХГҮЙ" line is set as page text. */
+const MARKS = { "coming-soon": "coming-soon.png" };
 
 async function ensureDir(dir) {
   await fs.mkdir(dir, { recursive: true });
@@ -332,11 +335,12 @@ await fs.rm(OUT, { recursive: true, force: true });
 await ensureDir(OUT);
 await ensureDir(path.dirname(MANIFEST));
 
-const manifest = { photos: {}, logos: {}, logosOnDark: {}, sain: {}, social: null };
+const manifest = { photos: {}, logos: {}, logosOnDark: {}, sain: {}, marks: {}, social: null };
 for (const [key, def] of Object.entries(PHOTOS)) manifest.photos[key] = await buildPhoto(key, def);
 for (const [slug, def] of Object.entries(LOGOS)) manifest.logos[slug] = await buildLogo(slug, def);
 for (const [slug, def] of Object.entries(DARK_LOGOS)) manifest.logosOnDark[slug] = await buildLogo(`${slug}-on-dark`, def);
 for (const [key, file] of Object.entries(SAIN)) manifest.sain[key] = await buildSainLogo(key, file);
+for (const [key, file] of Object.entries(MARKS)) manifest.marks[key] = await buildSainLogo(key, file);
 manifest.social = await buildSocialImage();
 await buildIcons();
 

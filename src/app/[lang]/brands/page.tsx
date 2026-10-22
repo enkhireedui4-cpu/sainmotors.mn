@@ -13,5 +13,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BrandsPage({ params }: Props) {
   const locale = (await params).lang as Locale;
   const page = pages.brands;
-  return <><PageHero title={page.meta.value[locale].title} lead={page.lead.value[locale]} leadDraft={page.lead.status === "draft"} /><section className="brands-page brand-band"><div className="container"><div className="brand-panel-frame"><CorporateBrands brands={getBrands()} locale={locale} /></div></div></section></>;
+  return <><PageHero title={page.meta.value[locale].title} lead={page.lead.value[locale]} leadDraft={page.lead.status === "draft"} /><section className="brands-page brand-band"><div className="container"><div className="brand-panel-frame"><CorporateBrands brands={getBrands()} locale={locale} comingSoon /></div></div></section></>;
 }
