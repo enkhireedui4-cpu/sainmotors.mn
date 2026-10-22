@@ -19,3 +19,5 @@
 .brand-hero__image img,.brand-gallery figure img{background-color:#e8edf0!important}
 @media(max-width:1023px){.brand-hero__grid{gap:2rem;grid-template-columns:1fr 1fr}.brand-facts dl{grid-template-columns:1fr 1fr}.brand-gallery__grid{grid-template-columns:1fr 1fr}}
 @media(max-width:639px){.brand-hero__grid{grid-template-columns:1fr;padding-bottom:2rem;gap:2rem}.brand-hero__image{grid-row:2}.brand-hero__identity{margin-bottom:1rem}.brand-hero__headline{font-size:2rem}.brand-story__grid{grid-template-columns:1fr;gap:1.5rem}.brand-facts dl{gap:1.5rem}.brand-gallery__grid{gap:1rem}.brand-gallery figcaption{font-size:.7rem}}
+/* Brand sheets separate paragraphs with line breaks; keep them. */
+.brand-story p{white-space:pre-line}

@@ -14,6 +14,7 @@ const CHECKED = "2026-10-17";
 const DRIVE_212 = "Desktop brands6 / supplied brand-team sheets (also held in Drive: 212 team)";
 const DRIVE_BYD = "Desktop 3brand / supplied brand-team sheets (also held in Drive: BYD team)";
 const SOUEAST_SHEET = "SOUEAST BRAND sheet (screenshot supplied by the user, 2026-10-22)";
+const JETOUR_SHEET = "Desktop jetourMedeelel/JETOUR_BRAND123.xlsx (supplied by the user, 2026-10-22)";
 
 /** Mongolian Facebook pages confirmed by name ("… Mongolia - Sain Motors") through Facebook's public page plugin. */
 const PAGES_CHECKED = "2026-10-20";
@@ -34,19 +35,26 @@ export const brands: Brand[] = [
     order: 1,
     accent: GRAPHITE,
     summary: {
-      status: "draft",
+      status: "sourced",
+      source: `${JETOUR_SHEET} / Брэндийн товч танилцуулга (EN: missing spaces after full stops restored)`,
       value: {
-        mn: "JETOUR нь аялал, адал явдалд зориулсан SUV загваруудаараа танигдсан брэнд. Загвар бүрийн дэлгэрэнгүй, тоноглолыг Сайн Моторс-ын хөтөлдөг jetour.mn сайтаас үзнэ үү.",
-        en: "JETOUR is known for SUVs built around travel and adventure. Full model details and specifications are on jetour.mn, which Sain Motors runs.",
+        mn: "Сайн Моторс ХХК нь 2023 оноос JETOUR брэндийн Монгол Улс дахь албан ёсны дистрибьютороор ажиллаж байна. Компанийн зүгээс хэрэглэгчдэд автомашины борлуулалт, баталгаат засвар үйлчилгээ, сэлбэгийн хангамж болон борлуулалтын дараах үйлчилгээг албан ёсны сувгаар хүргэхэд анхааран ажилладаг.\nJETOUR брэнд нь бүтээгдэхүүний чанар, технологийн шинэчлэл, хэрэглэгчийн хэрэгцээнд нийцсэн шийдлээр дамжуулан автомашины салбар дахь байр сууриа бэхжүүлж, хэрэглэгчдэд урт хугацааны үнэ цэн бий болгохыг зорьдог.",
+        en: "Sain Motors LLC has been the official distributor of the JETOUR brand in Mongolia since 2023. The company is committed to providing customers with vehicle sales, warranty maintenance and repair services, genuine spare parts supply, and comprehensive after-sales support through its authorized channels.\nThe JETOUR brand strives to strengthen its position in the automotive industry through product quality, technological innovation, and solutions tailored to customer needs, while creating long-term value for its customers.",
       },
     },
     statement: {
       status: "sourced",
-      source: "jetour.mn page title: «JETOUR — Албан ёсны дистрибьютор SAIN MOTORS»",
+      source: `${JETOUR_SHEET} / Албан ёсны борлуулагчийн эрхийн мэдээлэл (EN: missing spaces after full stops restored)`,
       value: {
-        mn: "Сайн Моторс нь JETOUR брэндийн Монгол дахь албан ёсны дистрибьютор.",
-        en: "Sain Motors is the official distributor of JETOUR in Mongolia.",
+        mn: "Сайн Моторс ХХК нь 2023 оноос JETOUR брэндийн Монгол Улс дахь албан ёсны дистрибьютороор ажиллаж байна.\nАлбан ёсны дистрибьютерийн хувьд бид хэрэглэгчдэд шинэ автомашины борлуулалт, загвар болон тоноглолын зөвлөгөө, туршилтын жолоодлого, санхүүжилтийн зөвлөгөө, баталгаат засвар үйлчилгээ болон сэлбэгийн дэмжлэгийг албан ёсны сувгаар хүргэн ажилладаг.\nБид автомашин худалдан авах үеэс эхлэн цаашдын ашиглалт, үйлчилгээний бүхий л үе шатанд хэрэглэгчдийн сэтгэл ханамж, найдвартай байдлыг эрхэмлэнэ.",
+        en: "Sain Motors LLC has been the official distributor of the JETOUR brand in Mongolia since 2023.\nAs the official distributor, we provide customers with new vehicle sales, expert guidance on vehicle models and specifications, test-drive experiences, financing consultation, warranty services, and genuine spare parts support through our authorized channels.\nWe are committed to ensuring customer satisfaction and reliability throughout the entire ownership journey, from the initial vehicle purchase to ongoing use and after-sales service.",
       },
+    },
+    since: 2023,
+    headline: {
+      status: "sourced",
+      source: `${JETOUR_SHEET} / Брэндийн Hero-гийн гарчиг`,
+      value: { mn: "JETOUR — Beyond the Horizon", en: "JETOUR — Beyond the Horizon" },
     },
     teaser: {
       status: "draft",
@@ -56,10 +64,13 @@ export const brands: Brand[] = [
         en: "JETOUR builds SUVs for travel and adventure. Sain Motors is its official distributor in Mongolia, with a dedicated showroom and service centre in Ulaanbaatar. Full model details are on jetour.mn.",
       },
     },
+    factsReview: { status: "sourced", source: `${JETOUR_SHEET}: since 2023, sales line 7277 8855` },
+    // The sheet's official link, jetourglobal.com, is not linked: brand pages point only to Mongolian channels.
     // JETOUR news is posted on Sain Motors' main page ("Sain Motors - Сайн Моторс ХХК"), which jetour.mn also links.
     links: [site("https://jetour.mn/"), facebook("https://www.facebook.com/Sainmotors.mn", PAGES_CHECKED)],
     location: "jetour-c1",
-    phone: phone("70108855"),
+    // Sales line from the sheet; the showroom's own 7010-8855 stays on the location.
+    phone: phone("72778855"),
     photo: {
       key: "jetour-t2-idm",
       alt: { mn: "Ойн шороон замаар явж буй JETOUR T2 i-DM", en: "JETOUR T2 i-DM on a forest track" },

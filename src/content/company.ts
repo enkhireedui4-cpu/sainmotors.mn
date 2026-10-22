@@ -40,12 +40,13 @@ export const company = {
   } satisfies Block,
   /**
    * The year Sain Motors began selling each brand under official rights,
-   * from the brand sheets (SOUEAST's from its own sheet, supplied 2026-10-22). JETOUR and CHERY have no year on record.
+   * from the brand sheets (JETOUR's and SOUEAST's from their own sheets, supplied 2026-10-22). CHERY has no year on record.
    */
   milestones: {
     status: "sourced" as ContentStatus,
     source: DRIVE,
     items: [
+      { year: 2023, brands: ["jetour"] },
       { year: 2024, brands: ["hongqi"] },
       { year: 2025, brands: ["byd", "aito", "riddara", "212", "bestune", "maxus"] },
       { year: 2026, brands: ["rely", "soueast"] },
