@@ -47,7 +47,7 @@ export function MobileMenu({ locale, links, homeHref, logo, labels, phone, email
         }}
       >
         <Icon name="menu" size={22} />
-        <span className="menu-button__label">{labels.menu}</span>
+        <span className="sr-only">{labels.menu}</span>
       </button>
 
       <dialog
