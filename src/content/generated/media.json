@@ -554,6 +554,37 @@
         ]
       ]
     },
+    "brand-soueast-s08": {
+      "width": 2048,
+      "height": 1576,
+      "color": "#282828",
+      "srcset": [
+        [
+          480,
+          "/media/brand-soueast-s08-480.webp"
+        ],
+        [
+          768,
+          "/media/brand-soueast-s08-768.webp"
+        ],
+        [
+          1080,
+          "/media/brand-soueast-s08-1080.webp"
+        ],
+        [
+          1440,
+          "/media/brand-soueast-s08-1440.webp"
+        ],
+        [
+          1920,
+          "/media/brand-soueast-s08-1920.webp"
+        ],
+        [
+          2048,
+          "/media/brand-soueast-s08-2048.webp"
+        ]
+      ]
+    },
     "brand-chery-tiggo8": {
       "width": 1843,
       "height": 852,

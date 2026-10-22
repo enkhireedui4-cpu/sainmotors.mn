@@ -71,9 +71,9 @@ export const brands: Brand[] = [
   {
     slug: "soueast",
     cardPhoto: {
-      key: "brand-soueast-s09", status: "sourced", caption: "SOUEAST S09", focus: "50% 60%",
-      alt: { mn: "Тунгалаг усан гадаргуу дээр зогсож буй ногоон SOUEAST S09", en: "Green SOUEAST S09 standing on still, reflective water" },
-      note: "SOUEAST global S09 key visual (kv.jpg) with its glowing S09 sky lettering painted out, replacing the container-yard shot at the user's request on 2026-10-20; illustrates the brand, not local stock. https://www.soueast-motor.com/s09/",
+      key: "brand-soueast-s08", status: "sourced", caption: "SOUEAST S08", focus: "50% 55%",
+      alt: { mn: "Студид зогсож буй цэнхэр ногоон өнгийн SOUEAST S08", en: "A teal SOUEAST S08 in a studio" },
+      note: "Studio render of the S08 in colour option 3, supplied by the user on 2026-10-22 (Desktop S08/Ungu songolt 3.tif, 2048×2048); replaces the S09 key visual at the user's request.",
     },
     cardCopy: {
       status: "draft", source: "Vehicle category from https://www.soueast-motor.com/s09/; web-team translation",
