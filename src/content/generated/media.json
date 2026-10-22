@@ -1665,12 +1665,12 @@
   "sain": {
     "sain-color": {
       "src": "/media/sain-color.png",
-      "width": 412,
+      "width": 458,
       "height": 120
     },
     "sain-white": {
       "src": "/media/sain-white.png",
-      "width": 412,
+      "width": 458,
       "height": 120
     },
     "sain-on-dark": {

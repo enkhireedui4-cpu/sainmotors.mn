@@ -136,13 +136,16 @@ const DARK_LOGOS = {
   hongqi: { file: "brand-hongqi-on-dark.png", band: "all", mask: "alpha", ink: "original", optical: 1.32 },
 };
 
-/** Sain Motors logotype. "sain-on-dark" (white SAIN, red MOTORS) is the company's own dark-background
- * variant from jetour.mn; the dark site uses it everywhere. The others are kept for light contexts. */
+/** Sain Motors logotype: the company's own vector files (sainmotorsWebPhotos "8. Сайн Моторс үндсэн лого",
+ * 2026-10-22). "sain-color" is black SAIN with red MOTORS for light surfaces, "sain-on-dark" white and red,
+ * "sain-white" all white. They replace earlier PNGs whose MOTORS line and ® mark did not match the original. */
 const SAIN = {
-  "sain-color": "sain-color.png",
-  "sain-white": "sain-white.png",
-  "sain-on-dark": "sain-on-dark.png",
+  "sain-color": "sain-color.svg",
+  "sain-white": "sain-white.svg",
+  "sain-on-dark": "sain-on-dark.svg",
 };
+/** The SVGs sit on a 3850-unit square artboard; render them large enough to trim and downscale cleanly. */
+const SAIN_DENSITY = 300;
 
 async function ensureDir(dir) {
   await fs.mkdir(dir, { recursive: true });
@@ -288,7 +291,7 @@ async function buildLogo(slug, { file, band, mask, ink: inkMode, gap, area, opti
 
 async function buildSainLogo(key, file) {
   const name = `${key}.png`;
-  const meta = await sharp(path.join(SRC, "logos", file))
+  const meta = await sharp(path.join(SRC, "logos", file), { density: SAIN_DENSITY })
     .trim()
     .resize({ height: 120 })
     .png({ compressionLevel: 9 })
@@ -299,7 +302,7 @@ async function buildSainLogo(key, file) {
 async function buildSocialImage() {
   const W = 1200;
   const H = 630;
-  const logo = await sharp(path.join(SRC, "logos", "sain-on-dark.png")).trim().resize({ width: 300 }).toBuffer();
+  const logo = await sharp(path.join(SRC, "logos", "sain-on-dark.svg"), { density: SAIN_DENSITY }).trim().resize({ width: 300 }).toBuffer();
   const photo = await sharp(path.join(SRC, "photos", "showroom-6.webp"))
     .extract({ left: 560, top: 380, width: 2000, height: 1050 })
     .resize(W, H, { fit: "cover" })

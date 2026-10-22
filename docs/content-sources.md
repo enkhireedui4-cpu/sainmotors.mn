@@ -181,6 +181,7 @@ No edition has a registration link: all are over (`src/lib/events.ts`, Asia/Ulaa
 | BYD, RIDDARA | variant 2 (black) / variant 1 wordmark of the supplied SVG sheet | Drive Logo folders |
 | JETOUR, CHERY | banner-derived files | company brand banner, 2026-10-15 |
 | AITO | black/white wordmark band from its SVG sheet | Desktop `3brand/Aito/Logo/AITO_logo 1.svg` |
+| Sain Motors | `sain-color.svg` (black/red), `sain-on-dark.svg` (white/red), `sain-white.svg`, as supplied | Company folder `sainmotorsWebPhotos/WEB Photos/8. Сайн Моторс үндсэн лого`, 2026-10-22; replaces earlier PNGs with a ® mark and a different MOTORS line (kept in `assets/_superseded`) |
 | SOUEAST | Official black wordmark on light surfaces (`brand-soueast.png`); official white wordmark on dark surfaces | SOUEAST global site header: `img/header_logo.png` (its light-header logo) and S09 `header_logo_w.png`, 2026-10-22 |
 
 Dark-context marks use the supplied white variants. Five PNG pairs were copied from Desktop
