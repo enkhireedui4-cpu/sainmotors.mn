@@ -1498,6 +1498,29 @@
           "/media/mtd7-212-mud-1920.webp"
         ]
       ]
+    },
+    "mtd6-sain-flags": {
+      "width": 1280,
+      "height": 720,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/mtd6-sain-flags-480.webp"
+        ],
+        [
+          768,
+          "/media/mtd6-sain-flags-768.webp"
+        ],
+        [
+          1080,
+          "/media/mtd6-sain-flags-1080.webp"
+        ],
+        [
+          1280,
+          "/media/mtd6-sain-flags-1280.webp"
+        ]
+      ]
     }
   },
   "logos": {

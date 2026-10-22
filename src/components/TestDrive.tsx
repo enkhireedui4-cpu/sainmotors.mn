@@ -18,9 +18,10 @@ import { VideoDialog } from "./VideoDialog";
  */
 export function TestDrive({ locale }: { locale: Locale }) {
   const copy = testDrive.value[locale];
-  const featured = driveEvents.find((event) => event.film);
-  if (!featured?.film) throw new Error("The test-drive feature needs an edition with a film.");
+  const featured = driveEvents.find((event) => event.film?.teaser);
+  if (!featured?.film?.teaser) throw new Error("The test-drive feature needs an edition with a film teaser.");
   const film = featured.film;
+  const teaser = featured.film.teaser;
   const poster = fallbackSrc(film.poster.key);
   const filmTitle = `MEGA TEST DRIVE ${featured.edition}${featured.title ? ` — ${featured.title[locale]}` : ""}`;
   const latest = driveEvents.reduce((max, event) => Math.max(max, event.edition), 0);
@@ -32,7 +33,7 @@ export function TestDrive({ locale }: { locale: Locale }) {
           <>
             {/* A lazy, responsive poster: <video poster> would be fetched with the first screen. */}
             <Picture photo={film.poster} locale={locale} sizes="(max-width: 48rem) 360vw, 120vw" className="teaser-poster" />
-            <TeaserVideo id={`${featured.id}-teaser`} src={film.teaser} label={film.poster.alt[locale]} />
+            <TeaserVideo id={`${featured.id}-teaser`} src={teaser} label={film.poster.alt[locale]} />
           </>
         }
       >

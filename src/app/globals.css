@@ -208,3 +208,5 @@ html[data-review] [data-status=draft]{outline:1px dashed #c65300;outline-offset:
   .location__hours{grid-column:2;grid-row:2}
   .location__actions{grid-column:3;grid-row:2;align-self:end}
 }
+/* News article text: the first paragraph leads in ink, the rest follow in the body colour. */
+.news-detail__story{max-width:42rem;margin-block:2rem}.news-detail__story p{color:var(--text-2);line-height:1.75}.news-detail__story p+p{margin-top:1.1rem}.news-detail__story p:first-child{font-size:1.125rem;color:var(--text)}

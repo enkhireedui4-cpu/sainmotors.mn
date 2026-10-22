@@ -160,6 +160,13 @@ Not used: the two participation-certificate scans (708155250…, 708155742…) s
   `mtd7-teaser.mp4` (muted 15 s loop of 0:54–0:59.5, 0:22–0:25, 0:32–0:35, 1:02.5–1:06; 1280 px, 2.1 MB)
   and `mtd7-full.mp4` (the whole film, 1280 px, AAC, 17 MB). Posters: frames at 0:54 (`mtd7-river-crossing`)
   and 0:24 (`mtd7-212-mud`, built, not placed).
+- **MEGA TEST DRIVE 6 film (2026-10-22):** Downloads `SAIN MOTORS × ШИЛИЙН БОГД ФЕСТИВАЛЬ 2026_720p.mp4`
+  (supplied by the user; SHA-256 97c4c61407f8…; 97.9 s, 1280×720, Sain Motors watermark burned in). Derivative
+  `public/video/mtd6-full.mp4` (x264 CRF 28, AAC 128k, faststart; 18 MB). Poster: frame at 0:58.5 (`mtd6-sain-flags`).
+  No teaser loop: the homepage film feature keeps edition 7.
+- **News copy (2026-10-22):** headings, place lines and three-paragraph reports for editions 8, 7 and 6 written by the
+  user; edition 8's venue is the Sain Motors Darkhan showroom, edition 6's the Central Stadium of Sükhbaatar province.
+  English by the web team. All stay draft until sign-off; edition 6's text keeps the user's "announced" wording.
 - **Editions** (`src/content/events.ts`, all `sourced`), from the registration sites in
   github.com/Enhireedui/mega-test-drive (README at the commit given) and ikon.mn (2026-06-23):
 

@@ -31,7 +31,9 @@ export default async function NewsDetail({ params }: Props) {
     <p className="eyebrow">{copy.held}</p><h1>{eventTitle(event,locale)}</h1>
     <div className="news-detail__meta"><time dateTime={event.days[0]}>{eventDate(event,locale)}</time><span>{event.venue[locale]}</span></div>
     {event.film && <video controls playsInline preload="none" poster={fallbackSrc(event.film.poster.key)} aria-label={eventTitle(event,locale)}><source src={event.film.full} type="video/mp4" /></video>}
-    {event.film && <p data-status={testDrive.status}>{testDrive.value[locale].body}</p>}
+    {event.story
+      ? <div className="news-detail__story" data-status={event.story.status}>{event.story.value[locale].split("\n\n").map((paragraph, i) => <p key={i}>{paragraph}</p>)}</div>
+      : event.film && <p data-status={testDrive.status}>{testDrive.value[locale].body}</p>}
     <dl className="news-detail__facts"><div><dt>{locale === "mn" ? "Огноо" : "Date"}</dt><dd>{eventDate(event,locale)}</dd></div><div><dt>{locale === "mn" ? "Байршил" : "Location"}</dt><dd>{event.venue[locale]}</dd></div>{event.hours && <div><dt>{ui.location.hours[locale]}</dt><dd>{event.hours}</dd></div>}</dl>
     <div className="actions"><Link href={pageHref(locale,"news")} className="button button--outline" prefetch={false}>{copy.newsLink}</Link><a href={contact.phone.href} className="text-link"><Icon name="phone" size={18} />{contact.phone.display}</a></div>
   </article>;

@@ -44,11 +44,21 @@ describe("MEGA TEST DRIVE content", () => {
     }
   });
 
-  it("has exactly one featured film with a self-hosted teaser and full cut", () => {
+  it("self-hosts every film, with one teaser loop for the featured edition", () => {
     const films = driveEvents.filter((event) => event.film);
-    expect(films).toHaveLength(1);
-    expect(films[0].film!.teaser).toMatch(/^\/video\/.+\.mp4$/);
-    expect(films[0].film!.full).toMatch(/^\/video\/.+\.mp4$/);
+    expect(films.map((event) => event.edition)).toEqual([7, 6]);
+    for (const event of films) expect(event.film!.full, event.id).toMatch(/^\/video\/.+\.mp4$/);
+    const teasers = films.filter((event) => event.film!.teaser);
+    expect(teasers).toHaveLength(1);
+    expect(teasers[0].film!.teaser).toMatch(/^\/video\/.+\.mp4$/);
+  });
+
+  it("gives every edition a written heading and story, kept as draft until sign-off", () => {
+    for (const event of driveEvents) {
+      expect(event.headline?.value.mn, event.id).toMatch(new RegExp(`^MEGA TEST DRIVE ${event.edition}`));
+      expect(event.story?.value.mn.split("\n\n").length, event.id).toBeGreaterThan(1);
+      expect(event.story?.status, event.id).toBe("draft");
+    }
   });
 
   it("keeps its copy unapproved until the content team signs it off", () => {

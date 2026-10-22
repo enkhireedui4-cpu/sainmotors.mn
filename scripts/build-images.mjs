@@ -90,6 +90,8 @@ const PHOTOS = {
   // frames at 0:54 and 0:24, used as the poster of the teaser loop and the full film.
   "mtd7-river-crossing": { file: "site/mtd7-river-crossing.webp" },
   "mtd7-212-mud": { file: "site/mtd7-212-mud.webp" },
+  // MEGA TEST DRIVE 6 film (Downloads "SAIN MOTORS × ШИЛИЙН БОГД ФЕСТИВАЛЬ 2026_720p.mp4"): frame at 0:58.5, Sain Motors flags at the display.
+  "mtd6-sain-flags": { file: "site/mtd6-sain-flags.webp" },
 };
 
 /**

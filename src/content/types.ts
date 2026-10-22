@@ -167,6 +167,10 @@ export interface DriveEvent {
   status: ContentStatus;
   source: string;
   registrationUrl?: string;
-  /** Self-hosted film: a short muted loop and the full cut, both under /public/video. */
-  film?: { poster: Photo; teaser: string; full: string; duration: string };
+  /** The news article's heading as written, e.g. "MEGA TEST DRIVE 8 Дархан хотод". */
+  headline?: Block;
+  /** The news article's text; paragraphs are separated by blank lines. */
+  story?: Block;
+  /** Self-hosted film under /public/video: the full cut and, for the homepage feature, a short muted loop. */
+  film?: { poster: Photo; teaser?: string; full: string; duration: string };
 }
