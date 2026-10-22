@@ -70,11 +70,11 @@ ul,ol{padding:0;margin:0;list-style:none} svg{flex-shrink:0}
 .site-footer a:hover{color:#ff8a91}.site-footer__base{border-top:1px solid #39454b;padding-top:1.5rem;display:flex;justify-content:space-between;gap:1rem;color:#b9c2c7;font-size:.75rem}
 .corporate-hero{display:grid;grid-template-columns:1fr 1.06fr;gap:3rem;align-items:center;padding-block:3.5rem 1.5rem;background:var(--surface);box-shadow:0 0 0 100vmax var(--surface);clip-path:inset(0 -100vmax)}
 .corporate-hero__copy{padding-block:1rem}
-/* Kicker: the company name, a red forward-leaning rule taken from the SAIN italic, then the confirmed fact. */
+/* Kicker: the company name over the confirmed fact, quiet so the headline leads. */
 .corporate-hero__kicker{margin-bottom:1.5rem;font-size:.95rem;font-weight:500;line-height:1.6;color:var(--text-2)}
-.corporate-hero__kicker strong{font-size:.8rem;font-weight:700;letter-spacing:.08em;color:var(--text)}
-.corporate-hero__rule{display:inline-block;vertical-align:-.2em;width:2px;height:1rem;margin-inline:.8rem;background:var(--red);transform:skewX(-20deg)}
-.corporate-hero h1{font-size:clamp(2.4rem,3.7vw,3.4rem);line-height:1.08;letter-spacing:-.03em}.corporate-hero h1 span{display:block}
+.corporate-hero__kicker strong{display:block;margin-bottom:.15rem;font-size:.8rem;font-weight:700;letter-spacing:.08em;color:var(--text)}
+/* A narrow measure stacks the headline into three short, even lines at every width. */
+.corporate-hero h1{max-width:7.2em;font-size:clamp(2.6rem,4.2vw,3.75rem);line-height:1.06;letter-spacing:-.03em}.corporate-hero h1 span{display:block}
 .corporate-hero__lead{font-size:1.0625rem;line-height:1.75;color:var(--text-2);max-width:33rem;margin-block:1.6rem 2.25rem}
 .corporate-hero .button--outline{background:#fff;border-color:var(--line)}.corporate-hero .button--outline:hover{background:#fff;border-color:var(--text)}
 /* Hero photos switch only on request: a rounded photo card with round arrows, dots beneath, crossfade between. */
@@ -89,7 +89,7 @@ ul,ol{padding:0;margin:0;list-style:none} svg{flex-shrink:0}
 .hero-gallery__dots span{width:.55rem;height:.55rem;border-radius:50%;background:var(--text);transition:background-color .16s var(--ease)}
 .hero-gallery__dots button:hover span{background:var(--red)}
 .hero-gallery__dots [aria-pressed=true] span{width:.8rem;height:.8rem;background:transparent;box-shadow:inset 0 0 0 2px var(--red)}
-.home-brands{padding-top:3.5rem}
+.home-brands{padding-top:3.5rem}.home-brands__note{margin-top:.75rem;font-size:1.0625rem}
 .brand-band{position:relative;isolation:isolate;overflow:hidden;overflow:clip}
 /* Home brand wall: one white panel of large centred marks, lifted over a grey band that ends inside the first row.
    Dividers are cell shadows clipped by the panel, so only inner lines show whatever the brand count. */
@@ -171,7 +171,7 @@ html[data-review] [data-status=draft]{outline:1px dashed #c65300;outline-offset:
 }
 @media(max-width:639px){
   :root{--header-h:4.5rem}.site-logo img{width:9rem}.site-header__inner{gap:.7rem}.menu-button{margin-left:.5rem}
-  .corporate-hero{grid-template-columns:1fr;gap:1.75rem;padding-top:2rem;padding-bottom:.5rem}.corporate-hero__copy{padding:0}.corporate-hero h1{font-size:min(2.4rem,calc((100vw - 2.5rem) / 11.4))}.corporate-hero__kicker{font-size:.875rem;margin-bottom:1.1rem}.corporate-hero__kicker strong{display:block;margin-bottom:.15rem}.corporate-hero__rule{display:none}.corporate-hero__lead{margin-block:1rem 1.5rem;font-size:.98rem}.corporate-hero .button{padding-inline:1rem;font-size:.8rem}
+  .corporate-hero{grid-template-columns:1fr;gap:1.75rem;padding-top:2rem;padding-bottom:.5rem}.corporate-hero__copy{padding:0}.corporate-hero h1{font-size:2.5rem}.corporate-hero__kicker{font-size:.875rem;margin-bottom:1.1rem}.corporate-hero__lead{margin-block:1rem 1.5rem;font-size:.98rem}.corporate-hero .button{padding-inline:1rem;font-size:.8rem}
   .hero-gallery__frame{border-radius:1rem}.hero-gallery__arrow{width:2.5rem;height:2.5rem;margin-top:-1.25rem}.hero-gallery__arrow--previous{left:.75rem}.hero-gallery__arrow--next{right:.75rem}
   .home-brands{padding-top:2.5rem}.brand-panel{grid-template-columns:repeat(3,minmax(0,1fr));--mark-base:1.1rem}.brand-panel a{aspect-ratio:4/3;padding:.5rem}.brand-panel .brand-mark{max-width:90%}.brand-panel-frame:before{height:auto;bottom:-30rem}.section-head--split{display:block}.section-head--split p{margin-top:1rem}.section-head--split>.text-link{margin-top:.5rem}.section-head{margin-bottom:1.5rem}
   .brand-mark{height:1.7rem}.brand-mark-plate{padding:.5rem}

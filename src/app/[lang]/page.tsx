@@ -25,7 +25,7 @@ export default async function HomePage({ params }: Props) {
   return <div className="corporate-home">
     <section className="corporate-hero container" aria-labelledby="home-title">
       <div className="corporate-hero__copy">
-        <p className="corporate-hero__kicker" data-status={hero.kicker.status}><strong translate="no">SAIN MOTORS</strong><span className="corporate-hero__rule" aria-hidden="true" />{hero.kicker.value[locale]}</p>
+        <p className="corporate-hero__kicker" data-status={hero.kicker.status}><strong translate="no">SAIN MOTORS</strong> {hero.kicker.value[locale]}</p>
         <h1 id="home-title" data-status={hero.title.status}>{hero.title.value[locale].split("\n").map((line, i, lines) => <span key={i}>{line}{i < lines.length - 1 ? " " : ""}</span>)}</h1>
         <p className="corporate-hero__lead" data-status={hero.text.status}>{hero.text.value[locale]}</p>
         <div className="actions"><Link className="button button--primary" href={pageHref(locale, "brands")} prefetch={false}>{hero.cta.label[locale]}<Icon name="arrowUpRight" size={19} /></Link>
@@ -36,7 +36,7 @@ export default async function HomePage({ params }: Props) {
       </HeroGallery></figure>
     </section>
     <section className="section home-brands brand-band" aria-labelledby="brands-heading"><div className="container">
-      <div className="section-head section-head--split"><h2 id="brands-heading" className="display-2">{copy.brands}</h2><p>{copy.brandsNote}</p></div>
+      <div className="section-head"><h2 id="brands-heading" className="display-2">{copy.brands}</h2><p className="home-brands__note">{copy.brandsNote}</p></div>
       <div className="brand-panel-frame"><CorporateBrands brands={getBrands()} locale={locale} /></div>
     </div></section>
     <section className="section section--alt" aria-labelledby="home-company-heading"><div className="container editorial-split">

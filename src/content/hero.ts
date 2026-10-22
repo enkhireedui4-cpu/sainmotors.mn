@@ -12,14 +12,14 @@ export const hero: Hero = {
   title: {
     status: "draft",
     source: "User-supplied hero copy (MN), 2026-10-22; EN translated by the web team",
-    value: { mn: "Олон сонголтоос\nөөрийнхөө машиныг.", en: "From many choices,\nthe car that’s yours." },
+    value: { mn: "Өөрт тохирох автомашинаа сонгоорой.", en: "Choose the car that suits you." },
   },
   text: {
     status: "draft",
     source: "User-supplied hero copy (MN), 2026-10-22; EN translated by the web team",
     value: {
-      mn: "Хотод унах, гэр бүлээрээ аялах, ажил хэрэгтээ ашиглах — танд ямар автомашин хэрэгтэй вэ? Манай брэндүүдтэй танилцаж, өөрт тохирох загвараа сонгоорой.",
-      en: "Driving in the city, travelling with family, putting it to work — what kind of car do you need? Explore our brands and choose the model that suits you.",
+      mn: "Хотын өдөр тутмын хэрэглээ, гэр бүлийн аялал, ажил хэрэгт зориулсан автомашинуудтай танилцаарай. Сонголтоо хийхэд тань бид зөвлөж, тусална.",
+      en: "Explore cars for everyday city driving, family trips and work. We’ll advise and help you as you make your choice.",
     },
   },
   cta: { label: { mn: "Брэндүүд үзэх", en: "Explore brands" }, href: "brands" },

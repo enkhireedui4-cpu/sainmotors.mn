@@ -11,8 +11,8 @@ export const corporateHome: Block<{
   source: "Editorial copy for user-approved 2026-10-22 redesign; existing company, service, location and event records.",
   value: {
     mn: {
-      photos: "Зургууд", previousPhoto: "Өмнөх зураг", nextPhoto: "Дараагийн зураг", brands: "Таны сонголт. Манай брэндүүд.",
-      brandsNote: "Брэндээ сонгож, автомашин, шоурум болон борлуулалтын багтай танилцаарай.",
+      photos: "Зургууд", previousPhoto: "Өмнөх зураг", nextPhoto: "Дараагийн зураг", brands: "Манай брэндүүд",
+      brandsNote: "Сонирхсон брэндээ сонгоод загварууд, шоурумын байршил, холбоо барих мэдээллийг үзээрэй.",
       company: "Сонголтоос эхлэх хамтын зам.", companyLink: "Сайн Моторс-ын тухай",
       service: "Худалдан авсны дараа ч хамт.", serviceLink: "Үйлчилгээтэй танилцах",
       news: "Мэдээ, үйл явдал", newsLink: "Бүх мэдээ", contact: "Биечлэн танилцъя.",
@@ -21,8 +21,8 @@ export const corporateHome: Block<{
       read: "Дэлгэрэнгүй", held: "Болсон өдөрлөг",
     },
     en: {
-      photos: "Photos", previousPhoto: "Previous photo", nextPhoto: "Next photo", brands: "Your choice. Our brands.",
-      brandsNote: "Choose a brand to explore its cars, showroom and sales team.",
+      photos: "Photos", previousPhoto: "Previous photo", nextPhoto: "Next photo", brands: "Our brands",
+      brandsNote: "Choose a brand to see its models, showroom locations and contact details.",
       company: "A shared journey, from your first choice.", companyLink: "About Sain Motors",
       service: "With you long after the sale.", serviceLink: "Explore our services",
       news: "News & events", newsLink: "All news", contact: "Let’s meet in person.",
