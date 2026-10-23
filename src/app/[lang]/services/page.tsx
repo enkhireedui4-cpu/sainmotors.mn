@@ -3,7 +3,8 @@ import { ServiceList } from "@/components/ServiceList";
 import { LocationCard } from "@/components/LocationCard";
 import { PageHero } from "@/components/PageHero";
 import { Picture } from "@/components/Picture";
-import { getLocation, pages, sitePhotos, ui } from "@/content";
+import { BrandScrollHero } from "@/components/BrandScrollHero";
+import { getLocation, getPhoto, pages, sitePhotos, ui } from "@/content";
 import type { Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 
@@ -19,17 +20,18 @@ export default async function ServicesPage({ params }: Props) {
   const locale = (await params).lang as Locale;
   const page = pages.services;
   const team = page.team.value[locale];
+  const photo = sitePhotos.servicesHeader;
+  const asset = getPhoto(photo.key);
+  const aspectRatio = `${asset.width} / ${asset.height}`;
 
   return (
     <>
-      <PageHero
-        title={page.meta.value[locale].title}
-        lead={page.lead.value[locale]}
-        leadDraft={page.lead.status === "draft"}
-      />
-      <figure className="container services-header">
-        <Picture photo={sitePhotos.servicesHeader} locale={locale} sizes="(max-width: 48rem) 140vw, (min-width: 84rem) 84rem, 100vw" priority />
-      </figure>
+      <PageHero title={page.meta.value[locale].title} />
+      <BrandScrollHero aspectRatio={aspectRatio}>
+        <figure className="services-header brand-hero__image" style={{ backgroundColor: asset.color, aspectRatio }}>
+          <Picture photo={photo} locale={locale} sizes={`(max-width: 639px) ${Math.max(100, Math.ceil(asset.width / asset.height * 125))}vw, 100vw`} priority />
+        </figure>
+      </BrandScrollHero>
       <section className="section services-section">
         <div className="container services-page">
           <div>

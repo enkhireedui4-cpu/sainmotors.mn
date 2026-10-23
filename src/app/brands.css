@@ -17,11 +17,6 @@
 .brand-detail .brand-title{padding-bottom:4.5rem}
 .brand-detail .brand-title .breadcrumb{margin-bottom:1.5rem}
 .brand-detail .brand-title h1{font-size:clamp(3.5rem,6.5vw,6.5rem)}
-.brand-scroll-hero{position:relative;width:100%;isolation:isolate;overflow-x:clip;overflow-y:visible;background:linear-gradient(to bottom,var(--brand-ink) 48%,#fff 48%)}
-.brand-scroll-hero__space{pointer-events:none}
-.brand-scroll-hero__frame{position:absolute;top:0;left:0;width:100%;transform-origin:50% 0;will-change:transform}
-.brand-hero__image{position:relative;width:100%;overflow:hidden}
-.brand-hero__image>img{width:100%;height:100%;object-fit:contain}
 
 /* The section nav sits immediately below the main site header. */
 .brand-section-nav{position:sticky;top:var(--header-h);z-index:25;height:var(--brand-nav-h);background:#fff;border-bottom:1px solid var(--line)}
@@ -109,8 +104,6 @@
   .brand-directory__content{padding:1.5rem 0 3.5rem}
   .brand-detail .brand-title{padding-block:1.5rem 2rem}
   .brand-detail .brand-title h1{font-size:3rem;line-height:1}
-  .brand-scroll-hero,.brand-scroll-hero__space,.brand-hero__image{aspect-ratio:4/5!important}
-  .brand-hero__image>img{object-fit:cover}
   .brand-section-nav__inner{gap:.75rem}
   .brand-section-nav__links{gap:1.25rem}
   .brand-section-nav__links a{font-size:.78rem}
@@ -135,8 +128,5 @@
 }
 @media(prefers-reduced-motion:reduce){
   .brand-directory *,.brand-detail *{animation:none!important;transition:none!important}
-  .brand-scroll-hero{height:auto!important;aspect-ratio:auto!important}
-  .brand-scroll-hero__space{display:none}
-  .brand-scroll-hero__frame{position:relative;width:min(100% - 2 * var(--gutter),var(--max));margin-inline:auto;transform:none!important;will-change:auto}
   html:has(.brand-detail){scroll-behavior:auto}
 }

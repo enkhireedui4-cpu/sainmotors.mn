@@ -1,5 +1,6 @@
 "use client";
 
+import "@/app/scroll-image.css";
 import { useEffect, useRef, type ReactNode } from "react";
 
 /** Ordinary page scroll scales the image and keeps its visible height in the document flow. */

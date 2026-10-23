@@ -1,0 +1,18 @@
+/* Shared full-width-to-inset photography on brand and service pages. */
+.brand-scroll-hero{position:relative;width:100%;isolation:isolate;overflow-x:clip;overflow-y:visible;background:linear-gradient(to bottom,var(--brand-ink,#10242d) 48%,#fff 48%)}
+.brand-scroll-hero__space{pointer-events:none}
+.brand-scroll-hero__frame{position:absolute;top:0;left:0;width:100%;transform-origin:50% 0;will-change:transform}
+.brand-hero__image{position:relative;width:100%;overflow:hidden}
+.brand-hero__image>img{width:100%;height:100%;object-fit:contain}
+
+@media(max-width:639px){
+  .brand-scroll-hero,.brand-scroll-hero__space,.brand-hero__image{aspect-ratio:4/5!important}
+  .brand-hero__image>img{object-fit:cover}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .brand-scroll-hero *{animation:none!important;transition:none!important}
+  .brand-scroll-hero{height:auto!important;aspect-ratio:auto!important}
+  .brand-scroll-hero__space{display:none}
+  .brand-scroll-hero__frame{position:relative;width:min(100% - 2 * var(--gutter),var(--max));margin-inline:auto;transform:none!important;will-change:auto}
+}

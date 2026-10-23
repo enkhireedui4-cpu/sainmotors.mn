@@ -142,7 +142,6 @@ ul,ol{padding:0;margin:0;list-style:none} svg{flex-shrink:0}
 .timeline>li{display:grid;grid-template-columns:10rem 1fr;gap:2rem;align-items:center;padding:2rem 0;border-top:1px solid var(--line)}
 .timeline__year{font-family:var(--font-display);font-size:2.5rem;color:var(--text-2)}.timeline__brands{display:flex;gap:2.5rem;align-items:center;flex-wrap:wrap}.timeline__brands a{min-height:3rem;display:flex;align-items:center}
 .about-close{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}.about-close figure{aspect-ratio:4/3}.about-close img{height:100%;width:100%;object-fit:cover}.about-close p{margin-block:1.25rem;color:var(--text-2)}
-.services-header{height:clamp(18rem,35vw,31rem);overflow:hidden}.services-header img{height:100%;width:100%;object-fit:cover}
 .services-page{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:start}.service{padding-block:2rem;border-top:1px solid var(--line)}
 .service__title{font-size:1.4rem;line-height:1.35;margin-bottom:1rem}.service>p{color:var(--text-2)}
 .service__facts{font-size:.8rem;display:grid;gap:.75rem;margin-top:1.5rem}.service__facts>div{display:grid;grid-template-columns:8rem 1fr;gap:1rem}.service__facts dt{color:var(--text-2)}
