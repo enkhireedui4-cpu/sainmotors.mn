@@ -26,12 +26,14 @@ export default async function ServicesPage({ params }: Props) {
 
   return (
     <>
-      <PageHero title={page.meta.value[locale].title} />
-      <BrandScrollHero aspectRatio={aspectRatio}>
-        <figure className="services-header brand-hero__image" style={{ backgroundColor: asset.color, aspectRatio }}>
-          <Picture photo={photo} locale={locale} sizes={`(max-width: 639px) ${Math.max(100, Math.ceil(asset.width / asset.height * 125))}vw, 100vw`} priority />
-        </figure>
-      </BrandScrollHero>
+      <div className="services-hero">
+        <PageHero title={page.meta.value[locale].title} />
+        <BrandScrollHero aspectRatio={aspectRatio}>
+          <figure className="services-header brand-hero__image" style={{ backgroundColor: asset.color, aspectRatio }}>
+            <Picture photo={photo} locale={locale} sizes={`(max-width: 639px) ${Math.max(100, Math.ceil(asset.width / asset.height * 125))}vw, 100vw`} priority />
+          </figure>
+        </BrandScrollHero>
+      </div>
       <section className="section services-section">
         <div className="container services-page">
           <div>

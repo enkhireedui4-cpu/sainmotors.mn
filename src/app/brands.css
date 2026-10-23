@@ -5,9 +5,7 @@
 .brand-title .breadcrumb a{min-height:2rem;display:inline-flex;align-items:center}
 .brand-title .breadcrumb a:hover{color:#fff}
 .brand-title .breadcrumb span{color:#f45e68}
-.brand-title__row{display:flex;justify-content:space-between;align-items:flex-end;gap:4rem}
 .brand-title h1{min-width:0;font-size:clamp(3.5rem,7.6vw,7.5rem);font-weight:500;line-height:1.04;letter-spacing:-.045em;overflow-wrap:anywhere}
-.brand-title__row>p{flex:0 1 24rem;max-width:28rem;line-height:1.7;font-size:1rem;color:#d3dfe3;white-space:pre-line;padding-bottom:.4rem}
 .brand-title a:focus-visible{outline-color:#fff}
 
 /* The homepage and directory share the same eleven official logo destinations. */
@@ -83,14 +81,11 @@
   @keyframes brand-title-enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
   @keyframes brand-photo-enter{from{opacity:.65}to{opacity:1}}
   .brand-title h1{animation:brand-title-enter .65s cubic-bezier(.2,.7,.2,1) both}
-  .brand-title__row>p{animation:brand-title-enter .65s cubic-bezier(.2,.7,.2,1) .08s both}
   .brand-hero__image>img{animation:brand-photo-enter .9s ease-out both}
   html:has(.brand-detail){scroll-behavior:smooth}
 }
 @media(max-width:1023px){
-  .brand-title__row{gap:2rem}
   .brand-title h1{font-size:clamp(3.5rem,7.5vw,6rem)}
-  .brand-title__row>p{flex-basis:20rem;font-size:.9rem}
   .brand-overview__grid{grid-template-columns:14rem minmax(0,1fr);gap:3rem}
   .brand-model-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
@@ -98,9 +93,7 @@
   .brand-detail{--brand-nav-h:4.25rem}
   .brand-title{padding:1.75rem 0 2.5rem}
   .brand-title .breadcrumb{margin-bottom:1.75rem;font-size:.75rem}
-  .brand-title__row{display:block}
   .brand-title h1{font-size:clamp(2.8rem,11vw,4.25rem);line-height:1.06}
-  .brand-title__row>p{max-width:26rem;margin-top:1.5rem;font-size:.875rem;padding:0}
   .brand-directory__content{padding:1.5rem 0 3.5rem}
   .brand-detail .brand-title{padding-block:1.5rem 2rem}
   .brand-detail .brand-title h1{font-size:3rem;line-height:1}

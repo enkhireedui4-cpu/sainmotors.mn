@@ -18,7 +18,7 @@ export default async function BrandsPage({ params }: Props) {
   return <div className="brand-directory">
     <div className="brand-title"><div className="container">
       <Breadcrumb label={ui.breadcrumb[locale]} items={[{ href: pageHref(locale, "home"), label: "Sain Motors" }]} current={ui.nav.brands[locale]} />
-      <div className="brand-title__row"><h1>{page.meta.value[locale].title}</h1><p data-status={page.lead.status === "draft" ? "draft" : undefined}>{page.lead.value[locale]}</p></div>
+      <h1>{page.meta.value[locale].title}</h1>
     </div></div>
     <section className="brand-directory__content" aria-label={ui.brand.portfolio[locale]}><div className="container">
       <CorporateBrands brands={getBrands()} locale={locale} />
