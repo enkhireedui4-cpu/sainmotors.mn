@@ -26,7 +26,7 @@ export default async function ServicesPage({ params }: Props) {
 
   return (
     <>
-      <div className="services-hero">
+      <div className="photo-page-hero">
         <PageHero title={page.meta.value[locale].title} />
         <BrandScrollHero aspectRatio={aspectRatio}>
           <figure className="services-header brand-hero__image" style={{ backgroundColor: asset.color, aspectRatio }}>

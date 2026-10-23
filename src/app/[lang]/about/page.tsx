@@ -5,7 +5,8 @@ import { draftAttr } from "@/lib/content-status";
 import { Icon } from "@/components/Icon";
 import { PageHero } from "@/components/PageHero";
 import { Picture } from "@/components/Picture";
-import { company, getBrand, pages, sitePhotos, ui } from "@/content";
+import { BrandScrollHero } from "@/components/BrandScrollHero";
+import { company, getBrand, getPhoto, pages, sitePhotos, ui } from "@/content";
 import type { Locale } from "@/lib/i18n";
 import { brandHref, pageHref } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
@@ -21,19 +22,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function AboutPage({ params }: Props) {
   const locale = (await params).lang as Locale;
   const page = pages.about;
+  const photo = sitePhotos.aboutHeader;
+  const asset = getPhoto(photo.key);
+  const aspectRatio = `${asset.width} / ${asset.height}`;
 
   return (
     <>
-      <PageHero
-        title={page.meta.value[locale].title}
-        lead={page.lead.value[locale]}
-        leadDraft={page.lead.status === "draft"}
-      />
-
-      <div className="container">
-        <figure className="wide-figure">
-          <Picture photo={sitePhotos.aboutHeader} locale={locale} sizes="(min-width: 80rem) 80rem, 100vw" priority />
-        </figure>
+      <div className="photo-page-hero">
+        <PageHero title={page.meta.value[locale].title} />
+        <BrandScrollHero aspectRatio={aspectRatio}>
+          <figure className="about-header brand-hero__image" style={{ backgroundColor: asset.color, aspectRatio }}>
+            <Picture photo={photo} locale={locale} sizes={`(max-width: 639px) ${Math.max(100, Math.ceil(asset.width / asset.height * 125))}vw, 100vw`} priority />
+          </figure>
+        </BrandScrollHero>
       </div>
 
       <section className="section">

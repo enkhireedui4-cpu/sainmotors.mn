@@ -1,4 +1,4 @@
-/* Shared full-width-to-inset photography on brand and service pages. */
+/* Shared full-width-to-inset photography on brand, service and about pages. */
 .brand-scroll-hero{position:relative;width:100%;isolation:isolate;overflow-x:clip;overflow-y:visible;background:linear-gradient(to bottom,var(--brand-ink,#10242d) 48%,#fff 48%)}
 .brand-scroll-hero__space{pointer-events:none}
 .brand-scroll-hero__frame{position:absolute;top:0;left:0;width:100%;transform-origin:50% 0;will-change:transform}
