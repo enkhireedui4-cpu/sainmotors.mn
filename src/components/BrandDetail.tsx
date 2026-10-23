@@ -1,15 +1,16 @@
-import type { CSSProperties } from "react";
-import "@/app/brands.css";
-import { brandPhone, getBrands, getLocation, liveLinks, ui } from "@/content";
+﻿import "@/app/brands.css";
+import Link from "next/link";
+import { brandPhone, getBrands, getLocation, getPhoto, liveLinks, ui } from "@/content";
 import type { Brand, BrandLink } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 import { displayHost, pageHref } from "@/lib/routes";
+import { draftAttr } from "@/lib/content-status";
+import { BrandSectionNav } from "./BrandSectionNav";
+import { BrandScrollHero } from "./BrandScrollHero";
 import { CorporateBrands } from "./CorporateBrands";
 import { BrandMark } from "./BrandMark";
-import { draftAttr } from "@/lib/content-status";
 import { Icon } from "./Icon";
 import { LocationCard } from "./LocationCard";
-import { Breadcrumb } from "./PageHero";
 import { Picture } from "./Picture";
 
 function linkLabel(link: BrandLink, locale: Locale): string {
@@ -18,152 +19,82 @@ function linkLabel(link: BrandLink, locale: Locale): string {
   return locale === "mn" ? `${host} ${ui.brand.visit.mn}` : `${ui.brand.visit.en} ${host}`;
 }
 
-/** The brand's own channels: the first (its Mongolian site or Facebook page) is the page's primary action. */
 function BrandLinks({ links, locale }: { links: BrandLink[]; locale: Locale }) {
-  return links.map((link, i) => (
-    <a key={link.url} className={`button ${i === 0 ? "button--primary" : "button--outline"} brand-link`} href={link.url} rel="noopener" data-kind={link.kind}>
-      {link.kind === "facebook" && <Icon name="facebook" size={17} />}
-      {linkLabel(link, locale)}
-      {link.kind === "website" && <Icon name="arrowUpRight" size={17} />}
-      <span className="sr-only"> {ui.external[locale]}</span>
-    </a>
-  ));
+  return links.map(link => <a key={link.url} className="brand-link" href={link.url} rel="noopener" data-kind={link.kind}>
+    {link.kind === "facebook" && <Icon name="facebook" size={17} />}
+    {linkLabel(link, locale)}<Icon name="arrowUpRight" size={17} />
+    <span className="sr-only"> {ui.external[locale]}</span>
+  </a>);
 }
 
-/** Brand-team imagery, a concise introduction, then the complete source-based information. */
+/** Large automotive imagery leads; source records remain the authority for every fact. */
 export function BrandDetail({ brand, locale }: { brand: Brand; locale: Locale }) {
-  const others = getBrands().filter((b) => b.slug !== brand.slug);
+  const others = getBrands().filter(b => b.slug !== brand.slug);
   const location = brand.location ? getLocation(brand.location) : undefined;
-  const phone = brandPhone(brand);
-  const links = liveLinks(brand);
+  const salesPhone = brandPhone(brand);
+  const phone = { ...salesPhone, display: locale === "en" ? `+976 ${salesPhone.display}` : salesPhone.display };
   const photo = brand.photo ?? brand.cardPhoto;
-  const shortCopy = (brand.cardCopy ?? brand.teaser).value[locale];
-  const headline = brand.headline?.value[locale] ?? shortCopy.split("\n")[0];
-  const lead = brand.headline ? shortCopy : shortCopy.split("\n").slice(1).join(" ");
+  const asset = photo ? getPhoto(photo.key) : undefined;
+  const shortCopy = brand.cardCopy ?? brand.teaser;
+  const headline = brand.headline?.value[locale] ?? shortCopy.value[locale].split("\n")[0];
+  const gallery = brand.gallery ?? [];
+  const hasModels = gallery.length > 0 || Boolean(brand.models?.length);
+  const sections = [
+    { id: "brand-overview", label: ui.brand.overviewLink[locale] },
+    ...(hasModels ? [{ id: "brand-models", label: ui.brand.gallery[locale] }] : []),
+    ...(location ? [{ id: "brand-showroom", label: ui.brand.showroom[locale] }] : []),
+  ];
 
-  return (
-    <div className="brand-detail">
-      <div className="brand-hero" style={{ "--brand-accent": brand.accent } as CSSProperties}>
-        <div className="container">
-          <Breadcrumb
-            label={ui.breadcrumb[locale]}
-            items={[{ href: pageHref(locale, "brands"), label: ui.nav.brands[locale] }]}
-            current={brand.name}
-          />
-          <div className="brand-hero__grid">
-            <div className="brand-hero__copy">
-              <h1 className="brand-hero__identity">
-                <BrandMark brand={brand} locale={locale} size="large" lazy={false} />
-              </h1>
-              <p className="brand-hero__headline" data-status={draftAttr(brand.headline ?? brand.cardCopy ?? brand.teaser)}>
-                {headline}
-              </p>
-              <p className="brand-hero__lead" data-status={draftAttr(brand.cardCopy ?? brand.teaser)}>{lead}</p>
-              <div className="brand-hero__actions">
-                <BrandLinks links={links} locale={locale} />
-                <a className="button button--outline" href={phone.href}><Icon name="phone" size={17} />{phone.display}</a>
-                {location && <a className="text-link" href={`#${location.id}`}>{ui.brand.showroom[locale]}<Icon name="chevronRight" size={17} /></a>}
-              </div>
-            </div>
-            {photo && <figure className="brand-hero__image"><Picture photo={photo} locale={locale} sizes="(min-width: 96rem) 49rem, (min-width: 64rem) 48vw, 92vw" priority /></figure>}
-          </div>
+  return <div className="brand-detail">
+    <div className="brand-hero">
+      <div className="brand-title"><div className="container">
+        <nav aria-label={ui.breadcrumb[locale]}><ol className="breadcrumb"><li><Link href={pageHref(locale, "brands")}>{ui.nav.brands[locale]}</Link><span aria-hidden="true">/</span></li></ol></nav>
+        <h1 translate="no">{brand.name}</h1>
+      </div></div>
+      {photo && asset && <BrandScrollHero aspectRatio={`${asset.width} / ${asset.height}`}><figure className="brand-hero__image" style={{ backgroundColor: asset.color, aspectRatio: `${asset.width} / ${asset.height}` }}>
+        <Picture photo={photo} locale={locale} sizes={`(max-width: 639px) ${Math.max(100, Math.ceil(asset.width / asset.height * 125))}vw, 100vw`} priority />
+      </figure></BrandScrollHero>}
+    </div>
 
-          <div className="brand-facts">
-            <dl>
-              {brand.since && (
-                <div>
-                  <dt>{ui.brand.rights[locale]}</dt>
-                  <dd>{ui.brand.sinceYear[locale].replace("{year}", String(brand.since))}</dd>
-                </div>
-              )}
-              {location && (
-                <div>
-                  <dt>{ui.brand.showroom[locale]}</dt>
-                  <dd>
-                    <a href={`#${location.id}`}>{location.name[locale]}</a>
-                    <span>{location.city[locale]}</span>
-                  </dd>
-                </div>
-              )}
-              <div>
-                <dt>{ui.brand.sales[locale]}</dt>
-                <dd>
-                  <a className="phone-link" href={phone.href}>
-                    <Icon name="phone" size={16} />
-                    {phone.display}
-                  </a>
-                </dd>
-              </div>
-              {brand.models && (
-                <div>
-                  <dt>{ui.brand.models[locale]}</dt>
-                  <dd translate="no">{brand.models.join(", ")}</dd>
-                </div>
-              )}
-            </dl>
-            {!location && (
-              <div className="brand-facts__aside">
-                <p className="brand-facts__note">{ui.brand.noShowroom[locale]}</p>
-              </div>
-            )}
-          </div>
+    <section className="brand-overview" id="brand-overview" aria-labelledby="brand-overview-heading"><div className="container">
+      <div className="brand-overview__grid">
+        <div className="brand-overview__identity">
+          <div className="brand-hero__identity"><BrandMark brand={brand} locale={locale} size="large" lazy={false} /></div>
+        </div>
+        <div className="brand-story__copy">
+          <h2 id="brand-overview-heading" data-status={draftAttr(brand.headline ?? shortCopy)}>{headline}</h2>
+          <p data-status={draftAttr(brand.summary)}>{brand.summary.value[locale]}</p>
+          {brand.statement && <details className="brand-story__disclosure"><summary><span translate="no">{brand.name} × Sain Motors</span><Icon name="chevronRight" size={18} /></summary><p data-status={draftAttr(brand.statement)}>{brand.statement.value[locale]}</p></details>}
+          <dl className="brand-contact-grid">
+            {location && <div><dt>{ui.brand.showroom[locale]}</dt><dd><a href="#brand-showroom">{location.name[locale]}</a><span>{location.city[locale]}</span></dd></div>}
+            {brand.since && <div><dt>{ui.brand.rights[locale]}</dt><dd>{ui.brand.sinceYear[locale].replace("{year}", String(brand.since))}</dd></div>}
+            <div><dt>{ui.brand.online[locale]}</dt><dd className="brand-overview__channels"><BrandLinks links={liveLinks(brand)} locale={locale} /></dd></div>
+            <div><dt>{ui.brand.sales[locale]}</dt><dd><a href={phone.href}><Icon name="phone" size={16} />{phone.display}</a></dd></div>
+          </dl>
+          {!location && <p className="brand-facts__note">{ui.brand.noShowroom[locale]}</p>}
         </div>
       </div>
 
-      <section className="brand-story" aria-labelledby="brand-overview-heading">
-        <div className="container brand-story__grid">
-          <h2 id="brand-overview-heading" className="display-3">{ui.brand.overview[locale]}</h2>
-          <div className="brand-story__copy">
-            <p data-status={draftAttr(brand.summary)}>{brand.summary.value[locale]}</p>
-            {brand.statement && <p className="brand-story__statement" data-status={draftAttr(brand.statement)}>{brand.statement.value[locale]}</p>}
-          </div>
-        </div>
-      </section>
+    </div></section>
 
-      {brand.gallery && brand.gallery.length > 0 && (
-        <section className="brand-gallery" aria-labelledby="brand-gallery-heading">
-          <div className="container">
-            <h2 id="brand-gallery-heading" className="display-3">{ui.brand.gallery[locale]}</h2>
-            <div className="brand-gallery__grid">
-              {brand.gallery.map((photo) => (
-                <figure key={photo.key}>
-                  <Picture photo={photo} locale={locale} sizes="(min-width: 96rem) 30rem, (min-width: 64rem) 30vw, (min-width: 40rem) 44vw, 92vw" />
-                  {photo.caption && (
-                    <figcaption>
-                      <span translate="no">{photo.caption}</span>
-                      {photo.view && <span className="brand-gallery__view"> · {photo.view[locale]}</span>}
-                    </figcaption>
-                  )}
-                </figure>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+    <BrandSectionNav items={sections} label={ui.brand.sections[locale]} phone={phone} phoneLabel={ui.brand.sales[locale]} />
 
-      {location && (
-        <section className="section" aria-labelledby="enquiries-heading">
-          <div className="container">
-            <h2 id="enquiries-heading" className="display-3 section-head">
-              {ui.brand.enquiries[locale]}
-            </h2>
-            <div className="location-list">
-              <LocationCard location={location} locale={locale} />
-            </div>
-          </div>
-        </section>
-      )}
+    {hasModels && <section className="brand-gallery" id="brand-models" aria-labelledby="brand-gallery-heading"><div className="container">
+      <div className="brand-section-heading"><h2 id="brand-gallery-heading">{ui.brand.gallery[locale]}</h2><a className="text-link" href={phone.href}>{ui.brand.sales[locale]}<Icon name="arrowUpRight" size={18} /></a></div>
+      {gallery.length > 0 ? <div className="brand-gallery__grid">{gallery.map(photo => <figure key={photo.key}>
+        <div className="brand-gallery__image"><Picture photo={photo} locale={locale} sizes="(min-width: 90rem) 40rem, (min-width: 40rem) 44vw, 92vw" /></div>
+        {photo.caption && <figcaption><span translate="no">{photo.caption}</span>{photo.view && <span className="brand-gallery__view">{photo.view[locale]}</span>}</figcaption>}
+      </figure>)}</div> : <ul className="brand-model-list">{brand.models?.map(model => <li key={model}><span translate="no">{model}</span></li>)}</ul>}
+    </div></section>}
 
-      <section className="section section--alt" aria-labelledby="others-heading">
-        <div className="container">
-          <h2 id="others-heading" className="display-3 section-head">
-            {ui.brand.others[locale]}
-          </h2>
-          <nav aria-labelledby="others-heading">
-            <CorporateBrands brands={others} locale={locale} />
-          </nav>
-        </div>
-      </section>
-    </div>
-  );
+    {location && <section className="brand-enquiries" id="brand-showroom" aria-labelledby="enquiries-heading"><div className="container">
+      <div className="brand-section-heading"><h2 id="enquiries-heading">{ui.brand.enquiries[locale]}</h2><Icon name="directions" size={30} /></div>
+      <LocationCard location={location} locale={locale} />
+    </div></section>}
+
+    <section className="brand-related" aria-labelledby="others-heading"><div className="container">
+      <div className="brand-section-heading"><h2 id="others-heading">{ui.brand.others[locale]}</h2><a className="text-link" href={pageHref(locale, "brands")}>{ui.brand.viewAll[locale]}<Icon name="arrowUpRight" size={18} /></a></div>
+      <nav aria-labelledby="others-heading"><CorporateBrands brands={others} locale={locale} /></nav>
+    </div></section>
+  </div>;
 }

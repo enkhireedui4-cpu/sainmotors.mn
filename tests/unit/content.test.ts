@@ -132,7 +132,7 @@ describe("brands", () => {
       expect(brand.cardPhoto, slug).toBeUndefined();
       expect(brand.photo?.note, slug).toMatch(/Desktop (brands6|3brand)/);
     }
-    expect(brands.find((b) => b.slug === "byd")!.gallery).toHaveLength(6);
+    expect(brands.find((b) => b.slug === "byd")!.gallery).toHaveLength(4);
     expect(brands.find((b) => b.slug === "aito")!.gallery).toHaveLength(2);
   });
 

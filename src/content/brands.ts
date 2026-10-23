@@ -244,7 +244,6 @@ export const brands: Brand[] = [
         alt: { mn: "Далайн эргийн замаар явж буй BYD Atto 3", en: "BYD Atto 3 on a coastal road" },
         note: "Desktop 3brand/BYD/Atto 3",
       },
-      // The three Shark 6 views share the second row; views follow the source file names.
       {
         key: "brand-byd-shark6",
         alt: { mn: "Студид авсан BYD Shark 6 пикап", en: "BYD Shark 6 pickup in the studio" },
@@ -253,18 +252,6 @@ export const brands: Brand[] = [
         view: { mn: "урдаас", en: "front" },
         focus: "48% 52%",
         note: "Desktop 3brand/BYD/Shark 6/Exterior-Front 45°.jpg",
-      },
-      {
-        key: "brand-byd-shark6-top", status: "sourced", caption: "BYD Shark 6", focus: "50% 53%",
-        view: { mn: "дээрээс", en: "top" },
-        alt: { mn: "BYD Shark 6 загварыг дээрээс харуулсан зураг", en: "BYD Shark 6 viewed from above" },
-        note: "Desktop 3brand/BYD/Shark 6/Exterior-Top View 45° Front.jpg",
-      },
-      {
-        key: "brand-byd-shark6-side", status: "sourced", caption: "BYD Shark 6", focus: "50% 50%",
-        view: { mn: "хажуугаас", en: "side" },
-        alt: { mn: "Хажуу талаас харуулсан цэнхэр BYD Shark 6", en: "Blue BYD Shark 6 viewed from the side" },
-        note: "Desktop 3brand/BYD/Shark 6/Left 45° blue.png",
       },
     ],
   },

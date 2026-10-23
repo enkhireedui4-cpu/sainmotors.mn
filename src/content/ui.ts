@@ -32,6 +32,8 @@ export const ui = {
   },
 
   brand: {
+    sections: { mn: "Брэндийн хуудасны хэсгүүд", en: "Brand page sections" },
+    overviewLink: { mn: "Танилцуулга", en: "Overview" },
     visit: { mn: "сайтад зочлох", en: "Visit" },
     enquiries: { mn: "Борлуулалт, лавлагаа", en: "Sales and enquiries" },
     others: { mn: "Бусад брэндүүд", en: "Other brands" },

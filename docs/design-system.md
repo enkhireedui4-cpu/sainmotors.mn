@@ -22,18 +22,20 @@
 
 82rem max-width, дэлгэцийн өргөнөөс хамаарах20–72px gutter. Нүүрийн split hero нь компанийн барилга, богино гарчиг, хоёр үйлдэлтэй. Улаан налуу тэмдэг нь Sain Motors-ын логоны урагш чиглэсэн хэлбэртэй холбоотой жижиг деталь.
 
-Брэндүүд hover/click carousel хүлээлгүй бүгд харагдана: desktop6 багана, tablet4, phone3. Брэндийн индекс фото3/2/1 багана. Дэлгэрэнгүй дээр зураг contain; автомашиныг таслахгүй. Footer-ээс бусад дэлгэц цайвар.
+Нүүрийн бүх брэндийн лого шууд харагдана: desktop4, phone3 багана. Брэндийн индекс нь өөрийн автомашины зураг, албан логотой 3/2/1 баганатай жагсаалт. Coming soon / Тун удахгүй нүдийг нүүр болон жагсаалтаас хассан. 2026-10-23-ны шинэчлэлтээр брэндийн индекс болон дэлгэрэнгүй хуудас #10242D бараан гарчгийн хэсэг, том Zona Pro гарчигтай болсон. Дэлгэрэнгүй хуудасны дээд хэсэгт зөвхөн брэндийн нэр ба буцах холбоос байна; доорх тайлбарыг давтахгүй. Үндсэн агуулга цайвар хэвээр.
+
+Брэндийн гол зураг эхэндээ viewport дүүргэж, энгийн scroll хийхэд 82rem агуулгын өргөнд голлон жижгэрнэ. Desktop дээр зургийн эх харьцаа хадгалагдана. Утсан дээр хэрэглэгчийн өгсөн жишээгээр 4:5 өндөр cover зураг, агуулгын бүтэн өргөнтэй 5:3 саарал логоны талбай ашиглана. Cover зургийн responsive srcset нь тайралтын дараах бодит дүрслэлийн өргөнийг тооцож, жижиг thumbnail-ийг сунгахгүй. Дараах танилцуулгад desktop дээр дөрвөлжин логоны хэсэг зүүн талд, тайлбар болон эх сурвалжтай холбоо барих мэдээлэл баруун талд байрлана. Танилцуулгын дараах цэс загварууд, шоурум руу шууд очиж, үндсэн header-ийн доор sticky болно. JavaScriptгүй үед native anchor холбоосууд хэвийн ажиллана. Давхардсан дистрибьютерийн мэдээллийг native details хэсгээс нээж уншина. Загварын мэдээлэлгүй брэндэд хоосон хэсэг, холбоос үүсгэхгүй.
 
 Үйлчилгээний coverage нь эх мэдээлэлд байгаа брэндээр хязгаарлагдана. Салбарын товч48px-аас доошгүй; баталгаатай pin-ийг Directions, landmark хайлтыг Search map гэж ялгана. Цаг дутуу бол call-ahead. Мэдээний зураг нь зөвхөн тухайн үйл явдлын эх зураг; өөр өдөрлөгийн зураг ашиглаж төөрөгдүүлэхгүй.
 
 ## Хөдөлгөөн ба хүртээмж
 
-Хөдөлгөөн зөвхөн hover/focus/press-д:140–220ms өнгө, хүрээ, сумны2px шилжилт. Авто carousel/background video/pinned scroll/3D canvas байхгүй. Video зөвхөн хэрэглэгчийн play-аар, preload none.
+Үндсэн hover/focus/press хөдөлгөөн 140–250ms. Брэндийн гарчиг нэг удаа 650ms хугацаанд 18px шилжин гарч, гол зураг 900ms зөөлөн тодорно. Брэндийн жагсаалтын зураг mouse hover үед 1.035 дахин томорно; motion нь transform/opacity ашиглана. Хэсэг рүү очих scroll нь reduced-motion идэвхгүй үед зөөлөн. Авто carousel/background video/pinned scroll/3D canvas байхгүй. Video зөвхөн хэрэглэгчийн play-аар, preload none.
 
-prefers-reduced-motion: reduce үед transition/animation унтарна. Native dialog нь Escape/focus trap/return focus-той. URL state бүхий filter нь Back/reload/language switch-д хадгалагдана. Серверийн HTML бүх салбарыг харуулна; JavaScriptгүй үед энэ baseline ашиглагдана.
+prefers-reduced-motion: reduce үед transition/animation унтарна. Гол зураг transform-оор жижгэрч, түүний харагдах өндрийг document flow-д хадгална; зураг доорх агуулгыг дарахгүй. Шууд fragment холбоосоор орсон үед хэмжээг тогтоосны дараа зорьсон хэсгийг header-ийн доор дахин тааруулна. Reduced-motion болон JavaScriptгүй үед голлосон статик зураг харагдана. Native dialog нь Escape/focus trap/return focus-той. URL state бүхий filter нь Back/reload/language switch-д хадгалагдана. Серверийн HTML бүх салбарыг харуулна; JavaScriptгүй үед энэ baseline ашиглагдана.
 
 ## Хэрэгжүүлэлт ба шалгалт
 
-globals.css нь shared tokens, үндсэн layout; brands.css ба locations.css нь scoped page rules. Server components үндсэн агуулгыг гаргана. Client islands: native mobile menu, active nav, language suffix, location filters.
+globals.css нь shared tokens, үндсэн layout; brands.css ба locations.css нь scoped page rules. Server components үндсэн агуулгыг гаргана. Client islands: native mobile menu, active nav, language suffix, location filters, брэндийн хэсгийн цэс. Брэндийн загварчлалд нэмэлт dependency суулгаагүй.
 
 Хамрах хүрээ: MN/EN,360/390/768/1440/1920px; нэг h1, canonical/hreflang, хагарсан asset/overflow/runtime error, keyboard/menu/filter/real route checks. Эдгээр нь бодит утасны network/assistive technology шалгалтыг орлохгүй. Preview noindex; зөвхөн батлагдсан release индексжих эрхтэй.
