@@ -10,7 +10,7 @@ try {
     await setTimeout(1000);
   }
   if (!ready) throw new Error("Preview did not start");
-  const tests = spawn(process.execPath, ["--test", "--test-concurrency=1", "tests/e2e/"], { stdio: "inherit", env: { ...process.env, BASE_URL: origin } });
+  const tests = spawn(process.execPath, ["--test", "--test-concurrency=1", "tests/e2e/*.test.mjs"], { stdio: "inherit", env: { ...process.env, BASE_URL: origin } });
   const code = await new Promise(resolve => tests.on("exit", resolve));
   process.exitCode = code ?? 1;
 } finally { server.kill(); }
