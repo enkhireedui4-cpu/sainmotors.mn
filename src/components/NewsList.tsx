@@ -7,15 +7,16 @@ import { newsHref } from "@/lib/routes";
 import { Icon } from "./Icon";
 import { Picture } from "./Picture";
 
-export function NewsList({ events, locale }: { events: DriveEvent[]; locale: Locale }) {
+export function NewsList({ events, locale, headingLevel = "h3" }: { events: DriveEvent[]; locale: Locale; headingLevel?: "h2" | "h3" }) {
   const copy = corporateHome.value[locale];
+  const Heading = headingLevel;
   return <div className="news-list">{events.map(event => <article key={event.id} data-status={event.status === "draft" ? "draft" : undefined}>
     <Link href={newsHref(locale, event.id)} prefetch={false} className="news-card">
       <div className={`news-card__media${event.film ? "" : " news-card__media--date"}`}>
         {event.film ? <Picture photo={event.film.poster} locale={locale} sizes="(min-width: 64rem) 30vw, 90vw" /> : <><span>MEGA<br />TEST DRIVE</span><span className="news-card__edition">{String(event.edition).padStart(2, "0")}</span></>}
       </div>
       <div className="news-card__body"><p className="news-card__date"><time dateTime={event.days[0]}>{eventDate(event, locale)}</time></p>
-        <h3>{eventTitle(event, locale)}</h3><p>{event.venue[locale]}</p>
+        <Heading>{eventTitle(event, locale)}</Heading><p>{event.venue[locale]}</p>
         <span className="text-link">{copy.read}<Icon name="arrowUpRight" size={17} /></span>
       </div>
     </Link>

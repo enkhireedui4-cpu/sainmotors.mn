@@ -3,10 +3,11 @@ import Link from "next/link";
 import { BrandMark } from "@/components/BrandMark";
 import { draftAttr } from "@/lib/content-status";
 import { Icon } from "@/components/Icon";
-import { PageHero } from "@/components/PageHero";
+import { SiteBanner } from "@/components/SiteBanner";
+import { SiteInvitation } from "@/components/SiteInvitation";
+import { CompanyFacts } from "@/components/CompanyFacts";
 import { Picture } from "@/components/Picture";
-import { BrandScrollHero } from "@/components/BrandScrollHero";
-import { company, getBrand, getPhoto, pages, sitePhotos, ui } from "@/content";
+import { company, getBrand, pages, sitePhotos, ui } from "@/content";
 import type { Locale } from "@/lib/i18n";
 import { brandHref, pageHref } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
@@ -23,19 +24,11 @@ export default async function AboutPage({ params }: Props) {
   const locale = (await params).lang as Locale;
   const page = pages.about;
   const photo = sitePhotos.aboutHeader;
-  const asset = getPhoto(photo.key);
-  const aspectRatio = `${asset.width} / ${asset.height}`;
 
   return (
-    <>
-      <div className="photo-page-hero">
-        <PageHero title={page.meta.value[locale].title} />
-        <BrandScrollHero aspectRatio={aspectRatio}>
-          <figure className="about-header brand-hero__image" style={{ backgroundColor: asset.color, aspectRatio }}>
-            <Picture photo={photo} locale={locale} sizes={`(max-width: 639px) ${Math.max(100, Math.ceil(asset.width / asset.height * 125))}vw, 100vw`} priority />
-          </figure>
-        </BrandScrollHero>
-      </div>
+    <div className="about-page">
+      <SiteBanner title={page.meta.value[locale].title} lead={page.lead.value[locale]} leadDraft locale={locale} photo={photo} />
+      <section className="container company-introduction"><p data-status={company.distributorClaim.status}>{company.distributorClaim.value[locale]}</p><CompanyFacts locale={locale} /></section>
 
       <section className="section">
         <div className="container prose-grid">
@@ -99,6 +92,7 @@ export default async function AboutPage({ params }: Props) {
           </div>
         </div>
       </section>
-    </>
+      <SiteInvitation locale={locale} />
+    </div>
   );
 }

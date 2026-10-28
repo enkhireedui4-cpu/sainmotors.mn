@@ -5,7 +5,11 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 
-const ROOT = path.resolve(import.meta.dirname, "..", "out");
+const sourceIndex = process.argv.indexOf("--source");
+const ROOT = path.resolve(sourceIndex >= 0 ? process.argv[sourceIndex + 1] : path.resolve(import.meta.dirname, "..", "out"));
+const workspace = path.resolve(import.meta.dirname, "..");
+const relativeSource = path.relative(workspace, ROOT);
+if (!relativeSource || relativeSource.startsWith("..") || path.isAbsolute(relativeSource)) throw new Error("Export source must be inside the project workspace");
 const PORT = Number(process.env.PORT ?? 3300);
 const TYPES = {
   ".html": "text/html; charset=utf-8",

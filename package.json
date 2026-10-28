@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --configLoader runner",
-    "test:e2e": "node --test --test-concurrency=1 tests/e2e/",
+    "test:e2e": "node --test --test-concurrency=1 \"tests/e2e/*.test.mjs\"",
     "build:release": "node scripts/release-build.mjs",
     "content:checklist": "node scripts/content-checklist.mjs",
     "release:check": "node scripts/release-check.mjs",

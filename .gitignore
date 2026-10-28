@@ -27,3 +27,7 @@ npm-debug.log*
 /.preview-server*.log
 /.tmp-assets/
 /.playwright-mcp/
+
+# Optional local build caches and generated visual evidence
+/.next-*/
+/docs/review/**/*.png

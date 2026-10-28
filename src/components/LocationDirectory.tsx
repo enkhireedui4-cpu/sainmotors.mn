@@ -39,9 +39,11 @@ const CHANGE_EVENT = "sain:location-filters";
 function subscribeToQuery(onChange: () => void) {
   window.addEventListener("popstate", onChange);
   window.addEventListener(CHANGE_EVENT, onChange);
+  window.addEventListener("sain:query-change", onChange);
   return () => {
     window.removeEventListener("popstate", onChange);
     window.removeEventListener(CHANGE_EVENT, onChange);
+    window.removeEventListener("sain:query-change", onChange);
   };
 }
 

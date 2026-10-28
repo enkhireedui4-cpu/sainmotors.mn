@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ServiceList } from "@/components/ServiceList";
 import { LocationCard } from "@/components/LocationCard";
-import { PageHero } from "@/components/PageHero";
+import { SiteBanner } from "@/components/SiteBanner";
+import { SiteInvitation } from "@/components/SiteInvitation";
 import { Picture } from "@/components/Picture";
-import { BrandScrollHero } from "@/components/BrandScrollHero";
-import { getLocation, getPhoto, pages, sitePhotos, ui } from "@/content";
+import { getLocation, pages, services, sitePhotos, ui } from "@/content";
+import { experienceCopy } from "@/content/experience";
 import type { Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 
@@ -21,19 +23,11 @@ export default async function ServicesPage({ params }: Props) {
   const page = pages.services;
   const team = page.team.value[locale];
   const photo = sitePhotos.servicesHeader;
-  const asset = getPhoto(photo.key);
-  const aspectRatio = `${asset.width} / ${asset.height}`;
 
   return (
-    <>
-      <div className="photo-page-hero">
-        <PageHero title={page.meta.value[locale].title} />
-        <BrandScrollHero aspectRatio={aspectRatio}>
-          <figure className="services-header brand-hero__image" style={{ backgroundColor: asset.color, aspectRatio }}>
-            <Picture photo={photo} locale={locale} sizes={`(max-width: 639px) ${Math.max(100, Math.ceil(asset.width / asset.height * 125))}vw, 100vw`} priority />
-          </figure>
-        </BrandScrollHero>
-      </div>
+    <div className="services-design-page">
+      <SiteBanner title={page.meta.value[locale].title} lead={page.lead.value[locale]} leadDraft locale={locale} photo={photo} />
+        <nav className="container service-jump" aria-label={ui.nav.services[locale]}>{services.map(service => <Link key={service.id} href={`#service-${service.id}`} prefetch={false}>{service.title[locale]}</Link>)}</nav>
       <section className="section services-section">
         <div className="container services-page">
           <div>
@@ -43,7 +37,8 @@ export default async function ServicesPage({ params }: Props) {
 
           {/* The two places that repair and supply parts, with their own hours and lines. */}
           <aside className="services-page__aside" aria-label={ui.services.where[locale]}>
-            <div className="location-list location-list--stacked">
+            <h2 className="display-2 service-centres-heading">{experienceCopy.value[locale].serviceLocation}</h2>
+            <div className="location-list location-list--centres">
               <LocationCard location={getLocation("service-centre")} locale={locale} />
               <LocationCard location={getLocation("byd-4s")} locale={locale} />
             </div>
@@ -63,6 +58,7 @@ export default async function ServicesPage({ params }: Props) {
           </figure>)}
         </div>
       </section>
-    </>
+      <SiteInvitation locale={locale} />
+    </div>
   );
 }

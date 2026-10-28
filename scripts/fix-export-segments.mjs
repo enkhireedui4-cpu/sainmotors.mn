@@ -13,7 +13,11 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const OUT = path.resolve(import.meta.dirname, "..", "out");
+const sourceIndex = process.argv.indexOf("--source");
+const OUT = path.resolve(sourceIndex >= 0 ? process.argv[sourceIndex + 1] : path.resolve(import.meta.dirname, "..", "out"));
+const workspace = path.resolve(import.meta.dirname, "..");
+const relativeSource = path.relative(workspace, OUT);
+if (!relativeSource || relativeSource.startsWith("..") || path.isAbsolute(relativeSource)) throw new Error("Export source must be inside the project workspace");
 
 async function filesUnder(dir) {
   const entries = await fs.readdir(dir, { withFileTypes: true });

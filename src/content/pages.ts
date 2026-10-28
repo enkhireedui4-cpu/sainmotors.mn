@@ -108,11 +108,11 @@ export const pages = {
         value: {
           mn: {
             heading: "Хаана байрладаг вэ",
-            body: "Улаанбаатар, Дархан хотод шоурумтай бөгөөд Улаанбаатарт JETOUR-ын үйлчилгээний төвтэй. Брэнд бүрийн шоурум, утсыг салбарын хуудаснаас харна уу.",
+            body: "Улаанбаатар, Дархан, Эрдэнэт хотод шоурумтай бөгөөд Улаанбаатарт JETOUR-ын үйлчилгээний төвтэй. Брэнд бүрийн шоурум, утсыг салбарын хуудаснаас харна уу.",
           },
           en: {
             heading: "Where we are",
-            body: "We have showrooms in Ulaanbaatar and Darkhan, and a JETOUR service centre in Ulaanbaatar. Each brand’s showroom and phone number are on the locations page.",
+            body: "We have showrooms in Ulaanbaatar, Darkhan and Erdenet, and a JETOUR service centre in Ulaanbaatar. Each brand’s showroom and phone number are on the locations page.",
           },
         },
       },

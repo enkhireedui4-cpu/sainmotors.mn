@@ -11,6 +11,8 @@ import type { NextConfig } from "next";
  * Redirects and headers live in public/.htaccess instead.
  */
 const nextConfig: NextConfig = {
+  // Optional fresh static-export destination for local verification.
+  distDir: process.env.SAIN_EXPORT_DIR ?? ".next",
   output: "export",
   trailingSlash: true,
   reactStrictMode: true,

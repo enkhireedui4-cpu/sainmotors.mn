@@ -1,10 +1,11 @@
 ﻿import type { Metadata } from "next";
 import "@/app/brands.css";
-import { CorporateBrands } from "@/components/CorporateBrands";
-import { Breadcrumb } from "@/components/PageHero";
-import { getBrands, pages, ui } from "@/content";
+import { BrandPortfolio } from "@/components/BrandPortfolio";
+import { experienceCopy } from "@/content/experience";
+import { SiteBanner } from "@/components/SiteBanner";
+import { SiteInvitation } from "@/components/SiteInvitation";
+import { pages, sitePhotos, ui } from "@/content";
 import type { Locale } from "@/lib/i18n";
-import { pageHref } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
 type Props = { params: Promise<{ lang: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -16,12 +17,10 @@ export default async function BrandsPage({ params }: Props) {
   const locale = (await params).lang as Locale;
   const page = pages.brands;
   return <div className="brand-directory">
-    <div className="brand-title"><div className="container">
-      <Breadcrumb label={ui.breadcrumb[locale]} items={[{ href: pageHref(locale, "home"), label: "Sain Motors" }]} current={ui.nav.brands[locale]} />
-      <h1>{page.meta.value[locale].title}</h1>
-    </div></div>
+    <SiteBanner title={page.meta.value[locale].title} lead={experienceCopy.value[locale].portfolioLead} leadDraft locale={locale} photo={sitePhotos.showroomTour.find(photo => photo.key === "showroom-interior") ?? sitePhotos.hero} />
     <section className="brand-directory__content" aria-label={ui.brand.portfolio[locale]}><div className="container">
-      <CorporateBrands brands={getBrands()} locale={locale} />
+      <BrandPortfolio locale={locale} />
     </div></section>
+    <SiteInvitation locale={locale} />
   </div>;
 }

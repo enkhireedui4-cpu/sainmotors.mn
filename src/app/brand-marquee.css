@@ -1,0 +1,30 @@
+/* Each of the eleven real links follows the loop: no inert visual copies. */
+.brand-marquee { --logo-width:12rem; --flow-duration:40s; }
+.brand-marquee__viewport { overflow-x:auto; overflow-y:hidden; scrollbar-width:thin; scroll-padding-inline:1rem; }
+.brand-marquee__track { width:100%; }
+.corporate-home .brand-marquee .brand-panel { position:relative; width:max-content; flex-wrap:nowrap; justify-content:flex-start; gap:0; }
+.corporate-home .brand-marquee .brand-panel>li { flex:0 0 var(--logo-width); width:var(--logo-width); }
+.corporate-home .brand-marquee .brand-panel a { display:grid; place-items:center; height:7rem; padding:1.5rem; }
+.corporate-home .brand-marquee .brand-panel>li:not(:last-child):after { display:block; }
+@media(min-width:48rem) and (prefers-reduced-motion:no-preference) {
+ @keyframes sain-brand-flow { to { transform:translateX(calc(-1 * var(--brand-count) * var(--logo-width))); } }
+ .brand-marquee[data-ready=true] .brand-marquee__viewport { overflow:hidden; mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent); }
+ .corporate-home .brand-marquee[data-ready=true] .brand-panel { display:block; width:100%; height:7rem; }
+ .corporate-home .brand-marquee[data-ready=true] .brand-panel>li { position:absolute; top:0; left:calc((var(--brand-count) - 1) * var(--logo-width)); animation:sain-brand-flow var(--flow-duration) linear infinite; animation-delay:calc((var(--brand-index) - var(--brand-count) + 1) * var(--flow-duration) / var(--brand-count)); }
+ .brand-marquee[data-paused=true] li,.brand-marquee__viewport:hover li { animation-play-state:paused!important; }
+ .brand-marquee[data-ready=true] .brand-marquee__viewport:has(:focus-visible),.brand-marquee[data-ready=true] .brand-marquee__viewport:focus-visible { overflow-x:auto; mask-image:none; }
+ .corporate-home .brand-marquee[data-ready=true] .brand-marquee__viewport:has(:focus-visible) .brand-panel,.corporate-home .brand-marquee[data-ready=true] .brand-marquee__viewport:focus-visible .brand-panel { display:flex; width:max-content; }
+ .corporate-home .brand-marquee[data-ready=true] .brand-marquee__viewport:has(:focus-visible) li,.corporate-home .brand-marquee[data-ready=true] .brand-marquee__viewport:focus-visible li { position:relative; top:auto; left:auto; animation:none; transform:none; }
+}
+@media(max-width:47.99rem) {
+ .brand-marquee__viewport { overflow:visible; }
+ .corporate-home .brand-marquee .brand-panel { width:100%; flex-wrap:wrap; justify-content:center; }
+ .corporate-home .brand-marquee .brand-panel>li { flex-basis:calc(100% / 3); width:auto; }
+ .corporate-home .brand-marquee .brand-panel a { height:5.5rem; padding:1rem; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .brand-marquee__viewport { overflow:visible; }
+ .corporate-home .brand-marquee .brand-panel { width:100%; flex-wrap:wrap; justify-content:center; }
+ .corporate-home .brand-marquee .brand-panel>li { flex-basis:calc(100% / 6); width:auto; }
+}
+@media(max-width:47.99rem) and (prefers-reduced-motion:reduce) { .corporate-home .brand-marquee .brand-panel>li { flex-basis:calc(100% / 3); } }
