@@ -1,0 +1,352 @@
+{
+  "origin": "http://localhost:3320",
+  "capturedAt": "2026-10-28T07:30:40.157Z",
+  "note": "Local lab observations; no field CWV or INP claim. Unthrottled desktop and mobile viewport; not a real mobile network. LCP/CLS and resource totals sampled before scrolling; full-page captures then load offscreen images for visual QA.",
+  "pages": [
+    {
+      "name": "home-wide",
+      "route": "/mn/",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 224,
+      "cls": 0.0007760863833957248,
+      "bytes": 1172944,
+      "requests": 35,
+      "overflow": false
+    },
+    {
+      "name": "home-desktop",
+      "route": "/mn/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 172,
+      "cls": 0.001113693832585841,
+      "bytes": 1130226,
+      "requests": 35,
+      "overflow": false
+    },
+    {
+      "name": "home-mobile",
+      "route": "/mn/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 216,
+      "cls": 0.001920037930728023,
+      "bytes": 979348,
+      "requests": 34,
+      "overflow": false
+    },
+    {
+      "name": "home-en-desktop",
+      "route": "/en/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 172,
+      "cls": 0.0042773664460358796,
+      "bytes": 1128368,
+      "requests": 35,
+      "overflow": false
+    },
+    {
+      "name": "home-en-mobile",
+      "route": "/en/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 180,
+      "cls": 0.001328058554206485,
+      "bytes": 977490,
+      "requests": 34,
+      "overflow": false
+    },
+    {
+      "name": "about-desktop",
+      "route": "/mn/about/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 168,
+      "cls": 0.00045858796296296294,
+      "bytes": 1024147,
+      "requests": 31,
+      "overflow": false
+    },
+    {
+      "name": "about-mobile",
+      "route": "/mn/about/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 184,
+      "cls": 0.00039074041118020364,
+      "bytes": 868076,
+      "requests": 28,
+      "overflow": false
+    },
+    {
+      "name": "brands-desktop",
+      "route": "/en/brands/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 196,
+      "cls": 0.0001533883101851852,
+      "bytes": 1122301,
+      "requests": 41,
+      "overflow": false
+    },
+    {
+      "name": "brands-mobile",
+      "route": "/en/brands/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 156,
+      "cls": 0.00022482907806687597,
+      "bytes": 840962,
+      "requests": 28,
+      "overflow": false
+    },
+    {
+      "name": "jetour-desktop",
+      "route": "/mn/brands/jetour/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 172,
+      "cls": 0.000177578125,
+      "bytes": 1086225,
+      "requests": 28,
+      "overflow": false
+    },
+    {
+      "name": "jetour-mobile",
+      "route": "/mn/brands/jetour/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 200,
+      "cls": 0.0002620486212498971,
+      "bytes": 936161,
+      "requests": 28,
+      "overflow": false
+    },
+    {
+      "name": "services-desktop",
+      "route": "/mn/services/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 172,
+      "cls": 0.0008231913399402006,
+      "bytes": 832725,
+      "requests": 23,
+      "overflow": false
+    },
+    {
+      "name": "services-mobile",
+      "route": "/mn/services/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 168,
+      "cls": 0.016319000385117882,
+      "bytes": 736425,
+      "requests": 20,
+      "overflow": false
+    },
+    {
+      "name": "locations-desktop",
+      "route": "/mn/locations/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 228,
+      "cls": 0.00042797700858410496,
+      "bytes": 1895291,
+      "requests": 59,
+      "overflow": false
+    },
+    {
+      "name": "locations-mobile",
+      "route": "/mn/locations/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 184,
+      "cls": 0.00028145749715346085,
+      "bytes": 979982,
+      "requests": 34,
+      "overflow": false
+    },
+    {
+      "name": "news-desktop",
+      "route": "/mn/news/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 152,
+      "cls": 0.00033328736858603396,
+      "bytes": 830261,
+      "requests": 22,
+      "overflow": false
+    },
+    {
+      "name": "news-mobile",
+      "route": "/mn/news/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 156,
+      "cls": 0.0014357914600874034,
+      "bytes": 767337,
+      "requests": 22,
+      "overflow": false
+    },
+    {
+      "name": "article-desktop",
+      "route": "/en/news/mega-test-drive-7/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 172,
+      "cls": 0.019360019146954573,
+      "bytes": 863486,
+      "requests": 25,
+      "overflow": false
+    },
+    {
+      "name": "article-mobile",
+      "route": "/en/news/mega-test-drive-7/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 148,
+      "cls": 0.0005669321132810273,
+      "bytes": 800567,
+      "requests": 25,
+      "overflow": false
+    },
+    {
+      "name": "contact-desktop",
+      "route": "/mn/contact/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 172,
+      "cls": 0.00010526041666666667,
+      "bytes": 878255,
+      "requests": 23,
+      "overflow": false
+    },
+    {
+      "name": "contact-mobile",
+      "route": "/mn/contact/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 168,
+      "cls": 0.00015809306930350932,
+      "bytes": 772603,
+      "requests": 22,
+      "overflow": false
+    },
+    {
+      "name": "privacy-desktop",
+      "route": "/en/privacy/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 116,
+      "cls": 0.0000906057098765432,
+      "bytes": 1361141,
+      "requests": 49,
+      "overflow": false
+    },
+    {
+      "name": "privacy-mobile",
+      "route": "/en/privacy/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 132,
+      "cls": 0.00014740234945306708,
+      "bytes": 737929,
+      "requests": 20,
+      "overflow": false
+    }
+  ]
+}

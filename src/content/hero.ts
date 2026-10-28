@@ -1,27 +1,27 @@
 ﻿import type { Hero } from "./types";
 
-// The user confirmed the eleven-brand distributor fact on 2026-10-22 and wrote the hero
-// copy the same day. The kicker states that confirmed fact in the user's own words; the
-// heading and lead are new editorial copy and stay draft until the content owner signs off.
+// The user explicitly requested the already-confirmed eleven-brand distributor
+// statement as the main homepage heading on 2026-10-28. The short supporting lead
+// remains editorial copy for publication review.
 export const hero: Hero = {
   kicker: {
-    status: "approved",
-    source: "User's own wording, 2026-10-22, of the confirmed eleven-brand distributor fact (company.distributorClaim)",
-    value: { mn: "11 брэндийн албан ёсны дистрибьютер", en: "Official distributor of 11 brands" },
+    status: "sourced",
+    source: "Company name on the supplied Sain Motors wordmark",
+    value: { mn: "SAIN MOTORS", en: "SAIN MOTORS" },
   },
   title: {
-    status: "draft",
-    source: "User-supplied hero copy (MN), 2026-10-22; EN translated by the web team",
-    value: { mn: "Өөрт тохирох автомашинаа сонгоорой.", en: "Choose the car that suits you." },
+    status: "approved",
+    source: "User requested the confirmed eleven-brand distributor statement as the main homepage heading, 2026-10-28; same MN/EN fact approved on 2026-10-22 (company.distributorClaim)",
+    value: { mn: "11 брэндийн албан ёсны дистрибьютер", en: "Official distributor of 11 brands" },
   },
   text: {
     status: "draft",
-    source: "User-supplied hero copy (MN), 2026-10-22; EN translated by the web team",
+    source: "Condensed web-team guidance for the user's requested uncluttered homepage, 2026-10-28",
     value: {
-      mn: "Хотын өдөр тутмын хэрэглээ, гэр бүлийн аялал, ажил хэрэгт зориулсан автомашинуудтай танилцаарай. Сонголтоо хийхэд тань бид зөвлөж, тусална.",
-      en: "Explore cars for everyday city driving, family trips and work. We’ll advise and help you as you make your choice.",
+      mn: "Өөрт тохирох автомашинаа сонгоорой.",
+      en: "Choose the car that suits you.",
     },
   },
-  cta: { label: { mn: "Брэндүүд үзэх", en: "Explore brands" }, href: "brands" },
-  secondaryCta: { label: { mn: "Салбар олох", en: "Find a location" }, href: "locations" },
+  cta: { label: { mn: "Брэндүүдтэй танилцах", en: "Explore brands" }, href: "brands" },
+  secondaryCta: { label: { mn: "Шоурум олох", en: "Find a showroom" }, href: "locations" },
 };

@@ -104,7 +104,7 @@ test("brand section links have real server-rendered destinations without JavaScr
       }
       await links.first().click();
       assert.equal(new URL(page.url()).hash, "#brand-overview");
-      assert.ok(await page.locator("main a[href*='google.com/maps']").count() > 0);
+      assert.ok(await page.locator("main a[href*='google.com/maps'], main a[href^='https://maps.app.goo.gl/']").count() > 0);
     }
   } finally { await context.close(); }
 });

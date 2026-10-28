@@ -1,0 +1,112 @@
+{
+  "origin": "http://localhost:3320",
+  "capturedAt": "2026-10-28T06:18:04.765Z",
+  "note": "Local lab observations; no field CWV or INP claim. Unthrottled desktop and mobile viewport; not a real mobile network. LCP/CLS and resource totals sampled before scrolling; full-page captures then load offscreen images for visual QA.",
+  "pages": [
+    {
+      "name": "home-desktop",
+      "route": "/mn/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 244,
+      "cls": 0.00024620949074074074,
+      "bytes": 1237657,
+      "requests": 33,
+      "overflow": false
+    },
+    {
+      "name": "home-mobile",
+      "route": "/mn/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 188,
+      "cls": 0.0004989002596873039,
+      "bytes": 887571,
+      "requests": 31,
+      "overflow": false
+    },
+    {
+      "name": "brands-desktop",
+      "route": "/en/brands/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 172,
+      "cls": 0.0007389805169753086,
+      "bytes": 1061476,
+      "requests": 40,
+      "overflow": false
+    },
+    {
+      "name": "brands-mobile",
+      "route": "/mn/brands/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 212,
+      "cls": 0.0002594569315891838,
+      "bytes": 815367,
+      "requests": 27,
+      "overflow": false
+    },
+    {
+      "name": "contact-desktop",
+      "route": "/en/contact/?intent=service&brand=byd",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 144,
+      "cls": 0.00005744212962962963,
+      "bytes": 887824,
+      "requests": 23,
+      "overflow": false
+    },
+    {
+      "name": "contact-mobile",
+      "route": "/mn/contact/?intent=service&brand=jetour",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 124,
+      "cls": 0.00015809306930350932,
+      "bytes": 761764,
+      "requests": 22,
+      "overflow": false
+    },
+    {
+      "name": "services-desktop",
+      "route": "/mn/services/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "errors": [],
+      "lcp": 132,
+      "cls": 0.0003432069076726466,
+      "bytes": 800005,
+      "requests": 21,
+      "overflow": false
+    }
+  ]
+}

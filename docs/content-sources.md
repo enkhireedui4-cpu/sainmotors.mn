@@ -197,6 +197,10 @@ Dark-context marks use the supplied white variants. Five PNG pairs were copied f
 `brands6`; BYD, RIDDARA and AITO are extracted from Desktop `3brand` presentation sheets with
 their background panels excluded. Original geometry and colours are preserved.
 
+## Erdenet showroom update — 2026-10-28
+
+The user confirmed a newly opened Sain Motors showroom in Erdenet: Orkhon Mall, Sain Electronics, phone 99096347. The site uses `tel:+97699096347` and a labelled map search. Opening date, precise coordinates, hours and represented brands were not supplied and are not inferred. The location is recorded as sourced for the publication review; the public directory, derived showroom/city counts and MN/EN company copy include it.
+
 ## 5. Still needed
 
 - Written publication approval for everything above (status → `approved`).
@@ -209,5 +213,6 @@ their background panels excluded. Original geometry and colours are preserved.
 - Service-centre photographs: supplied 2026-10-20 (above). Confirm which site the workshop frames show
   before captions name a place.
 - MEGA TEST DRIVE: confirm editions 6 and 8 as held; photographs or a film of other editions, if wanted on the site.
-- Opening hours and map pins for the Dolgoon Nuur, Sansar, BYD 4S and Darkhan showrooms.
+- Opening hours for Dolgoon Nuur, Sansar, BYD 4S, Darkhan and Erdenet; precise pins for Dolgoon Nuur, Sansar, Darkhan and Erdenet. The user supplied BYD 4S and JETOUR pins on 2026-10-28.
+- Erdenet showroom brand coverage.
 - English review of web-team translations of the distributor statements (`draft`).

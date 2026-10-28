@@ -166,12 +166,12 @@ describe("hero", () => {
     expect(hero.secondaryCta.href).toBe("locations");
   });
 
-  it("keeps the confirmed eleven-brand fact in the kicker, separate from draft editorial wording", () => {
-    expect(hero.kicker.status).toBe("approved");
+  it("leads with the user-requested confirmed eleven-brand fact and keeps supporting copy under review", () => {
+    expect(hero.kicker.status).toBe("sourced");
     expect(company.distributorClaim.status).toBe("approved");
-    expect(hero.title.status).toBe("draft");
+    expect(hero.title.status).toBe("approved");
     expect(hero.text.status).toBe("draft");
-    for (const value of Object.values(hero.kicker.value)) expect(value).toContain("11");
+    for (const value of Object.values(hero.title.value)) expect(value).toContain("11");
     expect(getBrands()).toHaveLength(11);
     expect(hero).not.toHaveProperty("photo");
   });
@@ -203,15 +203,15 @@ describe("locations and services", () => {
     for (const location of getLocations()) {
       if (location.phone) expect(location.phone.href, location.id).toMatch(TEL);
       if (location.email) expect(location.email, location.id).toMatch(/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/);
-      expect(location.map.url, location.id).toMatch(/^https:\/\/www\.google\.com\/maps\//);
+      expect(location.map.url, location.id).toMatch(/^https:\/\/(www\.google\.com\/maps\/|maps\.app\.goo\.gl\/)/);
       expect(filled(location.address) && filled(location.name) && filled(location.city), location.id).toBe(true);
     }
   });
 
-  it("every location lists at least one brand, and every listed brand can be called", () => {
+  it("every location has a direct line or callable published brand coverage", () => {
     for (const location of getLocations()) {
       const brands = brandsAt(location);
-      expect(brands.length, location.id).toBeGreaterThan(0);
+      expect(Boolean(location.phone) || brands.length > 0, location.id).toBe(true);
       if (!location.phone) for (const brand of brands) expect(brand.phone, `${location.id}/${brand.slug}`).toBeDefined();
     }
   });
@@ -227,11 +227,12 @@ describe("locations and services", () => {
 
   it("claim warranty and after-sales service only for brands whose statements say so", () => {
     const afterSales = services.find((s) => s.id === "after-sales")!;
-    for (const slug of ["bestune", "maxus", "soueast"]) expect(afterSales.brands).not.toContain(slug);
+    for (const slug of ["bestune", "maxus"]) expect(afterSales.brands).not.toContain(slug);
+    expect(afterSales.brands).toContain("soueast");
     // CHERY: "3 years or 100,000 km" factory warranty, stated on Sain Motors' own CHERY site.
     expect(afterSales.brands).toContain("chery");
     const repair = services.find((s) => s.id === "repair")!;
-    expect([...repair.brands].sort()).toEqual(["byd", "jetour"]);
+    expect([...repair.brands].sort()).toEqual(["byd", "jetour", "soueast"]);
   });
 });
 

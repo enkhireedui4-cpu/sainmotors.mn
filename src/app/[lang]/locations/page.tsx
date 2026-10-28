@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { LocationDirectory } from "@/components/LocationDirectory";
-import { PageHero } from "@/components/PageHero";
-import { getBrands, getLocations, pages } from "@/content";
+import { SiteBanner } from "@/components/SiteBanner";
+import { SiteInvitation } from "@/components/SiteInvitation";
+import { getBrands, getLocations, pages, sitePhotos } from "@/content";
 import type { Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
+import { locationGraph } from "@/lib/structured-data";
+import { JsonLd } from "@/components/JsonLd";
 import "../../locations.css";
 
 type Props = { params: Promise<{ lang: string }> };
@@ -19,8 +22,10 @@ export default async function LocationsPage({ params }: Props) {
   const page = pages.locations;
   return (
     <>
-      <PageHero title={page.meta.value[locale].title} lead={page.lead.value[locale]} leadDraft={page.lead.status === "draft"} />
+      <JsonLd data={locationGraph(locale)} />
+      <SiteBanner title={page.meta.value[locale].title} lead={page.lead.value[locale]} leadDraft locale={locale} photo={sitePhotos.hero} />
       <LocationDirectory locale={locale} locations={getLocations()} brands={getBrands()} />
+      <SiteInvitation locale={locale} />
     </>
   );
 }

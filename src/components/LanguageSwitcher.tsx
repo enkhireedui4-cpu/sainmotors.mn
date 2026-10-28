@@ -5,7 +5,7 @@ import { useSyncExternalStore } from "react";
 import { localeNames, locales, localePath, switchLocalePath, type Locale } from "@/lib/i18n";
 
 function subscribeToUrl(onChange: () => void) {
-  const events = ["popstate", "hashchange", "sain:location-filters"];
+  const events = ["popstate", "hashchange", "sain:location-filters", "sain:query-change"];
   events.forEach(event => window.addEventListener(event, onChange));
   return () => events.forEach(event => window.removeEventListener(event, onChange));
 }

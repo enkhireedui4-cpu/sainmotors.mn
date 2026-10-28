@@ -1,6 +1,6 @@
 ﻿# Sain Motors — corporate design system, 2026-10-22
 
-Энэ баримт өмнөх харанхуй editorial чиглэлийг орлоно. Хэрэглэгчийн баталсан шинэ чиглэл: цагаан, цайвар саарал, хар саарал бичвэр; улаан өнгийг гол үйлдэл ба сонгосон хэсэгт хэрэглэнэ.
+Superseded by [the complete-site design system, 2026-10-28](site-design-2026-10-28.md). The descriptions below document the earlier implementation.
 
 ## Суурь
 

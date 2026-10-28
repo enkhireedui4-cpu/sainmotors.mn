@@ -34,7 +34,7 @@ export const sitePhotos = {
         en: "An orange pickup on a display ramp in front of the Sain Motors building, with cars lined up behind it",
       },
       status: "sourced",
-      focus: "45% 60%",
+      focus: "50% 55%",
     },
     {
       key: "sain-event-aerial",

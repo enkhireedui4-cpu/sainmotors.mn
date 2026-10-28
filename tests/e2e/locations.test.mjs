@@ -44,9 +44,9 @@ test("locations routes have complete server-rendered contact rows in both langua
       const response = await page.goto(`${BASE}/${locale}/locations/`);
       assert.equal(response.status(), 200);
       assert.equal(await page.locator("h1").count(), 1);
-      assert.equal(await page.locator(".location-directory__row").count(), 7);
-      assert.equal(await page.locator(".location-directory__row a[href^='tel:']").count(), 11);
-      assert.equal(await page.locator(".location-directory__map").count(), 7);
+      assert.equal(await page.locator(".location-directory__row").count(), 8);
+      assert.equal(await page.locator(".location-directory__row a[href^='tel:']").count(), 12);
+      assert.equal(await page.locator(".location-directory__map").count(), 8);
       assert.equal(await page.locator("noscript").count() > 0, true);
     }
   } finally { await context.close(); }
@@ -77,7 +77,7 @@ test("brand and city filters intersect, create a shareable URL, and restore afte
     await page.waitForFunction(() => document.querySelectorAll(".location-directory__row").length === 2);
     assert.equal(await page.getByLabel("City", { exact: true }).inputValue(), "");
     await page.getByRole("button", { name: "Clear filters", exact: true }).click();
-    await page.waitForFunction(() => document.querySelectorAll(".location-directory__row").length === 7);
+    await page.waitForFunction(() => document.querySelectorAll(".location-directory__row").length === 8);
     assert.equal(new URL(page.url()).searchParams.has("brand"), false);
     assert.equal(new URL(page.url()).searchParams.get("utm_source"), "partner");
     assert.deepEqual(errors, []);
@@ -97,7 +97,7 @@ test("direct location links use the same city keys in MN and EN and retain liter
     }
     await page.goto(`${BASE}/en/locations/?brand=unknown&city=unknown`);
     await page.locator(".location-directory[data-ready='true']").waitFor();
-    assert.equal(await page.locator(".location-directory__row").count(), 7);
+    assert.equal(await page.locator(".location-directory__row").count(), 8);
   } finally { await context.close(); }
 });
 
@@ -108,7 +108,11 @@ test("location actions retain supplied phones, verified directions and honest se
     await page.goto(`${BASE}/en/locations/`);
     assert.equal(await page.locator("#jetour-c1 a[href='tel:+97670108855']").count(), 1);
     assert.equal(await page.locator("#chery-narny a[href='tel:+97672558855']").count(), 1);
-    assert.equal(await page.locator("#jetour-c1 .location-directory__map").getAttribute("href"), "https://www.google.com/maps/dir/?api=1&destination=47.9210074%2C106.9015123");
+    assert.equal(await page.locator("#erdenet a[href='tel:+97699096347']").count(), 1);
+    assert.match(await page.locator('#erdenet address').innerText(), /Sain Electronics, Orkhon Mall/);
+    assert.match(await page.locator('#erdenet .location-directory__map').innerText(), /Search map/);
+    assert.equal(await page.locator('#erdenet .location-directory__hours dl').count(), 0);
+    assert.equal(await page.locator("#jetour-c1 .location-directory__map").getAttribute("href"), "https://maps.app.goo.gl/qh4YXME6ZKwLokRQ8");
     assert.match(await page.locator("#jetour-c1 .location-directory__map").innerText(), /Get directions/);
     assert.match(await page.locator("#sansar .location-directory__map").getAttribute("href"), /^https:\/\/www\.google\.com\/maps\/search\//);
     assert.match(await page.locator("#sansar .location-directory__map").innerText(), /Search map/);
@@ -116,6 +120,19 @@ test("location actions retain supplied phones, verified directions and honest se
     assert.equal(await page.locator("#sansar .location-directory__hours dl").count(), 0);
     assert.match(await page.locator("#jetour-c1 .location-directory__hours").innerText(), /10:30 – 19:30/);
   } finally { await context.close(); }
+});
+
+test('Erdenet can be found by city in both languages without inferring which brands are on display', async () => {
+  const page = await browser.newPage();
+  try {
+    for (const locale of ['mn', 'en']) {
+      await page.goto(`${BASE}/${locale}/locations/?city=erdenet`);
+      await page.locator(".location-directory[data-ready='true']").waitFor();
+      assert.equal(await page.locator('.location-directory__row').count(), 1);
+      assert.equal(await page.locator('#erdenet a[href="tel:+97699096347"]').count(), 1);
+      assert.equal(await page.locator('#erdenet .location-directory__brand-links a').count(), 0);
+    }
+  } finally { await page.close(); }
 });
 
 test("locations remain readable and keyboard operable across the approved widths", async () => {

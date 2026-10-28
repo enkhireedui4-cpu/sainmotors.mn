@@ -31,6 +31,7 @@ describe("location directory", () => {
     expect(getLocationCities(locations)).toEqual([
       { value: "ulaanbaatar", label: { mn: "Улаанбаатар", en: "Ulaanbaatar" } },
       { value: "darkhan", label: { mn: "Дархан", en: "Darkhan" } },
+      { value: "erdenet", label: { mn: "Эрдэнэт", en: "Erdenet" } },
     ]);
   });
 

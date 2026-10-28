@@ -1,14 +1,19 @@
 ﻿import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { JsonLd } from "@/components/JsonLd";
+import { organizationGraph } from "@/lib/structured-data";
+import { QueryNavigationSync } from "@/components/QueryNavigationSync";
 import { ui } from "@/content";
 import { inter, zona } from "@/lib/fonts";
 import { isLocale, locales } from "@/lib/i18n";
 import { assertReleasable } from "@/lib/release";
 import { IS_INDEXABLE, IS_RELEASE, SITE_URL } from "@/lib/site";
 import "../globals.css";
+import "../experience.css";
+import "../site-system.css";
 
 export const dynamicParams = false;
 
@@ -50,6 +55,8 @@ export default async function LangLayout({
     <html lang={lang} className={`${zona.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>{!IS_RELEASE && <script dangerouslySetInnerHTML={{ __html: REVIEW_SCRIPT }} />}</head>
       <body>
+        <Suspense fallback={null}><QueryNavigationSync /></Suspense>
+        <JsonLd data={organizationGraph()} />
         <a className="skip-link" href="#main">
           {ui.skipToContent[lang]}
         </a>
