@@ -451,7 +451,7 @@ export const brands: Brand[] = [
     headline: {
       status: "sourced",
       source: `${DRIVE_212} / FAW BESTUNE мэдээлэл`,
-      value: { mn: "Үнэ чанарын төгс хослол", en: "The perfect balance of price and quality" },
+      value: { mn: "BESTUNE седан, SUV загварууд", en: "BESTUNE sedans and SUVs" },
     },
     since: 2025,
     models: ["B70", "T77", "T90", "T99", "NAT PRO"],
