@@ -11,7 +11,9 @@ describe("release preflight", () => {
     const vercel = JSON.parse(readFileSync("vercel.json", "utf8"));
     for (const brand of ["jetour", "chery"]) {
       for (const locale of ["mn", "en"]) {
-        expect(vercel.redirects).toContainEqual({ source: `/${locale}/brands/${brand}/:path*`, destination: `https://${brand}.mn/`, permanent: true });
+        for (const suffix of ["", "/", "/:path*"]) {
+          expect(vercel.redirects).toContainEqual({ source: `/${locale}/brands/${brand}${suffix}`, destination: `https://${brand}.mn/`, permanent: true });
+        }
       }
       for (const file of ["public/.htaccess", "deployment/apache/preview.htaccess", "deployment/apache/production.htaccess"]) {
         expect(readFileSync(file, "utf8"), file).toContain(`RewriteRule ^(?:mn|en)/brands/${brand}(?:/.*)?$ https://${brand}.mn/ [R=301,L]`);
