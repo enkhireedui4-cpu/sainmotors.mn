@@ -32,9 +32,38 @@ if (!fs.existsSync(ROOT)) {
   process.exit(1);
 }
 
-function send(res, status, file) {
-  res.writeHead(status, { "Content-Type": TYPES[path.extname(file)] ?? "application/octet-stream" });
-  fs.createReadStream(file).pipe(res);
+function send(req, res, status, file) {
+  const size = fs.statSync(file).size;
+  const headers = {
+    "Content-Type": TYPES[path.extname(file)] ?? "application/octet-stream",
+    "Content-Length": size,
+  };
+  let start = 0;
+  let end = size - 1;
+  // Browsers seek in an MP4 using byte ranges, including the initial 1s cut.
+  if (path.extname(file) === ".mp4" && status === 200) {
+    headers["Accept-Ranges"] = "bytes";
+    if (req.headers.range) {
+      const range = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range);
+      if (range && (range[1] || range[2])) {
+        start = range[1] ? Number(range[1]) : Math.max(0, size - Number(range[2]));
+        end = range[1] && range[2] ? Math.min(Number(range[2]), size - 1) : size - 1;
+      } else start = size;
+      if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start > end || start >= size) {
+        res.writeHead(416, { "Content-Range": `bytes */${size}`, "Content-Length": 0 });
+        return res.end();
+      }
+      status = 206;
+      headers["Content-Range"] = `bytes ${start}-${end}/${size}`;
+      headers["Content-Length"] = end - start + 1;
+    }
+  }
+  res.writeHead(status, headers);
+  if (req.method === "HEAD" || size === 0) return res.end();
+  const stream = fs.createReadStream(file, { start, end });
+  res.on("close", () => stream.destroy());
+  stream.on("error", () => res.destroy());
+  stream.pipe(res);
 }
 
 http
@@ -61,10 +90,10 @@ http
         return res.end();
       }
       const index = path.join(target, "index.html");
-      if (fs.existsSync(index)) return send(res, 200, index);
+      if (fs.existsSync(index)) return send(req, res, 200, index);
     } else if (fs.existsSync(target)) {
-      return send(res, 200, target);
+      return send(req, res, 200, target);
     }
-    send(res, 404, path.join(ROOT, "404.html"));
+    send(req, res, 404, path.join(ROOT, "404.html"));
   })
   .listen(PORT, () => console.log(`Serving out/ on http://localhost:${PORT}`));

@@ -9,119 +9,67 @@ before(async () => {
 });
 after(async () => { await browser?.close(); });
 
-test("hero photo controls stay inside the image and keep the counter, photo and keyboard focus in sync", async () => {
-  const page = await browser.newPage({ viewport: { width: 921, height: 950 }, reducedMotion: "reduce" });
-  try {
-    await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
-    const hero = page.locator(".hero-gallery");
-    const counter = hero.locator(".hero-gallery__position");
-    assert.equal(await counter.count(), 1, "The reference puts the photo position inside the hero image");
-    assert.match(await counter.innerText(), /01\s*\/\s*04/);
-    const next = hero.locator(".hero-gallery__arrow--next");
-    const previous = hero.locator(".hero-gallery__arrow--previous");
-    const initialPhoto = await hero.locator("[data-active] img").getAttribute("src");
-    await next.click();
-    assert.match(await counter.innerText(), /02\s*\/\s*04/);
-    assert.notEqual(await hero.locator("[data-active] img").getAttribute("src"), initialPhoto);
-    await page.keyboard.press("ArrowLeft");
-    assert.match(await counter.innerText(), /01\s*\/\s*04/);
-    assert.equal(await next.evaluate(el => el === document.activeElement), true);
-    await previous.click();
-    assert.match(await counter.innerText(), /04\s*\/\s*04/);
-    await next.click();
-    assert.match(await counter.innerText(), /01\s*\/\s*04/);
-    for (const width of [375, 921, 1440]) {
-      await page.setViewportSize({ width, height: 950 });
-      const frame = await hero.locator(".hero-gallery__frame").boundingBox();
-      if (width < 768) {
-        assert.equal(await counter.isVisible(), false);
-        assert.equal(await hero.locator(".hero-gallery__dots").isVisible(), true);
-      } else {
-        const position = await counter.boundingBox();
-        assert.ok(position.y > frame.y + frame.height * .65 && position.y + position.height < frame.y + frame.height);
+test("the moving brand row retains its eleven destinations, touch pause and movement below the video", async () => {
+  const slugs = ["jetour", "soueast", "chery", "byd", "riddara", "aito", "212", "bestune", "rely", "maxus", "hongqi"];
+  for (const locale of ["mn", "en"]) {
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: "no-preference", isMobile: true, hasTouch: true });
+    try {
+      await page.goto(base + "/" + locale + "/", { waitUntil: "domcontentloaded" });
+      assert.equal(await page.locator("#brands-heading").innerText(), locale === "mn" ? "11 брэндийн албан ёсны дистрибьютор" : "Official distributor of 11 brands");
+      assert.equal(await page.locator(".site-header__inner > .lang-switch").isVisible(), true);
+      const strip = page.locator(".brand-marquee");
+      const viewport = strip.locator(".brand-marquee__viewport");
+      await viewport.scrollIntoViewIfNeeded();
+      await page.waitForFunction(() => document.querySelector(".brand-marquee")?.getAttribute("data-ready") === "true");
+      const links = strip.locator("[data-brand-directory] a");
+      assert.equal(await links.count(), 11);
+      for (const [index, slug] of slugs.entries()) {
+        const expected = slug === "jetour" ? "https://jetour.mn/" : slug === "chery" ? "https://chery.mn/" : "/" + locale + "/brands/" + slug + "/";
+        assert.equal(await links.nth(index).getAttribute("href"), expected);
       }
-      for (const arrow of [previous, next]) {
-        const box = await arrow.boundingBox();
-        assert.ok(box.width >= 44 && box.height >= 44);
-        assert.ok(box.x > frame.x + frame.width * .5 && box.y > frame.y + frame.height * .65);
-      }
-    }
-    const frame = hero.locator(".hero-gallery__frame");
-    await frame.dispatchEvent("pointerdown", { pointerId: 7, pointerType: "touch", clientX: 250, clientY: 200 });
-    await frame.dispatchEvent("pointerup", { pointerId: 7, pointerType: "touch", clientX: 245, clientY: 350 });
-    assert.match(await counter.innerText(), /01\s*\/\s*04/, "Vertical scrolling should keep the current photo");
-    await frame.dispatchEvent("pointerdown", { pointerId: 8, pointerType: "touch", clientX: 280, clientY: 200 });
-    await frame.dispatchEvent("pointerup", { pointerId: 8, pointerType: "touch", clientX: 100, clientY: 205 });
-    assert.match(await counter.innerText(), /02\s*\/\s*04/);
-  } finally { await page.close(); }
+      const first = strip.locator("li").first();
+      const transform = await first.evaluate(el => getComputedStyle(el).transform);
+      await page.waitForTimeout(180);
+      assert.notEqual(await first.evaluate(el => getComputedStyle(el).transform), transform);
+      const rows = await strip.locator("li").evaluateAll(items => items.map(el => el.getBoundingClientRect().top));
+      assert.ok(rows.every(y => Math.abs(y - rows[0]) < 1), "Mobile logos remain on one row");
+      await viewport.dispatchEvent("pointerdown", { pointerType: "touch", pointerId: 3 });
+      assert.equal(await strip.getAttribute("data-paused"), "true");
+      await viewport.dispatchEvent("pointerdown", { pointerType: "touch", pointerId: 4 });
+      assert.equal(await strip.getAttribute("data-paused"), "false");
+      const resumed = await first.evaluate(el => getComputedStyle(el).transform);
+      await page.waitForTimeout(180);
+      assert.notEqual(await first.evaluate(el => getComputedStyle(el).transform), resumed, "Touch can resume the mobile logo loop");
+    } finally { await page.close(); }
+  }
 });
 
-test("mobile hero flows from large copy and paired actions to the photo, working dots and one moving logo row", async () => {
-  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: "no-preference", isMobile: true, hasTouch: true });
-  try {
-    await page.goto(`${base}/mn/`, { waitUntil: "networkidle" });
-    const dots = page.locator(".hero-gallery__dots button");
-    assert.equal(await dots.count(), 4, "The mobile reference has four photo selectors below the image");
-    assert.equal(await page.locator(".site-header__inner > .lang-switch").isVisible(), true);
-    await dots.last().click();
-    assert.equal(await dots.last().getAttribute("aria-pressed"), "true");
-    await page.keyboard.press("ArrowRight");
-    assert.equal(await dots.first().getAttribute("aria-pressed"), "true");
-    assert.equal(await dots.first().evaluate(el => el === document.activeElement), true);
-    await page.locator(".hero-gallery__arrow--next").click();
-    assert.equal(await dots.nth(1).getAttribute("aria-pressed"), "true");
-    for (const width of [360, 390, 430]) {
-      await page.setViewportSize({ width, height: 844 });
-      const actions = await page.locator(".home-arrival .actions a").all();
-      const [primary, secondary, photo] = await Promise.all([actions[0].boundingBox(), actions[1].boundingBox(), page.locator(".hero-gallery__frame").boundingBox()]);
-      assert.ok(Math.abs(primary.y - secondary.y) < 1, `${width}: mobile actions should share a row`);
-      assert.ok(photo.y > primary.y + primary.height, `${width}: the photo follows the actions`);
-      assert.ok(primary.height >= 44 && secondary.height >= 44);
-      const fontSize = await page.locator(".home-arrival h1").evaluate(el => parseFloat(getComputedStyle(el).fontSize));
-      assert.ok(fontSize >= 40, `${width}: the mobile headline should remain prominent`);
-      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false);
-    }
-    await page.locator(".site-logo").focus();
-    const strip = page.locator(".brand-marquee");
-    await strip.locator(".brand-marquee__viewport").scrollIntoViewIfNeeded();
-    assert.equal(await strip.getAttribute("data-ready"), "true");
-    const first = strip.locator("li").first();
-    const transform = await first.evaluate(el => getComputedStyle(el).transform);
-    await page.waitForTimeout(180);
-    assert.notEqual(await first.evaluate(el => getComputedStyle(el).transform), transform);
-    const rows = await strip.locator("li").evaluateAll(items => items.map(el => el.getBoundingClientRect().top));
-    assert.ok(rows.every(y => Math.abs(y - rows[0]) < 1), "Mobile logos remain on one row");
-    const viewport = strip.locator(".brand-marquee__viewport");
-    await viewport.dispatchEvent("pointerdown", { pointerType: "touch", pointerId: 3 });
-    assert.equal(await strip.getAttribute("data-paused"), "true");
-    await viewport.dispatchEvent("pointerdown", { pointerType: "touch", pointerId: 4 });
-    assert.equal(await strip.getAttribute("data-paused"), "false");
-    const resumed = await first.evaluate(el => getComputedStyle(el).transform);
-    await page.waitForTimeout(180);
-    assert.notEqual(await first.evaluate(el => getComputedStyle(el).transform), resumed, "Touch can resume the mobile logo loop");
-  } finally { await page.close(); }
-});
-
-test("the original hero and moving logo row precede the full-screen brand showcase", async () => {
+test("the viewport video and moving logos precede the unchanged full-screen brand showcase and company sections", async () => {
   const page = await browser.newPage({ reducedMotion: "reduce" });
   try {
     for (const [width, height] of [[1440, 900], [1920, 1080], [1366, 768], [390, 844]]) {
       await page.setViewportSize({ width, height });
-      await page.goto(`${base}/mn/`, { waitUntil: "networkidle" });
+      await page.goto(base + "/mn/", { waitUntil: "domcontentloaded" });
+      await page.evaluate(() => document.fonts.ready);
       const header = await page.locator(".site-header").boundingBox();
-      const hero = await page.locator(".home-arrival").boundingBox();
+      const hero = await page.locator(".home-video-hero").boundingBox();
       const logos = await page.locator(".home-brands").boundingBox();
       const showcase = await page.locator(".brand-spotlight").boundingBox();
       const available = height - header.height;
-      assert.ok(logos.y >= hero.y + hero.height - 1 && logos.y < hero.y + hero.height + 2, `${width}: the moving logos should follow the original hero immediately`);
-      assert.ok(showcase.y >= logos.y + logos.height - 1, `${width}: the new studio should follow the moving logos`);
-      if (width >= 1024) assert.ok(hero.height < available - 40, `${width}: retain the original compact hero`);
-      assert.ok(Math.abs(showcase.height - available) <= 2, `${width}: the showcase should fill the next screen (${showcase.height} vs ${available})`);
+      assert.ok(Math.abs(hero.height - available) <= 2, width + ": header and video fill the first screen");
+      assert.ok(logos.y >= hero.y + hero.height - 1 && logos.y < hero.y + hero.height + 2, width + ": the moving logos immediately follow the video");
+      assert.ok(showcase.y >= logos.y + logos.height - 1, width + ": the brand studio follows the moving logos");
+      assert.ok(Math.abs(showcase.height - available) <= 2, width + ": the showcase keeps its screen height");
+      const sections = await page.locator(".corporate-home > section").evaluateAll(elements => elements.map(el => el.getAttribute("aria-labelledby")));
+      assert.deepEqual(sections.slice(-4), ["home-company-heading", "home-services-heading", "home-news-heading", "visit-heading"], "Company, services, news and the visit invitation keep their original order below the brand studio");
+      assert.equal(await page.locator(".home-service-list a").count(), 4);
+      assert.equal(await page.locator('.corporate-home a[href="/mn/about/"]').count(), 1);
+      assert.equal(await page.locator('.corporate-home a[href="/mn/news/"]').count(), 1);
       await page.locator(".brand-spotlight").evaluate(el => el.scrollIntoView({ block: "start", behavior: "instant" }));
       const heading = await page.locator(".brand-spotlight__heading").boundingBox();
       const count = await page.locator(".brand-spotlight__count").boundingBox();
-      assert.ok(heading.y >= header.height, `${width}: the heading should clear the header`);
-      assert.ok(count.y + count.height <= height, `${width}: the position should be visible without further scrolling`);
+      assert.ok(heading.y >= header.height, width + ": the heading clears the existing header");
+      assert.ok(count.y + count.height <= height, width + ": the position stays visible without extra scrolling");
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false);
     }
   } finally { await page.close(); }
@@ -133,7 +81,7 @@ test("home showcase keeps the visible car, brand link and position together thro
   page.on("pageerror", error => errors.push(error.message));
   page.on("console", message => { if (message.type() === "error") errors.push(message.text()); });
   try {
-    await page.goto(`${base}/mn/`, { waitUntil: "networkidle" });
+    await page.goto(`${base}/mn/`, { waitUntil: "domcontentloaded" });
     const gallery = page.locator(".brand-spotlight");
     assert.equal(await gallery.count(), 1, "The hero should be followed by the new brand showcase");
     await gallery.scrollIntoViewIfNeeded();
@@ -167,7 +115,7 @@ test("home showcase keeps the visible car, brand link and position together thro
 test("phone swipe changes the brand without overflow and English keeps its own destinations", async () => {
   const page = await browser.newPage({ viewport: { width: 375, height: 812 }, reducedMotion: "reduce" });
   try {
-    await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
+    await page.goto(`${base}/en/`, { waitUntil: "domcontentloaded" });
     const gallery = page.locator(".brand-spotlight");
     assert.equal(await gallery.count(), 1);
     await gallery.scrollIntoViewIfNeeded();
@@ -209,7 +157,7 @@ test("homepage brand CTAs identify official sites and keep the other nine destin
   for (const locale of ["mn", "en"]) {
     const page = await browser.newPage({ viewport: { width: locale === "mn" ? 1440 : 390, height: 960 }, reducedMotion: "reduce" });
     try {
-      await page.goto(`${base}/${locale}/`, { waitUntil: "networkidle" });
+      await page.goto(`${base}/${locale}/`, { waitUntil: "domcontentloaded" });
       const gallery = page.locator(".brand-spotlight");
       const link = gallery.locator(".brand-spotlight__link");
       await link.focus();

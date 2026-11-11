@@ -5,13 +5,13 @@ import { HomeBrandShowcase } from "@/components/HomeBrandShowcase";
 import "../brand-marquee.css";
 import "../brand-spotlight.css";
 import "../home-viewport.css";
-import { HeroGallery } from "@/components/HeroGallery";
+import { HomeVideoHero } from "@/components/HomeVideoHero";
 import { Icon } from "@/components/Icon";
 import { NewsList } from "@/components/NewsList";
 import { Picture } from "@/components/Picture";
 import { CompanyFacts } from "@/components/CompanyFacts";
 import { SiteInvitation } from "@/components/SiteInvitation";
-import { company, driveEvents, hero, pages, services, sitePhotos } from "@/content";
+import { company, driveEvents, pages, services, sitePhotos } from "@/content";
 import { corporateHome } from "@/content/corporate";
 import type { Locale } from "@/lib/i18n";
 import { pageHref } from "@/lib/routes";
@@ -28,18 +28,7 @@ export default async function HomePage({ params }: Props) {
   const locale = (await params).lang as Locale;
   const copy = corporateHome.value[locale];
   return <div className="corporate-home">
-    <section className="corporate-hero home-arrival" aria-labelledby="home-title"><div className="container home-arrival__inner">
-      <div className="home-arrival__copy"><div className="home-arrival__headline">
-        <p className="corporate-hero__kicker" data-status={hero.kicker.status} translate="no">{hero.kicker.value[locale]}</p>
-        <h1 id="home-title" data-status={hero.title.status}>{hero.title.value[locale].split(/(11)/).map((part, i) => part === "11" ? <span className="home-arrival__number" key={i}>{part}</span> : part)}</h1>
-      </div><div className="home-arrival__lead">
-        <p className="corporate-hero__lead" data-status={hero.text.status}>{hero.text.value[locale]}</p>
-        <div className="actions"><Link className="button button--primary" href={pageHref(locale, "brands")} prefetch={false}>{hero.cta.label[locale]}<Icon name="arrowUpRight" size={19} /></Link><Link className="button button--outline" href={pageHref(locale, "locations")} prefetch={false}>{hero.secondaryCta.label[locale]}</Link></div>
-      </div></div>
-      <figure className="home-arrival__photograph"><HeroGallery labels={{ group: copy.photos, previous: copy.previousPhoto, next: copy.nextPhoto }}>
-        {sitePhotos.homeHero.map((photo, i) => <Picture key={photo.key} photo={photo} locale={locale} sizes="(min-width: 108rem) 58rem, (min-width: 56rem) 58vw, 93vw" priority={i === 0} />)}
-      </HeroGallery></figure>
-    </div></section>
+    <HomeVideoHero locale={locale} title={company.distributorClaim.value[locale]} />
     <section className="section home-brands brand-band" aria-labelledby="brands-heading"><div className="container">
       <div className="section-head section-head--portfolio"><h2 id="brands-heading">{copy.brands}</h2></div>
       <div className="brand-panel-frame"><HomeBrandStrip locale={locale} /></div>

@@ -22,36 +22,22 @@ test('supporting pages give a readable photographic introduction and real onward
   } finally { await browser.close(); }
 });
 
-test('homepage follows the supplied desktop split and an independent stacked phone composition', async () => {
+test('homepage keeps its global header, brand directory and onward company routes below the video', async () => {
   const browser=await chromium.launch({executablePath,headless:true});
   try {
     const page=await browser.newPage({reducedMotion:'reduce'});
     for(const locale of ['mn','en']) for(const width of [360,720,921,1440,1920]) {
       await page.setViewportSize({width,height:1000});
-      await page.goto(base+'/'+locale+'/');
+      await page.goto(base+'/'+locale+'/', { waitUntil: 'domcontentloaded' });
       await page.evaluate(()=>document.fonts.ready);
-      const title=await page.locator('.home-arrival h1').boundingBox();
-      const photo=await page.locator('.home-arrival__photograph').boundingBox();
-      if(width>=896) {
-        assert.ok(title.x+title.width<=photo.x+1,'desktop title sits to the left of the photograph');
-        assert.ok(photo.width>=Math.min(width*.45,700));
-      } else {
-        assert.ok(title.y+title.height<=photo.y,'phone copy precedes the photograph');
-        assert.ok(photo.width>=width*.8);
-        const frame=await page.locator('.home-arrival .hero-gallery__frame').boundingBox();
-        assert.ok(Math.abs(frame.width/frame.height-(width<768?1.55:4/3))<.02);
-      }
-      const actions=await page.locator('.home-arrival .actions a').all();
-      assert.equal(actions.length,2);
-      for(const action of actions)assert.ok((await action.boundingBox()).height>=44);
-      if(width===360) {
-        const first=await actions[0].boundingBox(),second=await actions[1].boundingBox();
-        assert.ok(Math.abs(second.y-first.y)<1,'small-phone actions share a row');
-        const fontSize=await page.locator('.home-arrival h1').evaluate(el=>parseFloat(getComputedStyle(el).fontSize));
-        assert.ok(fontSize>=40&&fontSize<=44);
-      }
-      assert.equal(await page.locator('.home-arrival a[href="/'+locale+'/brands/"]').count(),1);
-      assert.equal(await page.locator('.home-arrival a[href="/'+locale+'/locations/"]').count(),1);
+      assert.equal(await page.locator('.home-video-hero video').count(),1);
+      assert.equal(await page.locator('.site-header .site-logo').getAttribute('href'),'/'+locale+'/');
+      assert.equal(await page.locator('.site-header__inner > .lang-switch').isVisible(),true);
+      assert.equal(await page.locator('.corporate-home a[href="/'+locale+'/about/"]').count(),1);
+      assert.equal(await page.locator('.corporate-home a[href="/'+locale+'/services/"]').count(),1);
+      assert.equal(await page.locator('.corporate-home a[href="/'+locale+'/news/"]').count(),1);
+      assert.equal(await page.locator('.site-invitation a[href="/'+locale+'/locations/"]').count(),1);
+      assert.equal(await page.locator('.home-service-list a').count(),4);
       assert.equal(await page.locator('.journey-strip').count(),0);
       assert.equal(await page.locator('.home-brands .brand-panel a').count(),11);
       assert.equal(await page.locator('.home-brands .brand-panel__description').count(),0);

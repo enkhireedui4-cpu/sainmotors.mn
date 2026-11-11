@@ -11,7 +11,7 @@ export const corporateHome: Block<{
   source: "Editorial copy for user-approved 2026-10-22 redesign; existing company, service, location and event records.",
   value: {
     mn: {
-      photos: "Зургууд", previousPhoto: "Өмнөх зураг", nextPhoto: "Дараагийн зураг", brands: "Бидний төлөөлж буй брэндүүд",
+      photos: "Зургууд", previousPhoto: "Өмнөх зураг", nextPhoto: "Дараагийн зураг", brands: "11 брэндийн албан ёсны дистрибьютор",
       brandsNote: "Сонирхсон брэндээ сонгоод загварууд, шоурумын байршил, холбоо барих мэдээллийг үзээрэй.",
       company: "Сайн Моторс-ын тухай", companyLink: "Бидний тухай",
       service: "Борлуулалтын дараах үйлчилгээ", serviceLink: "Үйлчилгээтэй танилцах",
@@ -21,7 +21,7 @@ export const corporateHome: Block<{
       read: "Дэлгэрэнгүй", held: "Болсон өдөрлөг",
     },
     en: {
-      photos: "Photos", previousPhoto: "Previous photo", nextPhoto: "Next photo", brands: "The brands we represent",
+      photos: "Photos", previousPhoto: "Previous photo", nextPhoto: "Next photo", brands: "Official distributor of 11 brands",
       brandsNote: "Choose a brand to see its models, showroom locations and contact details.",
       company: "About Sain Motors", companyLink: "About us",
       service: "After-sales service", serviceLink: "Explore our services",

@@ -1,4 +1,5 @@
 /* Each of the eleven real links follows the loop: no inert visual copies. */
+.corporate-home #brands-heading { color: var(--red); }
 .brand-marquee { --logo-width:12rem; --flow-duration:40s; }
 .brand-marquee__viewport { overflow-x:auto; overflow-y:hidden; scrollbar-width:thin; scroll-padding-inline:1rem; }
 .brand-marquee__track { width:100%; }
