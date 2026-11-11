@@ -1,0 +1,33 @@
+/* The brand studio occupies one screen after the original split hero and
+   moving logo row. Its viewport budget includes the sticky header. */
+.corporate-home { --home-screen: calc(100svh - var(--header-h)); }
+.corporate-home .brand-spotlight {
+  display: flex;
+  flex-direction: column;
+  height: var(--home-screen);
+  min-height: 36rem;
+  padding-block: clamp(3rem, 8.5svh, 5.5rem) clamp(3.5rem, 6.5svh, 5rem);
+  scroll-margin-top: -1rem;
+}
+.corporate-home .brand-spotlight__heading { flex-shrink: 0; }
+.corporate-home .brand-spotlight__heading h2 { font-size: clamp(2rem, min(5.15vw, 7.2svh), 4rem); }
+.corporate-home .brand-spotlight__gallery { flex: 1; grid-template-rows: minmax(10rem, 1fr) auto auto; min-height: 0; margin-top: clamp(1.5rem, 4svh, 3rem); }
+.corporate-home .brand-spotlight__stage { min-height: 0; height: auto; }
+.corporate-home .brand-spotlight__information { flex-shrink: 0; margin-top: .6rem; }
+.corporate-home .brand-spotlight__information h3 { font-size: clamp(1.5rem, min(3.4vw, 4svh), 2.5rem); }
+.corporate-home .brand-spotlight__information > p,
+.corporate-home .brand-spotlight__link { font-size: clamp(1rem, min(2.3vw, 3svh), 1.65rem); }
+.corporate-home .brand-spotlight__pagination { flex-shrink: 0; margin-top: clamp(1rem, 2.3svh, 2.25rem); }
+@media (max-width: 47.99rem) {
+  .corporate-home .brand-spotlight { padding-block: clamp(2rem, 5svh, 2.75rem) clamp(1.5rem, 4svh, 2rem); }
+  .corporate-home .brand-spotlight__heading h2 { font-size: clamp(1.8rem, 6.7vw, 2.65rem); }
+  .corporate-home .brand-spotlight__gallery { margin-top: clamp(1rem, 3svh, 1.75rem); }
+  .corporate-home .brand-spotlight__information { margin-top: clamp(1.25rem, 3svh, 1.75rem); }
+  .corporate-home .brand-spotlight__information h3 { font-size: clamp(1.35rem, 6.5vw, 1.65rem); }
+  .corporate-home .brand-spotlight__pagination { margin-top: 0; }
+}
+/* Short landscape screens retain natural scrolling and readable controls. */
+@media (max-height: 40rem) {
+  .corporate-home .brand-spotlight { height: auto; min-height: var(--home-screen); }
+  .corporate-home .brand-spotlight__stage { height: clamp(13rem, 42svh, 24rem); }
+}

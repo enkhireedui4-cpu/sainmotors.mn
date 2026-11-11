@@ -1,6 +1,6 @@
 "use client";
 import { useState, useSyncExternalStore, type CSSProperties, type ReactNode } from "react";
-const motionQuery="(min-width: 48rem) and (prefers-reduced-motion: no-preference)";
+const motionQuery="(prefers-reduced-motion: no-preference)";
 const subscribe=(listener:()=>void)=>{const media=window.matchMedia(motionQuery);media.addEventListener("change",listener);return()=>media.removeEventListener("change",listener);};
 const clientMotion=()=>window.matchMedia(motionQuery).matches;
 const serverMotion=()=>false;

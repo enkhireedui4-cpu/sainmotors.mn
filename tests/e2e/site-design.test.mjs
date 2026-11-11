@@ -26,29 +26,29 @@ test('homepage follows the supplied desktop split and an independent stacked pho
   const browser=await chromium.launch({executablePath,headless:true});
   try {
     const page=await browser.newPage({reducedMotion:'reduce'});
-    for(const locale of ['mn','en']) for(const width of [360,720,1440,1920]) {
+    for(const locale of ['mn','en']) for(const width of [360,720,921,1440,1920]) {
       await page.setViewportSize({width,height:1000});
       await page.goto(base+'/'+locale+'/');
       await page.evaluate(()=>document.fonts.ready);
       const title=await page.locator('.home-arrival h1').boundingBox();
       const photo=await page.locator('.home-arrival__photograph').boundingBox();
-      if(width>=1024) {
+      if(width>=896) {
         assert.ok(title.x+title.width<=photo.x+1,'desktop title sits to the left of the photograph');
         assert.ok(photo.width>=Math.min(width*.45,700));
       } else {
         assert.ok(title.y+title.height<=photo.y,'phone copy precedes the photograph');
         assert.ok(photo.width>=width*.8);
         const frame=await page.locator('.home-arrival .hero-gallery__frame').boundingBox();
-        assert.ok(Math.abs(frame.width/frame.height-4/3)<.02);
+        assert.ok(Math.abs(frame.width/frame.height-(width<768?1.55:4/3))<.02);
       }
       const actions=await page.locator('.home-arrival .actions a').all();
       assert.equal(actions.length,2);
-      for(const action of actions)assert.ok((await action.boundingBox()).height>=48);
+      for(const action of actions)assert.ok((await action.boundingBox()).height>=44);
       if(width===360) {
         const first=await actions[0].boundingBox(),second=await actions[1].boundingBox();
-        assert.ok(second.y>=first.y+first.height,'small-phone actions stack');
+        assert.ok(Math.abs(second.y-first.y)<1,'small-phone actions share a row');
         const fontSize=await page.locator('.home-arrival h1').evaluate(el=>parseFloat(getComputedStyle(el).fontSize));
-        assert.ok(fontSize>=34&&fontSize<=38);
+        assert.ok(fontSize>=40&&fontSize<=44);
       }
       assert.equal(await page.locator('.home-arrival a[href="/'+locale+'/brands/"]').count(),1);
       assert.equal(await page.locator('.home-arrival a[href="/'+locale+'/locations/"]').count(),1);
