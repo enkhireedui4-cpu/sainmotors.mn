@@ -27,6 +27,7 @@ npm-debug.log*
 /.preview-server*.log
 /.tmp-assets/
 /.playwright-mcp/
+/.firecrawl/
 
 # Optional local build caches and generated visual evidence
 /.next-*/

@@ -32,13 +32,12 @@ test('brand strip moves, pauses by choice/hover/focus, and respects reduced moti
   const frame=await viewport.boundingBox();
   assert.ok(box.x>=frame.x-1&&box.x+box.width<=frame.x+frame.width+1,'keyboard reaches the last logo');
   await page.setViewportSize({width:390,height:844});
-  assert.equal(await track.evaluate(el=>getComputedStyle(el).animationName),'none');
+  await page.locator('.site-logo').focus();
+  assert.notEqual(await track.evaluate(el=>getComputedStyle(el).animationName),'none');
   assert.equal(await page.locator('.brand-marquee__duplicate').isVisible(),false);
   const links=page.locator('[data-brand-directory] a');
   const row=await Promise.all([0,1,2,3,9,10].map(i=>links.nth(i).boundingBox()));
-  assert.ok(Math.abs(row[0].y-row[2].y)<1&&row[3].y>row[0].y,'phone keeps three columns');
-  const viewportBox=await viewport.boundingBox();
-  assert.ok(Math.abs((row[4].x+row[5].x+row[5].width)/2-(viewportBox.x+viewportBox.width/2))<2,'final two logos centred');
+  assert.ok(row.every(box=>Math.abs(box.y-row[0].y)<1),'phone keeps a single moving row');
   await page.setViewportSize({width:1440,height:1000});
   await page.emulateMedia({reducedMotion:'reduce'});
   assert.equal(await track.evaluate(el=>getComputedStyle(el).animationName),'none');
@@ -55,11 +54,11 @@ test('brand strip moves, pauses by choice/hover/focus, and respects reduced moti
  } finally {await browser.close();}
 });
 
-test('every sequential Tab reveals the complete focused brand at tablet and desktop widths',async()=>{
+test('every sequential Tab reveals the complete focused brand at phone, tablet and desktop widths',async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROME_PATH??'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
  try {
   const page=await browser.newPage({reducedMotion:'no-preference'});
-  for(const width of [768,1440]) {
+  for(const width of [390,768,1440]) {
    await page.setViewportSize({width,height:1000});
    await page.goto(base+'/mn/');
    const viewport=page.locator('.brand-marquee__viewport');

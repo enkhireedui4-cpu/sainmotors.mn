@@ -5,8 +5,8 @@ export const homeExperience: Block<{ heading: string; cta: string }> = {
   status: "draft",
   source: "Showroom records; the hero's \"Шоурум\" link scrolls here and this action leads on to the contact page",
   value: {
-    mn: { heading: "Автомашинаа дэргэдээс нь мэдэр.", cta: "Шоурум, байршил" },
-    en: { heading: "Experience your next car in person.", cta: "Find a showroom" },
+    mn: { heading: "Загваруудтай шоурумд танилцаарай.", cta: "Шоурум, байршил" },
+    en: { heading: "See the cars at a showroom.", cta: "Find a showroom" },
   },
 };
 
@@ -25,19 +25,19 @@ export const homeDiscover: Block<{
       topics: [
         {
           tab: "Цахилгаан хөдөлгөөн",
-          title: "Өдөр тутмын шинэ хэмнэл.",
+          title: "Цахилгаан, хосолсон хөдөлгүүртэй загварууд.",
           body: "BYD-ийн цахилгаан болон plug-in hybrid автомашинуудтай танилцаарай. Загвар, худалдан авалтын нөхцөлийг BYD 4S үзэсгэлэнгийн танхимаас лавлах боломжтой.",
           cta: "BYD-тэй танилцах",
         },
         {
           tab: "Аялал, адал явдал",
-          title: "Хотын замаас цааш.",
+          title: "Аялалд зориулсан SUV загварууд.",
           body: "JETOUR-ийн аялал, адал явдалд зориулсан SUV загваруудыг сонирхоорой. Тоноглол, загварын дэлгэрэнгүй мэдээллийг брэндийн хуудаснаас үзнэ үү.",
           cta: "JETOUR-тай танилцах",
         },
         {
           tab: "Мэргэжлийн зөвлөгөө",
-          title: "Сонголтоо итгэлтэй хийгээрэй.",
+          title: "Загвар, нөхцөлийн талаар лавлаарай.",
           body: "Автомашинуудыг дэргэдээс нь харьцуулж, тухайн брэндийн багтай ярилцаарай. Загвар, худалдан авалтын нөхцөл, борлуулалтын дараах үйлчилгээний талаар зөвлөгөө аваарай.",
           cta: "Холбоо барих",
         },
@@ -49,19 +49,19 @@ export const homeDiscover: Block<{
       topics: [
         {
           tab: "Electric mobility",
-          title: "A new rhythm for every day.",
+          title: "Electric and plug-in hybrid cars.",
           body: "Explore BYD’s electric and plug-in hybrid cars. Visit the BYD 4S showroom for guidance on models and purchase options.",
           cta: "Explore BYD",
         },
         {
           tab: "Travel and adventure",
-          title: "Beyond the city streets.",
+          title: "SUVs for travel.",
           body: "Discover JETOUR’s SUVs for travel and adventure. Visit the brand page for model details, equipment and more about the range.",
           cta: "Explore JETOUR",
         },
         {
           tab: "Personal guidance",
-          title: "Choose with confidence.",
+          title: "Ask about models and buying options.",
           body: "Compare the cars in person and speak with the brand’s team. Get advice on models, purchase options and the after-sales services available for your brand.",
           cta: "Contact us",
         },
@@ -76,12 +76,12 @@ export const homeServices: Block<{ heading: string; body: string; cta: string }>
   source: "Existing service records (company.ts services); supplied service-centre photographs, 2026-10-20",
   value: {
     mn: {
-      heading: "Худалдан авсны дараа ч хамт.",
+      heading: "Борлуулалтын дараах үйлчилгээ",
       body: "Үйлдвэрийн баталгаа, засвар, оношилгоо, оригинал сэлбэг. Брэнд бүрийн үйлчилгээг тухайн шоурум, үйлчилгээний төв хариуцна.",
       cta: "Үйлчилгээтэй танилцах",
     },
     en: {
-      heading: "With you long after the sale.",
+      heading: "After-sales service",
       body: "Factory warranty, repairs, diagnostics and genuine parts, provided through each brand’s showroom and service centre.",
       cta: "Explore our services",
     },

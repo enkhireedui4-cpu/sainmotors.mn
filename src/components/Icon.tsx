@@ -3,6 +3,8 @@ import type { SVGProps } from "react";
 const paths = {
   chevronRight: <path d="M9 5l7 7-7 7" />,
   chevronLeft: <path d="M15 5l-7 7 7 7" />,
+  arrowLeft: <path d="M20 12H4m6-6-6 6 6 6" />,
+  arrowRight: <path d="M4 12h16m-6-6 6 6-6 6" />,
   arrowUpRight: <path d="M7 17L17 7M9 7h8v8" />,
   menu: <path d="M4 7h16M4 12h16M4 17h16" />,
   close: <path d="M6 6l12 12M18 6L6 18" />,

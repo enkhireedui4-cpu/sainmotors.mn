@@ -201,6 +201,24 @@ their background panels excluded. Original geometry and colours are preserved.
 
 The user confirmed a newly opened Sain Motors showroom in Erdenet: Orkhon Mall, Sain Electronics, phone 99096347. The site uses `tel:+97699096347` and a labelled map search. Opening date, precise coordinates, hours and represented brands were not supplied and are not inferred. The location is recorded as sourced for the publication review; the public directory, derived showroom/city counts and MN/EN company copy include it.
 
+## Homepage brand studio — 2026-11-10
+
+The user supplied the light, full-screen automotive carousel reference and its
+Mongolian heading and JETOUR tagline. At the user's follow-up request, the existing
+split hero and moving logo row retain their original sizing and order. The brand
+studio follows the moving logos as a separate complete screen.
+
+The final master reference supplied later on 2026-11-10 preserves that sequence
+and refines its proportions. Hero photo controls and the photo position now sit
+inside the image. The reference and its layout rules are saved in
+`docs/design/homepage.md` and `docs/design/homepage-reference.png`.
+
+- `public/brand-showcase/jetour.webp`: the user's local `Desktop/jetour-sain/public/models/t2/spin/silver_snow/22.webp`, with empty transparent margins trimmed. Vehicle colours and geometry are unchanged.
+- `public/brand-showcase/chery.webp`: the user's local `Desktop/chery/public/assets/img/t7-c-silver.webp`, with empty transparent margins trimmed. Vehicle colours and geometry are unchanged.
+- Additional studio assets supplied or requested by the user on 2026-11-10 replace the SOUEAST, BYD, RIDDARA, AITO, 212, BESTUNE, RELY, MAXUS and HONGQI campaign photographs. Original masters and source details are preserved in `assets/photos/showcase/README.md`; WebP derivatives live in `public/brand-showcase/`. Empty margins are trimmed and large originals are reduced to at most 1920 px, with no upscaling. RIDDARA, BESTUNE and MAXUS retain their white backgrounds and use CSS multiply blending on the light studio surface. The supplied `Hongi.png` already has transparency and an HS3 model plate; its full canvas is preserved.
+- All official wordmarks reuse the existing sourced media manifest.
+- The eleven Mongolian taglines in `HomeBrandShowcase.tsx` use the user's final selected copy, supplied on 2026-11-10: the alternative lines for JETOUR, SOUEAST, CHERY, BYD, RIDDARA, AITO, 212 and RELY, with the primary BESTUNE and HONGQI lines and the existing MAXUS line. They are site-specific editorial slogans, not translations of official brand slogans. All use the same type treatment and omit terminal punctuation. English taglines remain draft editorial copy. They make no technical or pricing claims.
+
 ## 5. Still needed
 
 - Written publication approval for everything above (status → `approved`).

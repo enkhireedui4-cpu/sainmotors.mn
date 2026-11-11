@@ -1,7 +1,10 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { HomeBrandStrip } from "@/components/HomeBrandStrip";
+import { HomeBrandShowcase } from "@/components/HomeBrandShowcase";
 import "../brand-marquee.css";
+import "../brand-spotlight.css";
+import "../home-viewport.css";
 import { HeroGallery } from "@/components/HeroGallery";
 import { Icon } from "@/components/Icon";
 import { NewsList } from "@/components/NewsList";
@@ -34,13 +37,14 @@ export default async function HomePage({ params }: Props) {
         <div className="actions"><Link className="button button--primary" href={pageHref(locale, "brands")} prefetch={false}>{hero.cta.label[locale]}<Icon name="arrowUpRight" size={19} /></Link><Link className="button button--outline" href={pageHref(locale, "locations")} prefetch={false}>{hero.secondaryCta.label[locale]}</Link></div>
       </div></div>
       <figure className="home-arrival__photograph"><HeroGallery labels={{ group: copy.photos, previous: copy.previousPhoto, next: copy.nextPhoto }}>
-        {sitePhotos.homeHero.map((photo, i) => <Picture key={photo.key} photo={photo} locale={locale} sizes="(min-width: 90rem) 48rem, (min-width: 64rem) 56vw, 92vw" priority={i === 0} />)}
+        {sitePhotos.homeHero.map((photo, i) => <Picture key={photo.key} photo={photo} locale={locale} sizes="(min-width: 108rem) 58rem, (min-width: 56rem) 58vw, 93vw" priority={i === 0} />)}
       </HeroGallery></figure>
     </div></section>
     <section className="section home-brands brand-band" aria-labelledby="brands-heading"><div className="container">
       <div className="section-head section-head--portfolio"><h2 id="brands-heading">{copy.brands}</h2></div>
       <div className="brand-panel-frame"><HomeBrandStrip locale={locale} /></div>
     </div></section>
+    <HomeBrandShowcase locale={locale} />
     <section className="section section--alt" aria-labelledby="home-company-heading"><div className="container editorial-split">
       <figure className="editorial-photo"><Picture photo={sitePhotos.story} locale={locale} sizes="(min-width: 64rem) 44vw, 92vw" /></figure>
       <div className="editorial-copy"><h2 id="home-company-heading" className="display-2">{copy.company}</h2>
