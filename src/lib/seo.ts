@@ -7,7 +7,7 @@ const OG_LOCALE: Record<Locale, string> = { mn: "mn_MN", en: "en_US" };
 
 interface PageMetaInput {
   locale: Locale;
-  /** Path below the locale, e.g. "brands/jetour". Empty for the home page. */
+  /** Path below the locale, e.g. "brands/byd". Empty for the home page. */
   path: string;
   title: string;
   description: string;

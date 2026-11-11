@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ui } from "@/content";
 import type { Brand } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
+import { brandLinkLabel } from "@/lib/brand-sites";
 import { brandHref } from "@/lib/routes";
 import { BrandCarousel } from "./BrandCarousel";
 import { BrandMark } from "./BrandMark";
@@ -34,8 +35,8 @@ function BrandCard({ brand, locale, copy }: { brand: Brand; locale: Locale; copy
         <span className="bcard__title" translate="no">
           {brand.name}
         </span>
-        <span className="bcard__desc" id={descId} data-status={draftAttr(brand.teaser)}>
-          {brand.teaser.value[locale]}
+        <span className="bcard__desc" id={descId} data-status={brand.teaser ? draftAttr(brand.teaser) : undefined}>
+          {brand.teaser?.value[locale] ?? brandLinkLabel(locale, brand.slug)}
         </span>
         <span className="bcard__cta" aria-hidden="true">
           {ui.brand.overview[locale]}
@@ -100,7 +101,7 @@ function PortfolioCard({ brand, locale, copy: loopCopy = false }: { brand: Brand
           <BrandMark brand={brand} locale={locale} decorative onDark />
           <span className="sr-only">{brand.name}</span>
         </h3>
-        <p className="portfolio-card__copy" data-status={draftAttr(copy)}>{copy.value[locale]}</p>
+        <p className="portfolio-card__copy" data-status={copy ? draftAttr(copy) : undefined}>{copy?.value[locale] ?? brandLinkLabel(locale, brand.slug)}</p>
         <span className="portfolio-card__cta">{ui.brand.explore[locale]}<Icon name="chevronRight" size={18} /></span>
       </div>
     </Link>

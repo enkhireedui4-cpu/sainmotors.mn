@@ -1,7 +1,7 @@
 ﻿import "@/app/brands.css";
 import Link from "next/link";
 import { brandPhone, getBrands, getLocation, getPhoto, liveLinks, ui } from "@/content";
-import type { Brand, BrandLink } from "@/content/types";
+import type { InternalBrand, BrandLink } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 import { displayHost, pageHref } from "@/lib/routes";
 import { draftAttr } from "@/lib/content-status";
@@ -31,7 +31,7 @@ function BrandLinks({ links, locale }: { links: BrandLink[]; locale: Locale }) {
 }
 
 /** Large automotive imagery leads; source records remain the authority for every fact. */
-export function BrandDetail({ brand, locale }: { brand: Brand; locale: Locale }) {
+export function BrandDetail({ brand, locale }: { brand: InternalBrand; locale: Locale }) {
   const others = getBrands().filter(b => b.slug !== brand.slug);
   const location = brand.location ? getLocation(brand.location) : undefined;
   const salesPhone = brandPhone(brand);

@@ -48,8 +48,9 @@ test('brand strip moves, pauses by choice/hover/focus, and respects reduced moti
   await page.goto(base+'/mn/');
   await page.locator('.brand-marquee[data-ready=true]').waitFor();
   await page.locator('.brand-marquee__viewport').hover();
+  await page.route('https://chery.mn/', route => route.fulfill({ contentType:'text/html', body:'<h1>CHERY official site</h1>' }));
   await page.locator('[data-brand-directory] a').nth(2).click();
-  await page.waitForURL('**/mn/brands/chery/');
+  await page.waitForURL('https://chery.mn/');
 
  } finally {await browser.close();}
 });

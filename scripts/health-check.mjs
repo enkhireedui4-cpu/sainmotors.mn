@@ -28,6 +28,12 @@ try {
   if (robots.response.status !== 200 || (release ? /Disallow:\s*\//i.test(robots.text) : !/Disallow:\s*\//i.test(robots.text))) errors.push("robots.txt: wrong status/indexing policy");
   const sitemap = await get("/sitemap.xml");
   if (sitemap.response.status !== 200 || !sitemap.text.includes("<urlset")) errors.push("sitemap.xml missing/invalid");
+  if (/\/(?:mn|en)\/brands\/(?:jetour|chery)\//.test(sitemap.text)) errors.push("sitemap.xml: removed internal brand routes remain");
+  for (const locale of ["mn", "en"]) for (const brand of ["jetour", "chery"]) {
+    const route = `/${locale}/brands/${brand}/`;
+    const { response } = await get(route, { redirect: "manual" });
+    if (![301, 308].includes(response.status) || response.headers.get("location") !== `https://${brand}.mn/`) errors.push(`Brand redirect failed: ${route}`);
+  }
   const missing = await get("/__sain_health_missing_404__/");
   if (missing.response.status !== 404) errors.push(`Missing route: HTTP ${missing.response.status}, expected 404`);
   if (asset) {

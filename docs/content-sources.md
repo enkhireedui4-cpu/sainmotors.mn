@@ -69,8 +69,8 @@ facebook.com refuses anonymous requests.
 
 | Brand | Channel | Page name / evidence |
 |---|---|---|
-| JETOUR | jetour.mn; facebook.com/Sainmotors.mn | "Sain Motors - Сайн Моторс ХХК", where JETOUR news is posted (user's instruction, 2026-10-20); jetour.mn links the same page. The brand pages "Jetour Mongolia - Sain Motors" (id 100093386917379, 19K) and its 110-follower namesake are not used |
-| CHERY | facebook.com/CheryMongolia | "Chery Mongolia - Sain Motors"; chery.mn still hidden (no DNS) |
+| JETOUR | jetour.mn | "Sain Motors - Сайн Моторс ХХК", where JETOUR news is posted (user's instruction, 2026-10-20); jetour.mn links the same page. The brand pages "Jetour Mongolia - Sain Motors" (id 100093386917379, 19K) and its 110-follower namesake are not used |
+| CHERY | chery.mn | Official site verified live 2026-11-11; all brand entry points now go directly there |
 | BYD | facebook.com/profile.php?id=61579315933755 | "BYD Mongolia - Sain Motors Authorized Distributor": the hyperlink behind the BYD sheet's web-link cell. facebook.com/bydmongolia belongs to another distributor |
 | MAXUS | facebook.com/profile.php?id=61572688311986 | "SAIC Maxus Mongolia - Sain Motors": the MAXUS sheet's "Facebook" hyperlink |
 | 212 | facebook.com/profile.php?id=61574822528259 | "BAW 212 Mongolia - Sain Motors" |
@@ -219,13 +219,24 @@ inside the image. The reference and its layout rules are saved in
 - All official wordmarks reuse the existing sourced media manifest.
 - The eleven Mongolian taglines in `HomeBrandShowcase.tsx` use the user's final selected copy, supplied on 2026-11-10: the alternative lines for JETOUR, SOUEAST, CHERY, BYD, RIDDARA, AITO, 212 and RELY, with the primary BESTUNE and HONGQI lines and the existing MAXUS line. They are site-specific editorial slogans, not translations of official brand slogans. All use the same type treatment and omit terminal punctuation. English taglines remain draft editorial copy. They make no technical or pricing claims.
 
+## External brand destinations — 2026-11-11
+
+Homepage CTA update — 2026-11-11: the user requested direct links to the official
+Mongolian JETOUR and CHERY homepages. `https://jetour.mn/` and `https://chery.mn/`
+were verified live; CHERY's browser page identifies Sain Motors as its official
+distributor. Its previously unavailable website channel is now enabled. Showcase
+CTAs name the external brand site, while the other nine use internal brand pages.
+The user subsequently requested removal of JETOUR/CHERY's duplicated internal
+detail content and routes. Only their brand identity, listing photography,
+official-site link and shared Sain Motors contact coverage remain. Legacy MN/EN
+addresses redirect permanently. Previous source notes below are provenance,
+not active JETOUR/CHERY detail-page content.
+
 ## 5. Still needed
 
 - Written publication approval for everything above (status → `approved`).
 - SOUEAST: publication approval of the 2026-10-22 brand sheet details (introduction, S06/S07/S08, JETOUR showroom, 7277-8855); whether the Facebook page's 7299-8866 should be retired.
-- CHERY: approval of the introduction and showroom details. The homepage card uses the user-supplied
-  TIGGO 7 PRO MAX image (`37620.png`); the dedicated brand page uses the separately supplied
-  TIGGO 7 PRO MAX road photograph (`37628.png`). Both originals are preserved; the prior TIGGO 8 source is archived.
+- CHERY: review of the shared showroom contact details. Its brand introduction, models and warranty information now live only on chery.mn. The former detail-page road photograph and prior TIGGO 8 source are archived originals and excluded from the generated media pipeline.
 - A valid TLS certificate for sainmotors.mn (it serves an expired `*.webhost.mn` certificate; checked 2026-10-18).
 - Whether marketing2@esain.mn is the intended public address, or a general one such as info@.
 - Service-centre photographs: supplied 2026-10-20 (above). Confirm which site the workshop frames show

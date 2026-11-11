@@ -1,11 +1,11 @@
 // Works around a Next.js 16 static-export bug on Windows.
 //
 // The client router prefetches per-segment data from flat file names such as
-//   /mn/brands/jetour/__next.$d$lang.brands.$d$slug.__PAGE__.txt
+//   /mn/brands/byd/__next.$d$lang.brands.$d$slug.__PAGE__.txt
 // (next/dist/shared/lib/segment-cache/segment-value-encoding.js replaces "/"
 // with "."). On Windows the exporter gets "\"-separated paths, which that
 // replacement misses, so it writes nested folders instead:
-//   /mn/brands/jetour/__next.$d$lang/brands/$d$slug/__PAGE__.txt
+//   /mn/brands/byd/__next.$d$lang/brands/$d$slug/__PAGE__.txt
 // The prefetches then 404 and navigation falls back to full page loads.
 //
 // This script renames the nested files to the flat names the client asks for.

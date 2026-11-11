@@ -7,6 +7,17 @@ import os from "node:os";
 import path from "node:path";
 
 describe("release preflight", () => {
+  it("keeps Vercel and both Apache environments redirecting retired brand paths to the official homepages", () => {
+    const vercel = JSON.parse(readFileSync("vercel.json", "utf8"));
+    for (const brand of ["jetour", "chery"]) {
+      for (const locale of ["mn", "en"]) {
+        expect(vercel.redirects).toContainEqual({ source: `/${locale}/brands/${brand}/:path*`, destination: `https://${brand}.mn/`, permanent: true });
+      }
+      for (const file of ["public/.htaccess", "deployment/apache/preview.htaccess", "deployment/apache/production.htaccess"]) {
+        expect(readFileSync(file, "utf8"), file).toContain(`RewriteRule ^(?:mn|en)/brands/${brand}(?:/.*)?$ https://${brand}.mn/ [R=301,L]`);
+      }
+    }
+  });
   it("ships Apache directives without a UTF-8 BOM", () => {
     for (const file of ["public/.htaccess", "deployment/apache/preview.htaccess", "deployment/apache/production.htaccess"]) {
       expect(readFileSync(file).subarray(0, 3).equals(Buffer.from([0xef, 0xbb, 0xbf])), file).toBe(false);

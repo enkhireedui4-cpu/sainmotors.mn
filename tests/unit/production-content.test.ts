@@ -3,7 +3,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { collectStatuses, company, getBrands, hero } from "@/content";
+import { collectStatuses, company, getInternalBrands, hero } from "@/content";
 
 afterEach(() => { vi.unstubAllEnvs(); vi.resetModules(); });
 
@@ -17,8 +17,10 @@ describe("publication review registry", () => {
       const csv = readFileSync(output, "utf8");
       for (const entry of collectStatuses()) expect(csv, entry.path).toContain(`"${entry.path}"`);
       expect(csv).toContain('"homeDiscover"');
-      expect(csv).toContain('"brands[0].teaser"');
-      expect(csv).toContain('"brands[0].cardCopy"');
+      expect(csv).toContain('"brands[1].teaser"');
+      expect(csv).not.toContain('"brands[0].summary"');
+      expect(csv).not.toContain('"brands[2].summary"');
+      expect(csv).toContain('"brands[1].cardCopy"');
       expect(csv).toMatch(/"brands\[3\]\.gallery\[0\]"/);
       expect(csv).toContain('"Owner","Approver"');
       expect(csv).not.toContain("Энх-Ирээдүй (вэб)");
@@ -32,7 +34,7 @@ describe("publication review registry", () => {
     expect(company.distributorClaim.value.en).toBe("Sain Motors is the official distributor of 11 automotive brands in Mongolia.");
     expect(company.introduction.value.en).toContain("SOUEAST");
     expect(company.introduction.status).not.toBe("approved");
-    expect(getBrands().every((brand) => brand.summary.status !== "approved")).toBe(true);
+    expect(getInternalBrands().every((brand) => brand.summary.status !== "approved")).toBe(true);
   });
 });
 

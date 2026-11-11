@@ -585,33 +585,6 @@
         ]
       ]
     },
-    "brand-chery-tiggo8": {
-      "width": 1843,
-      "height": 852,
-      "color": "#888888",
-      "srcset": [
-        [
-          480,
-          "/media/brand-chery-tiggo8-480.webp"
-        ],
-        [
-          768,
-          "/media/brand-chery-tiggo8-768.webp"
-        ],
-        [
-          1080,
-          "/media/brand-chery-tiggo8-1080.webp"
-        ],
-        [
-          1440,
-          "/media/brand-chery-tiggo8-1440.webp"
-        ],
-        [
-          1843,
-          "/media/brand-chery-tiggo8-1843.webp"
-        ]
-      ]
-    },
     "brand-chery-tiggo7-promax": {
       "width": 1680,
       "height": 1050,
@@ -636,37 +609,6 @@
         [
           1680,
           "/media/brand-chery-tiggo7-promax-1680.webp"
-        ]
-      ]
-    },
-    "brand-chery-tiggo7-promax-road": {
-      "width": 3238,
-      "height": 1821,
-      "color": "#f8f8f8",
-      "srcset": [
-        [
-          480,
-          "/media/brand-chery-tiggo7-promax-road-480.webp"
-        ],
-        [
-          768,
-          "/media/brand-chery-tiggo7-promax-road-768.webp"
-        ],
-        [
-          1080,
-          "/media/brand-chery-tiggo7-promax-road-1080.webp"
-        ],
-        [
-          1440,
-          "/media/brand-chery-tiggo7-promax-road-1440.webp"
-        ],
-        [
-          1920,
-          "/media/brand-chery-tiggo7-promax-road-1920.webp"
-        ],
-        [
-          2560,
-          "/media/brand-chery-tiggo7-promax-road-2560.webp"
         ]
       ]
     },

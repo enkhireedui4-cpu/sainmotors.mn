@@ -45,6 +45,11 @@ http
       res.writeHead(302, { Location: "/mn/" });
       return res.end();
     }
+    const externalBrand = pathname.match(/^\/(?:mn|en)\/brands\/(jetour|chery)(?:\/.*)?$/)?.[1];
+    if (externalBrand) {
+      res.writeHead(301, { Location: `https://${externalBrand}.mn/${url.search}` });
+      return res.end();
+    }
     const target = path.join(ROOT, pathname);
     if (!target.startsWith(ROOT)) {
       res.writeHead(400);

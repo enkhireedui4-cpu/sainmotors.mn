@@ -64,6 +64,23 @@ with the separate brand logo omitted as explicitly requested:
 The same pair of controls serves both layouts. Desktop keeps its arrows beside
 the vehicle and its inline progress/count row; phone controls form a footer.
 
+## Brand destinations
+
+The red showcase CTA sends JETOUR directly to `https://jetour.mn/` with the label
+`Jetour-ийн сайт руу`, and CHERY to `https://chery.mn/` with `Chery-ийн сайт руу`.
+Both open the brand homepage in the current tab and use the diagonal external
+arrow. The other nine retain `Брэндтэй танилцах`, a horizontal arrow and their
+localized Sain Motors brand page. English labels follow the same distinction.
+The link remains mounted while slides change so keyboard focus stays intact.
+
+JETOUR and CHERY are listing-only records. Every logo, directory card, milestone,
+location link and showcase CTA uses the same official homepage destination.
+Their former local detail copy, model lists and hero metadata have been removed.
+Only nine internal brand detail pages are exported and listed in the sitemap.
+Old MN/EN brand paths (including descendants and index.html) permanently redirect
+at Vercel, Apache and the local static preview server; query strings are retained.
+The 11-brand homepage and shared showroom/service contacts are preserved.
+
 ## Visual language
 
 | Role | Value |

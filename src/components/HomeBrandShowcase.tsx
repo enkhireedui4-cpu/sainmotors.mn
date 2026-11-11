@@ -1,5 +1,6 @@
 import { getBrands, getPhoto } from "@/content";
 import type { Locale } from "@/lib/i18n";
+import { brandLinkLabel, officialBrandSite } from "@/lib/brand-sites";
 import { brandHref } from "@/lib/routes";
 import { VehicleShowcase, type ShowcaseVehicle } from "./VehicleShowcase";
 
@@ -46,6 +47,8 @@ export function HomeBrandShowcase({ locale }: { locale: Locale }) {
       model: introduction.model,
       tagline: introduction[locale],
       href: brandHref(locale, brand.slug),
+      linkLabel: brandLinkLabel(locale, brand.slug),
+      external: Boolean(officialBrandSite(brand.slug)),
       src: studioImage?.src ?? source![1],
       srcSet: studioImage ? undefined : asset?.srcset.map(([width, url]) => `${url} ${width}w`).join(", "),
       width: studioImage?.width ?? asset!.width,
@@ -69,8 +72,8 @@ export function HomeBrandShowcase({ locale }: { locale: Locale }) {
       <VehicleShowcase
         vehicles={vehicles}
         labels={locale === "mn"
-          ? { region: "Автомашины брэндүүд", previous: "Өмнөх брэнд", next: "Дараагийн брэнд", explore: "Брэндтэй танилцах", slide: "брэнд", help: "Брэнд солихдоо зүүн, баруун сумтай товчлуурыг ашиглана уу." }
-          : { region: "Explore our automotive brands", previous: "Previous brand", next: "Next brand", explore: "Explore the brand", slide: "brand", help: "Use the left and right arrow keys to explore the brands." }}
+          ? { region: "Автомашины брэндүүд", previous: "Өмнөх брэнд", next: "Дараагийн брэнд", slide: "брэнд", help: "Брэнд солихдоо зүүн, баруун сумтай товчлуурыг ашиглана уу." }
+          : { region: "Explore our automotive brands", previous: "Previous brand", next: "Next brand", slide: "brand", help: "Use the left and right arrow keys to explore the brands." }}
       />
     </section>
   );

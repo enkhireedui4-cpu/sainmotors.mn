@@ -13,7 +13,7 @@ test('corporate home gives two direct journeys and all eleven brands without an 
     assert.equal(await page.locator('.corporate-hero a[href="/en/brands/"]').count(), 1);
     assert.equal(await page.locator('.corporate-hero a[href="/en/locations/"]').count(), 1);
     const links = await page.locator('[data-brand-directory] a').evaluateAll(nodes => nodes.map(n => n.getAttribute('href')));
-    assert.deepEqual(links.sort(), ['212','aito','bestune','byd','chery','hongqi','jetour','maxus','rely','riddara','soueast'].map(s => `/en/brands/${s}/`).sort());
+    assert.deepEqual(links.sort(), ['212','aito','bestune','byd','chery','hongqi','jetour','maxus','rely','riddara','soueast'].map(s => ["jetour", "chery"].includes(s) ? `https://${s}.mn/` : `/en/brands/${s}/`).sort());
     assert.equal(await page.locator('video[autoplay], .brand-spotlight__gallery[data-playing]').count(), 0);
     assert.equal(await page.locator('.brand-spotlight [aria-roledescription="carousel"]').count(), 1);
     assert.equal(await page.locator('.home-brands .brand-panel__description, .home-brands__note').count(), 0);

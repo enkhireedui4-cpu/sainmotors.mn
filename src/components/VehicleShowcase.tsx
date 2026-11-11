@@ -10,6 +10,8 @@ export interface ShowcaseVehicle {
   model: string;
   tagline: string;
   href: string;
+  linkLabel: string;
+  external: boolean;
   src: string;
   srcSet?: string;
   width: number;
@@ -22,7 +24,7 @@ export interface ShowcaseVehicle {
 
 interface Props {
   vehicles: ShowcaseVehicle[];
-  labels: { region: string; previous: string; next: string; explore: string; slide: string; help: string };
+  labels: { region: string; previous: string; next: string; slide: string; help: string };
 }
 
 const subscribe = () => () => {};
@@ -91,7 +93,9 @@ export function VehicleShowcase({ vehicles, labels }: Props) {
       <div className="brand-spotlight__information" style={{ "--arrival-direction": direction } as CSSProperties}>
         <h3 translate="no">{vehicle.model}</h3>
         <p>{vehicle.tagline}</p>
-        <Link href={vehicle.href} className="brand-spotlight__link" prefetch={false}>{labels.explore}<Icon name="arrowUpRight" size={24} /></Link>
+        <Link href={vehicle.href} className="brand-spotlight__link" rel={vehicle.external ? "external" : undefined} prefetch={false}>
+          {vehicle.linkLabel}<Icon name={vehicle.external ? "arrowUpRight" : "arrowRight"} size={24} />
+        </Link>
       </div>
       <div className="brand-spotlight__controls">
         <button className="brand-spotlight__arrow brand-spotlight__arrow--previous" type="button" onClick={() => step(-1)}

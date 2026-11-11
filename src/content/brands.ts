@@ -14,64 +14,25 @@ const CHECKED = "2026-10-17";
 const DRIVE_212 = "Desktop brands6 / supplied brand-team sheets (also held in Drive: 212 team)";
 const DRIVE_BYD = "Desktop 3brand / supplied brand-team sheets (also held in Drive: BYD team)";
 const SOUEAST_SHEET = "SOUEAST BRAND sheet (screenshot supplied by the user, 2026-10-22)";
-const JETOUR_SHEET = "Desktop jetourMedeelel/JETOUR_BRAND123.xlsx (supplied by the user, 2026-10-22)";
 
 /** Mongolian Facebook pages confirmed by name ("… Mongolia - Sain Motors") through Facebook's public page plugin. */
 const PAGES_CHECKED = "2026-10-20";
 
-const site = (url: string, live = true): BrandLink => ({ kind: "website", url, live, checked: CHECKED });
+const site = (url: string, live = true, checked = CHECKED): BrandLink => ({ kind: "website", url, live, checked });
 const facebook = (url: string, checked = CHECKED): BrandLink => ({ kind: "facebook", url, live: true, checked });
 const phone = (digits: string) => ({ display: `${digits.slice(0, 4)}-${digits.slice(4)}`, href: `tel:+976${digits}` });
 
 export const brands: Brand[] = [
   {
+    kind: "external",
     slug: "jetour",
-    cardCopy: {
-      status: "draft", source: "Condensed from existing JETOUR summary",
-      value: { mn: "Аялал, адал явдлын SUV.\nХотын замаас шинэ аялал руу.", en: "Travel and adventure SUVs.\nFor the city and the open road." },
-    },
     name: "JETOUR",
     published: true,
     order: 1,
-    accent: GRAPHITE,
-    summary: {
-      status: "sourced",
-      source: `${JETOUR_SHEET} / Брэндийн товч танилцуулга (EN: missing spaces after full stops restored)`,
-      value: {
-        mn: "Сайн Моторс ХХК нь 2023 оноос JETOUR брэндийн Монгол Улс дахь албан ёсны дистрибьютороор ажиллаж байна. Компанийн зүгээс хэрэглэгчдэд автомашины борлуулалт, баталгаат засвар үйлчилгээ, сэлбэгийн хангамж болон борлуулалтын дараах үйлчилгээг албан ёсны сувгаар хүргэхэд анхааран ажилладаг.\nJETOUR брэнд нь бүтээгдэхүүний чанар, технологийн шинэчлэл, хэрэглэгчийн хэрэгцээнд нийцсэн шийдлээр дамжуулан автомашины салбар дахь байр сууриа бэхжүүлж, хэрэглэгчдэд урт хугацааны үнэ цэн бий болгохыг зорьдог.",
-        en: "Sain Motors LLC has been the official distributor of the JETOUR brand in Mongolia since 2023. The company is committed to providing customers with vehicle sales, warranty maintenance and repair services, genuine spare parts supply, and comprehensive after-sales support through its authorized channels.\nThe JETOUR brand strives to strengthen its position in the automotive industry through product quality, technological innovation, and solutions tailored to customer needs, while creating long-term value for its customers.",
-      },
-    },
-    statement: {
-      status: "sourced",
-      source: `${JETOUR_SHEET} / Албан ёсны борлуулагчийн эрхийн мэдээлэл (EN: missing spaces after full stops restored)`,
-      value: {
-        mn: "Сайн Моторс ХХК нь 2023 оноос JETOUR брэндийн Монгол Улс дахь албан ёсны дистрибьютороор ажиллаж байна.\nАлбан ёсны дистрибьютерийн хувьд бид хэрэглэгчдэд шинэ автомашины борлуулалт, загвар болон тоноглолын зөвлөгөө, туршилтын жолоодлого, санхүүжилтийн зөвлөгөө, баталгаат засвар үйлчилгээ болон сэлбэгийн дэмжлэгийг албан ёсны сувгаар хүргэн ажилладаг.\nБид автомашин худалдан авах үеэс эхлэн цаашдын ашиглалт, үйлчилгээний бүхий л үе шатанд хэрэглэгчдийн сэтгэл ханамж, найдвартай байдлыг эрхэмлэнэ.",
-        en: "Sain Motors LLC has been the official distributor of the JETOUR brand in Mongolia since 2023.\nAs the official distributor, we provide customers with new vehicle sales, expert guidance on vehicle models and specifications, test-drive experiences, financing consultation, warranty services, and genuine spare parts support through our authorized channels.\nWe are committed to ensuring customer satisfaction and reliability throughout the entire ownership journey, from the initial vehicle purchase to ongoing use and after-sales service.",
-      },
-    },
-    since: 2023,
-    headline: {
-      status: "sourced",
-      source: `${JETOUR_SHEET} / Брэндийн Hero-гийн гарчиг`,
-      value: { mn: "JETOUR — Beyond the Horizon", en: "JETOUR — Beyond the Horizon" },
-    },
-    teaser: {
-      status: "draft",
-      source: "Condensed by the web team from jetour.mn; company.ts locations",
-      value: {
-        mn: "JETOUR нь аялал, адал явдалд зориулсан SUV загваруудаараа танигдсан брэнд. Сайн Моторс нь түүний Монгол дахь албан ёсны дистрибьютор бөгөөд Улаанбаатарт тусгай шоурум, үйлчилгээний төвтэй. Загварын дэлгэрэнгүйг jetour.mn-ээс үзнэ үү.",
-        en: "JETOUR builds SUVs for travel and adventure. Sain Motors is its official distributor in Mongolia, with a dedicated showroom and service centre in Ulaanbaatar. Full model details are on jetour.mn.",
-      },
-    },
-    factsReview: { status: "sourced", source: `${JETOUR_SHEET}: since 2023, sales line 7277 8855` },
-    // The sheet's official link, jetourglobal.com, is not linked: brand pages point only to Mongolian channels.
-    // JETOUR news is posted on Sain Motors' main page ("Sain Motors - Сайн Моторс ХХК"), which jetour.mn also links.
-    links: [site("https://jetour.mn/"), facebook("https://www.facebook.com/Sainmotors.mn", PAGES_CHECKED)],
+    links: [site("https://jetour.mn/", true, "2026-11-11")],
     location: "jetour-c1",
-    // Sales line from the sheet; the showroom's own 7010-8855 stays on the location.
     phone: phone("72778855"),
-    photo: {
+    cardPhoto: {
       key: "jetour-t2-idm",
       alt: { mn: "Ойн шороон замаар явж буй JETOUR T2 i-DM", en: "JETOUR T2 i-DM on a forest track" },
       status: "sourced",
@@ -130,54 +91,19 @@ export const brands: Brand[] = [
     phone: phone("72778855"),
   },
   {
+    kind: "external",
     slug: "chery",
-    photo: {
-      key: "brand-chery-tiggo7-promax-road", status: "sourced", caption: "CHERY TIGGO 7 PRO MAX", focus: "38% 58%",
-      alt: { mn: "Гүүрэн дээгүүр явж буй цэнхэр CHERY TIGGO 7 PRO MAX", en: "Blue CHERY TIGGO 7 PRO MAX driving across a bridge" },
-      note: "Supplied by the user on 2026-10-18 (Desktop 37628.png) for the dedicated brand page; model name is visible on the vehicle plate. Full source preserved, with responsive object positioning keeping the entire vehicle in frame.",
-    },
+    name: "CHERY",
+    published: true,
+    order: 3,
+    links: [site("https://chery.mn/", true, "2026-11-11")],
+    location: "chery-narny",
+    phone: phone("72558855"),
     cardPhoto: {
       key: "brand-chery-tiggo7-promax", status: "sourced", caption: "CHERY TIGGO 7 PRO MAX", focus: "50% 50%",
       alt: { mn: "Орчин үеийн барилгын өмнө зогсох цэнхэр CHERY TIGGO 7 PRO MAX", en: "Blue CHERY TIGGO 7 PRO MAX outside a modern building" },
       note: "Supplied by the user on 2026-10-18 (Desktop 37620.png); model name is visible on the vehicle plate. Homepage card replacement, with a 1680 by 1050 crop preserving the whole vehicle.",
     },
-    cardCopy: {
-      status: "draft", source: "SUV category from CHERY International TIGGO range; web-team translation",
-      value: { mn: "Гэр бүл, өдөр тутмын SUV.\nХотын хэмнэлд тохирох сонголт.", en: "SUVs for family and daily life.\nExplore the TIGGO range." },
-    },
-    name: "CHERY",
-    published: true,
-    order: 3,
-    accent: "#E9011A",
-    summary: {
-      status: "draft",
-      source: "Web team, from Sain Motors' CHERY site (Desktop chery: PRODUCT.md models, messages warranty)",
-      value: {
-        mn: "CHERY нь TIGGO цувралын SUV-аараа танигдсан брэнд. Сайн Моторс TIGGO 2, TIGGO 4, TIGGO 7, TIGGO 8 загваруудыг Нарны хороолол дахь CHERY шоурумдаа 3 жил буюу 100,000 км-ийн үйлдвэрийн баталгаатай санал болгодог.",
-        en: "CHERY is known for its TIGGO range of SUVs. Sain Motors offers the TIGGO 2, TIGGO 4, TIGGO 7 and TIGGO 8 at its CHERY showroom in Narny Khoroolol, with a factory warranty of 3 years or 100,000 km.",
-      },
-    },
-    statement: {
-      status: "sourced",
-      source: "Sain Motors CHERY site (Desktop chery) — lib/content.ts site.legal + site.role",
-      value: {
-        mn: "Сайн Моторс ХХК нь Chery брэндийн Монгол дахь албан ёсны дистрибьютор.",
-        en: "Sain Motors LLC is the official distributor of Chery in Mongolia.",
-      },
-    },
-    models: ["TIGGO 2", "TIGGO 4", "TIGGO 7", "TIGGO 8"],
-    // chery.mn did not resolve on 2026-10-17 or 2026-10-18; it is linked once it is live.
-    teaser: {
-      status: "draft",
-      source: "Condensed by the web team from Sain Motors' CHERY site (Desktop chery)",
-      value: {
-        mn: "TIGGO цувралын SUV-аараа танигдсан CHERY-гийн Монгол дахь албан ёсны дистрибьютор нь Сайн Моторс. TIGGO 2, TIGGO 4, TIGGO 7, TIGGO 8 загваруудыг Нарны хороолол дахь CHERY шоурумаас үзнэ үү.",
-        en: "Sain Motors is the official distributor in Mongolia of CHERY, known for its TIGGO SUVs. See the TIGGO 2, TIGGO 4, TIGGO 7 and TIGGO 8 at the CHERY showroom in Narny Khoroolol.",
-      },
-    },
-    links: [facebook("https://www.facebook.com/CheryMongolia", PAGES_CHECKED), site("https://chery.mn/", false)],
-    location: "chery-narny",
-    phone: phone("72558855"),
   },
   {
     slug: "byd",

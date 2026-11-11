@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { chromium } from "playwright-core";
 const BASE = process.env.BASE_URL ?? "http://localhost:3300";
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sainmotors.mn";
-const BRANDS = ["jetour","soueast","chery","byd","riddara","aito","212","bestune","rely","maxus","hongqi"];
+const BRANDS = ["soueast","byd","riddara","aito","212","bestune","rely","maxus","hongqi"];
 const paths = ["","about/","brands/","services/","locations/","news/","contact/","privacy/",...BRANDS.map(s=>"brands/"+s+"/"),...[8,7,6].map(n=>"news/mega-test-drive-"+n+"/")];
 let browser;
 before(async()=>{ browser=await chromium.launch({executablePath:process.env.CHROME_PATH ?? "C:/Program Files/Google/Chrome/Application/chrome.exe"}); });
@@ -73,9 +73,6 @@ test("all brand pages retain real sales channels and sourced model galleries",as
   for(const href of await page.locator("a.brand-link").evaluateAll(a=>a.map(x=>x.href))) assert.ok(href.startsWith("https://"));
   assert.equal(await page.locator(".brand-hero__image img").count(),1,brand);
  }
- await page.goto(BASE+"/en/brands/chery/");
- assert.ok(await page.locator("main").textContent().then(t=>t.includes("09:00")));
- assert.ok(await page.locator('a[href*="47.904448"]').count()>0);
  await page.close();
 });
 

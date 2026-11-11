@@ -32,11 +32,11 @@ preserved at `assets/photos/brands/chery-tiggo7-promax.png` (SHA-256
 `e463ce5aaf5b7f29726482b41093e9941a4fa6994bcd150e674897ee8e6b3dd0`). The image pipeline extracts
 `left: 700, top: 450, width: 1680, height: 1050` to keep the whole vehicle in the 1.6-ratio card,
 then produces responsive WebP variants. The model name is visible on the vehicle plate;
-no stock or specification claims are inferred. The dedicated CHERY page uses the separate road photograph
+no stock or specification claims are inferred. The former dedicated CHERY page used the separate road photograph
 supplied as Desktop `37628.png` (3238×1821, SHA-256
 `324369bac9c445f2669a234546f687b96652e9fdb237f5dd7747bb7009f03604`), preserved in
 `assets/photos/brands/chery-tiggo7-promax-road.png`. Responsive object positioning at `38% 58%`
-keeps the full vehicle visible in the existing desktop/mobile 4:3 and tablet 1.6 frames.
+kept the full vehicle visible. Since 2026-11-11 this original is archived only; the internal CHERY page and its generated road-image variants have been removed.
 The previous TIGGO 8 source remains in the asset archive.
 The earlier TIGGO 9 hero was not in the local line-up (TIGGO 2, 4, 7, 8). The other five
 alternatives below have been replaced by the local team material at the user's request.

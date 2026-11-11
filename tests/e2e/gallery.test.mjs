@@ -13,7 +13,9 @@ test("all eleven logo destinations are visible and keyboard reachable at phone a
    await link.focus();
    const box=await link.boundingBox();assert.ok(box&&box.width>48&&box.height>48);
    assert.equal(await link.evaluate(e=>e===document.activeElement),true);
-   assert.ok((await link.getAttribute("href")).includes("/brands/"));
+   const name = await link.getAttribute("aria-label");
+   const slug = ({ "FAW BESTUNE": "bestune", "CHERY RELY": "rely", "FAW HONGQI": "hongqi" })[name] ?? name.toLowerCase();
+   assert.equal(await link.getAttribute("href"), name === "JETOUR" ? "https://jetour.mn/" : name === "CHERY" ? "https://chery.mn/" : `/${locale}/brands/${slug}/`);
   }
  }
  } finally{await browser.close();}

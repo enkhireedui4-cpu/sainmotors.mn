@@ -4,7 +4,7 @@ import { contentHref, displayHost } from "@/lib/routes";
 
 describe("switchLocalePath", () => {
   it("keeps the page when switching language", () => {
-    expect(switchLocalePath("/mn/brands/jetour/", "en")).toBe("/en/brands/jetour/");
+    expect(switchLocalePath("/mn/brands/byd/", "en")).toBe("/en/brands/byd/");
     expect(switchLocalePath("/en/contact", "mn")).toBe("/mn/contact/");
     expect(switchLocalePath("/mn/", "en")).toBe("/en/");
     expect(switchLocalePath("/mn", "en")).toBe("/en/");

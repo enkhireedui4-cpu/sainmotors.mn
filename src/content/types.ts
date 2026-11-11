@@ -71,7 +71,7 @@ export interface BrandLink {
 
 export type LocationId = "dolgoon-nuur" | "sansar" | "byd-4s" | "chery-narny" | "jetour-c1" | "darkhan" | "erdenet" | "service-centre";
 
-export interface Brand {
+interface BrandListing {
   slug: string;
   /** Review of the non-copy facts: channels, phone, showroom, models and year. */
   factsReview?: { status: ContentStatus; source: string };
@@ -80,6 +80,15 @@ export interface Brand {
   /** Unpublished brands are left out of every listing, route and sitemap. */
   published: boolean;
   order: number;
+  /** Listing imagery; external brands have no local detail-page content. */
+  cardPhoto?: Photo;
+  links: BrandLink[];
+  location?: LocationId;
+  phone?: Phone;
+}
+
+export interface InternalBrand extends BrandListing {
+  kind?: "internal";
   /**
    * Accent for the brand's own page only. A design choice, never presented
    * as an official colour.
@@ -90,8 +99,6 @@ export interface Brand {
   teaser: Block;
   /** Short, customer-facing copy for homepage vehicle cards. */
   cardCopy?: Block;
-  /** Manufacturer illustration for the homepage; does not assert local model availability. */
-  cardPhoto?: Photo;
   /** Sain Motors' relationship to the brand, as the brand team worded it. */
   statement?: Block;
   /** Year Sain Motors began selling the brand under official rights, per the brand sheet. */
@@ -100,15 +107,27 @@ export interface Brand {
   headline?: Block;
   /** Models the brand sheet says Sain Motors sells. */
   models?: string[];
-  links: BrandLink[];
-  /** Showroom the brand sheet names. */
-  location?: LocationId;
-  /** Sales line from the brand sheet; falls back to the company line. */
-  phone?: Phone;
   photo?: Photo;
   /** Further supplied brand imagery, captioned with the source's model name. */
   gallery?: Photo[];
 }
+
+/** Listing identity and Sain Motors contact coverage, with no duplicate brand page. */
+export interface ExternalBrand extends BrandListing {
+  kind: "external";
+  accent?: never;
+  summary?: never;
+  teaser?: never;
+  cardCopy?: never;
+  statement?: never;
+  since?: never;
+  headline?: never;
+  models?: never;
+  photo?: never;
+  gallery?: never;
+}
+
+export type Brand = InternalBrand | ExternalBrand;
 
 export interface OpeningHours {
   days: Localized;

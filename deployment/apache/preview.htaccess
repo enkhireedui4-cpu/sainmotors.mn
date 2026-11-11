@@ -11,6 +11,9 @@ AddType application/manifest+json .webmanifest
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  # Brand information is maintained on each brand's own site.
+  RewriteRule ^(?:mn|en)/brands/jetour(?:/.*)?$ https://jetour.mn/ [R=301,L]
+  RewriteRule ^(?:mn|en)/brands/chery(?:/.*)?$ https://chery.mn/ [R=301,L]
   RewriteRule ^$ /mn/ [R=302,L]
 </IfModule>
 

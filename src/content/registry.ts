@@ -28,7 +28,7 @@ export const contentRegistry = {
   brands: brands.filter((brand) => brand.published).sort((a, b) => a.order - b.order).map((brand) => ({
     ...brand,
     status: brand.factsReview?.status ?? "sourced" as ContentStatus,
-    source: brand.factsReview?.source ?? brand.statement?.source ?? brand.summary.source ?? "Brand-team sheet; docs/content-sources.md",
+    source: brand.factsReview?.source ?? brand.statement?.source ?? brand.summary?.source ?? (brand.kind === "external" ? brand.links[0]?.url : undefined) ?? "Brand-team sheet; docs/content-sources.md",
   })),
 };
 

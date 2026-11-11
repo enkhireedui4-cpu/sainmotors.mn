@@ -138,7 +138,7 @@ test("home showcase keeps the visible car, brand link and position together thro
     assert.equal(await gallery.count(), 1, "The hero should be followed by the new brand showcase");
     await gallery.scrollIntoViewIfNeeded();
     const link = gallery.locator(".brand-spotlight__link");
-    assert.equal(await link.getAttribute("href"), "/mn/brands/jetour/");
+    assert.equal(await link.getAttribute("href"), "https://jetour.mn/");
     assert.match(await gallery.locator(".brand-spotlight__count").innerText(), /01\s*\/\s*11/);
     await gallery.getByRole("button", { name: "Дараагийн брэнд", exact: true }).click();
     assert.equal(await link.getAttribute("href"), "/mn/brands/soueast/");
@@ -149,17 +149,18 @@ test("home showcase keeps the visible car, brand link and position together thro
     assert.equal(await link.getAttribute("href"), "/mn/brands/hongqi/");
     assert.match(await gallery.locator(".brand-spotlight__count").innerText(), /11\s*\/\s*11/);
     await page.keyboard.press("ArrowRight");
-    assert.equal(await link.getAttribute("href"), "/mn/brands/jetour/");
+    assert.equal(await link.getAttribute("href"), "https://jetour.mn/");
     await link.focus();
     await page.keyboard.press("ArrowRight");
     assert.equal(await link.getAttribute("href"), "/mn/brands/soueast/");
     assert.equal(await link.evaluate(el => el === document.activeElement), true, "Changing slides from the brand link must preserve keyboard focus");
     await page.keyboard.press("ArrowLeft");
-    assert.equal(await link.getAttribute("href"), "/mn/brands/jetour/");
+    assert.equal(await link.getAttribute("href"), "https://jetour.mn/");
     assert.equal(await link.evaluate(el => el === document.activeElement), true);
     assert.deepEqual(errors, [], "Switching brands must not produce rendering errors");
+    await page.route("https://jetour.mn/**", route => route.fulfill({ contentType: "text/html", body: "<h1>JETOUR official website</h1>" }));
     await link.click();
-    await page.waitForURL("**/mn/brands/jetour/");
+    await page.waitForURL("https://jetour.mn/");
   } finally { await page.close(); }
 });
 
@@ -194,10 +195,41 @@ test("phone swipe changes the brand without overflow and English keeps its own d
     const target = await nextButton.boundingBox();
     const scrollY = await page.evaluate(() => window.scrollY);
     await page.mouse.click(target.x + target.width / 2, target.y + target.height / 2);
-    assert.equal(await gallery.locator(".brand-spotlight__link").getAttribute("href"), "/en/brands/chery/");
+    assert.equal(await gallery.locator(".brand-spotlight__link").getAttribute("href"), "https://chery.mn/");
     assert.ok(Math.abs(await page.evaluate(() => window.scrollY) - scrollY) < 1, "Using the footer controls keeps the studio in view");
     assert.equal(await nextButton.evaluate(el => el === document.activeElement), true);
     await page.keyboard.press("ArrowLeft");
     assert.equal(await gallery.locator(".brand-spotlight__link").getAttribute("href"), "/en/brands/soueast/");
   } finally { await page.close(); }
+});
+
+test("homepage brand CTAs identify official sites and keep the other nine destinations inside Sain Motors", async () => {
+  const slugs = ["jetour", "soueast", "chery", "byd", "riddara", "aito", "212", "bestune", "rely", "maxus", "hongqi"];
+  const sites = { jetour: "https://jetour.mn/", chery: "https://chery.mn/" };
+  for (const locale of ["mn", "en"]) {
+    const page = await browser.newPage({ viewport: { width: locale === "mn" ? 1440 : 390, height: 960 }, reducedMotion: "reduce" });
+    try {
+      await page.goto(`${base}/${locale}/`, { waitUntil: "networkidle" });
+      const gallery = page.locator(".brand-spotlight");
+      const link = gallery.locator(".brand-spotlight__link");
+      await link.focus();
+      for (const slug of slugs) {
+        const site = sites[slug];
+        const brand = slug === "jetour" ? "Jetour" : "Chery";
+        assert.equal(await link.getAttribute("href"), site ?? `/${locale}/brands/${slug}/`);
+        assert.equal(await link.innerText(), site
+          ? (locale === "mn" ? `${brand}-ийн сайт руу` : `Visit ${brand} website`)
+          : (locale === "mn" ? "Брэндтэй танилцах" : "Explore the brand"));
+        assert.equal(await link.getAttribute("rel"), site ? "external" : null);
+        assert.equal(await link.getAttribute("target"), null, "The CTA navigates directly in the current tab");
+        await page.keyboard.press("ArrowRight");
+        assert.equal(await link.evaluate(el => el === document.activeElement), true);
+      }
+      await page.keyboard.press("ArrowRight");
+      await page.keyboard.press("ArrowRight");
+      await page.route("https://chery.mn/**", route => route.fulfill({ contentType: "text/html", body: "<h1>CHERY official website</h1>" }));
+      await link.click();
+      await page.waitForURL("https://chery.mn/");
+    } finally { await page.close(); }
+  }
 });

@@ -8,7 +8,7 @@ import { homeDiscover, homeExperience, homeServices } from "./home";
 import { pages } from "./pages";
 import { sitePhotos } from "./photos";
 import media from "./generated/media.json";
-import type { Brand, BrandLink, Location, Phone, PhotoKey } from "./types";
+import type { Brand, BrandLink, InternalBrand, Location, Phone, PhotoKey } from "./types";
 import { collectContentReview } from "./registry";
 
 export { company, contact, socials, services, hero, homeDiscover, homeExperience, homeServices, pages, sitePhotos, driveEvents, testDrive };
@@ -21,6 +21,14 @@ export function getBrands(): Brand[] {
 
 export function getBrand(slug: string): Brand | undefined {
   return getBrands().find((b) => b.slug === slug);
+}
+
+export function getInternalBrands(): InternalBrand[] {
+  return getBrands().filter((brand): brand is InternalBrand => brand.kind !== "external");
+}
+
+export function getInternalBrand(slug: string): InternalBrand | undefined {
+  return getInternalBrands().find((brand) => brand.slug === slug);
 }
 
 export function getLocations(): Location[] {

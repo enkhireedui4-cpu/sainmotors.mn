@@ -95,7 +95,7 @@ test("brand section links have real server-rendered destinations without JavaScr
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1440, height: 1000 } });
   try {
     const page = await context.newPage();
-    for (const [locale, brand, expected] of [["mn", "byd", 3], ["en", "jetour", 2], ["en", "soueast", 3]]) {
+    for (const [locale, brand, expected] of [["mn", "byd", 3], ["en", "maxus", 2], ["en", "soueast", 3]]) {
       await page.goto(`${base}/${locale}/brands/${brand}/`);
       const links = page.locator(".brand-section-nav__links a");
       assert.equal(await links.count(), expected, `${locale}/${brand}`);

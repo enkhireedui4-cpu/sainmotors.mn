@@ -1,4 +1,5 @@
 import { localePath, type Locale } from "./i18n";
+import { officialBrandSite } from "./brand-sites";
 
 /** Page keys and their path segment; identical in both languages. */
 export const pagePaths = {
@@ -21,7 +22,7 @@ export function pageHref(locale: Locale, page: PageKey): string {
 }
 
 export function brandHref(locale: Locale, slug: string): string {
-  return localePath(locale, `brands/${slug}`);
+  return officialBrandSite(slug)?.url ?? localePath(locale, `brands/${slug}`);
 }
 
 export function newsHref(locale: Locale, slug: string): string {

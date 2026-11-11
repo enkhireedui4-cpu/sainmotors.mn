@@ -54,10 +54,8 @@ const PHOTOS = {
   "brand-soueast-s09": { file: "brands/soueast-s09-kv.jpg", crop: { left: 8, top: 0, width: 3008, height: 1700 } },
   // Square studio render supplied by the user; cropped to the brand page frame (1.3:1) around the car and its reflection.
   "brand-soueast-s08": { file: "brands/soueast-s08-teal.webp", crop: { left: 0, top: 236, width: 2048, height: 1576 } },
-  "brand-chery-tiggo8": { file: "brands/chery-tiggo8.webp" },
   // User-supplied 37620.png: frame the complete vehicle, excluding excess architecture above it.
   "brand-chery-tiggo7-promax": { file: "brands/chery-tiggo7-promax.png", crop: { left: 700, top: 450, width: 1680, height: 1050 } },
-  "brand-chery-tiggo7-promax-road": { file: "brands/chery-tiggo7-promax-road.png" },
   "brand-riddara-rd6": { file: "brands/riddara-rd6.webp" },
   "brand-bestune": { file: "brands/bestune-showcase.webp" },
   "brand-rely": { file: "brands/rely-showcase.webp" },

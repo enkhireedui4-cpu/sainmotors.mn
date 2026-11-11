@@ -19,6 +19,14 @@ const walk = (dir) => {
 };
 if (!fs.existsSync(source)) { console.error(`Export missing: ${source}`); process.exit(1); }
 walk(source);
+const legacyBrandPath = /\/(?:mn|en)\/brands\/(?:jetour|chery)(?:\/|["'?#\s]|$)/;
+for (const file of files) {
+  const relative = path.relative(source, file).replaceAll(path.sep, "/");
+  if (/^(mn|en)\/brands\/(jetour|chery)(?:\/|$)/.test(relative)) errors.push(`Removed brand detail export remains: ${relative}`);
+  if ((/^(mn|en)\//.test(relative) && /\.(html|txt)$/.test(relative)) || relative === "sitemap.xml") {
+    if (legacyBrandPath.test(fs.readFileSync(file, "utf8"))) errors.push(`${relative}: still references a removed internal brand route`);
+  }
+}
 const apache = path.join(source, ".htaccess");
 if (fs.existsSync(apache) && fs.readFileSync(apache).subarray(0, 3).equals(Buffer.from([0xef, 0xbb, 0xbf]))) errors.push(".htaccess contains a UTF-8 BOM; Apache directives must be saved without BOM");
 for (const required of ["mn/index.html", "en/index.html", "404.html", "robots.txt", "sitemap.xml"]) {

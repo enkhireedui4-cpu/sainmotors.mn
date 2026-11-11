@@ -4,6 +4,8 @@ import {
   collectStatuses,
   company,
   getBrands,
+  getInternalBrands,
+  getInternalBrand,
   getLocations,
   getLogo,
   getPhoto,
@@ -36,7 +38,7 @@ describe("brands", () => {
   });
 
   it("have a summary in both languages, and statement and headline in both when present", () => {
-    for (const brand of brands) {
+    for (const brand of getInternalBrands()) {
       expect(filled(brand.summary.value), brand.slug).toBe(true);
       if (brand.statement) expect(filled(brand.statement.value), brand.slug).toBe(true);
       if (brand.headline) expect(filled(brand.headline.value), brand.slug).toBe(true);
@@ -50,21 +52,21 @@ describe("brands", () => {
         expect(link.checked, brand.slug).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       }
     }
-    // chery.mn has no DNS yet: only the brand's Facebook page is shown.
-    expect(liveLinks(brands.find((b) => b.slug === "chery")!).map((l) => l.kind)).toEqual(["facebook"]);
+    // The official Mongolian CHERY site was verified live on 2026-11-11.
+    expect(liveLinks(brands.find((b) => b.slug === "chery")!).map((l) => l.kind)).toEqual(["website"]);
   });
 
   it("send every brand with a Mongolian Facebook page there first, and JETOUR to jetour.mn", () => {
     const first = (slug: string) => liveLinks(brands.find((b) => b.slug === slug)!)[0];
     expect(first("jetour").url).toBe("https://jetour.mn/");
-    expect(liveLinks(brands.find((b) => b.slug === "jetour")!).map((l) => l.kind)).toEqual(["website", "facebook"]);
+    expect(liveLinks(brands.find((b) => b.slug === "jetour")!).map((l) => l.kind)).toEqual(["website"]);
     // International manufacturer sites are not linked: only Mongolian channels.
     for (const brand of brands) {
       for (const link of liveLinks(brand)) {
         if (link.kind === "website") expect(link.url, brand.slug).toMatch(/^https:\/\/[a-z0-9-]+\.mn\//);
       }
     }
-    for (const slug of ["soueast", "chery", "byd", "riddara", "aito", "212", "bestune", "rely", "maxus", "hongqi"]) {
+    for (const slug of ["soueast", "byd", "riddara", "aito", "212", "bestune", "rely", "maxus", "hongqi"]) {
       expect(first(slug).kind, slug).toBe("facebook");
       expect(first(slug).url, slug).toMatch(/^https:\/\/www\.facebook\.com\//);
     }
@@ -79,7 +81,7 @@ describe("brands", () => {
   });
 
   it("place SOUEAST in the JETOUR showroom with the line and models from its brand sheet", () => {
-    const soueast = brands.find((b) => b.slug === "soueast")!;
+    const soueast = getInternalBrand("soueast")!;
     expect(soueast.location).toBe("jetour-c1");
     expect(soueast.phone?.display).toBe("7277-8855");
     expect(soueast.models).toEqual(["S06", "S07", "S08"]);
@@ -91,7 +93,7 @@ describe("brands", () => {
 
   it("say when official sales began only with a year from the sheets, matching the milestones", () => {
     const fromMilestones = new Map(company.milestones.items.flatMap((m) => m.brands.map((slug) => [slug, m.year])));
-    for (const brand of brands) {
+    for (const brand of getInternalBrands()) {
       expect(brand.since, brand.slug).toBe(fromMilestones.get(brand.slug));
     }
   });
@@ -116,12 +118,12 @@ describe("brands", () => {
     }
   });
 
-  it("sells CHERY's TIGGO line-up from its own showroom, as Sain Motors' CHERY site states", () => {
+  it("keeps CHERY showroom contact coverage while model information lives on chery.mn", () => {
     const chery = brands.find((b) => b.slug === "chery")!;
     expect(chery.location).toBe("chery-narny");
     expect(chery.phone?.href).toBe("tel:+97672558855");
-    expect(chery.models).toEqual(["TIGGO 2", "TIGGO 4", "TIGGO 7", "TIGGO 8"]);
-    expect(chery.statement?.status).toBe("sourced");
+    expect(chery.models).toBeUndefined();
+    expect(chery.statement).toBeUndefined();
   });
 
   it("uses the eight locally supplied main images on brand pages and homepage cards", () => {
@@ -138,9 +140,9 @@ describe("brands", () => {
 
   it("shows JETOUR with the T2 i-DM photograph the user supplied", () => {
     const jetour = brands.find((b) => b.slug === "jetour")!;
-    expect(jetour.photo?.key).toBe("jetour-t2-idm");
-    expect(jetour.photo?.caption).toBe("JETOUR T2 i-DM");
-    expect(jetour.photo?.note).toMatch(/484076260_/);
+    expect(jetour.cardPhoto?.key).toBe("jetour-t2-idm");
+    expect(jetour.cardPhoto?.caption).toBe("JETOUR T2 i-DM");
+    expect(jetour.cardPhoto?.note).toMatch(/484076260_/);
   });
 
   it("extracts white wordmarks from supplied sheets without black presentation panels", () => {
@@ -176,7 +178,7 @@ describe("hero", () => {
     expect(hero).not.toHaveProperty("photo");
   });
   it("provides concise bilingual copy for every published brand", () => {
-    for (const brand of getBrands()) {
+    for (const brand of getInternalBrands()) {
       expect(brand.cardCopy, brand.slug).toBeDefined();
       expect(filled(brand.cardCopy!.value), brand.slug).toBe(true);
       for (const copy of Object.values(brand.cardCopy!.value)) {
@@ -262,7 +264,7 @@ describe("copy", () => {
   });
 
   it("brand descriptions are cut to whole sentences for search results", () => {
-    for (const brand of getBrands()) {
+    for (const brand of getInternalBrands()) {
       for (const locale of ["mn", "en"] as const) {
         const text = excerpt(brand.summary.value[locale]);
         expect(text.length, `${brand.slug}.${locale}`).toBeLessThanOrEqual(160);

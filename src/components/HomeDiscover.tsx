@@ -9,7 +9,7 @@ import { Picture } from "./Picture";
 export function HomeDiscover({ locale }: { locale: Locale }) {
   const copy = homeDiscover.value[locale];
   const electric = getBrand("byd")?.gallery?.find(photo => photo.key === "brand-byd-atto3-coast");
-  const adventure = getBrand("jetour")?.photo;
+  const adventure = getBrand("jetour")?.cardPhoto;
   if (!electric || !adventure) throw new Error("Homepage editorial photography is missing from the brand records.");
   const features = [
     { id: "electric", photo: electric, href: brandHref(locale, "byd") },

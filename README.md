@@ -46,3 +46,8 @@ npm.cmd run package:preview
 - Сайжруулалтын бодит шалгалт: docs/verification-2026-10-22.md.
 
 Агуулгын хариуцагч баталсны дараа npm.cmd run build:release ба npm.cmd run package:release ажиллана. Gate-ийг тойрч нийтлэхгүй. Серверийн document root, TLS, Apache модулиудыг бодит орчинд шалгах шаардлагатай. CMS, гаднын error-monitoring account, автомат сервер backup хараахан суулгаагүй; одоогийн контент нь typed файл, monitoring нь ажиллуулахад бэлэн HTTP checker.
+
+JETOUR, CHERY-ийн сонголтууд шууд https://jetour.mn/ болон https://chery.mn/
+рүү орно. Нийт 11 брэндийн лого, нүүрийн carousel хадгалагдсан; бусад 9 брэнд
+дотоод дэлгэрэнгүй хуудастай. Хуучин MN/EN JETOUR/CHERY хаягуудыг Vercel,
+Apache болон local static preview дээр албан ёсны сайт руу permanent redirect хийнэ.

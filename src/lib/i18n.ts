@@ -12,7 +12,7 @@ export function otherLocale(locale: Locale): Locale {
   return locale === "mn" ? "en" : "mn";
 }
 
-/** "/mn/" + "brands/jetour" → "/mn/brands/jetour/" (trailing slash matches the static export). */
+/** "/mn/" + "brands/byd" → "/mn/brands/byd/" (trailing slash matches the static export). */
 export function localePath(locale: Locale, path = ""): string {
   const clean = path.replace(/^\/+|\/+$/g, "");
   return clean ? `/${locale}/${clean}/` : `/${locale}/`;
