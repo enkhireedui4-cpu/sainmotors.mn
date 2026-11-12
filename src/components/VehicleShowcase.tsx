@@ -35,7 +35,10 @@ export function VehicleShowcase({ vehicles, labels }: Props) {
   const ready = useSyncExternalStore(subscribe, () => true, () => false);
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1);
-  const gesture = useRef<{ x: number; y: number; pointerId: number } | null>(null);
+  const gesture = useRef<{
+    x: number; y: number; pointerId: number; limit: number;
+    axis: "horizontal" | "vertical" | null;
+  } | null>(null);
   const galleryId = useId();
   const helpId = useId();
   const total = vehicles.length;
@@ -56,17 +59,46 @@ export function VehicleShowcase({ vehicles, labels }: Props) {
   }
 
   function onPointerDown(event: PointerEvent<HTMLDivElement>) {
-    if (event.pointerType === "mouse") return;
-    gesture.current = { x: event.clientX, y: event.clientY, pointerId: event.pointerId };
+    if (event.button !== 0 || gesture.current) return;
+    gesture.current = {
+      x: event.clientX, y: event.clientY, pointerId: event.pointerId,
+      limit: event.currentTarget.clientWidth * .55, axis: null,
+    };
+    event.currentTarget.dataset.dragging = "true";
+    // Touch pointers are captured implicitly; mouse drags must also finish
+    // when the visitor releases outside the stage.
+    if (event.pointerType === "mouse") event.currentTarget.setPointerCapture(event.pointerId);
+  }
+
+  function onPointerMove(event: PointerEvent<HTMLDivElement>) {
+    const start = gesture.current;
+    if (!start || event.pointerId !== start.pointerId) return;
+    const dx = event.clientX - start.x;
+    const dy = event.clientY - start.y;
+    if (!start.axis && Math.max(Math.abs(dx), Math.abs(dy)) > 6) {
+      start.axis = Math.abs(dx) > Math.abs(dy) * 1.5 ? "horizontal" : "vertical";
+    }
+    if (start.axis !== "horizontal") return;
+    // Keep pointer tracking outside React's render loop.
+    const offset = Math.max(-start.limit, Math.min(start.limit, dx));
+    event.currentTarget.style.setProperty("--spotlight-drag-x", `${offset}px`);
+  }
+
+  function cancelGesture(event: PointerEvent<HTMLDivElement>) {
+    if (event.pointerId !== gesture.current?.pointerId) return;
+    gesture.current = null;
+    delete event.currentTarget.dataset.dragging;
+    event.currentTarget.style.removeProperty("--spotlight-drag-x");
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   }
 
   function onPointerUp(event: PointerEvent<HTMLDivElement>) {
     const start = gesture.current;
-    gesture.current = null;
     if (!start || event.pointerId !== start.pointerId) return;
+    cancelGesture(event);
     const dx = event.clientX - start.x;
     const dy = event.clientY - start.y;
-    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) step(dx < 0 ? 1 : -1);
+    if (start.axis !== "vertical" && Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) step(dx < 0 ? 1 : -1);
   }
 
   return (
@@ -75,7 +107,8 @@ export function VehicleShowcase({ vehicles, labels }: Props) {
       <p id={helpId} className="sr-only">{labels.help}</p>
       <div id={galleryId} className="brand-spotlight__stage" tabIndex={ready ? 0 : undefined} aria-describedby={helpId}
         aria-label={`${vehicle.model}, ${active + 1} / ${total}`}
-        onPointerDown={onPointerDown} onPointerUp={onPointerUp} onPointerCancel={() => { gesture.current = null; }}>
+        onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp}
+        onPointerCancel={cancelGesture} onLostPointerCapture={cancelGesture}>
         <span key={`backdrop-${vehicle.slug}`} className="brand-spotlight__backdrop" aria-hidden="true" translate="no">{vehicle.name.replace("FAW ", "")}</span>
         {vehicles.map((item, index) => {
           const position = index === active ? "active" : index === previous ? "previous" : index === next ? "next" : "hidden";

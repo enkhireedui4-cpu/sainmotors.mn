@@ -112,16 +112,95 @@ test("home showcase keeps the visible car, brand link and position together thro
   } finally { await page.close(); }
 });
 
+for (const reducedMotion of ["reduce", "no-preference"]) {
+  test(`desktop dragging follows the mouse and settles after outside releases (${reducedMotion})`, async () => {
+    const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, reducedMotion });
+    const errors = [];
+    page.on("pageerror", error => errors.push(error.message));
+    try {
+      await page.goto(`${base}/mn/`, { waitUntil: "networkidle" });
+      const gallery = page.locator(".brand-spotlight__gallery");
+      const stage = gallery.locator(".brand-spotlight__stage");
+      const link = gallery.locator(".brand-spotlight__link");
+      await stage.scrollIntoViewIfNeeded();
+      await page.waitForFunction(() => document.querySelector(".brand-spotlight__gallery")?.hasAttribute("data-ready"));
+      const box = await stage.boundingBox();
+      const x = box.x + box.width / 2;
+      const y = box.y + box.height / 2;
+      await page.mouse.move(x, y);
+      const car = gallery.locator('[data-position="active"]');
+      const initial = await car.boundingBox();
+      await page.mouse.down();
+      await page.mouse.move(x - 110, y, { steps: 8 });
+      assert.ok((await car.boundingBox()).x < initial.x - 90, "The car follows the mouse before it is released");
+      assert.equal(await stage.evaluate(el => getComputedStyle(el).cursor), "grabbing");
+      assert.equal(await link.getAttribute("href"), "https://jetour.mn/", "The selected brand changes on release");
+      await page.mouse.move(box.x - 20, y, { steps: 8 });
+      await page.mouse.up();
+      assert.equal(await link.getAttribute("href"), "/mn/brands/soueast/");
+      assert.match(await gallery.locator(".brand-spotlight__count").innerText(), /02\s*\/\s*11/);
+      await page.mouse.move(x, y);
+      await page.mouse.down();
+      await page.mouse.move(box.x + box.width + 20, y, { steps: 10 });
+      await page.mouse.up();
+      assert.equal(await link.getAttribute("href"), "https://jetour.mn/");
+      assert.equal(await stage.evaluate(el => getComputedStyle(el).cursor), "grab");
+      await page.waitForFunction(() => document.querySelector(".brand-spotlight__stage")?.getAnimations({ subtree: true }).every(animation => animation.playState !== "running"));
+      const settled = await car.boundingBox();
+      assert.ok(Math.abs(settled.x + settled.width / 2 - x) < 1, "After consecutive drags the selected car settles in the center");
+      assert.deepEqual(errors, []);
+    } finally { await page.close(); }
+  });
+}
+
+test("short, vertical and cancelled drags leave the selected brand in place", async () => {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, reducedMotion: "reduce" });
+  try {
+    await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
+    const gallery = page.locator(".brand-spotlight__gallery");
+    const stage = gallery.locator(".brand-spotlight__stage");
+    await stage.scrollIntoViewIfNeeded();
+    const box = await stage.boundingBox();
+    const x = box.x + box.width / 2;
+    const y = box.y + box.height / 2;
+    const car = gallery.locator('[data-position="active"]');
+    const initial = await car.boundingBox();
+    for (const [dx, dy, button] of [[18, 0, "left"], [5, 90, "left"], [-120, 0, "right"]]) {
+      await page.mouse.move(x, y);
+      await page.mouse.down({ button });
+      await page.mouse.move(x + dx, y + dy, { steps: 6 });
+      await page.mouse.up({ button });
+      assert.equal(await gallery.getAttribute("data-current"), "0");
+      assert.ok(Math.abs((await car.boundingBox()).x - initial.x) < 1, "An incomplete drag returns the car to its position");
+    }
+    await page.mouse.move(x, y);
+    await page.mouse.down();
+    await page.mouse.move(x - 120, y, { steps: 6 });
+    await stage.evaluate(el => el.releasePointerCapture(1));
+    await page.mouse.up();
+    assert.equal(await gallery.getAttribute("data-current"), "0", "Losing pointer capture cancels the drag");
+    assert.equal(await stage.evaluate(el => getComputedStyle(el).cursor), "grab");
+    assert.ok(Math.abs((await car.boundingBox()).x - initial.x) < 1);
+  } finally { await page.close(); }
+});
+
 test("phone swipe changes the brand without overflow and English keeps its own destinations", async () => {
-  const page = await browser.newPage({ viewport: { width: 375, height: 812 }, reducedMotion: "reduce" });
+  const page = await browser.newPage({ viewport: { width: 375, height: 812 }, reducedMotion: "reduce", isMobile: true, hasTouch: true });
   try {
     await page.goto(`${base}/en/`, { waitUntil: "domcontentloaded" });
     const gallery = page.locator(".brand-spotlight");
     assert.equal(await gallery.count(), 1);
     await gallery.scrollIntoViewIfNeeded();
     const stage = gallery.locator(".brand-spotlight__stage");
-    await stage.dispatchEvent("pointerdown", { pointerType: "touch", pointerId: 1, clientX: 280, clientY: 350 });
-    await stage.dispatchEvent("pointerup", { pointerType: "touch", pointerId: 1, clientX: 100, clientY: 355 });
+    const touch = await page.context().newCDPSession(page);
+    const stageBox = await stage.boundingBox();
+    const touchY = stageBox.y + stageBox.height / 2;
+    await touch.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: 280, y: touchY }] });
+    for (let index = 1; index <= 8; index++) {
+      await touch.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: 280 - index * 22.5, y: touchY }] });
+    }
+    await touch.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+    await page.waitForFunction(() => document.querySelector(".brand-spotlight__gallery")?.getAttribute("data-current") === "1");
     assert.equal(await gallery.locator(".brand-spotlight__link").getAttribute("href"), "/en/brands/soueast/");
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false);
     assert.equal(await gallery.locator('[data-position="active"]').evaluate(el => getComputedStyle(el).transitionDuration), "0s");
@@ -148,6 +227,17 @@ test("phone swipe changes the brand without overflow and English keeps its own d
     assert.equal(await nextButton.evaluate(el => el === document.activeElement), true);
     await page.keyboard.press("ArrowLeft");
     assert.equal(await gallery.locator(".brand-spotlight__link").getAttribute("href"), "/en/brands/soueast/");
+    const verticalBox = await stage.boundingBox();
+    const verticalY = verticalBox.y + verticalBox.height / 2;
+    const beforeScroll = await page.evaluate(() => window.scrollY);
+    await touch.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: 190, y: verticalY }] });
+    for (let index = 1; index <= 8; index++) {
+      await touch.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: 190, y: verticalY - index * 15 }] });
+    }
+    await touch.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+    await page.waitForFunction(y => window.scrollY > y + 30, beforeScroll);
+    assert.equal(await gallery.locator(".brand-spotlight__link").getAttribute("href"), "/en/brands/soueast/", "Vertical touch gestures scroll the page without changing the brand");
+    await touch.detach();
   } finally { await page.close(); }
 });
 
