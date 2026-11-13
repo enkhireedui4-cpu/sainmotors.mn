@@ -1,0 +1,754 @@
+{
+  "source": "https://cherycvglobal.com/R8",
+  "captured": "2026-11-13",
+  "assets": [
+    {
+      "name": "hero-1",
+      "source": "https://cherycvglobal.com/images/R8/banner@2x%20(4).jpg",
+      "sourceSha256": "375b038f398a06872ce97103068585bc284ef078265772935a1aba4151a9c9f6",
+      "original": {
+        "width": 2880,
+        "height": 1620,
+        "bytes": 183122
+      },
+      "output": {
+        "url": "/rely-r8/hero-1.webp",
+        "width": 2560,
+        "height": 1440,
+        "bytes": 213106,
+        "sha256": "f5f00878c7d4905affe8a32be2a14f3d1571c426659c206839ebf838ca006e7f"
+      }
+    },
+    {
+      "name": "hero-1-mobile",
+      "source": "https://cherycvglobal.com/images/R8/bannermb.jpg",
+      "sourceSha256": "eac4264df21927a156198eec0836e55ebcc4c32f01363a0e45537ea3661f7821",
+      "original": {
+        "width": 1125,
+        "height": 2433,
+        "bytes": 152322
+      },
+      "output": {
+        "url": "/rely-r8/hero-1-mobile.webp",
+        "width": 1125,
+        "height": 2433,
+        "bytes": 174026,
+        "sha256": "3f7623f55b466172a3d6cefca952287ac6df99a9ca9b39ce2fdf71a7a2d3919f"
+      }
+    },
+    {
+      "name": "hero-2",
+      "source": "https://cherycvglobal.com/images/R8/banner@2x%20(5).jpg",
+      "sourceSha256": "0a4b2713118d4ebf1ef94a940924c1943988ddff050d5698d4bfe3f38413c2de",
+      "original": {
+        "width": 2880,
+        "height": 1620,
+        "bytes": 476275
+      },
+      "output": {
+        "url": "/rely-r8/hero-2.webp",
+        "width": 2560,
+        "height": 1440,
+        "bytes": 108692,
+        "sha256": "bb8549eab0d79559cb10e92d3c75adbe1ba28a4ac6ba9374d77b34c8a49382d5"
+      }
+    },
+    {
+      "name": "hero-2-mobile",
+      "source": "https://cherycvglobal.com/images/R8/banner@2x%20(5)mb.jpg",
+      "sourceSha256": "9956478c71338880c5ce2b2e7d7703971c83dfcf5b5086faac4449e375ee72a4",
+      "original": {
+        "width": 1125,
+        "height": 2433,
+        "bytes": 207519
+      },
+      "output": {
+        "url": "/rely-r8/hero-2-mobile.webp",
+        "width": 1125,
+        "height": 2433,
+        "bytes": 59024,
+        "sha256": "fddc4db097c07ff602f75d8a023169527a72314e31838c0e032a4f04048834a7"
+      }
+    },
+    {
+      "name": "mission-bg",
+      "source": "https://cherycvglobal.com/images/R8/content1bg.png",
+      "sourceSha256": "c911cc555036e65f9a731f5cd88b9ce53d8b663bb5f9ae708c194a099fbdc563",
+      "original": {
+        "width": 3840,
+        "height": 1976,
+        "bytes": 5441602
+      },
+      "output": {
+        "url": "/rely-r8/mission-bg.webp",
+        "width": 2560,
+        "height": 1317,
+        "bytes": 172688,
+        "sha256": "256db15c0854551d5a36d865a1b640eeef16dccbfc182738d9d416add2fe3435"
+      }
+    },
+    {
+      "name": "mission-bg-mobile",
+      "source": "https://cherycvglobal.com/images/R8/content1bgmb.png",
+      "sourceSha256": "56dcb1a53739c3d78cc2e18bc436491351fd43c5f8bde40755e942107b316849",
+      "original": {
+        "width": 1500,
+        "height": 3244,
+        "bytes": 3185294
+      },
+      "output": {
+        "url": "/rely-r8/mission-bg-mobile.webp",
+        "width": 1125,
+        "height": 2433,
+        "bytes": 49734,
+        "sha256": "a8679fdfaab3c07c758c65fe2b7fa919df86f6a91e1dc5e1c086df52a2641b38"
+      }
+    },
+    {
+      "name": "mission-mark",
+      "source": "https://cherycvglobal.com/images/R8/content1icon.png",
+      "sourceSha256": "dc7bf1409b732d2aceeca24a0ded3b532d84f66bc88e77e263f730d4dcca0c0f",
+      "original": {
+        "width": 662,
+        "height": 221,
+        "bytes": 15564
+      },
+      "output": {
+        "url": "/rely-r8/mission-mark.webp",
+        "width": 662,
+        "height": 221,
+        "bytes": 5410,
+        "sha256": "c2f7071097cdd948b138be5956a56bc1781becac745033f23fd6edb76b3edb4a"
+      }
+    },
+    {
+      "name": "mission-mark-mobile",
+      "source": "https://cherycvglobal.com/images/R8/content1iconmb.png",
+      "sourceSha256": "61e19c3c592a5ba571a9475f3e42dc7113543b1cce144430c2223c3be164c805",
+      "original": {
+        "width": 618,
+        "height": 205,
+        "bytes": 12858
+      },
+      "output": {
+        "url": "/rely-r8/mission-mark-mobile.webp",
+        "width": 618,
+        "height": 205,
+        "bytes": 4516,
+        "sha256": "91fb7bb4213607394f3b64406207f9df35fcb5d36e9d1735c0629cbf67e86366"
+      }
+    },
+    {
+      "name": "terrain-1",
+      "source": "https://cherycvglobal.com/images/R8/B1.jpg",
+      "sourceSha256": "fd77631fbb9bd7b75b9f3d5dc26980fde3b2658e6c8463769ed2da5cb92eca10",
+      "original": {
+        "width": 2460,
+        "height": 1020,
+        "bytes": 544785
+      },
+      "output": {
+        "url": "/rely-r8/terrain-1.webp",
+        "width": 1920,
+        "height": 796,
+        "bytes": 164098,
+        "sha256": "a55c502795eb43bd2e9045dd02b29ed2efedcc0158664aefc8f20a9cfe03cd9d"
+      }
+    },
+    {
+      "name": "terrain-2",
+      "source": "https://cherycvglobal.com/images/R8/B2.jpg",
+      "sourceSha256": "cdc735e80b2350df2047c5d836ee3117cb0a850d38b06ebaf27a645b1b9264a2",
+      "original": {
+        "width": 2460,
+        "height": 1020,
+        "bytes": 556284
+      },
+      "output": {
+        "url": "/rely-r8/terrain-2.webp",
+        "width": 1920,
+        "height": 796,
+        "bytes": 165594,
+        "sha256": "c70371b38d01c46bc932d5a3972148dc0f1e011daa22452aad599bdaf5afc418"
+      }
+    },
+    {
+      "name": "terrain-3",
+      "source": "https://cherycvglobal.com/images/R8/B3.jpg",
+      "sourceSha256": "20cc47f969c7ecc89492ba1a4b57e84675ead3db7ee5ea9274ec8e8771c1ad74",
+      "original": {
+        "width": 2460,
+        "height": 1020,
+        "bytes": 595129
+      },
+      "output": {
+        "url": "/rely-r8/terrain-3.webp",
+        "width": 1920,
+        "height": 796,
+        "bytes": 183512,
+        "sha256": "6decefcd306e5df0422c3c2396b25a38106a33d8c2de2f23b41f98bb2166a9d4"
+      }
+    },
+    {
+      "name": "terrain-4",
+      "source": "https://cherycvglobal.com/images/R8/B4.jpg",
+      "sourceSha256": "557856ba70007648ed28e2c01b13ff00acfb2e6d89fa3f8275a7a0b3fe1ebd4c",
+      "original": {
+        "width": 2460,
+        "height": 1020,
+        "bytes": 848128
+      },
+      "output": {
+        "url": "/rely-r8/terrain-4.webp",
+        "width": 1920,
+        "height": 796,
+        "bytes": 292934,
+        "sha256": "ae7bcdffe3ca6764f0efbb62c12fa2c108c730a7d5acc9678e5342b73e8c9e12"
+      }
+    },
+    {
+      "name": "terrain-1-mobile",
+      "source": "https://cherycvglobal.com/images/R8/con2mb1.jpg",
+      "sourceSha256": "4983b89a8cd75c54ef6d0c35112435436f7c253120505dfd2a0f016ceccd5f0d",
+      "original": {
+        "width": 1044,
+        "height": 800,
+        "bytes": 455985
+      },
+      "output": {
+        "url": "/rely-r8/terrain-1-mobile.webp",
+        "width": 1044,
+        "height": 800,
+        "bytes": 86216,
+        "sha256": "897e6d48d3ebbf6efcce2d78d11f98c1e4ebb799fd939ad2c83299291948bf69"
+      }
+    },
+    {
+      "name": "terrain-2-mobile",
+      "source": "https://cherycvglobal.com/images/R8/con2mb2.jpg",
+      "sourceSha256": "4eb0dde7bca2f406118c923bbbe81304d70ab61b7eed6e6de37bb2f8966d697a",
+      "original": {
+        "width": 1044,
+        "height": 800,
+        "bytes": 488215
+      },
+      "output": {
+        "url": "/rely-r8/terrain-2-mobile.webp",
+        "width": 1044,
+        "height": 800,
+        "bytes": 101698,
+        "sha256": "d31eba5cf9e35362c8bfa8c3646da10a9be8c59ae9e28471dff901ac9d68809f"
+      }
+    },
+    {
+      "name": "terrain-3-mobile",
+      "source": "https://cherycvglobal.com/images/R8/con2mb3.jpg",
+      "sourceSha256": "48f746d088e4e172a2f0ba96fbe46ee72eb6208173e7c7ecd6879eef2960175f",
+      "original": {
+        "width": 1044,
+        "height": 800,
+        "bytes": 466680
+      },
+      "output": {
+        "url": "/rely-r8/terrain-3-mobile.webp",
+        "width": 1044,
+        "height": 800,
+        "bytes": 97876,
+        "sha256": "35724cc64d082c3cd1fd3e402e7c7954ae23f5f1719ebcb0d8ffbd09773ac505"
+      }
+    },
+    {
+      "name": "terrain-4-mobile",
+      "source": "https://cherycvglobal.com/images/R8/con2mb4.jpg",
+      "sourceSha256": "c8f1ef8e59c0390b68abcc51e4a4a00d6552b510992de3e7f64d3e32896a77d1",
+      "original": {
+        "width": 1044,
+        "height": 800,
+        "bytes": 690535
+      },
+      "output": {
+        "url": "/rely-r8/terrain-4-mobile.webp",
+        "width": 1044,
+        "height": 800,
+        "bytes": 205342,
+        "sha256": "1402c7e4d4f8131362f6ae44f95ac8b562d6744856375bc75997c3555ffb3bdd"
+      }
+    },
+    {
+      "name": "terrain-mark",
+      "source": "https://cherycvglobal.com/images/R8/c2logo.png",
+      "sourceSha256": "029c9b755cc5cbbc572bfa5ce5fd486f47b4fda0901df293a671e1512a66c96c",
+      "original": {
+        "width": 472,
+        "height": 110,
+        "bytes": 6383
+      },
+      "output": {
+        "url": "/rely-r8/terrain-mark.webp",
+        "width": 472,
+        "height": 110,
+        "bytes": 2320,
+        "sha256": "5d7637068a16dd6dfc8d3286c23407b26227965d68bb9237670f6f607c2e4f49"
+      }
+    },
+    {
+      "name": "feature-tough",
+      "source": "https://cherycvglobal.com/images/R8/TOUGH.png",
+      "sourceSha256": "9f64b80012539b6650876f4b30008b05e0a3c043b7920b2989a5b4b419b67d50",
+      "original": {
+        "width": 960,
+        "height": 2152,
+        "bytes": 2288327
+      },
+      "output": {
+        "url": "/rely-r8/feature-tough.webp",
+        "width": 960,
+        "height": 2152,
+        "bytes": 170782,
+        "sha256": "d065aa3ba9cecf056ff8a377596952dae4fff3ec159bc6e28cdd1dd8fae62f9f"
+      }
+    },
+    {
+      "name": "feature-tough-mobile",
+      "source": "https://cherycvglobal.com/images/R8/TOUGHmb.png",
+      "sourceSha256": "2e0855281273a9d770f98515d75869e970164e4bf36e7502ae8870d2f5e8aed1",
+      "original": {
+        "width": 1500,
+        "height": 980,
+        "bytes": 2472835
+      },
+      "output": {
+        "url": "/rely-r8/feature-tough-mobile.webp",
+        "width": 1125,
+        "height": 735,
+        "bytes": 158336,
+        "sha256": "84401eb81224ea2cf107dd58aeadea7e7455c42c5c169bb8c8582b7c88a2dfae"
+      }
+    },
+    {
+      "name": "feature-strong",
+      "source": "https://cherycvglobal.com/images/R8/STRONG.png",
+      "sourceSha256": "6cdd1ff656fea0b79985b23d2d1d5de6471abae6ac22e035cef50415d9e973c4",
+      "original": {
+        "width": 960,
+        "height": 2152,
+        "bytes": 1715205
+      },
+      "output": {
+        "url": "/rely-r8/feature-strong.webp",
+        "width": 960,
+        "height": 2152,
+        "bytes": 99374,
+        "sha256": "4b01a384ce38a6d6dc8982b106ebfa4a8361443f632b8cb162a36c31ee414413"
+      }
+    },
+    {
+      "name": "feature-strong-mobile",
+      "source": "https://cherycvglobal.com/images/R8/STRONGmb.png",
+      "sourceSha256": "0855d32b57e7b650e8787bff21ae799e4e34101fb4e20888e846a2416f170809",
+      "original": {
+        "width": 1500,
+        "height": 980,
+        "bytes": 2101606
+      },
+      "output": {
+        "url": "/rely-r8/feature-strong-mobile.webp",
+        "width": 1125,
+        "height": 735,
+        "bytes": 119962,
+        "sha256": "b32d0d93e7d47b3d9bd48505afc77917761f95dc40c80cbc1c8f0c34681c610a"
+      }
+    },
+    {
+      "name": "feature-reliable",
+      "source": "https://cherycvglobal.com/images/R8/RELIABLE.png",
+      "sourceSha256": "f869d43c6cfe711b47b2e2320ad2a9f83fbb3edcd106e7f3efcfc902f9d90af7",
+      "original": {
+        "width": 960,
+        "height": 2152,
+        "bytes": 1980830
+      },
+      "output": {
+        "url": "/rely-r8/feature-reliable.webp",
+        "width": 960,
+        "height": 2152,
+        "bytes": 129978,
+        "sha256": "3c171bcfcfba78b03569c878c500eb6729dba65290a220f4414655d86f8b028b"
+      }
+    },
+    {
+      "name": "feature-reliable-mobile",
+      "source": "https://cherycvglobal.com/images/R8/RELIABLEmb.png",
+      "sourceSha256": "d9c16bd2bf3bfd15e767644e659bb1e6a6e869c5bda8087311c6160339be6f5d",
+      "original": {
+        "width": 1500,
+        "height": 980,
+        "bytes": 2395351
+      },
+      "output": {
+        "url": "/rely-r8/feature-reliable-mobile.webp",
+        "width": 1125,
+        "height": 735,
+        "bytes": 157046,
+        "sha256": "356784d96b108d93f34a8439b98a7c568b34ed78f6a3e8bcd094e176ca9f7093"
+      }
+    },
+    {
+      "name": "feature-intelligent",
+      "source": "https://cherycvglobal.com/images/R8/INTELLIGENT.jpg",
+      "sourceSha256": "040aa472a8ef899f100c9b719333bb996428642f2babcab326578fd96e3c407e",
+      "original": {
+        "width": 960,
+        "height": 2152,
+        "bytes": 648275
+      },
+      "output": {
+        "url": "/rely-r8/feature-intelligent.webp",
+        "width": 960,
+        "height": 2152,
+        "bytes": 82970,
+        "sha256": "cf616810e7918e633b3a8e57f6118125fc2a6b1ec9a87d51282013420ce7b1ca"
+      }
+    },
+    {
+      "name": "feature-intelligent-mobile",
+      "source": "https://cherycvglobal.com/images/R8/INTELLIGENTmb.png",
+      "sourceSha256": "72b166e603174629c6c22013d7e8c2af987ff546fd7cf81134f4e63437ba1dfa",
+      "original": {
+        "width": 1500,
+        "height": 980,
+        "bytes": 1693393
+      },
+      "output": {
+        "url": "/rely-r8/feature-intelligent-mobile.webp",
+        "width": 1125,
+        "height": 735,
+        "bytes": 67736,
+        "sha256": "df5f47ac93059ce4fccfbbc4f293bf39f679b91fc57d0445fc97616c30893b61"
+      }
+    },
+    {
+      "name": "detail-1",
+      "source": "https://cherycvglobal.com/images/R8/s1.png",
+      "sourceSha256": "07ebab5002038b28abcf6db24d93701db4698d7bc712e4e7cfa1b70b17dc2ab4",
+      "original": {
+        "width": 2466,
+        "height": 1128,
+        "bytes": 4045214
+      },
+      "output": {
+        "url": "/rely-r8/detail-1.webp",
+        "width": 1920,
+        "height": 878,
+        "bytes": 270390,
+        "sha256": "f4d4ddcd02cf2229bc3d14bbba9ed07389d0660abe8d5da1cc7d44bd64fb5803"
+      }
+    },
+    {
+      "name": "detail-2",
+      "source": "https://cherycvglobal.com/images/R8/s2.png",
+      "sourceSha256": "047a76559935d2fa95a2b05d5eace16384a55c825832859bb8f436d6b546046c",
+      "original": {
+        "width": 2466,
+        "height": 1128,
+        "bytes": 3690154
+      },
+      "output": {
+        "url": "/rely-r8/detail-2.webp",
+        "width": 1920,
+        "height": 878,
+        "bytes": 227466,
+        "sha256": "277c62ff75468c2603405112fd1713a638f0a146b2c9ee87a6e746ddd4a66dfa"
+      }
+    },
+    {
+      "name": "detail-3",
+      "source": "https://cherycvglobal.com/images/R8/s3.png",
+      "sourceSha256": "b0de9be9b82bd8d6e6b5028e61b8094e7b1e49c22f6fae29eaaf428322109b11",
+      "original": {
+        "width": 2466,
+        "height": 1128,
+        "bytes": 2162386
+      },
+      "output": {
+        "url": "/rely-r8/detail-3.webp",
+        "width": 1920,
+        "height": 878,
+        "bytes": 65790,
+        "sha256": "b88caf53ade7775e3ece10aff468108d3a1297f986adcac7fa985f94290574b1"
+      }
+    },
+    {
+      "name": "detail-4",
+      "source": "https://cherycvglobal.com/images/R8/s4.png",
+      "sourceSha256": "ed59a3e2282a7f510ca5ead37dd3edbe4897be5516eb2bed4d9ffab29052b0ff",
+      "original": {
+        "width": 2466,
+        "height": 1128,
+        "bytes": 4141597
+      },
+      "output": {
+        "url": "/rely-r8/detail-4.webp",
+        "width": 1920,
+        "height": 878,
+        "bytes": 312808,
+        "sha256": "872b98e7a2c91e41dcad5d50d5512f375ddac8d2f265f2bf5f0f83307bd69daa"
+      }
+    },
+    {
+      "name": "detail-5",
+      "source": "https://cherycvglobal.com/images/R8/s5.png",
+      "sourceSha256": "b46e318c060a31b807b0d7bdee4496726f9528cf8032a1cf9d52bf6c7d9f4559",
+      "original": {
+        "width": 2466,
+        "height": 1128,
+        "bytes": 4730895
+      },
+      "output": {
+        "url": "/rely-r8/detail-5.webp",
+        "width": 1920,
+        "height": 878,
+        "bytes": 348254,
+        "sha256": "fbf46ed5a71486adb28a8db95433403ddfc064dde7654650d587ebb609d0cf0c"
+      }
+    },
+    {
+      "name": "detail-6",
+      "source": "https://cherycvglobal.com/images/R8/s6.png",
+      "sourceSha256": "d6e3d91f4a1caeb837f0d10645b40d1b713238142bb944001bdb26361c9e12d8",
+      "original": {
+        "width": 2466,
+        "height": 1128,
+        "bytes": 3251148
+      },
+      "output": {
+        "url": "/rely-r8/detail-6.webp",
+        "width": 1920,
+        "height": 878,
+        "bytes": 150368,
+        "sha256": "644a856b8027148d14757167ab7bc269ead22672d57a85837c37d908f4046be3"
+      }
+    },
+    {
+      "name": "detail-7",
+      "source": "https://cherycvglobal.com/images/R8/s7.png",
+      "sourceSha256": "b362617655501a53569e88ddfa26c4b6a15ea1987e81cddd91d47ed57f32ce43",
+      "original": {
+        "width": 2466,
+        "height": 1128,
+        "bytes": 4762150
+      },
+      "output": {
+        "url": "/rely-r8/detail-7.webp",
+        "width": 1920,
+        "height": 878,
+        "bytes": 364994,
+        "sha256": "ed4d1d2b0e444658400a0e8d676e54dfbf548e42acf4087dadf30480a6e71514"
+      }
+    },
+    {
+      "name": "detail-8",
+      "source": "https://cherycvglobal.com/images/R8/s8.png",
+      "sourceSha256": "7a4813129a09f47c67855469b1f88bf513e34e52869d91793cfa2429a018223e",
+      "original": {
+        "width": 2466,
+        "height": 1128,
+        "bytes": 3428563
+      },
+      "output": {
+        "url": "/rely-r8/detail-8.webp",
+        "width": 1920,
+        "height": 878,
+        "bytes": 226444,
+        "sha256": "843df279f9fdabfed5ff332d4543001645f8338e5e1fa6e94c91faf440fd7cce"
+      }
+    },
+    {
+      "name": "detail-9",
+      "source": "https://cherycvglobal.com/images/R8/s9.png",
+      "sourceSha256": "1d0754f59b34edfd080c83cccb5e4c4f3e5eaa721c568dbf56d5c05a4810970b",
+      "original": {
+        "width": 2466,
+        "height": 1128,
+        "bytes": 4268562
+      },
+      "output": {
+        "url": "/rely-r8/detail-9.webp",
+        "width": 1920,
+        "height": 878,
+        "bytes": 205504,
+        "sha256": "51a3bb1bdd1726fee013961cf4f85039e77216498c9d356142eb1f3f07b63ffa"
+      }
+    },
+    {
+      "name": "detail-10",
+      "source": "https://cherycvglobal.com/images/R8/s10.png",
+      "sourceSha256": "a437e7021a6bb8212fae395474cf07edfa92e6e1949ef690c9369cd188926cc8",
+      "original": {
+        "width": 2466,
+        "height": 1128,
+        "bytes": 1927291
+      },
+      "output": {
+        "url": "/rely-r8/detail-10.webp",
+        "width": 1920,
+        "height": 878,
+        "bytes": 165802,
+        "sha256": "ee669d2a04af74e8a0530f3d4d0e54d8a16b9f4e17f33a276b72b0a1a54491f8"
+      }
+    },
+    {
+      "name": "detail-11",
+      "source": "https://cherycvglobal.com/images/R8/s11.png",
+      "sourceSha256": "6e1840d961db7de6981e9b8e89f7e3accb7ce8cbaf231fb52fae029a43d09356",
+      "original": {
+        "width": 2466,
+        "height": 1128,
+        "bytes": 3623325
+      },
+      "output": {
+        "url": "/rely-r8/detail-11.webp",
+        "width": 1920,
+        "height": 878,
+        "bytes": 157750,
+        "sha256": "7b4bbeeb33d92079491972280875e72343a3f5fab6eb0a377555d8b0885cd385"
+      }
+    },
+    {
+      "name": "accessories-bg",
+      "source": "https://cherycvglobal.com/images/R8/c4bg.png",
+      "sourceSha256": "0e192274cf9250b799c80cc87a7e44ca90cb820c0c5dff3681d32918510e934c",
+      "original": {
+        "width": 3840,
+        "height": 2153,
+        "bytes": 9016648
+      },
+      "output": {
+        "url": "/rely-r8/accessories-bg.webp",
+        "width": 2560,
+        "height": 1435,
+        "bytes": 209300,
+        "sha256": "08373ca9146e2336944ef2e5fbe17bea4e2f9b1e006691cce1e4b00c67463e80"
+      }
+    },
+    {
+      "name": "accessories-bg-mobile",
+      "source": "https://cherycvglobal.com/images/R8/c4bgmb.png",
+      "sourceSha256": "6c5e9f11ccbf4b90a3c1bf92da176b21ed766e107d16f702b2724e81b4a98e19",
+      "original": {
+        "width": 1500,
+        "height": 3244,
+        "bytes": 5604605
+      },
+      "output": {
+        "url": "/rely-r8/accessories-bg-mobile.webp",
+        "width": 1125,
+        "height": 2433,
+        "bytes": 143470,
+        "sha256": "6d394047b2c9d15f1ed98c327072a4be1586f7e0b3d0de99d178467043f41cb7"
+      }
+    },
+    {
+      "name": "powertrain-bg",
+      "source": "https://cherycvglobal.com/images/R8/c5bg.png",
+      "sourceSha256": "99593d39a32a5c4b4c48a90acce8a9eb5a9838a836c7831fc924245e963ae2cb",
+      "original": {
+        "width": 3840,
+        "height": 2160,
+        "bytes": 11429168
+      },
+      "output": {
+        "url": "/rely-r8/powertrain-bg.webp",
+        "width": 2560,
+        "height": 1440,
+        "bytes": 573938,
+        "sha256": "7fea5bebcc975774b6502c9154ab568693dfd5d2e05c9dccc7f20f86280899b3"
+      }
+    },
+    {
+      "name": "powertrain-bg-mobile",
+      "source": "https://cherycvglobal.com/images/R8/c5bgmb.png",
+      "sourceSha256": "e6643ca530432607847bd6b495effe9b614edf52b267c1436b299404a0913268",
+      "original": {
+        "width": 1500,
+        "height": 2980,
+        "bytes": 5530875
+      },
+      "output": {
+        "url": "/rely-r8/powertrain-bg-mobile.webp",
+        "width": 1125,
+        "height": 2235,
+        "bytes": 301568,
+        "sha256": "46805f79cc88f803f01000eac5fa60d5e30e5949ac75611076f362d905fb9291"
+      }
+    },
+    {
+      "name": "lead-vehicle",
+      "source": "https://cherycvglobal.com/images/testdriveByCar/R8.png",
+      "sourceSha256": "b95e09686085695b15b6f4323a4bad4a9e61c2e7e46d0d07cff5d7a41b42d945",
+      "original": {
+        "width": 692,
+        "height": 305,
+        "bytes": 147273
+      },
+      "output": {
+        "url": "/rely-r8/lead-vehicle.webp",
+        "width": 692,
+        "height": 305,
+        "bytes": 21440,
+        "sha256": "4425fe64fcf9c59fbd910798910d68344da924ff15e52ed9b7e233ade21b606d"
+      }
+    },
+    {
+      "name": "lead-bg",
+      "source": "https://cherycvglobal.com/images/testdriveByCar/bg.jpg",
+      "sourceSha256": "08b5baaf6876ab00a05af079ad79692acba0481f6626b89d566f8526eefb183c",
+      "original": {
+        "width": 1000,
+        "height": 414,
+        "bytes": 28888
+      },
+      "output": {
+        "url": "/rely-r8/lead-bg.webp",
+        "width": 1000,
+        "height": 414,
+        "bytes": 2156,
+        "sha256": "2a28c008192068e9706e185054f7b0888641efdd7e0fb8f51ef887011350e072"
+      }
+    },
+    {
+      "name": "lead-bg-mobile",
+      "source": "https://cherycvglobal.com/images/testdriveByCar/bgmb.jpg",
+      "sourceSha256": "0b8d11946f44ee2115e12912f2b766b1da46b765299f31b401d1cb41289e48cb",
+      "original": {
+        "width": 957,
+        "height": 1638,
+        "bytes": 16639
+      },
+      "output": {
+        "url": "/rely-r8/lead-bg-mobile.webp",
+        "width": 957,
+        "height": 1638,
+        "bytes": 3994,
+        "sha256": "0c8e8bd923f2456e86f14f006697e58c2bd79b538e776814a54c625523e035f1"
+      }
+    },
+    {
+      "name": "specifications",
+      "source": "https://cherycvglobal.com/images/R8/R8detailmb.jpg",
+      "sourceSha256": "50a0710e35fc3cae7a5b8d9fafc0b4e11164de4e7a0e3ffc92dafe8360b10a35",
+      "original": {
+        "width": 3367,
+        "height": 4902,
+        "bytes": 2038767
+      },
+      "output": {
+        "url": "/rely-r8/specifications.webp",
+        "width": 1920,
+        "height": 2795,
+        "bytes": 451118,
+        "sha256": "35dafae67714ddeefa78e3b459bbf73f3db83232d1b1380b597bb2a55fc53fa7"
+      }
+    }
+  ]
+}

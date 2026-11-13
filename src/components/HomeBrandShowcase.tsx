@@ -27,7 +27,7 @@ const studioImages: Record<string, Pick<ShowcaseVehicle, "src" | "width" | "heig
   aito: { src: "/brand-showcase/aito.webp", width: 1920, height: 815 },
   "212": { src: "/brand-showcase/212.webp", width: 1016, height: 521 },
   bestune: { src: "/brand-showcase/bestune.webp", width: 855, height: 421, blend: true },
-  rely: { src: "/brand-showcase/rely.webp", width: 578, height: 387 },
+  rely: { src: "/brand-showcase/rely-r8-gold.webp", width: 408, height: 190 },
   maxus: { src: "/brand-showcase/maxus.webp", width: 1920, height: 1231, blend: true },
   hongqi: { src: "/brand-showcase/hongqi.webp", width: 1046, height: 532 },
 };

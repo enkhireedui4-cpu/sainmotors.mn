@@ -15,6 +15,7 @@ import { breadcrumbGraph } from "@/lib/structured-data";
 import { Icon } from "./Icon";
 import { LocationCard } from "./LocationCard";
 import { Picture } from "./Picture";
+import { RelyR8Page } from "./RelyR8Page";
 
 function linkLabel(link: BrandLink, locale: Locale): string {
   if (link.kind === "facebook") return ui.brand.facebook[locale];
@@ -32,6 +33,7 @@ function BrandLinks({ links, locale }: { links: BrandLink[]; locale: Locale }) {
 
 /** Large automotive imagery leads; source records remain the authority for every fact. */
 export function BrandDetail({ brand, locale }: { brand: InternalBrand; locale: Locale }) {
+  if (brand.slug === "rely") return <RelyR8Page brand={brand} locale={locale} />;
   const others = getBrands().filter(b => b.slug !== brand.slug);
   const location = brand.location ? getLocation(brand.location) : undefined;
   const salesPhone = brandPhone(brand);

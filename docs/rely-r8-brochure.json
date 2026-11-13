@@ -1,0 +1,26 @@
+{
+  "source": "C:/Users/user/Downloads/RELY_BROCHURE.pdf",
+  "publicPath": "/rely-r8/RELY-R8-brochure.pdf",
+  "importedAt": "2026-11-13",
+  "bytes": 17913996,
+  "sha256": "ee513b99b3d7ea2585afc82365dd5594c4884e194a6845765fb7bd0f29f0f73e",
+  "renderer": "Windows.Data.Pdf, 1800px width",
+  "pages": [
+    {
+      "page": 1,
+      "path": "public/rely-r8/brochure-page-1.webp",
+      "width": 1800,
+      "height": 2546,
+      "bytes": 436500,
+      "sha256": "b27530dde84b7fde176846abb31b79a18db0f0df6c811a20d9042fdb1571fe25"
+    },
+    {
+      "page": 2,
+      "path": "public/rely-r8/brochure-page-2.webp",
+      "width": 1800,
+      "height": 2546,
+      "bytes": 128314,
+      "sha256": "71d668e68419e44c29541d0f0d7973d2ea67ace2051e0052a1cda5ffedaf83a4"
+    }
+  ]
+}

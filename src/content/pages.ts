@@ -265,18 +265,31 @@ export const pages = {
         en: { title: "Privacy policy", description: "What information the Sain Motors website collects and how it is used." },
       },
     } satisfies Meta,
-    /** Reflects the site as built: no forms, accounts, cookies or analytics. */
+    /** Describes the R8 enquiry form and the site's existing external links. */
     sections: [
       {
         status: "draft",
         value: {
           mn: {
             heading: "Бид ямар мэдээлэл цуглуулдаг вэ",
-            body: "Энэ сайтад маягт, бүртгэл байхгүй бөгөөд хувийн мэдээлэл цуглуулдаггүй. Сайт күүки болон зочдыг хянах аналитик хэрэгсэл ашигладаггүй.",
+            body: "RELY R8-ийн туршилтын жолоодлогын хүсэлт илгээхэд таны сонгосон хот, нэр, овог, утас болон зөвшөөрлийн мэдээллийг авна. Энэ мэдээллийг Сайн Моторс-ийн RELY борлуулалтын баг таны хүсэлтийн дагуу холбогдох, цаг товлоход ашиглана. Сайт хэрэглэгчийн бүртгэл, зочдыг хянах аналитик хэрэгсэл ашигладаггүй.",
           },
           en: {
             heading: "What we collect",
-            body: "This site has no forms or accounts and does not collect personal information. It does not use cookies or visitor-tracking analytics.",
+            body: "When you submit a RELY R8 test-drive request, we collect your selected city, first and last name, phone number and consent information. The Sain Motors RELY sales team uses these details to contact you about your request and arrange a visit. The site does not provide visitor accounts or use visitor-tracking analytics.",
+          },
+        },
+      },
+      {
+        status: "draft",
+        value: {
+          mn: {
+            heading: "Хүсэлтийн мэдээллийг хадгалах",
+            body: "Хүсэлтийн мэдээллийг Сайн Моторс-ийн Supabase үйлчилгээнд байрласан өгөгдлийн санд хадгалж, зөвхөн эрх бүхий баг ашиглана. Таны мэдээллийг автомашин үйлдвэрлэгчийн вэбсайт руу илгээхгүй. Хүсэлтийн мэдээллээ засуулах, устгуулах эсвэл зөвшөөрлөө цуцлах бол RELY багийн 7222-8855 утсаар холбогдоно уу.",
+          },
+          en: {
+            heading: "Storing your request",
+            body: "Requests are stored in Sain Motors' database hosted on Supabase and used by the authorized team. Your details are not sent to the vehicle manufacturer's website. To correct or delete your request or withdraw consent, contact the RELY team on +976 7222-8855.",
           },
         },
       },

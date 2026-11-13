@@ -12,7 +12,7 @@ Vehicle geometry and colours are unchanged. No image is upscaled.
 | BYD ATTO 3 | `bydAtto3.png` | User-supplied Desktop file | 1080 × 563 | Transparent |
 | RIDDARA RD6 | `RIDDARA RD6.png` | User-supplied Desktop file | 1920 × 1080 | White, opaque |
 | BESTUNE T99 | `BestuneT99.jpg` | User-supplied Desktop file | 870 × 568 | White, opaque |
-| RELY R8 | `aRELY-R8-negro-1024x480.webp` | User-supplied Desktop file | 1024 × 480 | Transparent |
+| RELY R8 | `R8.png` | User-supplied Downloads file, replaced 2026-11-13 | 476 × 280 | Transparent |
 | MAXUS C100 | `maxusC100.jpg` | User-supplied Desktop file | 2560 × 1706 | White, opaque |
 | HONGQI HS3 | `Hongi.png` | User-supplied Desktop file; model name visible on the plate | 1046 × 532 | Transparent |
 
@@ -20,6 +20,12 @@ SOUEAST uses a 1260 × 648 crop at (300, 326), retaining the whole vehicle, to
 balance its unusually wide original floor shadow; CSS softens the shadow edges.
 White RIDDARA, BESTUNE and MAXUS backgrounds blend through CSS;
 their image files have not had backgrounds removed.
+
+RELY R8 now uses the gold pickup supplied as `Downloads/R8.png` on 2026-11-13.
+Only fully transparent margins are removed: the 408 × 190 crop at (50, 57)
+is saved losslessly as `public/brand-showcase/rely-r8-gold.webp`, preserving
+the original colours, transparency and proportions. The previous black pickup
+master, `aRELY-R8-negro-1024x480.webp`, remains here for provenance.
 
 The three official downloads are also saved as full-resolution PNGs in the user's
 Desktop `SainMotors-Brand-Images` folder, retaining original transparency.

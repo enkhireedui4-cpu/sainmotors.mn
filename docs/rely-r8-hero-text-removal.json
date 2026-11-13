@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-13",
+  "prompt": "Remove only the white RELY R8 / INTELLIGENTIZE THE WORLD advertising text. Reconstruct the blue sky and wispy clouds. Keep original crop, canvas, vehicle, dunes, dust, colors and lighting. Retain all grille/vehicle lettering. Do not add text.",
+  "records": [
+    {
+      "name": "desktop",
+      "original": "public/rely-r8/hero-1.webp",
+      "target": "public/rely-r8/hero-1-clean.webp",
+      "patch": "assets/photos/rely-r8/hero-sky-clean-desktop.png",
+      "box": {
+        "left": 160,
+        "top": 465,
+        "width": 900,
+        "height": 340
+      },
+      "width": 2560,
+      "height": 1440,
+      "method": "Built-in imagegen sky reconstruction; glyph mask and Poisson boundary matching; lossless WebP with unchanged pixels outside the lettering",
+      "outsideTextAreaChangedPixels": 0,
+      "sha256": "59795b8a28e705d6ce0bd27597b9ab6ebe97c1c4b632a178026b9136b66151c7",
+      "bytes": 1587264,
+      "editedGlyphPixels": 139842
+    },
+    {
+      "name": "mobile",
+      "original": "public/rely-r8/hero-1-mobile.webp",
+      "target": "public/rely-r8/hero-1-clean-mobile.webp",
+      "patch": "assets/photos/rely-r8/hero-sky-clean-mobile.png",
+      "box": {
+        "left": 50,
+        "top": 420,
+        "width": 850,
+        "height": 320
+      },
+      "width": 1125,
+      "height": 2433,
+      "method": "Built-in imagegen sky reconstruction; glyph mask and Poisson boundary matching; lossless WebP with unchanged pixels outside the lettering",
+      "outsideTextAreaChangedPixels": 0,
+      "sha256": "7224e7a220ad1e8cbb0c5357384a4376cc28ba2b57b3983c999d8c953cfd6bc2",
+      "bytes": 1361320,
+      "editedGlyphPixels": 125395
+    }
+  ],
+  "generation": {
+    "mode": "built-in image_gen",
+    "prompts": {
+      "desktop": "Precision text removal. Edit ONLY this landscape sky crop, 1050x450. Erase the large white overlay letters 'RELY R8', 'INTELLIGENTIZE', 'THE WORLD'. Fill the letter holes with the immediately surrounding ORIGINAL blue sky gradient and wispy diagonal cloud pattern. Do NOT introduce any new clouds or extra texture. Preserve the existing clouds, color gradient, framing, and all edge pixels as closely as possible, especially the outer 50-pixel border, because this image will be stitched back into the unaltered photo. Keep the exact aspect ratio and the existing sky appearance. No lettering, logos, objects, embellishments or new details. The result should look exactly like the input crop with only the white advertising letters removed.",
+      "mobile": "Precision text removal. Edit ONLY this landscape sky crop from the mobile hero, 1000x470. Erase the large white overlay letters 'RELY R8', 'INTELLIGENTIZE', 'THE WORLD'. Fill the letter holes with the immediately surrounding ORIGINAL blue sky gradient and wispy diagonal cloud pattern. Do NOT introduce any new clouds or extra texture. Preserve the existing clouds, color gradient, framing, and all edge pixels as closely as possible, especially the outer 50-pixel border, because this image will be stitched back into the unaltered photo. Keep the exact aspect ratio and the existing sky appearance. No lettering, logos, objects, embellishments or new details. The result should look exactly like the input crop with only the white advertising letters removed."
+    }
+  }
+}

@@ -25,6 +25,7 @@ const TYPES = {
   ".ico": "image/x-icon",
   ".woff2": "font/woff2",
   ".mp4": "video/mp4",
+  ".pdf": "application/pdf",
 };
 
 if (!fs.existsSync(ROOT)) {
@@ -40,8 +41,8 @@ function send(req, res, status, file) {
   };
   let start = 0;
   let end = size - 1;
-  // Browsers seek in an MP4 using byte ranges, including the initial 1s cut.
-  if (path.extname(file) === ".mp4" && status === 200) {
+  // Video playback and native PDF viewers seek using byte ranges.
+  if ([".mp4", ".pdf"].includes(path.extname(file)) && status === 200) {
     headers["Accept-Ranges"] = "bytes";
     if (req.headers.range) {
       const range = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range);

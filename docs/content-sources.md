@@ -217,9 +217,40 @@ inside the image. The reference and its layout rules are saved in
 - `public/brand-showcase/chery.webp`: the user's local `Desktop/chery/public/assets/img/t7-c-silver.webp`, with empty transparent margins trimmed. Vehicle colours and geometry are unchanged.
 - Additional studio assets supplied or requested by the user on 2026-11-10 replace the SOUEAST, BYD, RIDDARA, AITO, 212, BESTUNE, RELY, MAXUS and HONGQI campaign photographs. Original masters and source details are preserved in `assets/photos/showcase/README.md`; WebP derivatives live in `public/brand-showcase/`. Empty margins are trimmed and large originals are reduced to at most 1920 px, with no upscaling. RIDDARA, BESTUNE and MAXUS retain their white backgrounds and use CSS multiply blending on the light studio surface. The supplied `Hongi.png` already has transparency and an HS3 model plate; its full canvas is preserved.
 - All official wordmarks reuse the existing sourced media manifest.
+- RELY R8 image replacement — 2026-11-13: the user supplied `Downloads/R8.png` (476 × 280, transparent gold pickup) to replace the black truck. The original is preserved as `assets/photos/showcase/R8.png`; `public/brand-showcase/rely-r8-gold.webp` is a lossless 408 × 190 derivative with only fully transparent margins removed. Vehicle geometry, colours and transparency are preserved.
 - The eleven Mongolian taglines in `HomeBrandShowcase.tsx` use the user's final selected copy, supplied on 2026-11-10: the alternative lines for JETOUR, SOUEAST, CHERY, BYD, RIDDARA, AITO, 212 and RELY, with the primary BESTUNE and HONGQI lines and the existing MAXUS line. They are site-specific editorial slogans, not translations of official brand slogans. All use the same type treatment and omit terminal punctuation. English taglines remain draft editorial copy. They make no technical or pricing claims.
 
 ## External brand destinations — 2026-11-11
+
+R8 detail-page reconstruction — 2026-11-13: `https://cherycvglobal.com/R8` and
+its linked `/R8detail` specification image supplied the product imagery,
+section order and interaction reference. Browser capture was used after the
+Firecrawl CLI download was blocked by the environment; REA statically analyzed
+the selected product/form bundles. Source URLs, SHA-256 hashes and unchanged
+image proportions for all 44 optimized assets are recorded in
+`docs/rely-r8-assets.json`. The source's overlapping/ambiguous metrics were
+condensed into localized MN/EN product copy rather than copying inconsistent
+units. The original Sain Motors RELY summary, distributor statement, phone and
+showroom remain the local authority. Lead handling is new Sain Motors code for
+the user's selected Supabase project; the manufacturer's code, analytics,
+privacy text and submission endpoint are not run by this site. Implementation
+and verification are recorded in `docs/verification-2026-11-13-r8.md`.
+
+R8 brochure update — 2026-11-13: the user supplied
+`Downloads/RELY_BROCHURE.pdf` (two Mongolian pages). The brochure dialog now
+uses both pages and offers the unchanged PDF for opening/downloading. Two
+1800px WebP previews total 564,814 bytes; source/output hashes are recorded in
+`docs/rely-r8-brochure.json`. The original reference specification image remains
+an archived source asset and is no longer displayed in this dialog.
+
+R8 hero text update — 2026-11-13: at the user's request, only the advertising
+text areas were cleaned in desktop/mobile hero derivatives using built-in
+imagegen. Native HTML now renders `RELY R8` and the Mongolian tagline
+`Дэлхийг ухаалагжуулна` (with English copy on the English route). The original
+reference assets remain intact. `scripts/build-r8-hero.mjs` reproduces the
+accepted sky patches as lossless WebP and checks that every decoded pixel
+outside the text bounds stays unchanged. Final paths, bounds, hashes and the
+editing prompt are in `docs/rely-r8-hero-text-removal.json`.
 
 Homepage CTA update — 2026-11-11: the user requested direct links to the official
 Mongolian JETOUR and CHERY homepages. `https://jetour.mn/` and `https://chery.mn/`
