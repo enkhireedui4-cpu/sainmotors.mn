@@ -108,11 +108,11 @@ export const pages = {
         value: {
           mn: {
             heading: "Хаана байрладаг вэ",
-            body: "Улаанбаатар, Дархан, Эрдэнэт хотод шоурумтай бөгөөд Улаанбаатарт JETOUR-ын үйлчилгээний төвтэй. Брэнд бүрийн шоурум, утсыг салбарын хуудаснаас харна уу.",
+            body: "Улаанбаатар, Дархан, Эрдэнэт хотод шоурумтай бөгөөд Улаанбаатарт JETOUR-ын үйлчилгээний төвтэй. Брэнд бүрийн шоурум, утсыг дилерийн сүлжээний хуудаснаас харна уу.",
           },
           en: {
             heading: "Where we are",
-            body: "We have showrooms in Ulaanbaatar, Darkhan and Erdenet, and a JETOUR service centre in Ulaanbaatar. Each brand’s showroom and phone number are on the locations page.",
+            body: "We have showrooms in Ulaanbaatar, Darkhan and Erdenet, and a JETOUR service centre in Ulaanbaatar. Each brand’s showroom and phone number are on the dealer network page.",
           },
         },
       },
@@ -120,8 +120,8 @@ export const pages = {
     closing: {
       status: "draft",
       value: {
-        mn: { heading: "Шоурумд уулзъя", body: "Брэнд бүрийн шоурум, борлуулалтын утас салбарын хуудсанд байна." },
-        en: { heading: "Visit a showroom", body: "Every brand’s showroom and sales line is on the locations page." },
+        mn: { heading: "Шоурумд уулзъя", body: "Брэнд бүрийн шоурум, борлуулалтын утас дилерийн сүлжээний хуудсанд байна." },
+        en: { heading: "Visit a showroom", body: "Every brand’s showroom and sales line is on the dealer network page." },
       },
     } satisfies Section,
     milestones: {
@@ -224,8 +224,8 @@ export const pages = {
       status: "draft",
       source: "Existing company.ts location records; web-team directory description, 2026-10-22",
       value: {
-        mn: { title: "Байршлууд", description: "Сайн Моторс-ын шоурум, үйлчилгээний төвийг брэнд, хотоор хайж, хаяг, утас, ажиллах цагтай танилцаарай." },
-        en: { title: "Locations", description: "Find Sain Motors showrooms and service locations by brand and city, with addresses, phone numbers and available opening hours." },
+        mn: { title: "Дилерийн сүлжээ", description: "Сайн Моторс-ын шоурум, үйлчилгээний төвийг брэнд, хотоор хайж, хаяг, утас, ажиллах цагтай танилцаарай." },
+        en: { title: "Dealer network", description: "Find Sain Motors showrooms and service locations by brand and city, with addresses, phone numbers and available opening hours." },
       },
     } satisfies Meta,
     lead: {

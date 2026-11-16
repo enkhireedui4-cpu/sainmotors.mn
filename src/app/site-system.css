@@ -130,13 +130,6 @@
 .service-photo-grid img { border-radius: var(--radius-card); }
 .service-photo-grid figcaption { padding-top: .75rem; }
 
-/* A practical directory with one coherent surface per location. */
-.location-directory { padding-top: 3rem; }
-.location-directory .location-directory__filters { padding: 1.75rem; border: 0; border-radius: var(--radius-card); background: var(--surface-card); }
-.location-directory .location-directory__results { display: grid; gap: 1.25rem; border: 0; }
-.location-directory .location-directory__row { padding: 2rem; border: 0; border-radius: var(--radius-card); background: var(--surface-card); }
-.location-directory .location-directory__map { border-radius: var(--radius-control); }
-
 /* News remains clear about past events; videos only play on request. */
 .news-design-page .news-page { padding-top: 3rem; }
 .news-card { border: 1px solid transparent; border-radius: var(--radius-card); overflow: hidden; background: var(--surface-card); }

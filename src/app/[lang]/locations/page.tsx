@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { LocationDirectory } from "@/components/LocationDirectory";
-import { SiteBanner } from "@/components/SiteBanner";
-import { SiteInvitation } from "@/components/SiteInvitation";
-import { getBrands, getLocations, pages, sitePhotos } from "@/content";
+import { getBrands, getLocations, pages } from "@/content";
 import type { Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { locationGraph } from "@/lib/structured-data";
@@ -19,13 +17,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function LocationsPage({ params }: Props) {
   const locale = (await params).lang as Locale;
-  const page = pages.locations;
   return (
     <>
       <JsonLd data={locationGraph(locale)} />
-      <SiteBanner title={page.meta.value[locale].title} lead={page.lead.value[locale]} leadDraft locale={locale} photo={sitePhotos.hero} />
       <LocationDirectory locale={locale} locations={getLocations()} brands={getBrands()} />
-      <SiteInvitation locale={locale} />
     </>
   );
 }

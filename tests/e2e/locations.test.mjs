@@ -18,8 +18,17 @@ before(async () => {
 
 after(async () => { await browser?.close(); });
 
+async function reviewContext(options = {}) {
+  const context = await browser.newContext(options);
+  await context.route("https://tile.openstreetmap.org/**", route => route.abort());
+  return context;
+}
+async function reviewPage(options = {}) {
+  return (await reviewContext(options)).newPage();
+}
+
 test("language switching preserves dynamically selected location filters and the anchor", async () => {
-  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  const page = await reviewPage({ viewport: { width: 1440, height: 900 } });
   try {
     await page.goto(`${BASE}/mn/locations/#main`);
     await page.locator(".location-directory[data-ready='true']").waitFor();
@@ -37,7 +46,7 @@ test("language switching preserves dynamically selected location filters and the
 });
 
 test("locations routes have complete server-rendered contact rows in both languages without JavaScript", async () => {
-  const context = await browser.newContext({ javaScriptEnabled: false });
+  const context = await reviewContext({ javaScriptEnabled: false });
   try {
     const page = await context.newPage();
     for (const locale of ["mn", "en"]) {
@@ -53,7 +62,7 @@ test("locations routes have complete server-rendered contact rows in both langua
 });
 
 test("brand and city filters intersect, create a shareable URL, and restore after refresh and Back", async () => {
-  const context = await browser.newContext();
+  const context = await reviewContext();
   try {
     const page = await context.newPage();
     const errors = [];
@@ -85,7 +94,7 @@ test("brand and city filters intersect, create a shareable URL, and restore afte
 });
 
 test("direct location links use the same city keys in MN and EN and retain literal brand coverage", async () => {
-  const context = await browser.newContext();
+  const context = await reviewContext();
   try {
     const page = await context.newPage();
     for (const locale of ["mn", "en"]) {
@@ -102,28 +111,32 @@ test("direct location links use the same city keys in MN and EN and retain liter
 });
 
 test("location actions retain supplied phones, verified directions and honest search and hours labels", async () => {
-  const context = await browser.newContext();
+  const context = await reviewContext();
   try {
     const page = await context.newPage();
     await page.goto(`${BASE}/en/locations/`);
     assert.equal(await page.locator("#jetour-c1 a[href='tel:+97670108855']").count(), 1);
     assert.equal(await page.locator("#chery-narny a[href='tel:+97672558855']").count(), 1);
     assert.equal(await page.locator("#erdenet a[href='tel:+97699096347']").count(), 1);
+    await page.locator(".location-directory[data-ready='true']").waitFor();
+    await page.locator('#erdenet .location-directory__toggle').click();
     assert.match(await page.locator('#erdenet address').innerText(), /Sain Electronics, Orkhon Mall/);
     assert.match(await page.locator('#erdenet .location-directory__map').innerText(), /Search map/);
     assert.equal(await page.locator('#erdenet .location-directory__hours dl').count(), 0);
+    await page.locator("#jetour-c1 .location-directory__toggle").click();
+    assert.match(await page.locator("#jetour-c1 .location-directory__hours").innerText(), /10:30 – 19:30/);
     assert.equal(await page.locator("#jetour-c1 .location-directory__map").getAttribute("href"), "https://maps.app.goo.gl/qh4YXME6ZKwLokRQ8");
     assert.match(await page.locator("#jetour-c1 .location-directory__map").innerText(), /Get directions/);
+    await page.locator("#sansar .location-directory__toggle").click();
     assert.match(await page.locator("#sansar .location-directory__map").getAttribute("href"), /^https:\/\/www\.google\.com\/maps\/search\//);
     assert.match(await page.locator("#sansar .location-directory__map").innerText(), /Search map/);
     assert.match(await page.locator("#sansar").innerText(), /Call ahead for opening hours/);
     assert.equal(await page.locator("#sansar .location-directory__hours dl").count(), 0);
-    assert.match(await page.locator("#jetour-c1 .location-directory__hours").innerText(), /10:30 – 19:30/);
   } finally { await context.close(); }
 });
 
 test('Erdenet can be found by city in both languages without inferring which brands are on display', async () => {
-  const page = await browser.newPage();
+  const page = await reviewPage();
   try {
     for (const locale of ['mn', 'en']) {
       await page.goto(`${BASE}/${locale}/locations/?city=erdenet`);
@@ -136,7 +149,7 @@ test('Erdenet can be found by city in both languages without inferring which bra
 });
 
 test("locations remain readable and keyboard operable across the approved widths", async () => {
-  const context = await browser.newContext();
+  const context = await reviewContext();
   try {
     const page = await context.newPage();
     for (const width of [360, 390, 768, 1440, 1920]) {
@@ -144,10 +157,18 @@ test("locations remain readable and keyboard operable across the approved widths
       await page.goto(`${BASE}/mn/locations/`);
       await page.evaluate(() => document.fonts.ready);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 0, `No overflow at ${width}px`);
-      const controls = page.locator(".location-directory select, .location-directory__map, .location-directory__phone");
-      for (const control of await controls.all()) {
+      await page.locator(".location-directory[data-ready='true']").waitFor();
+      for (const row of await page.locator(".location-directory__row").all()) {
+        await row.locator(".location-directory__toggle").click();
+        assert.equal(await row.locator(".location-directory__toggle").getAttribute("aria-expanded"), "true");
+        for (const control of await row.locator(".location-directory__map, .location-directory__phone, .location-directory__toggle").all()) {
+          const box = await control.boundingBox();
+          assert.ok(box && box.height >= 48, `Touch target at ${width}px`);
+        }
+      }
+      for (const control of await page.locator(".location-directory select").all()) {
         const box = await control.boundingBox();
-        assert.ok(box.height >= 48, `Touch target ${box.height}px at ${width}px`);
+        assert.ok(box && box.height >= 48, `Select at ${width}px`);
       }
     }
     await page.locator("#location-brand").focus();

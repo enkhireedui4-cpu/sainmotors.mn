@@ -6,7 +6,7 @@ test("news links show the correct sourced event and request film only after expl
  const browser=await chromium.launch({executablePath:process.env.CHROME_PATH??"C:/Program Files/Google/Chrome/Application/chrome.exe"});
  try{
  const page=await browser.newPage();const videos=[];page.on("request",r=>{if(r.url().includes("/video/"))videos.push(r.url());});
- await page.goto(base+"/en/");assert.equal(videos.length,0);
+ await page.goto(base+"/en/news/");assert.equal(videos.length,0);
  await page.locator('.news-card[href="/en/news/mega-test-drive-8/"]').click();await page.waitForURL("**/mega-test-drive-8/");
  assert.match(await page.locator("h1").textContent(),/8/);assert.match(await page.locator("main").textContent(),/Darkhan/);assert.equal(await page.locator("video").count(),0);
  await page.goto(base+"/en/news/mega-test-drive-7/");

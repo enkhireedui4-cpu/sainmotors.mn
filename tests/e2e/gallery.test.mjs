@@ -7,7 +7,7 @@ test("all eleven logo destinations are visible and keyboard reachable at phone a
  try {
  const page=await browser.newPage();
  for(const locale of ["mn","en"]) for(const width of [360,768,1440,1920]){
-  await page.setViewportSize({width,height:900});await page.goto(base+"/"+locale+"/");
+  await page.setViewportSize({width,height:900});await page.goto(base+"/"+locale+"/brands/");
   const links=page.locator("[data-brand-directory] a");assert.equal(await links.count(),11);
   for(const link of await links.all()){
    await link.focus();

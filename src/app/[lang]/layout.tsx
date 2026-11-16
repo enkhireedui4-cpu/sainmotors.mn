@@ -14,6 +14,7 @@ import { IS_INDEXABLE, IS_RELEASE, SITE_URL } from "@/lib/site";
 import "../globals.css";
 import "../experience.css";
 import "../site-system.css";
+import "@/components/site-header.css";
 
 export const dynamicParams = false;
 

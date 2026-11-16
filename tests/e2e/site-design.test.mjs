@@ -4,25 +4,31 @@ import { chromium } from 'playwright-core';
 const base = process.env.BASE_URL ?? 'http://localhost:3300';
 const executablePath = process.env.CHROME_PATH ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 
-test('supporting pages give a readable photographic introduction and real onward routes in both languages', async () => {
+test('supporting pages give readable introductions and real onward routes in both languages', async () => {
   const browser = await chromium.launch({ executablePath, headless: true });
   try {
     const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
     page.setDefaultTimeout(5000);
     for (const locale of ['mn', 'en']) for (const route of ['about', 'brands', 'services', 'locations', 'news']) {
       await page.goto(`${base}/${locale}/${route}/`);
-      await page.locator('.site-banner h1').waitFor();
+      const arrival = route === 'locations' ? '.network-hero' : '.site-banner';
+      await page.locator(`${arrival} h1`).waitFor();
       assert.equal(await page.locator('h1').count(), 1);
-      assert.equal(await page.locator('.site-banner img').count(), 1);
-      assert.equal(await page.locator(`.site-banner a[href='/${locale}/']`).count(), 1);
-      assert.equal(await page.locator(`.site-invitation a[href='/${locale}/locations/']`).count(), 1);
-      const heading = await page.locator('.site-banner h1').boundingBox();
+      assert.equal(await page.locator(`${arrival} a[href='/${locale}/']`).count(), 1);
+      if (route === 'locations') {
+        assert.equal(await page.locator('.network-city').count(), 3);
+        assert.equal(await page.locator('.location-directory__row').count(), 8);
+      } else {
+        assert.equal(await page.locator('.site-banner img').count(), 1);
+        assert.equal(await page.locator(`.site-invitation a[href='/${locale}/locations/']`).count(), 1);
+      }
+      const heading = await page.locator(`${arrival} h1`).boundingBox();
       assert.ok(heading.y >= 0 && heading.height > 20);
     }
   } finally { await browser.close(); }
 });
 
-test('homepage keeps its global header, brand directory and onward company routes below the video', async () => {
+test('homepage keeps its global header and onward routes around the new Sain Motors composition', async () => {
   const browser=await chromium.launch({executablePath,headless:true});
   try {
     const page=await browser.newPage({reducedMotion:'reduce'});
@@ -30,16 +36,16 @@ test('homepage keeps its global header, brand directory and onward company route
       await page.setViewportSize({width,height:1000});
       await page.goto(base+'/'+locale+'/', { waitUntil: 'domcontentloaded' });
       await page.evaluate(()=>document.fonts.ready);
-      assert.equal(await page.locator('.home-video-hero video').count(),1);
+      assert.equal(await page.locator('.home-orbit-hero').count(),1);
+      assert.equal(await page.locator('.home-orbit-hero video').count(),1);
       assert.equal(await page.locator('.site-header .site-logo').getAttribute('href'),'/'+locale+'/');
       assert.equal(await page.locator('.site-header__inner > .lang-switch').isVisible(),true);
-      assert.equal(await page.locator('.corporate-home a[href="/'+locale+'/about/"]').count(),1);
+      assert.equal(await page.locator('.site-nav a[href="/'+locale+'/about/"]').count(),1);
       assert.equal(await page.locator('.corporate-home a[href="/'+locale+'/services/"]').count(),1);
-      assert.equal(await page.locator('.corporate-home a[href="/'+locale+'/news/"]').count(),1);
-      assert.equal(await page.locator('.site-invitation a[href="/'+locale+'/locations/"]').count(),1);
-      assert.equal(await page.locator('.home-service-list a').count(),4);
+      assert.equal(await page.locator('.site-nav a[href="/'+locale+'/news/"]').count(),1);
+      assert.equal(await page.locator('.orbit-service-card').count(),4);
       assert.equal(await page.locator('.journey-strip').count(),0);
-      assert.equal(await page.locator('.home-brands .brand-panel a').count(),11);
+      assert.equal(await page.locator('.home-brands .brand-panel a').count(),0);
       assert.equal(await page.locator('.home-brands .brand-panel__description').count(),0);
       assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
     }

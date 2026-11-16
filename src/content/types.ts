@@ -147,7 +147,7 @@ export interface Location {
   phone?: Phone;
   email?: string;
   /** `pin`: a verified map point. `search`: a map search for the landmark. */
-  map: { url: string; precision: "pin" | "search" };
+  map: { url: string; precision: "pin" | "search"; coordinates?: [latitude: number, longitude: number] };
   /** Brands serviced here. Showroom brands come from each brand's `location`. */
   serviceBrands?: string[];
   photo?: Photo;

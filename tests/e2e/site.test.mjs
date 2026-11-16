@@ -49,7 +49,7 @@ test("native mobile menu supports Escape, return focus, real route selection and
  // aria-expanded follows the dialog's close event, so wait for it instead of reading it in the same tick.
  await page.keyboard.press("Escape");await page.waitForFunction(()=>{const b=document.querySelector(".menu-button");return b?.getAttribute("aria-expanded")==="false"&&b===document.activeElement;},null,{timeout:2000});
  assert.equal(await button.getAttribute("aria-expanded"),"false");assert.equal(await button.evaluate(b=>b===document.activeElement),true);
- await button.click();await page.locator("#mobile-menu").getByRole("link",{name:"Locations",exact:true}).click();
+ await button.click();await page.locator("#mobile-menu").getByRole("link",{name:"Dealer network",exact:true}).click();
  await page.waitForURL("**/en/locations/");assert.equal(await page.locator("#mobile-menu").evaluate(d=>d.open),false);
  await page.close();
 });
@@ -69,9 +69,11 @@ test("all brand pages retain real sales channels and sourced model galleries",as
  for(const brand of BRANDS){
   await page.goto(BASE+"/mn/brands/"+brand+"/");
   assert.ok(await page.locator("main a[href^='tel:+976']").count()>0,brand);
-  assert.equal(await page.locator(".brand-hero__identity img").count(),1,brand);
+  // RELY has its own R8 product page, so its logo and hero live in the r8 blocks.
+  const rely=brand==="rely";
+  assert.equal(await page.locator(rely?".r8-intro__identity svg, .r8-intro__identity img":".brand-hero__identity img").count(),1,brand);
   for(const href of await page.locator("a.brand-link").evaluateAll(a=>a.map(x=>x.href))) assert.ok(href.startsWith("https://"));
-  assert.equal(await page.locator(".brand-hero__image img").count(),1,brand);
+  assert.equal(await page.locator(rely?".r8-hero img":".brand-hero__image img").count(),1,brand);
  }
  await page.close();
 });

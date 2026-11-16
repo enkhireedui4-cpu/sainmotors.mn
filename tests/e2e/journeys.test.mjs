@@ -51,7 +51,7 @@ test('same-route header navigation clears stale enquiry and catalogue selection'
     await page.goto(`${base}/en/brands/?q=S08`);
     await page.locator('.brand-catalogue[data-ready=true]').waitFor();
     assert.equal(await page.locator('.discovery-card:visible').count(), 1);
-    await page.locator('.site-nav').getByRole('link', { name: 'Brands', exact: true }).click();
+    await page.locator('.site-footer').getByRole('link', { name: 'Brands', exact: true }).click();
     await page.waitForURL('**/en/brands/');
     await page.waitForFunction(() => document.querySelector('#brand-search')?.value === '', null, { timeout: 3000 });
     assert.equal(await page.locator('.discovery-card:visible').count(), 11);

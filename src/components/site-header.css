@@ -1,0 +1,24 @@
+/* The homepage header's dimensions are shared by every route. */
+:root { --header-h: 4rem; }
+.site-header { --focus: #a00711; color: #172126; background: #fff; border-bottom-color: #e5e6e9; box-shadow: none; }
+.site-header .site-header__inner { width: 84%; max-width: 100rem; gap: 2rem; }
+.site-header .site-logo img { width: 8.8rem; }
+.site-header .site-nav { margin-inline: auto; gap: clamp(1rem, 2.2vw, 2.4rem); }
+.site-header .site-nav__link { color: inherit; font-size: .78rem; letter-spacing: -.02em; }
+.site-header .lang-switch { color: inherit; }
+.site-header__inner > .lang-switch a { color: #566169; }
+.site-header__inner > .lang-switch [aria-current] { color: #172126; text-decoration: underline; text-underline-offset: .5rem; }
+.site-header .menu-button { color: #172126; }
+@media (max-width: 63.99rem) {
+  .site-header .site-header__inner { width: calc(100% - 3rem); gap: 1rem; }
+  .site-header .site-nav { gap: 1.1rem; }
+}
+@media (max-width: 47.99rem) {
+  :root { --header-h: calc(4.5rem + env(safe-area-inset-top, 0px)); }
+  .site-header .site-header__inner { width: calc(100% - 2.5rem); padding-top: env(safe-area-inset-top, 0px); }
+  .site-header .site-logo img { width: 8rem; }
+}
+@media (orientation: landscape) and (max-height: 32rem) and (max-width: 63.99rem) {
+  :root { --header-h: calc(3.5rem + env(safe-area-inset-top, 0px)); }
+  .site-header .site-logo img { width: 7.5rem; }
+}

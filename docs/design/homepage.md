@@ -1,101 +1,39 @@
-# Sain Motors homepage design
+# Sain Motors homepage
+Latest direction: 2026-11-16. This supersedes the former split hero, video hero, moving wordmark band and vehicle studio.
 
-The user supplied [this master reference](homepage-reference.png) on 2026-11-10
-and asked to retain its design. It is the visual reference for future homepage
-changes. Preserve the existing MN/EN content, official wordmarks and real photos.
+The user requested the composition of [Orbis Auto](https://www.orbis-auto.kz/en/) with Sain Motors identity, then asked to replace the old company and after-sales blocks too. Their iPhone reference guides clean typography, Jetour guides the transparent header, and their final Monnis reference guides the company introduction.
 
 ## Composition
+1. Fixed transparent header over a full-screen Earth film. Following the user's Jetour reference, it gains a white background and dark logo/menu once the film scrolls away.
+2. Large white SAIN MOTORS wordmark: its centered S is traced in champagne gold, fills white and moves left; AIN MOTORS follows one letter at a time. The sequence settles in about 3.5 seconds over subtle orbit trails.
+3. Left service label, right brand promise, bottom social links and company introduction. The circular S scrolls to the company section; a small pause control stops motion.
+4. A pure-white company introduction with faint monochrome mountains, a small red label, SAIN MOTORS title, a concise factual paragraph and an About us pill. The desktop four-photo ribbon and divided network figures follow below.
+5. An Orbis-style dark brand section above services, following the user's latest screenshot: black contour artwork, a large centered count heading, supporting copy and white wordmarks inside thin outlined pills. Desktop rows contain 4–4–3 marks, with the second row offset slightly; tablets use three columns and phones use two. Counts, order and destinations come from the published brand registry.
+6. Four photographic service links in a single desktop row and a 2-by-2 phone grid, adapted from the reference's image-led service section.
+7. Footer directly after services. The user removed the homepage news/events and showroom invitation blocks on 2026-11-16; their separate pages and shared components remain available.
 
-1. White header with the Sain Motors logo, navigation and MN / EN switch.
-2. Pale grey split hero: the eleven-brand distributor statement on the left,
-   showroom photography on the right, and two direct actions. The photo position
-   sits inside the bottom-left corner; round arrow controls sit bottom-right.
-3. White band with a centred heading and the existing moving brand wordmarks.
-   Desktop uses an open band without rules or separators. The mobile reference
-   adds fine rules around the heading and between the moving wordmarks.
-4. A complete vehicle studio screen with a left-aligned headline, large faint
-   brand lettering, the featured car and faded neighbours. The full brand and
-   model name, short tagline, red brand link and the position indicator follow.
-   The user's final refinement removes the separate logo above the car. Its
-   height is reclaimed by the stage, with the car and lettering lifted slightly
-   on desktop and mobile instead of leaving an empty logo row.
+## Content
+The English hero description is exactly:
+> Our company is the epitome of reliability and high-quality service. Sain Motors is a group of companies that includes 11 different car brands.
 
-At 896px and above, retain the split hero and full header navigation. Smaller
-screens stack the hero and retain comfortably sized controls. The studio adapts
-to the viewport height below the sticky header; short landscape screens can scroll.
+The Mongolian version translates the same statement. The facts show 11 automotive brands, 7 showrooms, 2 4S showrooms and 3 cities. The 4S count was confirmed by the user; its approval/source is stored in company.fourSShowrooms. Other counts come from published brand and location records.
 
-## Mobile reference
+Navigation, footer and the directory page use Dealer network / Дилерийн сүлжээ. The existing /locations/ URLs and directory behavior remain. The homepage brands use the exact Orbis contour background, saved locally as `public/art/orbis-brands-bg.webp`. The desktop title is 50px/400 with 1.3 line height; supporting copy is 18px with a 32px top gap. The 896px logo list starts 58.6px below the copy, with 10px column gaps and 28.8px row gaps. Links are 65px tall with 1px 45%-white borders and 45px radii. Transparent wordmarks are rendered white with a section-scoped CSS filter, including CHERY; BESTUNE, MAXUS and HONGQI retain their lettering-only crops. Phones use a 28px heading and 56px pills. Brand names remain available to assistive technology. The component is server rendered with no additional client script.
 
-The user supplied [the mobile layout](homepage-mobile-reference.png) on 2026-11-10.
-Below 768px, preserve this downward flow:
+## Typography and color
+The user's latest Apple/iPhone screenshot guides a native San Francisco / self-hosted Inter stack for headings, navigation and body text. Apple platforms use their native system face; Windows and other platforms use the existing local Inter with full Mongolian coverage. Headings use weight 600, body and controls use 400, and close tracking plus a 1.5 body line-height keep text clean. Zona Pro remains limited to the wordmark and decorative S.
 
-- A compact header following the latest [logo, MN / EN and menu reference](mobile-header-language-reference.png): a 144px Sain Motors logo, visible language selection and a small menu icon with a 44px touch target.
-- The red-stroke company label, a large three-line Mongolian heading, short lead,
-  and two adjacent actions with at least 44px of touch height.
-- A wide showroom photo, round chevron controls at its bottom-right, and four
-  working selectors below the image. The current selector is a red pill.
-- A single moving wordmark row below a centred heading. All eleven links remain
-  reachable by keyboard. Reduced motion uses a static grid.
+Midnight #030710, white #f7f7f5, champagne #d8be87 and the film's reflected blue/city lights form the hero. Sain red remains in brand and supporting controls. Following sections use white, dark text and muted gray descriptions. The transparent overlay header becomes white with dark text after the opening scrolls out. The mobile dialog remains white with a dark visible focus ring.
 
-Desktop retains its photo counter, arrow controls and existing composition.
+## Behavior and maintenance
+The hero uses the user's supplied 1920x1080 Earth MP4, copied locally as public/video/hero/sain-earth.mp4, with a decoded WebP poster. Video is muted, inline and looping. It is not requested under initial reduced-motion preferences. SVG/CSS supplies the single wordmark sequence without an external motion/3D dependency. Motion pauses offscreen, when hidden, on user choice and under reduced-motion preferences; a completed intro does not replay on resume. No-JS users receive the complete wordmark, poster and solid readable header with the inactive pause control hidden. Scroll effects share one passive subscription, throttled to requestAnimationFrame. Mobile figures use a 2-by-2 arrangement and service cards stay in two columns.
 
-The earlier [compact header reference](mobile-header-reference.png) is retained
-for history; the latest language-switch reference above takes precedence.
-The mobile hero uses the reference's pale blue surface (`#f0f4f8`), dark heading
-(`#141c20`) and muted copy (`#64717a`, keeping readable text contrast). Show the supplied photo without a dark
-counter overlay; the smaller visible arrow circles retain 44px touch targets.
+Homepage composition: src/app/[lang]/page.tsx. Hero: HomeOrbitHero / CinematicHeroScene / CinematicWordmark. Following sections: HomeOrbitSections / HomeOrbitBrands / OrbitScrollScene. Section styles are scoped to orbit-home; the shared typography also applies to supporting pages.
 
-## Mobile vehicle studio
+On phones, the film uses an 18% horizontal focal position to show the blue Earth limb and sunrise. The same S-to-name sequence and transparent-to-white header behavior are retained. Small portrait layouts and short landscape layouts fit the opening screen with readable copy, 44px controls and safe-area spacing. The compact company intro uses a 24px title and 12.5px body, measuring about 268–326px at 320–390px widths; photos and facts stay in 2-by-2 grids.
 
-Follow the user's latest [studio reference](brand-studio-mobile-reference.png),
-with the separate brand logo omitted as explicitly requested:
+The user's 2026-11-16 desktop and mobile Orbis screenshots guide the photo ribbon, network figures and service cards. The desktop ribbon uses a wider 86.25% container, 1.9:1 photos and 16px corners. The figures have a one-third introduction and four equal columns, 48px maximum headings/numbers, dark uppercase labels and equal-height dividers. On phones, 2:1 photos sit above a 20px heading, 14px description and 2-by-2 figures with 22px numbers and a divider on every item. Services use a centered regular-weight title and description, four landscape cards across on desktop, and two portrait columns on phones with 16px corners and compact white labels. The four existing services and localized destinations are retained; the all-services link follows the cards.
 
-- Keep the eyebrow at the left and centre the two-line section heading. Use
-  `Таны сонголт` / `Таны брэнд` without full stops on mobile; desktop keeps the
-  separating full stop in `Таны сонголт. Таны брэнд` and omits the trailing one.
-- Frame the complete vehicle against large, faint brand lettering, with quiet
-  glimpses of the adjacent vehicles at the edges.
-- Centre the full brand/model name, tagline and red brand link below the car.
-- Place the two circular arrow controls below the caption. A progress line sits
-  between them, with the current position centred beneath the line.
-- Fit the complete studio beneath the 72px sticky header on ordinary portrait
-  screens; retain natural scrolling on short landscape screens.
+Superseded video/marquee/showcase browser suites were retired; directory, navigation and destination coverage were retained in the current suites. Tests for this composition live in tests/e2e/home-orbit-hero.test.mjs.
 
-The same pair of controls serves both layouts. Desktop keeps its arrows beside
-the vehicle and its inline progress/count row; phone controls form a footer.
-
-## Brand destinations
-
-The red showcase CTA sends JETOUR directly to `https://jetour.mn/` with the label
-`Jetour-ийн сайт руу`, and CHERY to `https://chery.mn/` with `Chery-ийн сайт руу`.
-Both open the brand homepage in the current tab and use the diagonal external
-arrow. The other nine retain `Брэндтэй танилцах`, a horizontal arrow and their
-localized Sain Motors brand page. English labels follow the same distinction.
-The link remains mounted while slides change so keyboard focus stays intact.
-
-JETOUR and CHERY are listing-only records. Every logo, directory card, milestone,
-location link and showcase CTA uses the same official homepage destination.
-Their former local detail copy, model lists and hero metadata have been removed.
-Only nine internal brand detail pages are exported and listed in the sitemap.
-Old MN/EN brand paths (including descendants and index.html) permanently redirect
-at Vercel, Apache and the local static preview server; query strings are retained.
-The 11-brand homepage and shared showroom/service contacts are preserved.
-
-## Visual language
-
-| Role | Value |
-| --- | --- |
-| White surface | `#ffffff` |
-| Hero surface | `#f3f6f8` |
-| Studio surface | `#f3f6f9` |
-| Main text | `#172126` |
-| Studio text | `#171719` |
-| Accent | Existing Sain red, `#e20a17` |
-| Faint brand lettering | `#e1e4e9` |
-| Headings | Existing self-hosted Zona Pro, weight 700 |
-| Body and controls | Existing self-hosted Inter |
-
-Use generous space, restrained rounding, and the red diagonal stroke already in
-the brand. Keep the supplied content hierarchy and section order. Gallery photos
-and vehicles change on visitor input; the existing logo loop pauses for hover,
-keyboard focus or reduced motion. Keyboard focus stays visible during changes.
+Reference HTML, JavaScript and REA evidence are retained under .firecrawl/orbis-reference. Firecrawl CLI acquisition was blocked by network EACCES; source capture used browser DOM/fetch and REA instead.

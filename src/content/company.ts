@@ -16,6 +16,11 @@ const mapSearch = (query: string) =>
 
 export const company = {
   name: "Sain Motors",
+  fourSShowrooms: {
+    status: "approved",
+    source: "User confirmation on 2026-11-15: Sain Motors has two 4S showrooms",
+    value: { mn: "2", en: "2" },
+  } satisfies Block,
   distributorClaim: {
     status: "approved",
     source: "User's explicit confirmation on 2026-10-22: Sain Motors is the official distributor of 11 brands",
@@ -88,7 +93,8 @@ export const locations: Location[] = [
     ],
     phone: { display: "7010-8855", href: "tel:+97670108855" },
     email: "marketing2@esain.mn",
-    map: { url: "https://maps.app.goo.gl/qh4YXME6ZKwLokRQ8", precision: "pin" },
+    // Supplied short link resolved 2026-11-16; Google place !3d / !4d coordinates.
+    map: { url: "https://maps.app.goo.gl/qh4YXME6ZKwLokRQ8", precision: "pin", coordinates: [47.9210074, 106.9015123] },
     photo: {
       key: "showroom-exterior",
       alt: {
@@ -136,7 +142,8 @@ export const locations: Location[] = [
     city: UB,
     address: { mn: "Баянгол дүүрэг, Москвагийн гудамж", en: "Moscow Street, Bayangol district" },
     landmark: { mn: "Цамбагарав төвийн баруун урд", en: "South-west of the Tsambagarav centre" },
-    map: { url: "https://maps.app.goo.gl/BkpbhfBnyKxKoxyM8", precision: "pin" },
+    // Supplied short link resolved 2026-11-16; use the place pin, not the camera center.
+    map: { url: "https://maps.app.goo.gl/BkpbhfBnyKxKoxyM8", precision: "pin", coordinates: [47.9112692, 106.8434391] },
     serviceBrands: ["byd"],
     status: "sourced",
     source: `${DRIVE}: BYD; user-confirmed BYD 4S map, 2026-10-28`,
@@ -154,7 +161,7 @@ export const locations: Location[] = [
       { days: { mn: "Бямба", en: "Saturday" }, time: { mn: "09:00 – 19:00", en: "09:00 – 19:00" } },
       { days: { mn: "Ням", en: "Sunday" }, time: { mn: "Амарна", en: "Closed" } },
     ],
-    map: { url: "https://www.google.com/maps/dir/?api=1&destination=47.904448%2C106.902714", precision: "pin" },
+    map: { url: "https://www.google.com/maps/dir/?api=1&destination=47.904448%2C106.902714", precision: "pin", coordinates: [47.904448, 106.902714] },
     status: "sourced",
     source: CHERY_SITE,
   },
@@ -198,7 +205,7 @@ export const locations: Location[] = [
     ],
     phone: { display: "7010-8855", href: "tel:+97670108855" },
     email: "marketing2@esain.mn",
-    map: { url: "https://www.google.com/maps/dir/?api=1&destination=47.897841%2C106.796819", precision: "pin" },
+    map: { url: "https://www.google.com/maps/dir/?api=1&destination=47.897841%2C106.796819", precision: "pin", coordinates: [47.897841, 106.796819] },
     serviceBrands: ["jetour"],
     status: "sourced",
     source: JETOUR_SITE,

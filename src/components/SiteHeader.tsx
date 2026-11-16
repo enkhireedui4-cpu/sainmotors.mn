@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { contact, sainLogos, ui } from "@/content";
 import type { Locale } from "@/lib/i18n";
-import { navPages, pageHref } from "@/lib/routes";
+import { headerPages, pageHref } from "@/lib/routes";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { MobileMenu } from "./MobileMenu";
 import { NavLinks } from "./NavLinks";
@@ -9,7 +9,7 @@ import { NavLinks } from "./NavLinks";
 export function SiteHeader({ locale }: { locale: Locale }) {
   const logo = sainLogos["sain-color"];
   const homeHref = pageHref(locale, "home");
-  const links = navPages.map((page) => ({ href: pageHref(locale, page), label: ui.nav[page][locale] }));
+  const links = headerPages.map((page) => ({ href: pageHref(locale, page), label: ui.nav[page][locale] }));
 
   return (
     <header className="site-header">

@@ -5,7 +5,7 @@ import localFont from "next/font/local";
 // see docs/fonts.md. Licences: src/fonts/OFL-Inter.txt; Zona Pro is the
 // typeface named in Sain Motors' brand guideline (supplied files, 2026-10-20).
 
-/** Display face for headlines: Zona Pro, the Sain Motors brand typeface. Zona has no ₮; Inter supplies it. */
+/** Sain Motors wordmark and decorative brand lettering. Interface headings use the system/Inter stack. */
 export const zona = localFont({
   src: [
     { path: "../fonts/zona-pro-semibold.woff2", weight: "600", style: "normal" },

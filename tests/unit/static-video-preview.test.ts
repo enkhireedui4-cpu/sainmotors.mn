@@ -171,7 +171,7 @@ describe("static MP4 preview responses", () => {
   });
 
   it.each([
-    ["/", 302, "/mn/"],
+    ["/", 302, "/en/"],
     ["/mn?from=preview", 301, "/mn/?from=preview"],
     ["/en/brands/jetour/models?from=preview", 301, "https://jetour.mn/?from=preview"],
     ["/mn/brands/chery/", 301, "https://chery.mn/"],

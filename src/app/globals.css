@@ -1,7 +1,7 @@
 ﻿@import "tailwindcss";
 @theme {
-  --font-display: var(--font-zona), var(--font-inter), Arial, sans-serif;
-  --font-sans: var(--font-inter), Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-inter), sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", var(--font-inter), sans-serif;
   --color-signal: #e20a17;
   --color-signal-press: #bd0712;
   --color-cream: #ffffff;
@@ -16,9 +16,9 @@
 }
 *{box-sizing:border-box}
 html{background:var(--bg);scroll-padding-top:calc(var(--header-h) + 1rem);-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:1rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:1rem;font-weight:400;line-height:1.5;letter-spacing:-.01em;font-kerning:normal;font-optical-sizing:auto;-webkit-font-smoothing:antialiased}
 h1,h2,h3,p,figure,dl,dd{margin:0} h1,h2,h3{text-wrap:balance} p{text-wrap:pretty}
-h1,h2{font-family:var(--font-display);font-weight:500;letter-spacing:-.025em}
+h1,h2{font-family:var(--font-display);font-weight:600;letter-spacing:-.025em}
 h3{font-weight:600;line-height:1.35} a{color:inherit;text-decoration:none}
 button,select,input{font:inherit} button,a,select{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 button{cursor:pointer} img,video{display:block;max-width:100%;height:auto}
@@ -36,10 +36,10 @@ ul,ol{padding:0;margin:0;list-style:none} svg{flex-shrink:0}
 .section-head--split{display:flex;align-items:end;justify-content:space-between;gap:2rem}
 .section-head--split h2{max-width:39rem}.section-head--split>p{max-width:25rem}
 .actions{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem}
-.button{min-height:3.15rem;display:inline-flex;align-items:center;justify-content:center;gap:.65rem;padding:.7rem 1.3rem;border:1px solid transparent;border-radius:var(--radius);font-size:.875rem;font-weight:600;line-height:1.4;transition:background .18s var(--ease),border-color .18s var(--ease),color .18s var(--ease)}
+.button{min-height:3.15rem;display:inline-flex;align-items:center;justify-content:center;gap:.65rem;padding:.7rem 1.3rem;border:1px solid transparent;border-radius:var(--radius);font-size:.875rem;font-weight:400;line-height:1.4;transition:background .18s var(--ease),border-color .18s var(--ease),color .18s var(--ease)}
 .button--primary{background:var(--red);color:white}.button--primary:hover{background:#bd0712}
 .button--outline{border-color:#bcc5cb;background:transparent;color:var(--text)}.button--outline:hover{background:var(--surface);border-color:var(--text)}
-.text-link{display:inline-flex;align-items:center;gap:.65rem;min-height:3rem;font-size:.9rem;font-weight:600}
+.text-link{display:inline-flex;align-items:center;gap:.65rem;min-height:3rem;font-size:.9rem;font-weight:400}
 .text-link svg{transition:transform .18s var(--ease)}.text-link:hover{color:var(--red)}.text-link:hover svg{transform:translate(2px,-2px)}
 .skip-link{position:absolute;z-index:100;left:1rem;top:1rem;transform:translateY(-200%);padding:.8rem 1.25rem;background:white;color:var(--text);border:1px solid var(--line)}
 .skip-link:focus{transform:none}main:focus{outline:none}

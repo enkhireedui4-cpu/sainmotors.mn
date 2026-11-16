@@ -1,0 +1,49 @@
+/* One quiet cinematic sequence: the S is written, then the full name follows its movement. */
+.cinematic-hero { position:absolute; inset:0; isolation:isolate; }
+.cinematic-hero::after {
+  content:""; position:absolute; z-index:-1; inset:0; pointer-events:none;
+  background:linear-gradient(90deg,#02060e38,transparent 36%,#02060e12 68%,#02060e42),
+    linear-gradient(180deg,#02060e44,transparent 28%,#02060e12 52%,#02060ee0 100%);
+}
+.cinematic-hero__media { position:absolute; z-index:-3; inset:0; background:#030710; overflow:hidden; }
+.cinematic-hero__media img,.cinematic-hero__video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 50%; }
+.cinematic-hero__media img { filter:brightness(.74) saturate(.82); }
+.cinematic-hero__video { opacity:0; filter:brightness(.74) saturate(.82); transition:opacity 1.3s ease; }
+.cinematic-hero[data-media="ready"]:not([data-motion="reduced"]) .cinematic-hero__video { opacity:1; }
+.cinematic-hero__orbits { position:absolute; z-index:-2; inset:0; width:100%; height:100%; opacity:.58; pointer-events:none; }
+.cinematic-hero__orbit-light { animation:cinematic-orbit-light 38s linear infinite; }
+.cinematic-wordmark { display:block; width:100%; height:auto; overflow:visible; }
+.cinematic-wordmark text { font:italic 700 180px var(--font-zona),Arial,sans-serif; letter-spacing:0; }
+.cinematic-wordmark__initial { animation:cinematic-s-arrive 2.2s cubic-bezier(.65,0,.18,1) both; }
+.cinematic-wordmark__trace { animation:cinematic-s-draw 1.35s cubic-bezier(.45,0,.15,1) .18s both; }
+.cinematic-wordmark__initial-fill { animation:cinematic-s-fill .75s ease 1.08s both; }
+.cinematic-wordmark__letter { animation:cinematic-letter-in .9s cubic-bezier(.16,1,.3,1) var(--letter-delay) both; }
+.cinematic-hero .home-orbit-hero__service,.cinematic-hero .home-orbit-hero__promise,.cinematic-hero .home-orbit-hero__foot {
+  animation:cinematic-copy-in 1.2s ease 2.05s both;
+}
+.cinematic-hero[data-motion="static"] *,.cinematic-hero[data-motion="paused"] * { animation-play-state:paused; }
+.cinematic-hero[data-intro="complete"] .cinematic-wordmark__initial,
+.cinematic-hero[data-intro="complete"] .cinematic-wordmark__trace,
+.cinematic-hero[data-intro="complete"] .cinematic-wordmark__initial-fill,
+.cinematic-hero[data-intro="complete"] .cinematic-wordmark__letter,
+.cinematic-hero[data-intro="complete"] .home-orbit-hero__service,
+.cinematic-hero[data-intro="complete"] .home-orbit-hero__promise,
+.cinematic-hero[data-intro="complete"] .home-orbit-hero__foot { animation:none; opacity:1; transform:none; filter:none; }
+@keyframes cinematic-s-arrive { 0%,44% { transform:translateX(584px); } 100% { transform:translateX(0); } }
+@keyframes cinematic-s-draw { from { stroke-dashoffset:1200; opacity:.5; } to { stroke-dashoffset:0; opacity:1; } }
+@keyframes cinematic-s-fill { from { opacity:0; } to { opacity:1; } }
+@keyframes cinematic-letter-in { from { opacity:0; transform:translateX(-62px); filter:blur(7px); } to { opacity:1; transform:translateX(0); filter:blur(0); } }
+@keyframes cinematic-copy-in { from { opacity:0; } to { opacity:1; } }
+@keyframes cinematic-orbit-light { to { stroke-dashoffset:-2690; } }
+@media (max-width:47.99rem) {
+  .cinematic-hero__media img,.cinematic-hero__video { object-position:18% 50%; }
+  .cinematic-hero__orbits { width:200%; left:-50%; }
+  .cinematic-hero::after { background:linear-gradient(180deg,#02060e33,transparent 24%,#02060e33 53%,#02060eef 100%); }
+}
+@media (orientation:landscape) and (max-height:32rem) {
+  .cinematic-hero__media img,.cinematic-hero__video { object-position:50% 50%; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .cinematic-hero * { animation:none!important; transition:none!important; }
+  .cinematic-hero__video { opacity:0!important; }
+}
