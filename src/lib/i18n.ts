@@ -1,6 +1,6 @@
-export const locales = ["mn", "en"] as const;
+export const locales = ["en", "mn"] as const;
 export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = "mn";
+export const defaultLocale: Locale = "en";
 
 export type Localized<T = string> = Record<Locale, T>;
 

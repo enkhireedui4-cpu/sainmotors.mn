@@ -1,5 +1,5 @@
 // Serves the static export in out/ the way the Apache host will (see
-// public/.htaccess): "/" → /mn/, folders → index.html, unknown → 404.html.
+// public/.htaccess): "/" → /en/, folders → index.html, unknown → 404.html.
 // Run after `npm run build`:  npm run preview   (http://localhost:3300)
 import http from "node:http";
 import fs from "node:fs";
@@ -72,7 +72,7 @@ http
     const url = new URL(req.url ?? "/", "http://localhost");
     const pathname = decodeURIComponent(url.pathname);
     if (pathname === "/") {
-      res.writeHead(302, { Location: "/mn/" });
+      res.writeHead(302, { Location: "/en/" });
       return res.end();
     }
     const externalBrand = pathname.match(/^\/(?:mn|en)\/brands\/(jetour|chery)(?:\/.*)?$/)?.[1];

@@ -63,7 +63,7 @@
     },
     {
       "source": "/",
-      "destination": "/mn/",
+      "destination": "/en/",
       "permanent": false
     }
   ],
