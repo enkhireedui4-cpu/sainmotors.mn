@@ -174,6 +174,7 @@ export interface Service {
  * is still ahead and the content team has supplied a verified URL.
  */
 export interface DriveEvent {
+  category?: "news" | "media" | "csr";
   id: string;
   edition: number;
   /** Edition subtitle, e.g. "Off-road edition". */

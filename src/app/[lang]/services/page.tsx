@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ServiceList } from "@/components/ServiceList";
 import { LocationCard } from "@/components/LocationCard";
-import { SiteBanner } from "@/components/SiteBanner";
-import { SiteInvitation } from "@/components/SiteInvitation";
+import { PageBand } from "@/components/PageBand";
 import { Picture } from "@/components/Picture";
 import { getLocation, pages, services, sitePhotos, ui } from "@/content";
 import { experienceCopy } from "@/content/experience";
@@ -22,12 +21,12 @@ export default async function ServicesPage({ params }: Props) {
   const locale = (await params).lang as Locale;
   const page = pages.services;
   const team = page.team.value[locale];
-  const photo = sitePhotos.servicesHeader;
 
   return (
     <div className="services-design-page">
-      <SiteBanner title={page.meta.value[locale].title} lead={page.lead.value[locale]} leadDraft locale={locale} photo={photo} />
-        <nav className="container service-jump" aria-label={ui.nav.services[locale]}>{services.map(service => <Link key={service.id} href={`#service-${service.id}`} prefetch={false}>{service.title[locale]}</Link>)}</nav>
+      <PageBand locale={locale} title={page.meta.value[locale].title}>
+        <nav className="service-jump ob-chips" aria-label={ui.nav.services[locale]}>{services.map(service => <Link key={service.id} className="ob-chip" href={`#service-${service.id}`} prefetch={false}>{service.title[locale]}</Link>)}</nav>
+      </PageBand>
       <section className="section services-section">
         <div className="container services-page">
           <div>
@@ -58,7 +57,6 @@ export default async function ServicesPage({ params }: Props) {
           </figure>)}
         </div>
       </section>
-      <SiteInvitation locale={locale} />
     </div>
   );
 }

@@ -14,7 +14,8 @@ test("services opens with a readable photo banner and its shortcuts reach the co
     const page = await browser.newPage({ viewport: { width, height: 1080 }, reducedMotion: "no-preference" });
     try {
       await page.goto(`${base}/${locale}/services/`, { waitUntil: "networkidle" });
-      const banner = page.locator(".site-banner");
+      const banner = page.locator(".page-band");
+      assert.ok(await banner.locator(".service-jump a").count() > 0, `${locale}/${width}: service chips in the band`);
       assert.ok((await banner.boundingBox()).width >= width - 2, `${locale}/${width}: full banner`);
       const title = await banner.locator('h1').boundingBox();
       assert.ok(title.height > 20 && title.y >= 0);

@@ -3,7 +3,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { collectStatuses, company, getInternalBrands, hero } from "@/content";
+import { collectStatuses, company, contentRegistry, getInternalBrands, hero } from "@/content";
 
 afterEach(() => { vi.unstubAllEnvs(); vi.resetModules(); });
 
@@ -17,11 +17,16 @@ describe("publication review registry", () => {
       const csv = readFileSync(output, "utf8");
       for (const entry of collectStatuses()) expect(csv, entry.path).toContain(`"${entry.path}"`);
       expect(csv).toContain('"homeDiscover"');
-      expect(csv).toContain('"brands[1].teaser"');
-      expect(csv).not.toContain('"brands[0].summary"');
-      expect(csv).not.toContain('"brands[2].summary"');
-      expect(csv).toContain('"brands[1].cardCopy"');
-      expect(csv).toMatch(/"brands\[3\]\.gallery\[0\]"/);
+      const brandPath = (slug: string) => {
+        const index = contentRegistry.brands.findIndex(brand => brand.slug === slug);
+        expect(index, slug).toBeGreaterThanOrEqual(0);
+        return `brands[${index}]`;
+      };
+      expect(csv).toContain(`"${brandPath("soueast")}.teaser"`);
+      expect(csv).not.toContain(`"${brandPath("jetour")}.summary"`);
+      expect(csv).not.toContain(`"${brandPath("chery")}.summary"`);
+      expect(csv).toContain(`"${brandPath("soueast")}.cardCopy"`);
+      expect(csv).toContain(`"${brandPath("byd")}.gallery[0]"`);
       expect(csv).toContain('"Owner","Approver"');
       expect(csv).not.toContain("Энх-Ирээдүй (вэб)");
       expect(csv.charCodeAt(0)).toBe(0xfeff);

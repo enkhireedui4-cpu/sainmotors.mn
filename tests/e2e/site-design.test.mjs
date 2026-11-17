@@ -11,7 +11,7 @@ test('supporting pages give readable introductions and real onward routes in bot
     page.setDefaultTimeout(5000);
     for (const locale of ['mn', 'en']) for (const route of ['about', 'brands', 'services', 'locations', 'news']) {
       await page.goto(`${base}/${locale}/${route}/`);
-      const arrival = route === 'locations' ? '.network-hero' : '.site-banner';
+      const arrival = route === 'locations' ? '.network-hero' : '.page-band';
       await page.locator(`${arrival} h1`).waitFor();
       assert.equal(await page.locator('h1').count(), 1);
       assert.equal(await page.locator(`${arrival} a[href='/${locale}/']`).count(), 1);
@@ -19,8 +19,8 @@ test('supporting pages give readable introductions and real onward routes in bot
         assert.equal(await page.locator('.network-city').count(), 3);
         assert.equal(await page.locator('.location-directory__row').count(), 8);
       } else {
-        assert.equal(await page.locator('.site-banner img').count(), 1);
-        assert.equal(await page.locator(`.site-invitation a[href='/${locale}/locations/']`).count(), 1);
+        assert.equal(await page.locator('.page-band').evaluate(el => getComputedStyle(el).backgroundColor), 'rgb(0, 0, 0)');
+        assert.ok(await page.locator(`a[href='/${locale}/locations/']`).count() > 0);
       }
       const heading = await page.locator(`${arrival} h1`).boundingBox();
       assert.ok(heading.y >= 0 && heading.height > 20);

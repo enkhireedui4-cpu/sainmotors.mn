@@ -1,0 +1,49 @@
+.feedback-section { width:calc(100% - 2 * clamp(24px,7.86vw,150px)); max-width:1620px; margin-inline:auto; padding-block:clamp(52px,4.6875vw,90px); display:grid; grid-template-columns:minmax(240px,410px) minmax(0,1fr); gap:clamp(48px,6.25vw,120px); color:#000; font-size:clamp(14px,.9375vw,18px); line-height:1.4; letter-spacing:normal; }
+.feedback-intro h2 { margin:0 0 clamp(28px,2.08vw,40px); font:400 clamp(26px,1.875vw,36px)/1.37 var(--font-sans); letter-spacing:normal; text-wrap:wrap; }
+.feedback-intro p { margin-bottom:24px; }
+.feedback-contact-links { display:flex; flex-wrap:wrap; gap:12px 24px; font-size:14px; margin-top:28px; }
+.feedback-contact-links a { display:inline-flex; align-items:center; min-height:44px; text-decoration:underline; text-underline-offset:4px; overflow-wrap:anywhere; }
+.feedback-contact-links a:last-child { width:100%; }
+.feedback-form { min-width:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-areas:"identity identity" "fields comments" "consent action"; column-gap:clamp(32px,4.635vw,89px); row-gap:clamp(32px,2.6vw,50px); }
+.feedback-identity { grid-area:identity; display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin:0; padding:0; border:0; }
+.feedback-identity__option { cursor:pointer; }
+.feedback-identity__option span { display:flex; align-items:center; justify-content:center; min-height:52px; padding:12px 22px; border:1px solid transparent; border-radius:999px; text-align:center; }
+.feedback-identity__option input:checked + span { background:#000; color:#fff; }
+.feedback-identity__option input:focus-visible + span { outline:2px solid #000; outline-offset:3px; }
+.feedback-fields { grid-area:fields; min-width:0; display:grid; gap:clamp(38px,3.125vw,60px); align-content:start; }
+.feedback-field { min-width:0; }
+.feedback-field > label,.feedback-comments > label { display:block; color:#707070; margin-bottom:8px; }
+.feedback-field input,.feedback-field select { width:100%; min-width:0; height:42px; padding:0 0 10px; border:0; border-bottom:1px solid #000; border-radius:0; background:transparent; color:#000; font:inherit; }
+.feedback-comments { grid-area:comments; min-width:0; }
+.feedback-comments textarea { display:block; width:100%; height:clamp(180px,11.46vw,220px); padding:0; border:0; border-radius:0; resize:vertical; background:repeating-linear-gradient(to bottom,transparent 0,transparent 46px,#8e8e8e 47px,transparent 48px); color:#000; font:inherit; line-height:48px; }
+.feedback-form input:focus-visible,.feedback-form select:focus-visible,.feedback-form textarea:focus-visible { outline:2px solid #000; outline-offset:4px; }
+.feedback-notice { margin:0 0 18px; font-size:13px; line-height:1.5; color:#666; }
+.feedback-consent { grid-area:consent; }
+.feedback-consent label { display:flex; align-items:flex-start; gap:20px; cursor:pointer; }
+.feedback-consent input { flex:none; width:26px; height:26px; margin:4px 0 0; accent-color:#000; }
+.feedback-action { grid-area:action; }
+.feedback-submit { display:inline-flex; justify-content:center; align-items:center; min-width:min(100%,264px); min-height:54px; padding:14px 28px; border:1px solid #000; border-radius:999px; background:#000; color:#fff; font:inherit; }
+.feedback-submit:hover { background:#292929; }
+.feedback-submit:focus-visible { outline:2px solid #000; outline-offset:4px; }
+.feedback-error { margin-top:8px; color:#b41414; font-size:13px; }
+.feedback-prepared { margin-top:18px; font-size:14px; }
+.feedback-email-draft { display:inline-flex; align-items:center; min-height:44px; margin-top:8px; text-decoration:underline; text-underline-offset:4px; }
+.feedback-brand-routing { grid-column:1/-1; scroll-margin-top:calc(var(--header-h) + 20px); }
+@media (max-width:1100px) {
+ .feedback-section { grid-template-columns:minmax(210px,.8fr) minmax(0,1.5fr); gap:36px; }
+ .feedback-form { column-gap:24px; }
+ .feedback-identity__option span { padding-inline:14px; font-size:14px; }
+}
+@media (max-width:767px) {
+ .feedback-section { grid-template-columns:1fr; padding-block:40px 48px; gap:32px; font-size:15px; }
+ .feedback-intro h2 { font-size:26px; max-width:24ch; }
+ .feedback-contact-links { margin-top:18px; }
+ .feedback-form { grid-template-columns:1fr; grid-template-areas:"identity" "fields" "comments" "consent" "action"; gap:28px; }
+ .feedback-identity { gap:4px; }
+ .feedback-identity__option span { min-height:44px; padding:10px 12px; font-size:14px; }
+ .feedback-fields { gap:28px; }
+ .feedback-comments textarea { height:192px; }
+ .feedback-submit { width:100%; }
+ .feedback-consent input { width:22px; height:22px; margin-top:0; }
+ .feedback-consent label { gap:14px; }
+}

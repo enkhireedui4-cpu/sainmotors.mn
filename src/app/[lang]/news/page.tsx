@@ -1,8 +1,7 @@
 ﻿import type { Metadata } from "next";
-import { SiteBanner } from "@/components/SiteBanner";
-import { SiteInvitation } from "@/components/SiteInvitation";
 import { NewsList } from "@/components/NewsList";
-import { driveEvents, pages, sitePhotos } from "@/content";
+import { NewsDirectory } from "@/components/NewsDirectory";
+import { driveEvents, pages } from "@/content";
 import type { Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 type Props = { params: Promise<{ lang: string }> };
@@ -13,5 +12,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 export default async function NewsPage({ params }: Props) {
   const locale = (await params).lang as Locale;
-  return <div className="news-design-page"><SiteBanner title={pages.news.meta.value[locale].title} lead={pages.news.lead.value[locale]} leadDraft locale={locale} photo={driveEvents.find(event => event.edition === 7)?.film?.poster ?? sitePhotos.hero} /><section className="container news-page"><NewsList events={driveEvents} locale={locale} headingLevel="h2" /></section><SiteInvitation locale={locale} /></div>;
+  return <NewsDirectory locale={locale} articleCategories={driveEvents.map(event => event.category ?? "news")}><NewsList events={driveEvents} locale={locale} headingLevel="h2" /></NewsDirectory>;
 }

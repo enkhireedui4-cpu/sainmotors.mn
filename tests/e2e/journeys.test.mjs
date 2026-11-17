@@ -37,7 +37,7 @@ test('brand search, enquiry routing, history and language form a working journey
   } finally { await browser.close(); }
 });
 
-test('same-route header navigation clears stale enquiry and catalogue selection', async () => {
+test('same-route header navigation clears stale enquiry and the footer opens Dealer network', async () => {
   const browser = await chromium.launch({ executablePath, headless: true });
   try {
     const page = await browser.newPage({ viewport: { width: 1440, height: 960 } });
@@ -51,10 +51,9 @@ test('same-route header navigation clears stale enquiry and catalogue selection'
     await page.goto(`${base}/en/brands/?q=S08`);
     await page.locator('.brand-catalogue[data-ready=true]').waitFor();
     assert.equal(await page.locator('.discovery-card:visible').count(), 1);
-    await page.locator('.site-footer').getByRole('link', { name: 'Brands', exact: true }).click();
-    await page.waitForURL('**/en/brands/');
-    await page.waitForFunction(() => document.querySelector('#brand-search')?.value === '', null, { timeout: 3000 });
-    assert.equal(await page.locator('.discovery-card:visible').count(), 11);
+    await page.locator('.site-footer').getByRole('link', { name: 'Dealer network', exact: true }).click();
+    await page.waitForURL('**/en/locations/');
+    assert.equal(await page.locator('.site-footer').getByRole('link', { name: 'Brands', exact: true }).count(), 0);
   } finally { await browser.close(); }
 });
 

@@ -56,7 +56,7 @@ describe("location directory", () => {
     const serviceCentre = locations.find((location) => location.id === "service-centre")!;
     const showroom = locations.find((location) => location.id === "sansar")!;
     expect(getLocationBrands(serviceCentre, brands).map((brand) => brand.slug)).toEqual(["jetour"]);
-    expect(getLocationBrands(showroom, brands).map((brand) => brand.slug)).toEqual(["aito", "bestune", "hongqi"]);
+    expect(getLocationBrands(showroom, brands).map((brand) => brand.slug)).toEqual(["hongqi", "bestune", "aito"]);
     expect(getLocationBrands(serviceCentre, brands.map((brand) => ({ ...brand, published: false })))).toEqual([]);
     const before = JSON.stringify(locations);
     filterLocations(locations, brands, { brand: "maxus", city: "darkhan" });

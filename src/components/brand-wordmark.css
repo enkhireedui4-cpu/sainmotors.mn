@@ -1,0 +1,2 @@
+.wordmark-crop { position:relative; display:block; flex-shrink:0; width:calc(var(--brand-mark-size,2.5rem) * var(--wordmark-scale,1) * sqrt(var(--wordmark-aspect,6))); max-width:min(100%,8.5rem); aspect-ratio:var(--wordmark-aspect,6); overflow:hidden; }
+.wordmark-crop .brand-mark { position:absolute; left:var(--wordmark-offset-x,0%); top:var(--wordmark-offset-y,0%); width:var(--wordmark-source-width,100%); height:var(--wordmark-source-height,100%); max-width:none; max-height:none; object-fit:fill; filter:brightness(0) invert(1); }

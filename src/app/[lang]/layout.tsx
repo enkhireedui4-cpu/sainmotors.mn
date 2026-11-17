@@ -15,6 +15,7 @@ import "../globals.css";
 import "../experience.css";
 import "../site-system.css";
 import "@/components/site-header.css";
+import "../orbis-pages.css";
 
 export const dynamicParams = false;
 
@@ -55,7 +56,7 @@ export default async function LangLayout({
   return (
     <html lang={lang} className={`${zona.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>{!IS_RELEASE && <script dangerouslySetInnerHTML={{ __html: REVIEW_SCRIPT }} />}</head>
-      <body>
+      <body id="top">
         <Suspense fallback={null}><QueryNavigationSync /></Suspense>
         <JsonLd data={organizationGraph()} />
         <a className="skip-link" href="#main">

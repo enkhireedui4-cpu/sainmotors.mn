@@ -1,5 +1,4 @@
 ﻿import "@/app/brands.css";
-import Link from "next/link";
 import { brandPhone, getBrands, getLocation, getPhoto, liveLinks, ui } from "@/content";
 import type { InternalBrand, BrandLink } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
@@ -10,6 +9,7 @@ import { BrandScrollHero } from "./BrandScrollHero";
 import { CorporateBrands } from "./CorporateBrands";
 import { BrandMark } from "./BrandMark";
 import { BrandActions } from "./BrandActions";
+import { PageBand } from "./PageBand";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbGraph } from "@/lib/structured-data";
 import { Icon } from "./Icon";
@@ -53,10 +53,7 @@ export function BrandDetail({ brand, locale }: { brand: InternalBrand; locale: L
   return <div className="brand-detail">
     <JsonLd data={breadcrumbGraph([{ name: "Sain Motors", path: `/${locale}/` }, { name: ui.nav.brands[locale], path: `/${locale}/brands/` }, { name: brand.name, path: `/${locale}/brands/${brand.slug}/` }])} />
     <div className="brand-hero">
-      <div className="brand-title"><div className="container">
-        <nav aria-label={ui.breadcrumb[locale]}><ol className="breadcrumb"><li><Link href={pageHref(locale, "brands")}>{ui.nav.brands[locale]}</Link><span aria-hidden="true">/</span></li></ol></nav>
-        <div className="brand-title__row"><h1 translate="no">{brand.name}</h1><BrandActions brand={brand} locale={locale} /></div>
-      </div></div>
+      <PageBand locale={locale} title={brand.name} translate="no" className="brand-title" crumbs={[{ href: pageHref(locale, "brands"), label: ui.nav.brands[locale] }]}><BrandActions brand={brand} locale={locale} /></PageBand>
       {photo && asset && <BrandScrollHero aspectRatio={`${asset.width} / ${asset.height}`}><figure className="brand-hero__image" style={{ backgroundColor: asset.color, aspectRatio: `${asset.width} / ${asset.height}` }}>
         <Picture photo={photo} locale={locale} sizes={`(max-width: 639px) ${Math.max(100, Math.ceil(asset.width / asset.height * 125))}vw, 100vw`} priority />
       </figure></BrandScrollHero>}

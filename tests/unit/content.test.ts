@@ -25,9 +25,9 @@ const TEL = /^tel:\+976\d{8}$/;
 describe("brands", () => {
   const brands = getBrands();
 
-  it("are the eleven brands of the reconciled list, in banner order with HONGQI last", () => {
+  it("are the eleven brands in the company banner order supplied on 2026-11-17", () => {
     expect(brands.map((b) => b.slug)).toEqual([
-      "jetour", "soueast", "chery", "byd", "riddara", "aito", "212", "bestune", "rely", "maxus", "hongqi",
+      "byd", "hongqi", "chery", "jetour", "bestune", "aito", "maxus", "soueast", "212", "riddara", "rely",
     ]);
   });
 

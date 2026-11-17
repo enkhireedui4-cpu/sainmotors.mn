@@ -1,0 +1,38 @@
+.site-footer.orbis-footer { padding:clamp(72px,6.155vw,118px) 0; background:#000; color:#fff; --focus:#fff; font:400 clamp(14px,.9375vw,18px)/1.4 var(--font-sans); letter-spacing:normal; }
+.orbis-footer__inner { width:calc(100% - 2 * clamp(24px,7.8vw,150px)); max-width:1620px; margin-inline:auto; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.5fr); gap:clamp(60px,13vw,250px); align-items:start; }
+.orbis-footer__brand { max-width:540px; }
+.orbis-footer__brand > a:first-child { display:inline-block; margin-bottom:28px; }
+.orbis-footer__brand img { width:221px; height:42px; object-fit:contain; object-position:left center; }
+.orbis-footer__brand p { color:#fff; font:inherit; text-wrap:pretty; }
+.orbis-footer__privacy { display:inline-flex; align-items:center; min-height:44px; margin-top:10px; font-size:.8em; color:#b7b7b7; }
+.orbis-footer__right { min-width:0; }
+.orbis-footer__right nav { display:flex; align-items:center; flex-wrap:wrap; gap:clamp(20px,1.40625vw,27px); }
+.orbis-footer__right nav a { position:relative; display:inline-flex; align-items:center; min-height:44px; padding-right:clamp(36px,2.604vw,50px); }
+.orbis-footer__right nav a::after { content:""; position:absolute; top:10px; right:0; width:1px; height:24px; background:#fff; opacity:.45; transform:skew(-45deg); transform-origin:top left; }
+.orbis-footer__bottom { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px 24px; margin-top:clamp(48px,4.2vw,80px); }
+.orbis-footer__bottom p { font:inherit; white-space:nowrap; }
+.orbis-footer__socials { display:flex; align-items:center; gap:20px; }
+.orbis-footer__socials a { display:inline-flex; align-items:center; justify-content:center; width:24px; min-height:44px; }
+.orbis-footer__top { display:inline-flex; align-items:center; gap:10px; min-height:44px; white-space:nowrap; }
+.site-footer.orbis-footer a { transition:opacity .15s; }
+.site-footer.orbis-footer a:hover { color:inherit; opacity:.55; }
+.site-footer.orbis-footer a:focus-visible { outline:2px solid #fff; outline-offset:5px; }
+@media (max-width:1023px) {
+  .orbis-footer__inner { grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:40px; }
+  .orbis-footer__right nav { gap:16px; }
+  .orbis-footer__right nav a { padding-right:28px; }
+  .orbis-footer__bottom { gap:16px; }
+}
+@media (max-width:767px) {
+  .site-footer.orbis-footer { padding-block:52px 32px; font-size:14px; }
+  .orbis-footer__inner { grid-template-columns:1fr; gap:28px; text-align:center; }
+  .orbis-footer__brand { margin-inline:auto; max-width:440px; }
+  .orbis-footer__brand > a:first-child { margin-bottom:22px; }
+  .orbis-footer__brand img { object-position:center; }
+  .orbis-footer__right nav { justify-content:center; gap:12px; }
+  .orbis-footer__right nav a { padding-right:22px; }
+  .orbis-footer__right nav a::after { height:18px; top:13px; }
+  .orbis-footer__bottom { justify-content:center; margin-top:24px; gap:12px 24px; }
+  .orbis-footer__socials { justify-content:center; width:100%; }
+}
+@media (prefers-reduced-motion:reduce) { .site-footer.orbis-footer a { transition:none; } }

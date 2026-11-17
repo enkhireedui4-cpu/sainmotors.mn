@@ -1,8 +1,7 @@
 import type { Brand, BrandLink } from "./types";
 
-// Eleven brands: the ten on the company's own brand banner (2026-10-15) in its
-// order, plus HONGQI, which has a full brand sheet and distributor statement
-// on Drive. Facts come from the brand teams' Drive sheets (2026-10-16); see
+// Eleven brands in the order of the company banner supplied by the user
+// on 2026-11-17. Facts come from the brand teams' Drive sheets (2026-10-16); see
 // docs/content-sources.md for file IDs and the conflicts still open.
 //
 // Status: sheet text is "sourced" (received, not approved). Where the web team
@@ -28,7 +27,7 @@ export const brands: Brand[] = [
     slug: "jetour",
     name: "JETOUR",
     published: true,
-    order: 1,
+    order: 4,
     links: [site("https://jetour.mn/", true, "2026-11-11")],
     location: "jetour-c1",
     phone: phone("72778855"),
@@ -54,7 +53,7 @@ export const brands: Brand[] = [
     },
     name: "SOUEAST",
     published: true,
-    order: 2,
+    order: 8,
     accent: GRAPHITE,
     summary: {
       status: "sourced",
@@ -113,7 +112,7 @@ export const brands: Brand[] = [
     },
     name: "BYD",
     published: true,
-    order: 4,
+    order: 1,
     accent: GRAPHITE,
     summary: {
       status: "sourced",
@@ -195,7 +194,7 @@ export const brands: Brand[] = [
     },
     name: "RIDDARA",
     published: true,
-    order: 5,
+    order: 10,
     accent: GRAPHITE,
     summary: {
       status: "sourced",
@@ -300,7 +299,7 @@ export const brands: Brand[] = [
     },
     name: "212",
     published: true,
-    order: 7,
+    order: 9,
     accent: GRAPHITE,
     summary: {
       status: "sourced",
@@ -356,7 +355,7 @@ export const brands: Brand[] = [
     },
     name: "FAW BESTUNE",
     published: true,
-    order: 8,
+    order: 5,
     accent: GRAPHITE,
     summary: {
       status: "sourced",
@@ -406,7 +405,7 @@ export const brands: Brand[] = [
     },
     name: "CHERY RELY",
     published: true,
-    order: 9,
+    order: 11,
     accent: GRAPHITE,
     summary: {
       status: "sourced",
@@ -455,7 +454,7 @@ export const brands: Brand[] = [
     },
     name: "MAXUS",
     published: true,
-    order: 10,
+    order: 7,
     accent: GRAPHITE,
     summary: {
       status: "sourced",
@@ -504,7 +503,7 @@ export const brands: Brand[] = [
     },
     name: "FAW HONGQI",
     published: true,
-    order: 11,
+    order: 2,
     accent: GRAPHITE,
     summary: {
       status: "sourced",

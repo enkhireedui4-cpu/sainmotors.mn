@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { headerPages, navPages } from "@/lib/routes";
+import { footerPages, headerPages } from "@/lib/routes";
 
 describe("site navigation", () => {
   it("puts Dealer network where Brands used to be in the top menu", () => {
@@ -7,7 +7,8 @@ describe("site navigation", () => {
     expect(headerPages).not.toContain("brands");
   });
 
-  it("keeps Brands reachable from the footer list", () => {
-    expect(navPages).toContain("brands");
+  it("replaces the removed Brands footer menu with Dealer network", () => {
+    expect(footerPages).toEqual(["about", "locations", "contact"]);
+    expect(footerPages).not.toContain("brands");
   });
 });

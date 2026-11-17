@@ -15,10 +15,9 @@ export const pagePaths = {
 
 export type PageKey = keyof typeof pagePaths;
 
-export const navPages = ["about", "brands", "services", "locations", "news", "contact"] as const satisfies readonly PageKey[];
-
-/** Top menu (desktop and mobile): Dealer network takes the place Brands had; the footer keeps every page. */
+/** Site menus use Dealer network as the destination for finding showrooms. */
 export const headerPages = ["about", "locations", "services", "news", "contact"] as const satisfies readonly PageKey[];
+export const footerPages = ["about", "locations", "contact"] as const satisfies readonly PageKey[];
 
 export function pageHref(locale: Locale, page: PageKey): string {
   return localePath(locale, pagePaths[page]);

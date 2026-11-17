@@ -10,7 +10,7 @@ import { Picture } from "./Picture";
 export function NewsList({ events, locale, headingLevel = "h3" }: { events: DriveEvent[]; locale: Locale; headingLevel?: "h2" | "h3" }) {
   const copy = corporateHome.value[locale];
   const Heading = headingLevel;
-  return <div className="news-list">{events.map(event => <article key={event.id} data-status={event.status === "draft" ? "draft" : undefined}>
+  return <div className="news-list">{events.map(event => <article key={event.id} data-news-type={event.category ?? "news"} data-status={event.status === "draft" ? "draft" : undefined}>
     <Link href={newsHref(locale, event.id)} prefetch={false} className="news-card">
       <div className={`news-card__media${event.film ? "" : " news-card__media--date"}`}>
         {event.film ? <Picture photo={event.film.poster} locale={locale} sizes="(min-width: 64rem) 30vw, 90vw" /> : <><span>MEGA<br />TEST DRIVE</span><span className="news-card__edition">{String(event.edition).padStart(2, "0")}</span></>}

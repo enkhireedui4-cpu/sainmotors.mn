@@ -1,98 +1,71 @@
-import type { Metadata } from "next";
+﻿import type {Metadata} from "next";
 import Link from "next/link";
-import { BrandMark } from "@/components/BrandMark";
-import { draftAttr } from "@/lib/content-status";
-import { Icon } from "@/components/Icon";
-import { SiteBanner } from "@/components/SiteBanner";
-import { SiteInvitation } from "@/components/SiteInvitation";
-import { CompanyFacts } from "@/components/CompanyFacts";
-import { Picture } from "@/components/Picture";
-import { company, getBrand, pages, sitePhotos, ui } from "@/content";
-import type { Locale } from "@/lib/i18n";
-import { brandHref, pageHref } from "@/lib/routes";
-import { pageMetadata } from "@/lib/seo";
+import {AboutShowroomFilm} from "@/components/AboutShowroomFilm";
+import {BrandWordmark} from "@/components/BrandWordmark";
+import {Icon} from "@/components/Icon";
+import {PageBand} from "@/components/PageBand";
+import {Picture} from "@/components/Picture";
+import {getBrands,pages,sitePhotos} from "@/content";
+import type {Locale} from "@/lib/i18n";
+import {brandHref,pageHref} from "@/lib/routes";
+import {pageMetadata} from "@/lib/seo";
+import "./about.css";
 
-type Props = { params: Promise<{ lang: string }> };
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const locale = (await params).lang as Locale;
-  const meta = pages.about.meta.value[locale];
-  return pageMetadata({ locale, path: "about", title: meta.title, description: meta.description });
+type Props={params:Promise<{lang:string}>};
+export async function generateMetadata({params}:Props):Promise<Metadata>{
+ const locale=(await params).lang as Locale;
+ const meta=pages.about.meta.value[locale];
+ return pageMetadata({locale,path:"about",title:meta.title,description:meta.description});
 }
 
-export default async function AboutPage({ params }: Props) {
-  const locale = (await params).lang as Locale;
-  const page = pages.about;
-  const photo = sitePhotos.aboutHeader;
-
-  return (
-    <div className="about-page">
-      <SiteBanner title={page.meta.value[locale].title} lead={page.lead.value[locale]} leadDraft locale={locale} photo={photo} />
-      <section className="container company-introduction"><p data-status={company.distributorClaim.status}>{company.distributorClaim.value[locale]}</p><CompanyFacts locale={locale} /></section>
-
-      <section className="section">
-        <div className="container prose-grid">
-          {page.sections.map((section) => (
-            <section key={section.value.en.heading} data-status={draftAttr(section)}>
-              <h2 className="heading-2">{section.value[locale].heading}</h2>
-              <p>{section.value[locale].body}</p>
-            </section>
-          ))}
-        </div>
-      </section>
-
-      <section className="section section--alt" aria-labelledby="milestones-heading">
-        <div className="container">
-          <div className="section-head">
-            <h2 id="milestones-heading" className="heading-2" data-status={draftAttr(page.milestones)}>
-              {page.milestones.value[locale].heading}
-            </h2>
-            <p data-status={draftAttr(page.milestones)}>{page.milestones.value[locale].body}</p>
-          </div>
-          <ol className="timeline" data-status={draftAttr(company.milestones)}>
-            {company.milestones.items.map((item) => (
-              <li key={item.year}>
-                <p className="timeline__year">{item.year}</p>
-                <ul className="timeline__brands">
-                  {item.brands.map((slug) => {
-                    const brand = getBrand(slug);
-                    if (!brand) return null;
-                    return (
-                      <li key={slug}>
-                        <Link href={brandHref(locale, slug)} aria-label={brand.name}>
-                          <BrandMark brand={brand} locale={locale} size="small" decorative />
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container about-close">
-          <figure>
-            <Picture photo={sitePhotos.aboutDetail} locale={locale} sizes="(min-width: 60rem) 44rem, 100vw" />
-          </figure>
-          <div className="about-close__copy" data-status={draftAttr(page.closing)}>
-            <h2 className="heading-2">{page.closing.value[locale].heading}</h2>
-            <p>{page.closing.value[locale].body}</p>
-            <div className="flex flex-wrap gap-3 pt-2">
-              <Link className="button button--primary" href={pageHref(locale, "locations")}>
-                {ui.nav.locations[locale]}
-                <Icon name="chevronRight" size={18} />
-              </Link>
-              <Link className="button button--outline" href={pageHref(locale, "brands")}>
-                {ui.nav.brands[locale]}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      <SiteInvitation locale={locale} />
-    </div>
-  );
+export default async function AboutPage({params}:Props){
+ const locale=(await params).lang as Locale;
+ const text=locale==="mn"?{
+  statement:"SAIN Motors нь 11 автомашины брэндийг нэгтгэсэн групп компани юм.",
+  intro:"Бид автомашины борлуулалт, борлуулалтын дараах үйлчилгээг брэндийн салбаруудаараа дамжуулан хүргэдэг. Манай салбаруудаас загварын мэдээлэл, худалдан авалтын зөвлөгөө болон засвар үйлчилгээний мэдээлэл авах боломжтой.",
+  brands:"Манай брэндүүд",
+  service:"Автомашин сонгохоос эхлээд засвар үйлчилгээ хүртэл бид танд тусална.",
+  serviceBody:"Манай салбаруудаар зочилж загваруудтай биечлэн танилцаарай. Худалдан авалт болон борлуулалтын дараах үйлчилгээний талаар манай багаас зөвлөгөө авах боломжтой.",
+  locations:"Салбарууд харах",services:"Үйлчилгээтэй танилцах",
+  pause:"Дэвсгэр бичлэгийг зогсоох",play:"Дэвсгэр бичлэгийг тоглуулах",care:"Борлуулалт ба үйлчилгээ",outline:"АВТОМАШИН · БОРЛУУЛАЛТ · ҮЙЛЧИЛГЭЭ",
+ }:{
+  statement:"SAIN Motors is a group company bringing together 11 automotive brands.",
+  intro:"We provide vehicle sales and after-sales service through our brand showrooms. Visit our locations for model information, advice on purchasing, and information about maintenance and repairs.",
+  brands:"Our brands",
+  service:"From choosing your car to taking care of it, we are here to help.",
+  serviceBody:"Visit our showrooms to explore the models in person. Our team can advise you on purchasing and after-sales service.",
+  locations:"View showrooms",services:"Explore our services",
+  pause:"Pause background video",play:"Play background video",care:"Sales and service",outline:"AUTOMOTIVE SALES & SERVICE",
+ };
+ const brands=getBrands();
+ const sales=sitePhotos.showroomTour.find(photo=>photo.key==="showroom-up-close")!;
+ return <div className="about-page corporate-about">
+  <PageBand locale={locale} title={pages.about.meta.value[locale].title}/>
+  <section className="about-network" aria-labelledby="about-statement">
+   <AboutShowroomFilm labels={{pause:text.pause,play:text.play}}/>
+   <div className="about-story__inner">
+    <h2 id="about-statement">{text.statement}</h2>
+    <p className="about-story__body">{text.intro}</p>
+   </div>
+   <div className="about-network__inner">
+    <h2 id="about-brands-heading">{text.brands}</h2>
+    <ul className="about-network__brands">{brands.map(brand=><li key={brand.slug}>
+     <Link href={brandHref(locale,brand.slug)} prefetch={false} aria-label={brand.name} title={brand.name}><BrandWordmark brand={brand} locale={locale}/></Link>
+    </li>)}</ul>
+   </div>
+  </section>
+  <section className="about-care" aria-labelledby="about-care-heading">
+   <div className="about-care__outline" aria-hidden="true">{text.outline}</div>
+   <div className="about-care__inner">
+    <p className="about-care__label">{text.care}</p>
+    <h2 id="about-care-heading">{text.service}</h2>
+    <figure className="about-care__sales"><Picture photo={sales} locale={locale} sizes="(min-width: 768px) 45vw, 80vw"/></figure>
+    <figure className="about-care__service"><Picture photo={{...sitePhotos.servicesTeaser,focus:"32% 55%"}} locale={locale} sizes="(min-width: 768px) 45vw, 80vw"/></figure>
+    <div className="about-care__copy"><p>{text.serviceBody}</p><div className="about-care__links">
+     <Link href={pageHref(locale,"locations")} prefetch={false}>{text.locations}<Icon name="arrowUpRight" size={18}/></Link>
+     <Link href={pageHref(locale,"services")} prefetch={false}>{text.services}<Icon name="arrowUpRight" size={18}/></Link>
+    </div></div>
+   </div>
+  </section>
+ </div>;
 }

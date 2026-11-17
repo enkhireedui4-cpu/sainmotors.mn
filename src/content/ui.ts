@@ -14,6 +14,7 @@ export const ui = {
   home: { mn: "Sain Motors нүүр хуудас", en: "Sain Motors home page" },
   mainNav: { mn: "Үндсэн цэс", en: "Main navigation" },
   breadcrumb: { mn: "Хуудасны зам", en: "Breadcrumb" },
+  homeCrumb: { mn: "Нүүр хуудас", en: "Home page" },
   menu: { mn: "Цэс", en: "Menu" },
   closeMenu: { mn: "Цэс хаах", en: "Close menu" },
   language: { mn: "Хэл", en: "Language" },

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { draftAttr } from "@/lib/content-status";
-import { PageHero } from "@/components/PageHero";
+import { PageBand } from "@/components/PageBand";
 import { contact, pages, ui } from "@/content";
 import type { Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
@@ -25,11 +25,11 @@ export default async function PrivacyPage({ params }: Props) {
 
   return (
     <>
-      <PageHero title={page.meta.value[locale].title}>
-        <p className="mt-4 text-sm muted">
+      <PageBand locale={locale} title={page.meta.value[locale].title}>
+        <p className="page-band__note">
           {ui.updated[locale]}: <time dateTime={UPDATED}>{formatDate(UPDATED, locale)}</time>
         </p>
-      </PageHero>
+      </PageBand>
 
       <div className="container">
         <p className="notice measure" data-status={draftAttr(page.review)}>
