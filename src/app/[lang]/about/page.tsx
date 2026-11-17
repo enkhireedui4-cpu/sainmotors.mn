@@ -2,6 +2,7 @@
 import Link from "next/link";
 import {AboutShowroomFilm} from "@/components/AboutShowroomFilm";
 import {AboutPhilosophyStatement} from "@/components/AboutPhilosophyStatement";
+import {AboutOutlineSlogan} from "@/components/AboutOutlineSlogan";
 import {BrandWordmark} from "@/components/BrandWordmark";
 import {Icon} from "@/components/Icon";
 import {PageBand} from "@/components/PageBand";
@@ -40,7 +41,7 @@ export default async function AboutPage({params}:Props){
    </div>
   </section>
   <section className="about-care" aria-labelledby="about-care-heading">
-   <svg className="about-care__outline" viewBox="0 0 1920 87" aria-hidden="true"><text x="0" y="82" textLength="1920" lengthAdjust="spacingAndGlyphs">{text.outline}</text></svg>
+   <AboutOutlineSlogan text={text.outline}/>
    <div className="about-care__inner">
     <p className="about-care__label">{text.philosophyLabel}</p>
     <AboutPhilosophyStatement text={text.philosophy}/>

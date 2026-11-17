@@ -13,7 +13,7 @@
 .about-film__toggle:focus-visible { outline:2px solid #fff; outline-offset:4px; }
 .about-story__inner { width:calc(100% - 2 * var(--ob-gutter)); max-width:1072px; margin-inline:auto; padding-top:clamp(64px,6.2vw,119px); }
 .about-story__inner h2 { margin:0 auto; max-width:26ch; font:300 clamp(30px,2.61vw,50px)/1.3 var(--font-sans); letter-spacing:normal; text-transform:uppercase; text-align:center; text-wrap:balance; }
-.about-story__body { max-width:515px; width:48%; margin:clamp(28px,1.8vw,34px) 0 0 auto; padding-left:clamp(22px,1.56vw,30px); border-left:1px solid #ffffff73; font-size:clamp(15px,.94vw,18px); line-height:1.45; color:#fff; text-wrap:pretty; }
+.about-story__body { max-width:515px; width:48%; margin:clamp(28px,1.8vw,34px) auto 0; padding-inline:clamp(11px,.78vw,15px); font-size:clamp(15px,.94vw,18px); line-height:1.45; color:#fff; text-align:center; text-wrap:pretty; }
 .about-network__inner { width:calc(100% - 2 * var(--ob-gutter)); max-width:1352px; margin:clamp(72px,5.36vw,103px) auto 0; text-align:center; }
 .about-network h2#about-brands-heading { margin:0; font:400 clamp(15px,.94vw,18px)/1.4 var(--font-sans); }
 .about-network__brands { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:22px 24px; max-width:1352px; margin:clamp(32px,3.05vw,58px) auto 0; padding:0; list-style:none; }
@@ -24,7 +24,7 @@
 .about-network__brands a:focus-visible { outline:2px solid #fff; outline-offset:5px; background:#0008; }
 .about-care { position:relative; overflow:hidden; padding-top:clamp(36px,4.17vw,80px); }
 .about-care__outline { display:block; width:100%; height:auto; overflow:hidden; user-select:none; }
-.about-care__outline text { font:400 110px var(--font-sans); fill:none; stroke:#d9d9d9; stroke-width:2; }
+.about-care__outline path { fill:none; stroke:#d9d9d9; stroke-width:3.5; stroke-linejoin:round; }
 .about-care__inner { position:relative; padding:clamp(44px,3.65vw,70px) var(--ob-gutter) clamp(72px,4.7vw,90px); }
 .about-care__label { margin:0 0 20px; font-size:clamp(14px,.94vw,18px); line-height:1.4; text-align:center; text-transform:uppercase; }
 .about-care h2 { max-width:1078px; width:66%; margin:0 auto; font:400 clamp(30px,2.34vw,45px)/1.3 var(--font-sans); letter-spacing:normal; text-transform:uppercase; text-align:center; text-wrap:balance; }
@@ -82,7 +82,7 @@
  .about-film::after { background:linear-gradient(180deg,#000c,#0009 55%,#000a); }
  .about-story__inner { padding-top:40px; }
  .about-story__inner h2 { font-size:clamp(24px,5.9vw,36px); line-height:1.3; max-width:25ch; }
- .about-story__body { width:100%; max-width:none; margin-top:32px; padding-left:22px; font-size:15px; line-height:1.5; }
+ .about-story__body { width:100%; max-width:none; margin-top:32px; padding-inline:11px; font-size:15px; line-height:1.5; }
  .about-network__inner { margin-top:56px; }
  .about-network h2#about-brands-heading { font-size:16px; }
  .about-network__brands { grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px 10px; margin-top:30px; }
