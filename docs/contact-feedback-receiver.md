@@ -6,6 +6,10 @@ The static contact form submits JSON to the separate `submit-feedback` Supabase 
 
 The code and migration are prepared locally. This change does not apply migrations, deploy functions, create production records, or send email.
 
+On the prepared Windows checkout, open `scripts/deploy-feedback.cmd` in a normal authenticated terminal. It uses the existing ignored Supabase CLI installation and state directory, starts browser login if needed, verifies that the two existing R8 migrations are already recorded, previews and applies only the pending contact migration, configures exact production and local-preview origins, and deploys only `submit-feedback`. It refuses unknown local migrations and leaves the R8 function unchanged. Run `node scripts/deploy-feedback.mjs --check` for offline preparation checks without authentication or network access.
+
+The launcher then runs `scripts/verify-feedback-deployment.mjs`, which checks private table privileges, CORS, rejected input, and one explicitly synthetic request. It verifies the acknowledged database row and removes only that exact synthetic row. A successful verification writes `.tmp-assets/feedback-deployment-verification.json`; a failed fresh check cannot retain an old success receipt. The receipt is local and ignored by Git. No customer requests are printed. If the restricted agent shell cannot reach Supabase's API, run the launcher from the user's normal terminal; never copy an access token into chat or source control.
+
 1. Apply `supabase/migrations/20261117120000_create_feedback_requests.sql` to the intended Supabase project using the normal migration process.
 2. Deploy `submit-feedback` with gateway JWT verification disabled for this public form (`[functions.submit-feedback] verify_jwt = false` in `supabase/config.toml`). The handler still validates origins, fields, consent, content type, and body size.
 3. Provide server-only `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` through the Edge Function environment. Supabase-hosted functions normally provide these. Never expose the service-role key to the frontend or any `NEXT_PUBLIC_*` variable.
