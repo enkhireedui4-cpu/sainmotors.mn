@@ -20,15 +20,14 @@ test("mobile portrait and landscape keep the hero copy and touch controls inside
         const box=s=>document.querySelector(s).getBoundingClientRect().toJSON();
         return {
           hero:box(".home-orbit-hero"),promise:box(".home-orbit-hero__promise"),foot:box(".home-orbit-hero__foot"),
-          discover:box(".home-orbit-hero__discover"),font:parseFloat(getComputedStyle(document.querySelector(".home-orbit-hero__description")).fontSize),
+          social:box(".home-orbit-hero__socials a"),
           viewport:innerHeight,overflow:document.documentElement.scrollWidth>innerWidth+1,
         };
       });
       assert.ok(Math.abs(layout.hero.bottom-layout.viewport)<2,locale+" "+width+"x"+height+": opening must fit one screen");
       assert.ok(layout.foot.top>=layout.promise.bottom+8,locale+" "+width+"x"+height+": copy must not overlap");
       assert.ok(layout.foot.bottom<=layout.viewport-8);
-      assert.ok(layout.discover.width>=44&&layout.discover.height>=44);
-      assert.ok(layout.font>=12);
+      assert.ok(layout.social.width>=44&&layout.social.height>=44);
       assert.equal(layout.overflow,false);
     }
   }finally{await page.close();}
@@ -60,7 +59,7 @@ test("without JavaScript the complete wordmark, poster and readable header remai
     await page.goto(base+"/en/",{waitUntil:"networkidle"});
     assert.equal(await page.locator(".cinematic-wordmark__letter").last().evaluate(el=>getComputedStyle(el).opacity),"1");
     assert.equal(await page.locator(".home-orbit-hero__motion").isVisible(),false);
-    assert.equal(await page.locator(".site-header").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(3, 7, 16)");
+    assert.equal(await page.locator(".site-header").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
     assert.ok(await page.locator(".cinematic-hero__media img").evaluate(el=>el.complete&&el.naturalWidth>0));
     assert.deepEqual(films,[]);
   }finally{await page.close();}
@@ -107,12 +106,17 @@ test("the supplied Earth film plays behind an S trace followed by individual nam
     assert.equal(info.width,1920);assert.equal(info.height,1080);
     assert.ok(Math.abs(info.duration-16.068209)<.1);
     assert.ok(info.muted&&info.inline&&info.loop);
+    assert.equal(await page.locator('.home-orbit-hero__motion').count(),0,'Background film has no pause control');
     await page.waitForFunction(time=>document.querySelector(".cinematic-hero__video").currentTime>time+.2,info.time);
+    await page.locator('.site-footer').scrollIntoViewIfNeeded();
+    await page.waitForFunction(()=>document.querySelector('.cinematic-hero__video').paused);
+    await page.locator('.home-orbit-hero').scrollIntoViewIfNeeded();
+    await page.waitForFunction(()=>!document.querySelector('.cinematic-hero__video').paused);
   } finally {await page.close();}
 });
 
 
-test("the Sain Motors opening keeps localized company copy and the static poster under reduced motion", async () => {
+test("the Sain Motors opening keeps the localized motto and static poster under reduced motion", async () => {
   const page = await browser.newPage({ reducedMotion: "reduce" });
   try {
     for (const locale of ["en", "mn"]) {
@@ -126,15 +130,14 @@ test("the Sain Motors opening keeps localized company copy and the static poster
       assert.equal(await page.locator(".home-video-hero, .home-brands, .brand-spotlight").count(), 0);
       assert.equal(await page.locator(".home-orbit-hero video").count(), 1);
       assert.deepEqual(mediaRequests, []);
-      const description = await page.locator(".home-orbit-hero__description").innerText();
-      if (locale === "en") assert.equal(description, "Our company is the epitome of reliability and high-quality service. Sain Motors is a group of companies that includes 11 different car brands.");
-      else assert.match(description, /11/);
-      const down = page.locator('a[href="#home-company"]');
-      assert.equal(await down.count(), 1);
+      assert.equal(await page.locator(".home-orbit-hero__promise").innerText(),locale === "en" ? "A NEW CAR FOR MONGOLIANS" : "МОНГОЛ ХҮНД ШИНЭ МАШИН");
+      assert.equal(await page.locator(".home-orbit-hero__description").count(),0);
+      const down=page.locator('.home-orbit-hero__discover[href="#home-company"]');
+      assert.equal(await down.count(),1);
       await down.click();
-      await page.waitForFunction(() => location.hash === "#home-company");
-      const target = await page.locator("#home-company").boundingBox();
-      assert.ok(target.y < 130 && target.y >= 0, "The company section is reachable below the sticky header");
+      await page.waitForFunction(()=>location.hash==="#home-company");
+      const target=await page.locator("#home-company").boundingBox();
+      assert.ok(target.y<130&&target.y>=0,"The restored link reaches the company section");
       page.off("request", collect);
     }
   } finally { await page.close(); }
@@ -169,8 +172,8 @@ test("the opening remains legible on phone, tablet and desktop, with a static re
       await page.evaluate(() => document.fonts.ready);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false);
       const hero = await page.locator(".home-orbit-hero").boundingBox();
-      const description = await page.locator(".home-orbit-hero__description").boundingBox();
-      assert.ok(description.width > 180 && description.y + description.height <= hero.y + hero.height + 1);
+      const motto = await page.locator(".home-orbit-hero__promise").boundingBox();
+      assert.ok(motto.width > 140 && motto.y + motto.height <= hero.y + hero.height + 1);
       assert.ok(Math.abs(hero.y + hero.height - height) < 3 || height < 500, "The first screen fits the viewport unless it is short landscape");
       const wordmark = await page.locator("h1").boundingBox();
       assert.ok(wordmark.x >= 0 && wordmark.x + wordmark.width <= width + 1);
@@ -180,17 +183,12 @@ test("the opening remains legible on phone, tablet and desktop, with a static re
   } finally { await page.close(); }
 });
 
-test("motion can be paused and resumes only while the opening is visible", async () => {
+test("motion runs automatically only while the opening is visible", async () => {
   const page = await browser.newPage({ viewport: {width:1440,height:1000}, reducedMotion:"no-preference" });
   try {
     await page.goto(base + "/en/", {waitUntil:"networkidle"});
-    const art = page.locator(".cinematic-hero");
     await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "running");
-    const pause = page.getByRole("button", {name:"Pause animation"});
-    await pause.click();
-    assert.equal(await art.getAttribute("data-motion"), "paused");
-    await page.getByRole("button", {name:"Play animation"}).click();
-    assert.equal(await art.getAttribute("data-motion"), "running");
+    assert.equal(await page.getByRole('button',{name:/Pause animation|Play animation/}).count(),0);
     await page.locator("#home-company").evaluate(el => el.scrollIntoView({block:"start"}));
     await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "paused");
     await page.evaluate(() => window.scrollTo(0,0));
@@ -203,7 +201,7 @@ test("live motion preferences and navigation restore the correct header appearan
   try {
     await page.goto(base + "/en/", {waitUntil:"networkidle"});
     await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "running");
-    assert.equal(await page.locator('.site-header__inner > .lang-switch a').evaluate(el => getComputedStyle(el).color), "rgb(197, 199, 204)");
+    assert.equal(await page.locator('.site-header__inner > .lang-switch a').evaluate(el => getComputedStyle(el).color), "rgb(198, 198, 198)");
     await page.emulateMedia({reducedMotion:"reduce"});
     await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "reduced");
     await page.emulateMedia({reducedMotion:"no-preference"});
@@ -213,7 +211,7 @@ test("live motion preferences and navigation restore the correct header appearan
     await page.waitForFunction(() => getComputedStyle(document.querySelector(".site-header")).backgroundColor === "rgb(255, 255, 255)");
     assert.equal(await page.locator(".site-header").evaluate(el => getComputedStyle(el).backgroundColor), "rgb(255, 255, 255)");
     await page.getByRole("button",{name:"Menu",exact:true}).click();
-    assert.equal(await page.locator(".mobile-menu").evaluate(el => getComputedStyle(el).getPropertyValue("--focus").trim()), "#a00711");
+    assert.equal(await page.locator(".mobile-menu").evaluate(el => getComputedStyle(el).getPropertyValue("--focus").trim()), "#e20a17");
     await page.locator("#mobile-menu nav").getByRole("link",{name:"Services",exact:true}).click();
     await page.waitForURL("**/en/services/");
     await page.waitForFunction(() => !document.body.hasAttribute("data-orbit-scrolled"));

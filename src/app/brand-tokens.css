@@ -1,0 +1,22 @@
+/* Sain Motors' supplied guide: UI red E20A17, white and black.
+   Partner logos, photography and geographic maps keep their own colours. */
+:root {
+  --sm-red:#e20a17;
+  --sm-red-hover:#ba0813;
+  --sm-red-soft:#fff1f2;
+  --sm-black:#000;
+  --sm-ink:#101113;
+  --sm-white:#fff;
+  --sm-surface:#f6f6f6;
+  --sm-muted:#626262;
+  --sm-line:#dedede;
+  --sm-on-dark-muted:#c6c6c6;
+  --sm-on-dark-line:#ffffff45;
+  --sm-radius-card:12px;
+  --sm-radius-control:999px;
+  --sm-control-height:48px;
+  --sm-gutter:clamp(24px,7.86vw,150px);
+  --sm-content-max:90rem;
+  --sm-section-space:clamp(56px,6vw,112px);
+  --sm-title-size:clamp(32px,3.65vw,70px);
+}

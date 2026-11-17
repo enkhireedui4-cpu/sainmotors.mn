@@ -1,39 +1,28 @@
-﻿import type { Metadata } from "next";
-import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PageBand } from "@/components/PageBand";
-import { Icon } from "@/components/Icon";
+import { PhotoNewsArticle } from "@/components/PhotoNewsArticle";
 import { fallbackSrc } from "@/components/Picture";
-import { contact, driveEvents, testDrive, ui } from "@/content";
-import { corporateHome } from "@/content/corporate";
+import { getPhoto } from "@/content";
 import type { Locale } from "@/lib/i18n";
-import { eventDate, eventTitle } from "@/lib/news";
-import { pageHref } from "@/lib/routes";
-import { pageMetadata } from "@/lib/seo";
+import { getNewsArticles } from "@/lib/news";
+import { excerpt, pageMetadata } from "@/lib/seo";
+
 type Props = { params: Promise<{ lang: string; slug: string }> };
 export const dynamicParams = false;
-export function generateStaticParams() { return driveEvents.map(event => ({ slug: event.id })); }
+export function generateStaticParams() { return getNewsArticles().map(article => ({ slug: article.id })); }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params;
-  const event = driveEvents.find(event => event.id === slug);
-  if (!event) notFound();
+  const article = getNewsArticles().find(item => item.id === slug);
+  if (!article) notFound();
   const locale = lang as Locale;
-  return pageMetadata({ locale, path: "news/" + slug, title: eventTitle(event, locale), description: eventDate(event, locale) + " · " + event.venue[locale] });
+  const photo = getPhoto(article.cover.key);
+  const width = photo.srcset.find(([size]) => size >= 1080)?.[0] ?? photo.srcset.at(-1)![0];
+  return pageMetadata({ locale, path: "news/" + slug, title: article.title[locale], description: excerpt(article.sections.find(section => section.body)?.body?.[locale] ?? article.title[locale]), image: { src: fallbackSrc(article.cover.key), width, height: Math.round(width*photo.height/photo.width), alt: article.cover.alt[locale] } });
 }
 export default async function NewsDetail({ params }: Props) {
   const { lang, slug } = await params;
-  const locale = lang as Locale;
-  const event = driveEvents.find(event => event.id === slug);
-  if (!event) notFound();
-  const copy = corporateHome.value[locale];
-  return <><PageBand locale={locale} title={eventTitle(event,locale)} crumbs={[{ href: pageHref(locale,"news"), label: ui.nav.news[locale] }]} /><article className="container news-detail">
-    <p className="eyebrow">{copy.held}</p>
-    <div className="news-detail__meta"><time dateTime={event.days[0]}>{eventDate(event,locale)}</time><span>{event.venue[locale]}</span></div>
-    {event.film && <video controls playsInline preload="none" poster={fallbackSrc(event.film.poster.key)} aria-label={eventTitle(event,locale)}><source src={event.film.full} type="video/mp4" /></video>}
-    {event.story
-      ? <div className="news-detail__story" data-status={event.story.status}>{event.story.value[locale].split("\n\n").map((paragraph, i) => <p key={i}>{paragraph}</p>)}</div>
-      : event.film && <p data-status={testDrive.status}>{testDrive.value[locale].body}</p>}
-    <dl className="news-detail__facts"><div><dt>{locale === "mn" ? "Огноо" : "Date"}</dt><dd>{eventDate(event,locale)}</dd></div><div><dt>{locale === "mn" ? "Байршил" : "Location"}</dt><dd>{event.venue[locale]}</dd></div>{event.hours && <div><dt>{ui.location.hours[locale]}</dt><dd>{event.hours}</dd></div>}</dl>
-    <div className="actions"><Link href={pageHref(locale,"news")} className="button button--outline" prefetch={false}>{copy.newsLink}</Link><a href={contact.phone.href} className="text-link"><Icon name="phone" size={18} />{contact.phone.display}</a></div>
-  </article></>;
+  const articles = getNewsArticles();
+  const article = articles.find(item => item.id === slug);
+  if (!article) notFound();
+  return <PhotoNewsArticle article={article} related={articles.filter(item => item.id !== slug).slice(0,3)} locale={lang as Locale} />;
 }

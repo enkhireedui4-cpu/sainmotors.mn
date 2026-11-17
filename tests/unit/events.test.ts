@@ -46,7 +46,7 @@ describe("MEGA TEST DRIVE content", () => {
 
   it("self-hosts every film, with one teaser loop for the featured edition", () => {
     const films = driveEvents.filter((event) => event.film);
-    expect(films.map((event) => event.edition)).toEqual([7, 6]);
+    expect(films.map((event) => event.edition)).toEqual([7]);
     for (const event of films) expect(event.film!.full, event.id).toMatch(/^\/video\/.+\.mp4$/);
     const teasers = films.filter((event) => event.film!.teaser);
     expect(teasers).toHaveLength(1);

@@ -1,24 +1,21 @@
 import Link from "next/link";
-import type { DriveEvent } from "@/content/types";
-import { corporateHome } from "@/content/corporate";
+import type { NewsArticle } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
-import { eventDate, eventTitle } from "@/lib/news";
+import { newsDate, newsCategoryLabels } from "@/lib/news";
 import { newsHref } from "@/lib/routes";
-import { Icon } from "./Icon";
 import { Picture } from "./Picture";
+import "./news-system.css";
 
-export function NewsList({ events, locale, headingLevel = "h3" }: { events: DriveEvent[]; locale: Locale; headingLevel?: "h2" | "h3" }) {
-  const copy = corporateHome.value[locale];
+export function NewsList({ articles, locale, headingLevel = "h3" }: { articles: NewsArticle[]; locale: Locale; headingLevel?: "h2" | "h3" }) {
   const Heading = headingLevel;
-  return <div className="news-list">{events.map(event => <article key={event.id} data-news-type={event.category ?? "news"} data-status={event.status === "draft" ? "draft" : undefined}>
-    <Link href={newsHref(locale, event.id)} prefetch={false} className="news-card">
-      <div className={`news-card__media${event.film ? "" : " news-card__media--date"}`}>
-        {event.film ? <Picture photo={event.film.poster} locale={locale} sizes="(min-width: 64rem) 30vw, 90vw" /> : <><span>MEGA<br />TEST DRIVE</span><span className="news-card__edition">{String(event.edition).padStart(2, "0")}</span></>}
+  return <div className="news-list news-system-grid">{articles.map(article => <article key={article.id} data-news-type={article.category} data-status={article.status === "draft" ? "draft" : undefined}>
+    <Link href={newsHref(locale, article.id)} prefetch={false} className="news-card">
+      <div className="news-card__media">
+        <Picture photo={article.cover} locale={locale} sizes="(min-width: 64rem) 28vw, (min-width: 48rem) 44vw, 90vw" />
+        <span className="news-card__category">{newsCategoryLabels[article.category][locale]}</span>
+        {article.date && <time className="news-card__date" dateTime={article.date.value}>{newsDate(article,locale)}</time>}
       </div>
-      <div className="news-card__body"><p className="news-card__date"><time dateTime={event.days[0]}>{eventDate(event, locale)}</time></p>
-        <Heading>{eventTitle(event, locale)}</Heading><p>{event.venue[locale]}</p>
-        <span className="text-link">{copy.read}<Icon name="arrowUpRight" size={17} /></span>
-      </div>
+      <div className="news-card__body"><Heading>{article.title[locale]}</Heading></div>
     </Link>
   </article>)}</div>;
 }

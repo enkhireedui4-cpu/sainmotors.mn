@@ -1,8 +1,9 @@
+import { BrandLink } from "./BrandLink";
 ﻿import Link from "next/link";
 import type { CSSProperties } from "react";
 import { getBrands, hero, sitePhotos } from "@/content";
 import type { Locale } from "@/lib/i18n";
-import { brandHref, contentHref } from "@/lib/routes";
+import { contentHref } from "@/lib/routes";
 import { BrandMark } from "./BrandMark";
 import { draftAttr } from "./HomeSections";
 import { Icon } from "./Icon";
@@ -41,9 +42,9 @@ export function Hero({ locale }: { locale: Locale }) {
         <ul className="corporate-hero__brands" aria-label={locale === "mn" ? `${count} брэнд` : `${count} brands`}>
           {brands.map((brand, i) => (
             <li key={brand.slug} style={{ "--i": i } as CSSProperties}>
-              <Link href={brandHref(locale, brand.slug)} aria-label={brand.name}>
+              <BrandLink locale={locale} slug={brand.slug} aria-label={brand.name}>
                 <BrandMark brand={brand} locale={locale} size="small" decorative onDark lazy={false} />
-              </Link>
+              </BrandLink>
             </li>
           ))}
         </ul>

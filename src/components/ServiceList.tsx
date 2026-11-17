@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getBrands, getLocation, services, ui } from "@/content";
-import { experienceCopy } from "@/content/experience";
 import { enquiryHref } from "@/lib/enquiries";
 import { pageHref } from "@/lib/routes";
 import { Icon } from "./Icon";
@@ -38,7 +37,7 @@ export function ServiceList({ locale, headingLevel = "h3" }: { locale: Locale; h
               <dd>{service.locations ? service.locations.map((id, index) => <span key={id}>{index > 0 && ", "}<Link className="service__place" href={`${pageHref(locale, "locations")}#${id}`} prefetch={false}>{getLocation(id).name[locale]}</Link></span>) : where(service, locale)}</dd>
             </div>
           </dl>
-          <Link className="text-link service__action" href={enquiryHref(locale, service.id === "financing" ? "finance" : service.id === "sales" ? "sales" : "service")} prefetch={false}>{service.id === "financing" ? experienceCopy.value[locale].finance : service.id === "sales" ? experienceCopy.value[locale].sales : experienceCopy.value[locale].serviceAction}<Icon name="arrowUpRight" size={18} /></Link>
+          <Link className="text-link service__action" href={enquiryHref(locale, service.id === "financing" ? "finance" : service.id === "sales" ? "sales" : "service")} prefetch={false}>{service.id === "financing" ? ui.services.financeAction[locale] : service.id === "sales" ? ui.services.salesAction[locale] : ui.services.brandAction[locale]}<Icon name="arrowUpRight" size={18} /></Link>
         </li>
       ))}
     </ul>

@@ -25,7 +25,7 @@ export const company = {
     status: "approved",
     source: "User's explicit confirmation on 2026-10-22: Sain Motors is the official distributor of 11 brands",
     value: {
-      mn: "Сайн Моторс нь Монгол Улсад автомашины 11 брэндийн албан ёсны дистрибьютер юм.",
+      mn: "Сайн Моторс нь Монгол Улс дахь автомашины 11 брэндийн албан ёсны дистрибьютор юм.",
       en: "Sain Motors is the official distributor of 11 automotive brands in Mongolia.",
     },
   } satisfies Block,
@@ -34,13 +34,21 @@ export const company = {
     source: JETOUR_SITE,
     value: { mn: "Сайн Моторс ХХК", en: "Sain Motors LLC" },
   } satisfies Block,
+  officeAddress: {
+    status: "sourced",
+    source: "Company address supplied by the user on 2026-11-17; street spelling Жамъян гүний cross-checked against https://back.sbd.gov.mn/storage/uploads/process/202503/file_1743407229224946_166376386915521.pdf",
+    value: {
+      mn: "Монгол Улс, Улаанбаатар хот, Сүхбаатар дүүрэг, 1-р хороо, Жамъян гүний гудамж, Аюуд Тауэр",
+      en: "Ayud Tower, Jamyan Gun Street, 1st khoroo, Sukhbaatar district, Ulaanbaatar, Mongolia",
+    },
+  } satisfies Block,
   /** Home page introduction. Facts from the distributor statements; wording by the web team. */
   introduction: {
     status: "draft",
-    source: `${DRIVE}; jetour.mn`,
+    source: "Homepage introduction supplied by the user on 2026-11-17; spelling and English copy edited for consistency",
     value: {
-      mn: "Сайн Моторс ХХК олон улсын автомашины брэндүүдийг Монголд албан ёсны эрхтэйгээр борлуулдаг.\n\nJETOUR, CHERY, HONGQI, BYD, AITO, RIDDARA, 212, BESTUNE, MAXUS, RELY, SOUEAST брэндийн автомашиныг Улаанбаатар, Дархан, Эрдэнэт хотын шоурумуудаараа санал болгодог. Брэнд бүр өөрийн шоурум, борлуулалтын утастай бөгөөд ихэнх брэнд үйлдвэрийн баталгаа, борлуулалтын дараах үйлчилгээтэй. Загвар, тоноглолын дэлгэрэнгүйг брэндийн албан ёсны сайтаас үзнэ үү.",
-      en: "Sain Motors LLC sells international car brands in Mongolia under official rights from each brand.\n\nWe offer JETOUR, CHERY, HONGQI, BYD, AITO, RIDDARA, 212, BESTUNE, MAXUS, RELY and SOUEAST through our showrooms in Ulaanbaatar, Darkhan and Erdenet. Each brand has its own showroom and sales line, and most come with factory warranty and after-sales service. For full model details, visit each brand’s official website.",
+      mn: "Сайн Моторс ХХК нь БНХАУ-ын дэлхийд тэргүүлэгч автомашины 11 брэндийн Монгол дахь албан ёсны дистрибьютор юм. Та Улаанбаатар, Дархан, Эрдэнэт хот дахь манай шоурумуудад зочлон, өөрт тохирох автомашинаа сонгох боломжтой.",
+      en: "Sain Motors LLC is the official distributor in Mongolia of 11 leading Chinese automotive brands. Visit our showrooms in Ulaanbaatar, Darkhan and Erdenet to find the car that’s right for you.",
     },
   } satisfies Block,
   /**
@@ -221,8 +229,8 @@ export const services: Service[] = [
     id: "sales",
     title: { mn: "Шинэ автомашин", en: "New cars" },
     body: {
-      mn: "Брэнд бүрийн загварыг тухайн брэндийн шоурумаас биечлэн үзэж, худалдан авалтын нөхцөлөө брэндийн борлуулалтын утсаар лавлана.",
-      en: "See each brand’s models at its showroom, and ask about buying terms on the brand’s sales line.",
+      mn: "Брэнд бүрийн загваруудыг тухайн брэндийн шоурумд ирж биечлэн үзээрэй. Худалдан авалтын нөхцөлийг брэндийн борлуулалтын утсаар лавлана уу.",
+      en: "Visit each brand’s showroom to see its models in person. Call the brand’s sales team for details about purchasing terms.",
     },
     brands: ["jetour", "soueast", "chery", "byd", "riddara", "aito", "212", "bestune", "rely", "maxus", "hongqi"],
     status: "draft",
@@ -232,8 +240,8 @@ export const services: Service[] = [
     id: "financing",
     title: { mn: "Санхүүжилтийн зөвлөгөө", en: "Financing advice" },
     body: {
-      mn: "Банкны санхүүжилт, зээлийн нөхцөлийг тайлбарлаж, шаардлагатай материалыг бүрдүүлэхэд тусална.",
-      en: "We explain bank financing and loan terms and help you prepare the documents.",
+      mn: "Бид банкны санхүүжилт, зээлийн нөхцөлийг тайлбарлаж, шаардлагатай бичиг баримтыг бүрдүүлэхэд тусална.",
+      en: "We explain bank financing and loan terms and help you prepare the required documents.",
     },
     brands: ["jetour", "chery"],
     locations: ["jetour-c1", "chery-narny"],
@@ -244,8 +252,8 @@ export const services: Service[] = [
     id: "after-sales",
     title: { mn: "Үйлдвэрийн баталгаа, борлуулалтын дараах үйлчилгээ", en: "Factory warranty and after-sales service" },
     body: {
-      mn: "Эдгээр брэндийн автомашин үйлдвэрийн баталгаа, борлуулалтын дараах үйлчилгээ, мэргэжлийн зөвлөгөөтэй. Нөхцөлийг брэндийн шоурумаас лавлана уу.",
-      en: "These brands come with factory warranty, after-sales service and expert advice. Ask the brand’s showroom for the terms.",
+      mn: "Эдгээр брэндийн автомашин бүр үйлдвэрийн баталгаатай бөгөөд борлуулалтын дараах үйлчилгээ, мэргэжлийн зөвлөгөө авах боломжтой. Дэлгэрэнгүй нөхцөлийг брэндийн шоурумаас лавлана уу.",
+      en: "Every vehicle from these brands comes with a factory warranty, after-sales service and access to expert advice. Contact the brand’s showroom for the full terms.",
     },
     brands: ["jetour", "chery", "hongqi", "byd", "aito", "riddara", "212", "rely", "soueast"],
     status: "draft",
@@ -255,8 +263,8 @@ export const services: Service[] = [
     id: "repair",
     title: { mn: "Засвар, сэлбэг", en: "Repairs and parts" },
     body: {
-      mn: "JETOUR-ын засвар үйлчилгээ, оношилгоо, оригинал сэлбэгийг үйлчилгээний төв, BYD-ийн засвар, сэлбэгийг BYD 4S шоурум хариуцна. SOUEAST-ийн мэргэжлийн засвар, сэлбэгийн талаар брэндийн багтай холбогдож, үйлчлүүлэх байршлаа тодруулна уу.",
-      en: "The JETOUR service centre handles JETOUR maintenance, diagnostics and genuine parts; the BYD 4S showroom handles BYD repairs and parts. For SOUEAST professional repairs and parts, contact the brand team to confirm the service location.",
+      mn: "JETOUR-ын засвар үйлчилгээ, оношилгоо, оригинал сэлбэгийг JETOUR үйлчилгээний төв, BYD-ийн засвар, сэлбэгийг BYD 4S шоурум хариуцна. SOUEAST-ийн засвар, сэлбэгийн талаар брэндийн багтай холбогдож, үйлчилгээ авах байршлаа лавлана уу.",
+      en: "The JETOUR service centre handles JETOUR maintenance, diagnostics and genuine parts, while the BYD 4S showroom handles BYD repairs and parts. For SOUEAST repairs and parts, contact the brand’s team to confirm the service location.",
     },
     brands: ["jetour", "byd", "soueast"],
     locations: ["service-centre", "byd-4s"],

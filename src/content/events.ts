@@ -1,7 +1,9 @@
 import type { Block, DriveEvent } from "./types";
+import { festivalNewsPhotos } from "./news-photos.ts";
 
 const MTD_REPO = "MEGA TEST DRIVE registration sites, github.com/Enhireedui/mega-test-drive";
 const NEWS_COPY = "News copy supplied by the user, 2026-10-22; EN by the web team";
+const MTD6_COPY = "MEGA TEST DRIVE 6 report supplied by the user on 2026-11-17; Mongolian copy edited and translated into English by the web team";
 
 /**
  * MEGA TEST DRIVE editions, newest first. Dates and venues come from the
@@ -12,6 +14,7 @@ const NEWS_COPY = "News copy supplied by the user, 2026-10-22; EN by the web tea
 export const driveEvents: DriveEvent[] = [
   {
     id: "mega-test-drive-8",
+    published: false,
     edition: 8,
     days: ["2026-10-09", "2026-10-10"],
     hours: "10:00–19:00",
@@ -23,13 +26,14 @@ export const driveEvents: DriveEvent[] = [
       status: "draft",
       source: NEWS_COPY,
       value: {
-        mn: "MEGA TEST DRIVE 8 өдөрлөг Дархан хотын Сайн Моторс шоурумд зохион байгуулагдлаа.\n\nХоёр өдрийн турш зочид бензин, дизель, хосолсон болон бүрэн цахилгаан хөдөлгүүртэй автомашинуудтай танилцаж, сонирхсон загвараа туршин жолоодох боломжтой байв. Мөн автомашинуудыг харьцуулан үзэж, борлуулалтын зөвлөхүүдээс мэдээлэл авах нөхцөлийг бүрдүүлсэн юм.\n\nӨдөрлөг Дархан плазагаас Шинэ Дархан руу явах замд байрлах Сайн Моторс шоурумд болсон.",
-        en: "MEGA TEST DRIVE 8 was held at the Sain Motors showroom in Darkhan.\n\nOver two days, visitors explored petrol, diesel, hybrid and fully electric cars and could test-drive the models that interested them. They could also compare cars side by side and get information from our sales consultants.\n\nThe event took place at the Sain Motors showroom on the road from Darkhan Plaza to New Darkhan.",
+        mn: "MEGA TEST DRIVE 8 өдөрлөг 2026 оны 10 дугаар сарын 9–10-нд Дархан хотын Сайн Моторс шоурумд зохион байгуулагдлаа. Өдөрлөг Дархан плазагаас Шинэ Дархан руу явах замд байрлах шоурумд болсон юм.\n\nХоёр өдрийн турш зочид бензин, дизель, хосолсон болон бүрэн цахилгаан хөдөлгүүртэй автомашинуудтай танилцаж, сонирхсон загвараа туршин жолоодлоо. Мөн тусгайлан бэлтгэсэн бартаат замын талбайд автомашины туулах чадварыг туршиж, загваруудыг харьцуулан үзэх боломжтой байв.\n\nУрьдчилан бүртгүүлсэн зочид азын хүрд эргүүлж, шатахууны эрхийн бичиг болон бусад шагналын эзэд боллоо. Гэр бүлээрээ ирсэн оролцогчдод хөнгөн зууш, уух зүйлсээр үйлчилж, худалдан авалт, лизингийн нөхцөлийн талаар газар дээр нь зөвлөгөө өгсөн юм.",
+        en: "MEGA TEST DRIVE 8 took place on 9–10 October 2026 at the Sain Motors showroom in Darkhan, on the road from Darkhan Plaza towards New Darkhan.\n\nOver two days, visitors explored petrol, diesel, hybrid and fully electric vehicles and test-drove the models that interested them. Local drivers also tested vehicle capabilities on specially prepared off-road courses and compared models side by side.\n\nPre-registered guests spun the Lucky Wheel for fuel vouchers and other prizes. Families enjoyed refreshments, while the team provided on-site advice about purchasing and leasing arrangements.",
       },
     },
   },
   {
     id: "mega-test-drive-7",
+    published: false,
     edition: 7,
     title: { mn: "Off-road", en: "Off-road edition" },
     days: ["2026-08-22", "2026-08-22"],
@@ -63,32 +67,25 @@ export const driveEvents: DriveEvent[] = [
   },
   {
     id: "mega-test-drive-6",
+    cover: festivalNewsPhotos[0],
+    gallery: [
+      { photo: festivalNewsPhotos[5], afterParagraph: 0 },
+      { photo: festivalNewsPhotos[3], afterParagraph: 1 },
+      { photo: festivalNewsPhotos[4], afterParagraph: 2 },
+    ],
     edition: 6,
     days: ["2026-08-08", "2026-08-09"],
-    venue: { mn: "Сүхбаатар аймаг, Төв цэнгэлдэх хүрээлэн", en: "Central Stadium, Sükhbaatar province" },
+    venue: { mn: "Сүхбаатар аймаг, Баруун-Урт хот", en: "Baruun-Urt, Sukhbaatar province" },
     status: "sourced",
-    source: `${MTD_REPO} @c476715 (2026-08-04): held within the festival, Sain Motors as general sponsor; venue from the user's news copy and festival film supplied by the user (2026-10-22)`,
-    headline: { status: "draft", source: NEWS_COPY, value: { mn: "MEGA TEST DRIVE 6 — Шилийн Богд Moto Festival", en: "MEGA TEST DRIVE 6 — Shiliin Bogd Moto Festival" } },
+    source: `${MTD_REPO} @c476715 (2026-08-04): dates and festival context; Baruun-Urt location and event report supplied by the user on 2026-11-17; festival film supplied by the user on 2026-10-22`,
+    headline: { status: "draft", source: MTD6_COPY, value: { mn: "MEGA TEST DRIVE 6 × ШИЛИЙН БОГД ФЕСТИВАЛЬ 2026", en: "MEGA TEST DRIVE 6 × SHILIIN BOGD FESTIVAL 2026" } },
     story: {
       status: "draft",
-      source: NEWS_COPY,
+      source: MTD6_COPY,
       value: {
-        mn: "Сайн Моторс MEGA TEST DRIVE 6 өдөрлөгөө Шилийн Богд Moto Festival-ийн хүрээнд зарласан юм.\n\nФестивалийн зочдод автомашины шинэ загваруудтай танилцаж, сонирхсон автомашинаа туршин жолоодох хөтөлбөрийг санал болгосон. Арга хэмжээний байршил нь Сүхбаатар аймгийн Төв цэнгэлдэх хүрээлэн байв.\n\nФестивалийн зарласан хөтөлбөрт авто, мото үзэсгэлэн, туршилтын жолоодлого, дрифт үзүүлбэр, амьд хөгжмийн тоглолт, галын шоу болон гэр бүлийн үйл ажиллагаанууд багтсан.",
-        en: "Sain Motors announced MEGA TEST DRIVE 6 as part of the Shiliin Bogd Moto Festival.\n\nFestival guests were offered a programme to see new car models and test-drive the cars that interested them. The event was located at the Central Stadium of Sükhbaatar province.\n\nThe festival’s announced programme included a car and motorbike show, test drives, drift demonstrations, live music, a fire show and family activities.",
+        mn: "Сайн Моторс компани MEGA TEST DRIVE 6 өдөрлөгөө Сүхбаатар аймгийн Баруун-Урт хотод зохион байгуулж, Шилийн Богд Фестиваль 2026-ийн нэгэн өдрийг автомашин сонирхогчидтойгоо хамт өнгөрүүллээ.\n\nӨдөрлөгийн үеэр хүрэлцэн ирсэн зочид Сайн Моторсын албан ёсны эрхтэйгээр борлуулдаг дэлхийн тэргүүлэгч 11 брэндийн 20 гаруй загварын автомашинтай нэг дор танилцаж, сонирхсон загваруудаа биечлэн туршин жолоодож, бодитоор мэдрэх боломжтой байлаа.\n\nГэр бүл, найз нөхдөөрөө хүрэлцэн ирж, бидэнтэй хамт нэг өдрийг дурсамжтай өнгөрүүлсэн нийт оролцогчид болон Шилийн Богд Фестиваль 2026-ийн зохион байгуулагчдад баярлалаа.",
+        en: "Sain Motors held MEGA TEST DRIVE 6 in Baruun-Urt, Sukhbaatar province, spending a day of Shiliin Bogd Festival 2026 with car enthusiasts.\n\nDuring the event, visitors explored more than 20 vehicle models from 11 leading global brands officially distributed by Sain Motors, all in one place. They also had the opportunity to test-drive the models that interested them and experience the cars firsthand.\n\nThank you to everyone who joined us with family and friends for a memorable day, and to the organisers of Shiliin Bogd Festival 2026.",
       },
-    },
-    film: {
-      poster: {
-        key: "mtd6-sain-flags",
-        alt: {
-          mn: "Шилийн Богд Moto Festival: Сайн Моторс-ын далбааны дэргэдэх үзэсгэлэнгийн автомашинууд",
-          en: "Shiliin Bogd Moto Festival: display cars beside Sain Motors flags",
-        },
-        status: "sourced",
-        focus: "55% 55%",
-      },
-      full: "/video/mtd6-full.mp4",
-      duration: "1:38",
     },
   },
 ];

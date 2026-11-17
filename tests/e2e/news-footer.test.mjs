@@ -11,12 +11,14 @@ test('news categories filter real stories and the footer works across languages 
       await page.setViewportSize({width,height:960});
       await page.goto(`${base}/${locale}/news/`,{waitUntil:'networkidle'});
       assert.equal(await page.locator('.news-directory__filters button').count(),4);
-      assert.equal(await page.locator('.news-list article:visible').count(),3);
+      assert.equal(await page.locator('.news-list article:visible').count(),11);
       await page.locator('[data-news-category="media"]').click();
-      assert.equal(await page.locator('.news-list article:visible').count(),0);
-      assert.equal(await page.locator('.news-directory__empty').isVisible(),true);
+      assert.equal(await page.locator('.news-list article:visible').count(),2);
+      assert.equal(await page.locator('.news-directory__empty').count(),0);
+      await page.locator('[data-news-category="csr"]').click();
+      assert.equal(await page.locator('.news-list article:visible').count(),2);
       await page.locator('[data-news-category="news"]').click();
-      assert.equal(await page.locator('.news-list article:visible').count(),3);
+      assert.equal(await page.locator('.news-list article:visible').count(),7);
       assert.equal(await page.locator('.orbis-footer nav a').count(),3);
       assert.equal(await page.locator(`.orbis-footer a[href="/${locale}/brands/"]`).count(),0);
       const dealerLink=page.locator(`.orbis-footer nav a[href="/${locale}/locations/"]`);

@@ -8,6 +8,9 @@ project_id = "sainmotors.mn"
 [functions.submit-r8-lead]
 verify_jwt = false
 
+[functions.submit-feedback]
+verify_jwt = false
+
 [api]
 enabled = true
 # Port to use for the API URL.

@@ -4,7 +4,7 @@ import { chromium } from "playwright-core";
 
 const base = process.env.BASE_URL ?? "http://localhost:3300";
 const executablePath = process.env.CHROME_PATH ?? "C:/Program Files/Google/Chrome/Application/chrome.exe";
-const ROUTES = ["about", "news", "services", "brands", "contact", "privacy", "news/mega-test-drive-7", "brands/byd"];
+const ROUTES = ["about", "news", "services", "brands", "contact", "privacy", "news/mega-test-drive-6", "brands/byd"];
 let browser, page;
 
 before(async () => {
@@ -14,14 +14,15 @@ before(async () => {
 });
 after(async () => { await browser?.close(); });
 
-test("every inner page arrives through the black Orbis title band", async () => {
+test("every inner page arrives through the black Sain title treatment", async () => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   for (const locale of ["mn", "en"]) for (const route of ROUTES) {
     await page.goto(`${base}/${locale}/${route}/`);
     assert.equal(await page.locator("h1").count(), 1, route);
-    assert.equal(await page.locator(".page-band h1").count(), 1, route);
-    assert.equal(await page.locator(`.page-band__crumbs a[href='/${locale}/']`).count(), 1, route);
-    assert.equal(await page.locator(".page-band").evaluate(el => getComputedStyle(el).backgroundColor), "rgb(0, 0, 0)", route);
+    const header=route.startsWith('news/')?'.news-feature__header':'.page-band';
+    assert.equal(await page.locator(`${header} h1`).count(),1,route);
+    assert.equal(await page.locator(`${header} nav a[href='/${locale}/']`).count(),1,route);
+    assert.equal(await page.locator(header).evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(0, 0, 0)',route);
     assert.equal(await page.locator(".site-header").evaluate(el => getComputedStyle(el).backgroundColor), "rgb(255, 255, 255)", route);
   }
 });

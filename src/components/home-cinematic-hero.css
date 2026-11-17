@@ -2,10 +2,10 @@
 .cinematic-hero { position:absolute; inset:0; isolation:isolate; }
 .cinematic-hero::after {
   content:""; position:absolute; z-index:-1; inset:0; pointer-events:none;
-  background:linear-gradient(90deg,#02060e38,transparent 36%,#02060e12 68%,#02060e42),
-    linear-gradient(180deg,#02060e44,transparent 28%,#02060e12 52%,#02060ee0 100%);
+  background:linear-gradient(90deg,#00000038,transparent 36%,#00000012 68%,#00000042),
+    linear-gradient(180deg,#00000044,transparent 28%,#00000012 52%,#000000e0 100%);
 }
-.cinematic-hero__media { position:absolute; z-index:-3; inset:0; background:#030710; overflow:hidden; }
+.cinematic-hero__media { position:absolute; z-index:-3; inset:0; background:var(--sm-black); overflow:hidden; }
 .cinematic-hero__media img,.cinematic-hero__video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 50%; }
 .cinematic-hero__media img { filter:brightness(.74) saturate(.82); }
 .cinematic-hero__video { opacity:0; filter:brightness(.74) saturate(.82); transition:opacity 1.3s ease; }
@@ -38,7 +38,7 @@
 @media (max-width:47.99rem) {
   .cinematic-hero__media img,.cinematic-hero__video { object-position:18% 50%; }
   .cinematic-hero__orbits { width:200%; left:-50%; }
-  .cinematic-hero::after { background:linear-gradient(180deg,#02060e33,transparent 24%,#02060e33 53%,#02060eef 100%); }
+  .cinematic-hero::after { background:linear-gradient(180deg,#00000033,transparent 24%,#00000033 53%,#000000ef 100%); }
 }
 @media (orientation:landscape) and (max-height:32rem) {
   .cinematic-hero__media img,.cinematic-hero__video { object-position:50% 50%; }

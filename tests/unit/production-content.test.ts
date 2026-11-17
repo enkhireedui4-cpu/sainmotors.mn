@@ -37,7 +37,7 @@ describe("publication review registry", () => {
     expect(hero.title.status).toBe("approved");
     expect(hero.title.value.en).toBe("Official distributor of 11 brands");
     expect(company.distributorClaim.value.en).toBe("Sain Motors is the official distributor of 11 automotive brands in Mongolia.");
-    expect(company.introduction.value.en).toContain("SOUEAST");
+    expect(company.introduction.value.en).toContain("11 leading Chinese automotive brands");
     expect(company.introduction.status).not.toBe("approved");
     expect(getInternalBrands().every((brand) => brand.summary.status !== "approved")).toBe(true);
   });

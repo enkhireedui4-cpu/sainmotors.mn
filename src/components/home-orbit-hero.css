@@ -1,27 +1,30 @@
 /* Orbis composition, rebuilt around Sain Motors' own identity. */
-body:has(.orbit-home) .site-header { --focus:#ff8f88; position:fixed; inset:0 0 auto; background:transparent; color:#f7f7f5; border-bottom:1px solid transparent; transition:background-color .3s ease,color .3s ease,border-color .3s ease; }
-body:has(.orbit-home) .site-logo img { filter:brightness(0) invert(1); }
+body:has(.orbit-home) .site-header { --focus:var(--sm-red); position:fixed; inset:0 0 auto; background:transparent; color:var(--sm-white); border-bottom:1px solid transparent; transition:background-color .3s ease,color .3s ease,border-color .3s ease; }
+/* Use the supplied white/red artwork while retaining one semantic image. */
+body:has(.orbit-home) .site-logo { background:var(--site-logo-on-dark) left center / 100% auto no-repeat; }
+body:has(.orbit-home) .site-logo img { opacity:0; }
 body:has(.orbit-home) .lang-switch { color:inherit; }
-body:has(.orbit-home) .site-header__inner > .lang-switch a { color:#c5c7cc; }
-body:has(.orbit-home) .site-header__inner > .lang-switch [aria-current] { color:#fff; text-decoration:underline; text-underline-offset:.5rem; }
-body:has(.orbit-home) .menu-button { color:#fff; }
-body:has(.orbit-home) .mobile-menu { --focus:#a00711; color:#172126; }
-body:has(.orbit-home) .mobile-menu .lang-switch [aria-current] { color:#172126; text-decoration:underline; text-underline-offset:.5rem; }
+body:has(.orbit-home) .site-header__inner > .lang-switch a { color:var(--sm-on-dark-muted); }
+body:has(.orbit-home) .site-header__inner > .lang-switch [aria-current] { color:var(--sm-white); text-decoration:underline; text-decoration-color:var(--sm-red); text-underline-offset:.5rem; }
+body:has(.orbit-home) .menu-button { color:var(--sm-white); }
+body:has(.orbit-home) .mobile-menu { --focus:var(--sm-red); color:var(--sm-ink); }
+body:has(.orbit-home) .mobile-menu .lang-switch [aria-current] { color:var(--sm-red); text-decoration:underline; text-decoration-color:var(--sm-red); text-underline-offset:.5rem; }
 body:has(.orbit-home) .mobile-menu img { filter:none; }
-body[data-orbit-scrolled="true"]:has(.orbit-home) .site-header { --focus:#a00711; background:#fff; color:#172126; border-bottom-color:#e5e6e9; }
-body[data-orbit-scrolled="true"]:has(.orbit-home) .site-logo img { filter:none; }
-body[data-orbit-scrolled="true"]:has(.orbit-home) .site-header__inner > .lang-switch a { color:#566169; }
-body[data-orbit-scrolled="true"]:has(.orbit-home) .site-header__inner > .lang-switch [aria-current] { color:#172126; }
-body[data-orbit-scrolled="true"]:has(.orbit-home) .menu-button { color:#172126; }
+body[data-orbit-scrolled="true"]:has(.orbit-home) .site-header { --focus:var(--sm-red); background:var(--sm-white); color:var(--sm-ink); border-bottom-color:var(--sm-line); }
+body[data-orbit-scrolled="true"]:has(.orbit-home) .site-logo { background-image:none; }
+body[data-orbit-scrolled="true"]:has(.orbit-home) .site-logo img { opacity:1; }
+body[data-orbit-scrolled="true"]:has(.orbit-home) .site-header__inner > .lang-switch a { color:var(--sm-muted); }
+body[data-orbit-scrolled="true"]:has(.orbit-home) .site-header__inner > .lang-switch [aria-current] { color:var(--sm-red); }
+body[data-orbit-scrolled="true"]:has(.orbit-home) .menu-button { color:var(--sm-ink); }
 .home-orbit-hero {
-  --hero-gutter:8vw; --focus:#ff8f88;
+  --hero-gutter:8vw; --focus:var(--sm-red);
   position:relative; isolation:isolate; overflow:clip;
-  height:100svh; min-height:42rem; color:#f7f7f5;
-  background:#030710;
+  height:100svh; min-height:42rem; color:var(--sm-white);
+  background:var(--sm-black);
 }
 .home-orbit-hero::after {
   content:""; position:absolute; z-index:-1; inset:0; pointer-events:none;
-  background:linear-gradient(180deg,#05080d22,transparent 30%,transparent 70%,#05080d);
+  background:linear-gradient(180deg,#00000022,transparent 30%,transparent 70%,#000);
 }
 .home-orbit-hero__service {
   position:absolute; left:var(--hero-gutter); top:27%; font-size:clamp(.9rem,1.65vw,1.6rem);
@@ -29,7 +32,7 @@ body[data-orbit-scrolled="true"]:has(.orbit-home) .menu-button { color:#172126; 
 }
 .home-orbit-hero__wordmark {
   position:absolute; left:var(--hero-gutter); right:var(--hero-gutter); top:48%; transform:translateY(-50%);
-  line-height:0; color:#fff;
+  line-height:0; color:var(--sm-white);
 }
 .home-orbit-hero__promise {
   position:absolute; right:var(--hero-gutter); top:64%; text-align:right;
@@ -41,25 +44,25 @@ body[data-orbit-scrolled="true"]:has(.orbit-home) .menu-button { color:#172126; 
 }
 .home-orbit-hero__socials { display:flex; align-items:center; gap:.5rem; margin-left:-.65rem; }
 .home-orbit-hero__socials a { display:grid; place-items:center; width:2.75rem; height:2.75rem; transition:color .2s; }
-.home-orbit-hero__socials a:hover { color:#ff746b; }
+.home-orbit-hero__socials a:hover { color:var(--sm-red); }
 .home-orbit-hero__intro { display:flex; align-items:center; gap:2.4rem; max-width:34rem; }
 .home-orbit-hero__discover {
   position:relative; flex-shrink:0; width:6.5rem; height:6.5rem; display:grid; place-items:center;
-  border:4px solid #fff; border-radius:50%; transition:border-color .2s,background .2s;
+  border:4px solid var(--sm-white); border-radius:50%; transition:border-color .2s,background .2s;
 }
 .home-orbit-hero__discover > span { font:italic 700 4.5rem/.9 var(--font-zona); padding-right:.15em; transform:translateY(-.01em); }
 .home-orbit-hero__discover > svg {
   width:1.1rem; height:1.1rem; position:absolute; bottom:.15rem; right:.15rem;
-  background:#05080d; border-radius:50%; padding:.1rem; stroke:currentColor; stroke-width:1.6; fill:none;
+  background:var(--sm-black); border-radius:50%; padding:.1rem; stroke:currentColor; stroke-width:1.6; fill:none;
 }
-.home-orbit-hero__discover:hover { border-color:#ff746b; background:#e20a1715; }
-.home-orbit-hero__description { font-size:clamp(.72rem,.86vw,.93rem); line-height:1.5; max-width:22rem; padding-left:2.1rem; border-left:1px solid #ffffff50; }
+.home-orbit-hero__discover:hover { border-color:var(--sm-red); background:rgb(226 10 23 / .08); }
+.home-orbit-hero__description { font-size:clamp(.72rem,.86vw,.93rem); line-height:1.5; max-width:22rem; padding-left:2.1rem; border-left:1px solid var(--sm-on-dark-line); }
 .home-orbit-hero__motion {
   position:absolute; z-index:2; left:calc(var(--hero-gutter) + 6rem); bottom:calc(8% + 1.875rem);
   display:grid; place-items:center; width:2.75rem; height:2.75rem; padding:0;
-  border:0; background:transparent; color:#a4a8b0; transform:translateY(50%);
+  border:0; background:transparent; color:var(--sm-on-dark-muted); transform:translateY(50%);
 }
-.home-orbit-hero__motion:hover { color:#fff; }
+.home-orbit-hero__motion:hover { color:var(--sm-white); }
 .home-orbit-hero__motion[hidden] { display:none; }
 .orbit-home #home-company { scroll-margin-top:-1rem; }
 .orbit-home .editorial-photo { border-radius:0; }
@@ -77,9 +80,9 @@ body[data-orbit-scrolled="true"]:has(.orbit-home) .menu-button { color:#172126; 
 }
 @media (max-width:47.99rem) {
   .home-orbit-hero { --hero-gutter:1.5rem; --hero-foot-bottom:max(1.5rem,calc(env(safe-area-inset-bottom,0px) + .75rem)); min-height:35rem; }
-  .home-orbit-hero__service { top:20%; font-size:.78rem; line-height:1.45; text-shadow:0 1px 12px #02060e99; }
+  .home-orbit-hero__service { top:20%; font-size:.78rem; line-height:1.45; text-shadow:0 1px 12px #00000099; }
   .home-orbit-hero__wordmark { top:42%; left:1.25rem; right:1.25rem; }
-  .home-orbit-hero__promise { top:55%; font-size:.76rem; text-shadow:0 1px 12px #02060e99; }
+  .home-orbit-hero__promise { top:55%; font-size:.76rem; text-shadow:0 1px 12px #00000099; }
   .home-orbit-hero__foot { bottom:var(--hero-foot-bottom); flex-direction:column-reverse; align-items:stretch; gap:1.25rem; }
   .home-orbit-hero__intro { max-width:none; width:100%; gap:1.2rem; }
   .home-orbit-hero__description { max-width:none; padding-left:1.1rem; font-size:.78rem; line-height:1.5; }
@@ -115,6 +118,7 @@ body[data-orbit-scrolled="true"]:has(.orbit-home) .menu-button { color:#172126; 
   .home-orbit-hero__motion { left:calc(var(--hero-gutter) + 5.75rem); right:auto; bottom:calc(var(--hero-foot-bottom) + .3rem); transform:none; }
 }
 @media (prefers-reduced-motion:reduce) {
+  body:has(.orbit-home) .site-header { transition:none; }
   .home-orbit-hero__socials a, .home-orbit-hero__discover { transition:none; }
   .home-orbit-hero__motion { display:none; }
 }

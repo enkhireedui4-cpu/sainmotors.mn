@@ -4,6 +4,7 @@ import { driveEvents, testDrive } from "./events.ts";
 import { hero } from "./hero.ts";
 import * as home from "./home.ts";
 import { pages } from "./pages.ts";
+import { newsArticles } from "./news-articles.ts";
 import { sitePhotos } from "./photos.ts";
 import { corporateHome } from "./corporate.ts";
 import { aboutCopy, aboutPhotos, aboutPurposeImages } from "./about.ts";
@@ -25,7 +26,7 @@ export interface ContentReviewRecord {
 /** Shared by the release gate and CSV: no separately maintained review list. */
 export const contentRegistry = {
   company, contact: { ...contact, socials }, locations, services, hero, ...home, corporateHome, pages, sitePhotos,
-  driveEvents, testDrive, brandSegments, contactPresentation, experienceCopy, aboutCopy, aboutPhotos, aboutPurposeImages,
+  driveEvents, newsArticles, testDrive, brandSegments, contactPresentation, experienceCopy, aboutCopy, aboutPhotos, aboutPurposeImages,
   brands: brands.filter((brand) => brand.published).sort((a, b) => a.order - b.order).map((brand) => ({
     ...brand,
     status: brand.factsReview?.status ?? "sourced" as ContentStatus,

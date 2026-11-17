@@ -1,3 +1,4 @@
+import { isBrandSiteAvailable } from "@/lib/routes";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BrandDetail } from "@/components/BrandDetail";
@@ -11,7 +12,7 @@ type Props = { params: Promise<{ lang: string; slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return getInternalBrands().map((brand) => ({ slug: brand.slug }));
+  return getInternalBrands().filter(brand => isBrandSiteAvailable(brand.slug)).map((brand) => ({ slug: brand.slug }));
 }
 
 /** The brand photo as social preview when one exists; otherwise the site default. */
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params;
   const locale = lang as Locale;
   const brand = getInternalBrand(slug);
-  if (!brand) return {};
+  if (!brand || !isBrandSiteAvailable(slug)) return {};
   return pageMetadata({
     locale,
     path: `brands/${brand.slug}`,
@@ -42,6 +43,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BrandPage({ params }: Props) {
   const { lang, slug } = await params;
   const brand = getInternalBrand(slug);
-  if (!brand) notFound();
+  if (!brand || !isBrandSiteAvailable(slug)) notFound();
   return <BrandDetail brand={brand} locale={lang as Locale} />;
 }

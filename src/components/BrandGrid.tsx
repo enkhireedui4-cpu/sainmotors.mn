@@ -1,9 +1,9 @@
-import Link from "next/link";
+import { isBrandSiteAvailable } from "@/lib/routes";
+import { BrandLink } from "./BrandLink";
 import { ui } from "@/content";
 import type { Brand } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 import { brandLinkLabel } from "@/lib/brand-sites";
-import { brandHref } from "@/lib/routes";
 import { BrandCarousel } from "./BrandCarousel";
 import { BrandMark } from "./BrandMark";
 import { Picture } from "./Picture";
@@ -19,8 +19,8 @@ import { Icon } from "./Icon";
 function BrandCard({ brand, locale, copy }: { brand: Brand; locale: Locale; copy: boolean }) {
   const descId = copy ? undefined : `brand-card-${brand.slug}`;
   return (
-    <Link
-      href={brandHref(locale, brand.slug)}
+    <BrandLink
+      locale={locale} slug={brand.slug}
       className="bcard"
       aria-label={`${brand.name}: ${ui.brand.overview[locale]}`}
       aria-describedby={descId}
@@ -38,12 +38,12 @@ function BrandCard({ brand, locale, copy }: { brand: Brand; locale: Locale; copy
         <span className="bcard__desc" id={descId} data-status={brand.teaser ? draftAttr(brand.teaser) : undefined}>
           {brand.teaser?.value[locale] ?? brandLinkLabel(locale, brand.slug)}
         </span>
-        <span className="bcard__cta" aria-hidden="true">
+        {isBrandSiteAvailable(brand.slug) && <span className="bcard__cta" aria-hidden="true">
           {ui.brand.overview[locale]}
           <Icon name="chevronRight" size={16} />
-        </span>
+        </span>}
       </span>
-    </Link>
+    </BrandLink>
   );
 }
 
@@ -77,9 +77,9 @@ export function BrandChooser({ brands, locale }: { brands: Brand[]; locale: Loca
       <div className="container">
         <ul>{brands.map((brand) => (
           <li key={brand.slug}>
-            <Link href={brandHref(locale, brand.slug)} aria-label={brand.name}>
+            <BrandLink locale={locale} slug={brand.slug} aria-label={brand.name}>
               <BrandMark brand={brand} locale={locale} size="small" decorative />
-            </Link>
+            </BrandLink>
           </li>
         ))}</ul>
       </div>
@@ -92,7 +92,7 @@ function PortfolioCard({ brand, locale, copy: loopCopy = false }: { brand: Brand
   const photo = (brand.cardPhoto ?? brand.photo)!;
   const copy = brand.cardCopy ?? brand.teaser;
   return (
-    <Link className="portfolio-card" href={brandHref(locale, brand.slug)} tabIndex={loopCopy ? -1 : undefined} aria-label={`${brand.name}: ${ui.brand.explore[locale]}`}>
+    <BrandLink className="portfolio-card" locale={locale} slug={brand.slug} tabIndex={loopCopy ? -1 : undefined} aria-label={`${brand.name}: ${ui.brand.explore[locale]}`}>
       <div className="portfolio-card__media" data-photo={photo.key}>
         <Picture photo={{ ...photo, focus: `var(--portfolio-image-position, ${photo.focus ?? "50% 50%"})` }} locale={locale} sizes="(min-width: 1745px) 490px, (min-width: 1024px) 28vw, (min-width: 640px) 43vw, 85vw" />
       </div>
@@ -102,9 +102,9 @@ function PortfolioCard({ brand, locale, copy: loopCopy = false }: { brand: Brand
           <span className="sr-only">{brand.name}</span>
         </h3>
         <p className="portfolio-card__copy" data-status={copy ? draftAttr(copy) : undefined}>{copy?.value[locale] ?? brandLinkLabel(locale, brand.slug)}</p>
-        <span className="portfolio-card__cta">{ui.brand.explore[locale]}<Icon name="chevronRight" size={18} /></span>
+        {isBrandSiteAvailable(brand.slug) && <span className="portfolio-card__cta">{ui.brand.explore[locale]}<Icon name="chevronRight" size={18} /></span>}
       </div>
-    </Link>
+    </BrandLink>
   );
 }
 
@@ -137,9 +137,9 @@ export function BrandStrip({ brands, locale }: { brands: Brand[]; locale: Locale
     <ul className="brand-strip">
       {brands.map((brand) => (
         <li key={brand.slug}>
-          <Link href={brandHref(locale, brand.slug)} aria-label={brand.name}>
+          <BrandLink locale={locale} slug={brand.slug} aria-label={brand.name}>
             <BrandMark brand={brand} locale={locale} size="small" decorative />
-          </Link>
+          </BrandLink>
         </li>
       ))}
     </ul>

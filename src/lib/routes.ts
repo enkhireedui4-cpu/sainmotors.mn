@@ -23,7 +23,13 @@ export function pageHref(locale: Locale, page: PageKey): string {
   return localePath(locale, pagePaths[page]);
 }
 
-export function brandHref(locale: Locale, slug: string): string {
+/** Only these brands have a public destination ready for visitors. */
+export function isBrandSiteAvailable(slug: string): boolean {
+  return slug === "rely" || Boolean(officialBrandSite(slug));
+}
+
+export function brandHref(locale: Locale, slug: string): string | undefined {
+  if (!isBrandSiteAvailable(slug)) return undefined;
   return officialBrandSite(slug)?.url ?? localePath(locale, `brands/${slug}`);
 }
 

@@ -32,7 +32,28 @@ const WIDTHS = [480, 768, 1080, 1440, 1920, 2560];
  * Brand photographs appear in its vehicle collection; "showroom-hall" is a
  * 2:1 band for the locations section.
  */
+const importedNewsPath = path.join(SRC, "photos", "news", "imported-photos.json");
+const importedNewsPhotos = existsSync(importedNewsPath) ? JSON.parse(await fs.readFile(importedNewsPath, "utf8")) : {};
 const PHOTOS = {
+  ...importedNewsPhotos,
+  // Sain Motors festival and BYD agreement photographs supplied from Downloads, 2026-11-17.
+  "news-mtd6-lineup": { file: "news/mtd6-lineup.jpg" },
+  "news-mtd6-visitors": { file: "news/mtd6-visitors.jpg" },
+  "news-mtd6-models": { file: "news/mtd6-models.jpg" },
+  "news-mtd6-offroad": { file: "news/mtd6-offroad.jpg" },
+  "news-mtd6-festival": { file: "news/mtd6-festival.jpg" },
+  "news-mtd6-family": { file: "news/mtd6-family.jpg" },
+  "news-mtd6-evening": { file: "news/mtd6-evening.jpg" },
+  "news-byd-signing-01": { file: "news/byd-signing-01.jpg" },
+  "news-byd-signing-02": { file: "news/byd-signing-02.jpg" },
+  "news-byd-signing-03": { file: "news/byd-signing-03.jpg" },
+  "news-byd-signing-04": { file: "news/byd-signing-04.jpg" },
+  "news-byd-signing-05": { file: "news/byd-signing-05.jpg" },
+  // User-supplied homepage strip, WeTransfer Artboards 1–4, 2026-11-17.
+  "home-company-g700": { file: "site/home-company-g700.png" },
+  "home-company-ti7": { file: "site/home-company-ti7.png" },
+  "home-company-highland": { file: "site/home-company-highland.png" },
+  "home-company-hongqi-offroad": { file: "site/home-company-hongqi-offroad.png" },
   "showroom-hall": { file: "showroom-6.webp", crop: { left: 0, top: 300, width: 2560, height: 1280 } },
   "showroom-entrance": { file: "showroom-2.webp" },
   "showroom-exterior": { file: "showroom-3.webp" },

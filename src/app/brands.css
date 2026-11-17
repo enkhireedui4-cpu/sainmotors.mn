@@ -1,5 +1,5 @@
 ﻿/* Brand pages: the company's ink and red, with the vehicle as the focal point. */
-.brand-directory,.brand-detail{--brand-ink:#10242d;--brand-nav-h:5rem}
+.brand-directory,.brand-detail{--brand-ink:var(--sm-black);--brand-nav-h:5rem}
 .brand-title{padding:3rem 0 4.5rem;background:var(--brand-ink);color:#fff}
 .brand-title .breadcrumb{margin:0 0 2.5rem;padding:0;font-size:.875rem;color:#d3dfe3}
 .brand-title .breadcrumb a{min-height:2rem;display:inline-flex;align-items:center}
@@ -27,7 +27,7 @@
 .brand-section-nav__links a[aria-current]:after{transform:scaleX(1)}
 .brand-section-nav__links a:focus-visible{outline-offset:-6px}
 .brand-section-nav__phone{display:inline-flex;align-items:center;justify-content:center;gap:.65rem;min-height:2.8rem;padding:.5rem 1rem;background:var(--red);color:white;white-space:nowrap;font-size:.85rem;font-weight:600;flex-shrink:0;transition:background-color .2s var(--ease)}
-.brand-section-nav__phone:hover{background:#bd0712}
+.brand-section-nav__phone:hover{background:var(--sm-red-hover)}
 /* The document already reserves the main header plus 1rem with scroll-padding. */
 .brand-detail section[id]{scroll-margin-top:calc(var(--brand-nav-h) + 1rem)}
 .brand-detail :focus-visible{scroll-margin-block:calc(var(--header-h) + var(--brand-nav-h) + 1.5rem) 1.5rem}

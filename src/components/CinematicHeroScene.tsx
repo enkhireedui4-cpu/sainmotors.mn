@@ -1,18 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Icon } from "./Icon";
+import { useEffect, useRef, type ReactNode } from "react";
 import "./home-cinematic-hero.css";
 
 const EARTH_FILM = "/video/hero/sain-earth.mp4";
 const EARTH_POSTER = "/video/hero/sain-earth-poster.webp";
 
 /** One controller keeps the film and the opening sequence on the same pause boundary. */
-export function CinematicHeroScene({ children, labels }: { children: ReactNode; labels: { pause: string; play: string } }) {
+export function CinematicHeroScene({ children }: { children: ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const toggleRef = useRef<HTMLButtonElement>(null);
-  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -26,9 +23,8 @@ export function CinematicHeroScene({ children, labels }: { children: ReactNode; 
     const sync = () => {
       if (disposed) return;
       if (reducedMotion.matches) root.dataset.intro = "complete";
-      const moving = !reducedMotion.matches && !paused && visible && !document.hidden && fontsReady;
+      const moving = !reducedMotion.matches && visible && !document.hidden && fontsReady;
       root.dataset.motion = reducedMotion.matches ? "reduced" : !fontsReady ? "static" : moving ? "running" : "paused";
-      if (toggleRef.current) toggleRef.current.hidden = reducedMotion.matches;
       for (const animation of root.getAnimations({ subtree: true })) {
         if (moving && animation.playState === "paused") animation.play();
         else if (!moving && animation.playState === "running") animation.pause();
@@ -77,7 +73,7 @@ export function CinematicHeroScene({ children, labels }: { children: ReactNode; 
       reducedMotion.removeEventListener("change", sync);
       document.removeEventListener("visibilitychange", sync);
     };
-  }, [paused]);
+  }, []);
 
   return (
     <div ref={rootRef} className="cinematic-hero" data-motion="static" data-intro="playing" data-media="poster">
@@ -97,11 +93,7 @@ export function CinematicHeroScene({ children, labels }: { children: ReactNode; 
           stroke="#e3c791" strokeWidth="1.5" strokeDasharray="90 2600" pathLength="2690" opacity=".65" />
       </svg>
       {children}
-      <button ref={toggleRef} className="home-orbit-hero__motion" type="button" aria-pressed={paused}
-        aria-label={paused ? labels.play : labels.pause} onClick={() => setPaused(value => !value)}>
-        <Icon name={paused ? "play" : "pause"} size={14} />
-      </button>
-      <noscript><style>{".cinematic-hero *{animation:none!important}.cinematic-hero__video,.home-orbit-hero__motion{display:none!important}body:has(.orbit-home) .site-header{background:#030710}"}</style></noscript>
+      <noscript><style>{".cinematic-hero *{animation:none!important}.cinematic-hero__video,.home-orbit-hero__motion{display:none!important}body:has(.orbit-home) .site-header{background:var(--sm-black)}"}</style></noscript>
     </div>
   );
 }

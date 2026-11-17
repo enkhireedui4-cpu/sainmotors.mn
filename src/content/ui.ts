@@ -72,6 +72,9 @@ export const ui = {
     where: { mn: "Хаана", en: "Where" },
     atShowroom: { mn: "Брэнд бүрийн шоурумд", en: "At each brand’s showroom" },
     all: { mn: "Бүх үйлчилгээ", en: "All services" },
+    salesAction: { mn: "Загвар, үнэ үзэх", en: "View models and prices" },
+    financeAction: { mn: "Санхүүжилтийн талаар лавлах", en: "Ask about financing" },
+    brandAction: { mn: "Брэнд бүрийн үйлчилгээг харах", en: "View services by brand" },
     others: {
       mn: "Бусад брэндийн үйлчилгээний талаар тухайн брэндийн борлуулалтын утсаар лавлана уу.",
       en: "For other brands, ask on the brand’s sales line.",

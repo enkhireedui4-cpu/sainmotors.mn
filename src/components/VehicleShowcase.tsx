@@ -9,7 +9,7 @@ export interface ShowcaseVehicle {
   name: string;
   model: string;
   tagline: string;
-  href: string;
+  href?: string;
   linkLabel: string;
   external: boolean;
   src: string;
@@ -126,9 +126,9 @@ export function VehicleShowcase({ vehicles, labels }: Props) {
       <div className="brand-spotlight__information" style={{ "--arrival-direction": direction } as CSSProperties}>
         <h3 translate="no">{vehicle.model}</h3>
         <p>{vehicle.tagline}</p>
-        <Link href={vehicle.href} className="brand-spotlight__link" rel={vehicle.external ? "external" : undefined} prefetch={false}>
+        {vehicle.href && <Link href={vehicle.href} className="brand-spotlight__link" rel={vehicle.external ? "external" : undefined} prefetch={false}>
           {vehicle.linkLabel}<Icon name={vehicle.external ? "arrowUpRight" : "arrowRight"} size={24} />
-        </Link>
+        </Link>}
       </div>
       <div className="brand-spotlight__controls">
         <button className="brand-spotlight__arrow brand-spotlight__arrow--previous" type="button" onClick={() => step(-1)}

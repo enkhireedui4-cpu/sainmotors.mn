@@ -13,12 +13,12 @@ export const pages = {
         mn: {
           title: "Сайн Моторс — олон улсын автомашины брэндүүд Монголд",
           description:
-            "Сайн Моторс JETOUR, HONGQI, BYD, AITO, RIDDARA, 212, BESTUNE, MAXUS, RELY брэндийн автомашиныг Монголд албан ёсны эрхтэйгээр борлуулдаг.",
+            "Сайн Моторс ХХК нь автомашины 11 брэндийн Монгол дахь албан ёсны дистрибьютор юм. Улаанбаатар, Дархан, Эрдэнэт хот дахь манай шоурумуудад зочлоорой.",
         },
         en: {
           title: "Sain Motors — international car brands in Mongolia",
           description:
-            "Sain Motors sells JETOUR, HONGQI, BYD, AITO, RIDDARA, 212, BESTUNE, MAXUS and RELY in Mongolia under official rights. Showrooms, sales lines, service.",
+            "Sain Motors LLC is the official distributor of 11 automotive brands in Mongolia. Visit our showrooms in Ulaanbaatar, Darkhan and Erdenet.",
         },
       },
     } satisfies Meta,
@@ -73,12 +73,12 @@ export const pages = {
         mn: {
           title: "Бидний тухай",
           description:
-            "Сайн Моторс ХХК олон улсын автомашины брэндүүдийг Монголд албан ёсны эрхтэйгээр борлуулж, борлуулалтын дараах үйлчилгээ үзүүлдэг.",
+            "Сайн Моторс ХХК нь 2021 онд Сайн Интернешнл ХХК-ийн охин компани болж байгуулагдсан бөгөөд автомашины 11 брэндийг Монгол Улсад албан ёсны эрхтэйгээр төлөөлдөг.",
         },
         en: {
           title: "About us",
           description:
-            "Sain Motors LLC sells international car brands in Mongolia under official rights and provides after-sales service.",
+            "Founded in 2021 as a subsidiary of Sain International LLC, Sain Motors LLC is the official representative of 11 automotive brands in Mongolia.",
         },
       },
     } satisfies Meta,
@@ -182,15 +182,15 @@ export const pages = {
     } satisfies Block,
     team: {
       status: "draft",
-      source: "Supplied service-centre and BYD training photographs (2026-10-20), incl. BYD technical training certificates",
+      source: "Technical team description supplied by management via the user on 2026-11-17",
       value: {
         mn: {
           heading: "Мэргэшсэн техникийн баг",
-          body: "Манай техникчид BYD-ийн техникийн мэргэшлийн сургалтад хамрагдсан бөгөөд цахилгаан автомашины өндөр хүчдэлийн систем дээр хамгаалалтын хэрэгсэлтэйгээр ажилладаг.",
+          body: "Сайн Моторс ХХК-ийн засвар, техникийн баг нь өндөр ур чадвартай мэргэжилтнүүдээс бүрддэг бөгөөд брэнд тус бүрийн автомашины засварын сургалтад амжилттай хамрагдсан. Бид таны автомашиныг үйлдвэрийн албан ёсны оношилгооны төхөөрөмж, компьютерээр оношилж, баталгаат сэлбэгээр түргэн шуурхай засварлана.",
         },
         en: {
           heading: "A trained technical team",
-          body: "Our technicians have completed BYD’s specialised technical training and work on electric-vehicle high-voltage systems with full protective equipment.",
+          body: "The repair and technical team at Sain Motors LLC is made up of highly skilled specialists who have completed repair training for each of our brands. We check your car with the brand’s official diagnostic tools and repair it quickly using genuine parts.",
         },
       },
     } satisfies Section,
@@ -201,11 +201,11 @@ export const pages = {
       status: "draft",
       value: {
         mn: {
-          title: "Холбоо барих",
+          title: "Бидэнтэй холбогдох",
           description: "Сайн Моторс-ын шоурумууд, үйлчилгээний төвийн хаяг, брэнд бүрийн борлуулалтын утас, ерөнхий лавлагаа.",
         },
         en: {
-          title: "Contact",
+          title: "Contact Us",
           description: "Showroom and service centre addresses, each brand’s sales line and general enquiries for Sain Motors.",
         },
       },
@@ -213,8 +213,8 @@ export const pages = {
     lead: {
       status: "draft",
       value: {
-        mn: "Брэнд бүр өөрийн шоурум, борлуулалтын утастай. Очихоосоо өмнө залгаж лавлана уу.",
-        en: "Each brand has its own showroom and sales line. Call before you visit.",
+        mn: "Автомашины загвар, үнэ, худалдан авалт болон борлуулалтын дараах үйлчилгээний талаар асуух зүйл байвал бидэнтэй холбогдоорой. Мөн санал хүсэлт, хамтын ажиллагааны саналаа энэ хуудсаар дамжуулан илгээх боломжтой.",
+        en: "Have a question about our car models, prices, buying a car or after-sales service? Get in touch with us. You can also send us your feedback or partnership proposals through this page.",
       },
     } satisfies Block,
   },
@@ -243,16 +243,16 @@ export const pages = {
       status: "draft",
       source: "Existing events.ts MEGA TEST DRIVE edition records; web-team editorial description, 2026-10-22",
       value: {
-        mn: { title: "Мэдээ, арга хэмжээ", description: "Сайн Моторс-ын MEGA TEST DRIVE арга хэмжээний огноо, байршил болон долоо дахь удаагийн off-road бичлэгтэй танилцаарай." },
-        en: { title: "News and events", description: "Read Sain Motors MEGA TEST DRIVE edition dates and locations, and watch the supplied film of the seventh off-road edition." },
+        mn: { title: "Мэдээ, арга хэмжээ", description: "Сайн Моторсын брэндийн хамтын ажиллагаа, MEGA TEST DRIVE өдөрлөг, салбарууд, хэвлэл мэдээлэл болон нийгмийн хариуцлагын мэдээ." },
+        en: { title: "News and events", description: "Sain Motors news: brand partnerships, MEGA TEST DRIVE events, showrooms, media coverage and community initiatives." },
       },
     } satisfies Meta,
     lead: {
       status: "draft",
       source: "Existing events.ts edition dates/venues and supplied edition 7 film; no new attendance or outcome claims",
       value: {
-        mn: "MEGA TEST DRIVE арга хэмжээний мэдээлэл, огноо болон бичлэг.",
-        en: "Dates, locations and film from the MEGA TEST DRIVE editions.",
+        mn: "Брэндийн хамтын ажиллагаа, өдөрлөгүүд болон Сайн Моторсын сүүлийн мэдээ.",
+        en: "Brand partnerships, events and news from Sain Motors.",
       },
     } satisfies Block,
   },

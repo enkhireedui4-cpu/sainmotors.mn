@@ -1,17 +1,17 @@
 /* Shared visual language: the contact page's quiet surfaces, generous spacing
    and real Sain Motors photography, applied across the corporate website. */
 :root {
-  --neutral-0: #fff;
-  --neutral-50: #f4f5f7;
-  --neutral-100: #eceff1;
-  --neutral-500: #566169;
-  --neutral-900: #172126;
+  --neutral-0: var(--sm-white);
+  --neutral-50: var(--sm-surface);
+  --neutral-100: var(--sm-line);
+  --neutral-500: var(--sm-muted);
+  --neutral-900: var(--sm-ink);
   --surface-page: var(--neutral-0);
   --surface-card: var(--neutral-50);
   --surface-edge: var(--neutral-100);
-  --radius-control: .5rem;
-  --radius-card: 1.4rem;
-  --space-section: clamp(3.5rem, 6vw, 6rem);
+  --radius-control: var(--sm-radius-control);
+  --radius-card: var(--sm-radius-card);
+  --space-section: var(--sm-section-space);
   --section: var(--space-section);
   --radius: var(--radius-control);
 }
@@ -23,7 +23,7 @@
 .brand-panel--descriptive { gap: 1rem; border: 0; background: transparent; overflow: visible; }
 .brand-panel--descriptive > li { box-shadow: none; border-radius: var(--radius-card); overflow: hidden; background: var(--surface-card); }
 .brand-panel--descriptive a { min-height: 10rem; padding: 1.75rem 1rem; }
-.brand-panel--descriptive a:hover { background: #eaeef1; }
+.brand-panel--descriptive a:hover { background: #eeeeee; }
 .brand-panel--descriptive a:focus-visible { border-radius: var(--radius-card); }
 .editorial-photo,.about-close figure { border-radius: var(--radius-card); overflow: hidden; }
 .editorial-copy .display-2 { font-size: clamp(2rem,3vw,3rem); }
@@ -37,14 +37,14 @@
 .home-service-list svg { color: var(--red); }
 
 /* Supporting pages use the same photographic arrival as Contact. */
-.site-banner { position: relative; isolation: isolate; display: grid; align-items: center; min-height: 21rem; overflow: hidden; background: #172126; color: #fff; --focus: #fff; }
+.site-banner { position: relative; isolation: isolate; display: grid; align-items: center; min-height: 21rem; overflow: hidden; background: var(--sm-ink); color: #fff; --focus: #fff; }
 .site-banner > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
 .site-banner:after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg,rgb(9 24 31 / .8),rgb(9 24 31 / .48)); }
 .site-banner__content { display: flex; justify-content: space-between; align-items: center; gap: 3rem; padding-block: 3rem; min-height: inherit; }
 .site-banner h1 { font-size: clamp(2.6rem,4.75vw,4.75rem); line-height: 1.12; letter-spacing: -.025em; }
-.site-banner__lead { max-width: 44rem; font-size: .975rem; line-height: 1.75; margin-top: 1.25rem; color: #e1e7eb; }
+.site-banner__lead { max-width: 44rem; font-size: .975rem; line-height: 1.75; margin-top: 1.25rem; color: #eeeeee; }
 .site-banner__breadcrumb { display: flex; align-items: center; flex-wrap: wrap; gap: .8rem; align-self: end; flex-shrink: 0; max-width: 25%; font-size: .8rem; color: #fff; }
-.site-banner__breadcrumb a { display: inline-flex; align-items: center; min-height: 2.75rem; color: #e1e7eb; }
+.site-banner__breadcrumb a { display: inline-flex; align-items: center; min-height: 2.75rem; color: #eeeeee; }
 .site-banner__breadcrumb a:hover { color: #fff; text-decoration: underline; text-underline-offset: .3em; }
 .site-invitation { background: #fff; padding-top: 0; }
 .site-invitation__panel { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 3rem; padding: clamp(2rem,4vw,3.5rem); border-radius: var(--radius-card); background: var(--surface-card); }
@@ -75,14 +75,14 @@
 .discovery-card > a { border: 1px solid transparent; border-radius: var(--radius-card); background: var(--surface-card); overflow: hidden; }
 .discovery-card__image { border-radius: 0; }
 .discovery-card__body { padding: 1.5rem; }
-.discovery-card > a:hover { border-color: #bdc6cc; }
+.discovery-card > a:hover { border-color: #b8b8b8; }
 .discovery-empty { border-radius: var(--radius-card); }
 .brand-detail .brand-title { background: #fff; color: var(--text); padding-block: 2rem 3rem; }
 .brand-detail .brand-title .breadcrumb { color: var(--text-2); }
 .brand-detail .brand-title .breadcrumb a:hover { color: var(--red); }
 .brand-detail .brand-title a:focus-visible { outline-color: var(--focus); }
 .brand-detail .brand-title h1 { font-size: clamp(3rem,5vw,5rem); }
-.brand-detail .brand-title .brand-actions .button--outline { color: var(--text); border-color: #bcc5cb; }
+.brand-detail .brand-title .brand-actions .button--outline { color: var(--text); border-color: #b8b8b8; }
 .brand-detail .brand-title .brand-actions .button--outline:hover { background: var(--surface-card); border-color: var(--text); }
 .brand-detail .brand-title .brand-actions .text-link { color: var(--text); }
 .brand-detail .brand-scroll-hero { background: #fff; }
@@ -99,12 +99,12 @@
 
 /* Four service routes first; confirmed centres and people follow. */
 .services-design-page .service-jump { gap: .65rem; padding-block: 1.75rem 0; }
-.services-design-page .service-jump a { padding: .65rem 1.1rem; min-height: 2.75rem; border: 1px solid var(--line); border-radius: 2rem; font-size: .8rem; color: var(--text); }
-.services-design-page .service-jump a:hover { color: var(--red); border-color: #bdc6cc; background: var(--surface-card); }
+.services-design-page .page-band .service-jump a { padding:.7rem 1.25rem; min-height:var(--sm-control-height); height:auto; max-width:100%; border:1px solid var(--sm-on-dark-line); border-radius:var(--sm-radius-control); font-size:.875rem; line-height:1.4; color:var(--sm-white); white-space:normal; text-align:center; }
+.services-design-page .page-band .service-jump a:hover { color:var(--sm-white); border-color:var(--sm-red); background:var(--sm-red); }
 .services-design-page .services-section { padding-top: 2rem; }
 .services-design-page .services-page { display: block; }
 .services-design-page .service-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem; }
-.services-design-page .service { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(1.5rem,3vw,2.5rem); border: 0; border-radius: var(--radius-card); background: var(--surface-card); scroll-margin-top: 1.5rem; }
+.services-design-page .service { display:flex; flex-direction:column; align-items:flex-start; padding:clamp(1.5rem,3vw,2.5rem); border:1px solid var(--sm-line); border-top:3px solid var(--sm-red); border-radius:var(--radius-card); background:var(--sm-white); scroll-margin-top:calc(var(--header-h) + 24px); }
 .services-design-page .service__title { font: 500 1.75rem/1.25 var(--font-display); }
 .services-design-page .service > p { font-size: .95rem; line-height: 1.8; }
 .services-design-page .service__facts { margin-bottom: 1rem; }
@@ -112,6 +112,9 @@
 .services-design-page .service__brands { gap: .15rem .45rem; }
 .services-design-page .service__brands a { padding: .15rem 0; }
 .services-design-page .service__action { margin-top: auto; }
+.services-design-page .service__action { color:var(--sm-red); }
+.services-design-page .service__action svg { flex:none; width:32px; height:32px; padding:7px; border-radius:50%; background:var(--sm-red); color:var(--sm-white); }
+.services-design-page .service__action:hover { color:var(--sm-red-hover); }
 .services-design-page .services-page__note { margin-block: 1.5rem 0; }
 .services-design-page .services-page__aside { padding-top: var(--section); }
 .service-centres-heading { margin-bottom: 2rem; }
@@ -129,13 +132,16 @@
 .location-list--centres .location__address small { display: block; margin-top: .5rem; color: var(--text-2); }
 .service-photo-grid img { border-radius: var(--radius-card); }
 .service-photo-grid figcaption { padding-top: .75rem; }
+.services-team { padding-block:var(--sm-section-space); background:var(--sm-black); color:var(--sm-white); }
+.services-team .section-head p,.services-team .service-photo-grid figcaption { color:var(--sm-on-dark-muted); }
+.services-team h2::before { content:""; display:block; width:48px; height:3px; margin-bottom:24px; background:var(--sm-red); }
 
 /* News remains clear about past events; videos only play on request. */
 .news-design-page .news-page { padding-top: 3rem; }
 .news-card { border: 1px solid transparent; border-radius: var(--radius-card); overflow: hidden; background: var(--surface-card); }
-.news-card:hover { border-color: #bdc6cc; }
+.news-card:hover { border-color: #b8b8b8; }
 .news-card h2,.news-card h3 { font: 600 1.05rem/1.45 var(--font-sans); letter-spacing: -.01em; margin-bottom: .5rem; }
-.news-card__media--date { background: #e9edef; }
+.news-card__media--date { background: #eeeeee; }
 .news-card__media--date:after { display: none; }
 .news-detail { padding-top: 1rem; }
 .news-detail h1 { max-width: 22ch; }

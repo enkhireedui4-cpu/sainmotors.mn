@@ -37,9 +37,9 @@ export function HomeDiscover({ locale }: { locale: Locale }) {
                   <div className="feature-tabs__copy">
                     <h3>{topic.title}</h3>
                     <p>{topic.body}</p>
-                    <Link className="feature-tabs__link" href={feature.href}>
+                    {feature.href && <Link className="feature-tabs__link" href={feature.href}>
                       {topic.cta}<Icon name="arrowUpRight" size={18} />
-                    </Link>
+                    </Link>}
                   </div>
                 </>
               ),

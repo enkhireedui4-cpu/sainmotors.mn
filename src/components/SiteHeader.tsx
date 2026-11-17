@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { contact, sainLogos, ui } from "@/content";
 import type { Locale } from "@/lib/i18n";
 import { headerPages, pageHref } from "@/lib/routes";
@@ -14,7 +15,12 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   return (
     <header className="site-header">
       <div className="container site-header__inner">
-        <Link href={homeHref} className="site-logo" aria-label={ui.home[locale]}>
+        <Link
+          href={homeHref}
+          className="site-logo"
+          aria-label={ui.home[locale]}
+          style={{ "--site-logo-on-dark": `url("${sainLogos["sain-on-dark"].src}")` } as CSSProperties}
+        >
           <img src={logo.src} width={logo.width} height={logo.height} alt="" />
         </Link>
         <NavLinks links={links} label={ui.mainNav[locale]} />

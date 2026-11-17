@@ -6,6 +6,29 @@ import type { Photo } from "./types";
 // company building, showroom life and the first service-centre photographs.
 // Provenance: docs/content-sources.md. Alt text describes only what is visible.
 export const sitePhotos = {
+  /** Downloads WeTransfer Artboards 1–4; order requested by the user on 2026-11-17. */
+  homeCompany: [
+    {
+      key: "home-company-g700",
+      alt: { mn: "Барилгын дэргэд зогсох хар JETOUR G700", en: "Black JETOUR G700 beside a building" },
+      status: "sourced", source: "User-supplied WeTransfer archive, Artboard 1.png, 2026-11-17", focus: "50% 50%",
+    },
+    {
+      key: "home-company-ti7",
+      alt: { mn: "Уул, нуурын дэргэдэх замаар явж буй BYD Ti7", en: "BYD Ti7 on a road beside a mountain lake" },
+      status: "sourced", source: "User-supplied WeTransfer archive, Artboard 2.png, 2026-11-17", focus: "50% 50%",
+    },
+    {
+      key: "home-company-highland",
+      alt: { mn: "Элсэн манханд буй Highland бартаат замын автомашин", en: "Highland off-road vehicle among sand dunes" },
+      status: "sourced", source: "User-supplied WeTransfer archive, Artboard 3.png, 2026-11-17", focus: "50% 50%",
+    },
+    {
+      key: "home-company-hongqi-offroad",
+      alt: { mn: "Үзэсгэлэнд байрлуулсан HONGQI бартаат замын автомашин", en: "HONGQI off-road vehicle at an exhibition" },
+      status: "sourced", source: "User-supplied WeTransfer archive, Artboard 4.png, 2026-11-17", focus: "50% 50%",
+    },
+  ],
   /** Contact page: the company's own building with several brands' cars in front; no single brand leads. */
   hero: {
     key: "sain-hq-aerial",

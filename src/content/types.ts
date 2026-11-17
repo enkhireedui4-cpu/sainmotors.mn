@@ -174,6 +174,8 @@ export interface Service {
  * is still ahead and the content team has supplied a verified URL.
  */
 export interface DriveEvent {
+  /** Withdrawn reports remain in the source archive but have no public news page. */
+  published?: boolean;
   category?: "news" | "media" | "csr";
   id: string;
   edition: number;
@@ -191,6 +193,24 @@ export interface DriveEvent {
   headline?: Block;
   /** The news article's text; paragraphs are separated by blank lines. */
   story?: Block;
+  /** User-supplied photo report; keep pictures attached to their actual event. */
+  cover?: Photo;
+  gallery?: { afterParagraph: number; photo: Photo }[];
   /** Self-hosted film under /public/video: the full cut and, for the homepage feature, a short muted loop. */
   film?: { poster: Photo; teaser?: string; full: string; duration: string };
+}
+
+export interface NewsArticle {
+  id: string;
+  category: "news" | "media" | "csr";
+  title: Localized;
+  /** Display only the precision supplied by the source; never invent a publication day. */
+  date?: { value: string; precision: "day" | "month" | "year"; end?: string };
+  location?: Localized;
+  cover: Photo;
+  coverNote?: Localized;
+  sections: { heading?: Localized; body?: Localized; bullets?: Localized<string[]>; photos?: Photo[] }[];
+  film?: DriveEvent["film"];
+  source: string;
+  status: ContentStatus;
 }

@@ -1,8 +1,7 @@
-import Link from "next/link";
+import { BrandLink } from "./BrandLink";
 import { brandPhone, brandsAt, ui } from "@/content";
 import type { Location } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
-import { brandHref } from "@/lib/routes";
 import { Icon } from "./Icon";
 
 interface LocationCardProps {
@@ -43,9 +42,9 @@ export function LocationCard({ location, locale, headingLevel = "h3" }: Location
                 <span className="sr-only">{ui.location.brands[locale]}: </span>
                 {brands.map((brand, i) => (
                   <span key={brand.slug}>
-                    <Link href={brandHref(locale, brand.slug)} translate="no">
+                    <BrandLink locale={locale} slug={brand.slug} translate="no">
                       {brand.name}
-                    </Link>
+                    </BrandLink>
                     {/* The comma closes this item; the flex gap supplies the space after it. */}
                     {i < brands.length - 1 && ","}
                   </span>
@@ -71,9 +70,9 @@ export function LocationCard({ location, locale, headingLevel = "h3" }: Location
               return (
                 <div key={brand.slug}>
                   <dt>
-                    <Link href={brandHref(locale, brand.slug)} translate="no">
+                    <BrandLink locale={locale} slug={brand.slug} translate="no">
                       {brand.name}
-                    </Link>
+                    </BrandLink>
                   </dt>
                   <dd>
                     <a className="phone-link" href={phone.href}>

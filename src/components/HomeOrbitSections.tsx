@@ -12,24 +12,22 @@ const copy = {
   mn: {
     who: "Бид хэн бэ",
     about: "Бидний тухай",
-    companySummary: "Улаанбаатар, Дархан, Эрдэнэт хотын шоурумуудаас автомашин сонгож, санхүүжилт, үйлдвэрийн баталгаа болон борлуулалтын дараах үйлчилгээний нөхцөлийг брэндийн багаас лавлах боломжтой.",
-    numbers: "Бид тоогоор",
-    numbersText: "Дэлхийн брэндүүдийг Монголын хэрэглэгчдэд ойртуулсан Сайн Моторсын сүлжээ.",
+    numbers: "Тоогоор харахад",
+    numbersText: "Бид дараах 11 автомашины брэндтэй хамтран ажилладаг.",
     brands: "Автомашины брэнд", showrooms: "Албан ёсны шоурум", fourS: "4S шоурум", cities: "Үйл ажиллагаа явуулдаг хот",
     service: "Таны автомашинд зориулсан үйлчилгээ",
-    serviceText: "Шинэ автомашины сонголтоос эхлээд санхүүжилтийн зөвлөгөө, үйлдвэрийн баталгаа, засвар үйлчилгээг хүртэл бид тантай хамт.",
+    serviceText: "Шинэ автомашин сонгохоос эхлээд санхүүжилтийн зөвлөгөө, үйлдвэрийн баталгаа, засвар үйлчилгээ хүртэл бүх шатанд мэргэжлийн үйлчилгээ үзүүлнэ.",
     allServices: "Бүх үйлчилгээ",
     serviceLabels: ["Шинэ автомашин", "Санхүүжилт", "Үйлдвэрийн баталгаа", "Засвар, сэлбэг"],
   },
   en: {
     who: "Who are we",
     about: "About us",
-    companySummary: "Visit our showrooms in Ulaanbaatar, Darkhan and Erdenet to explore vehicles and ask each brand’s team about available financing, factory warranty and after-sales support.",
-    numbers: "Us in numbers",
-    numbersText: "The Sain Motors network connects international automotive brands with drivers across Mongolia.",
+    numbers: "At a glance",
+    numbersText: "We work with the following 11 automotive brands.",
     brands: "Automotive brands", showrooms: "Official showrooms", fourS: "4S showrooms", cities: "Cities in our network",
     service: "Car care services",
-    serviceText: "From choosing your new car to financing advice, factory warranty and professional maintenance, Sain Motors is with you along the way.",
+    serviceText: "Professional service at every stage — from choosing your new car to financing advice, factory warranty and maintenance.",
     allServices: "All services",
     serviceLabels: ["New cars", "Financing", "Factory warranty", "Service and parts"],
   },
@@ -39,7 +37,8 @@ export function HomeOrbitSections({ locale }: { locale: Locale }) {
   const text = copy[locale];
   const brands = getBrands();
   const showrooms = getLocations().filter(location => location.kind === "showroom");
-  const photographs = ["jetour", "212", "aito", "byd"].map(slug => {
+  const photographs = sitePhotos.homeCompany;
+  const serviceBrandPhotos = ["jetour", "212", "aito", "byd"].map(slug => {
     const brand = brands.find(item => item.slug === slug);
     return brand?.cardPhoto ?? brand?.photo ?? sitePhotos.homeHero[0];
   });
@@ -49,7 +48,7 @@ export function HomeOrbitSections({ locale }: { locale: Locale }) {
     { value: Number(company.fourSShowrooms.value[locale]), label: text.fourS },
     { value: new Set(showrooms.map(location => location.city.en)).size, label: text.cities },
   ];
-  const servicePhotos = [photographs[0], photographs[3], photographs[1], sitePhotos.serviceGallery[1]];
+  const servicePhotos = [serviceBrandPhotos[0], serviceBrandPhotos[3], serviceBrandPhotos[1], sitePhotos.serviceGallery[1]];
   return (
     <OrbitScrollScene>
       <section id="home-company" className="orbit-company" aria-labelledby="orbit-company-heading">
@@ -60,10 +59,9 @@ export function HomeOrbitSections({ locale }: { locale: Locale }) {
         <div className="orbit-section-container">
           <div className="orbit-company__introduction">
             <div className="orbit-company__mountains" aria-hidden="true" />
-            <p className="orbit-company__eyebrow">{text.who}</p>
-            <h2 id="orbit-company-heading">SAIN MOTORS</h2>
+            <h2 id="orbit-company-heading" className="orbit-company__eyebrow">{text.who}</h2>
             <div className="orbit-statement">
-              <p>{company.distributorClaim.value[locale]} {text.companySummary}</p>
+              <p>{company.introduction.value[locale]}</p>
             </div>
             <Link className="orbit-company__about" href={pageHref(locale, "about")} prefetch={false}>{text.about}<Icon name="arrowUpRight" size={17} /></Link>
           </div>

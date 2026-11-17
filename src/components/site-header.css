@@ -1,14 +1,24 @@
 /* The homepage header's dimensions are shared by every route. */
 :root { --header-h: 4rem; }
-.site-header { --focus: #a00711; color: #172126; background: #fff; border-bottom-color: #e5e6e9; box-shadow: none; }
-.site-header .site-header__inner { width: 84%; max-width: 100rem; gap: 2rem; }
+.site-header { --focus: var(--sm-red); color: var(--sm-ink); background: var(--sm-white); border-bottom-color: var(--sm-line); box-shadow: none; }
+.site-header .site-header__inner { width: calc(100% - 2 * var(--sm-gutter)); max-width: var(--sm-content-max); gap: 2rem; }
 .site-header .site-logo img { width: 8.8rem; }
 .site-header .site-nav { margin-inline: auto; gap: clamp(1rem, 2.2vw, 2.4rem); }
-.site-header .site-nav__link { color: inherit; font-size: .78rem; letter-spacing: -.02em; }
+.site-header .site-nav__link { color:inherit; font-size:.875rem; letter-spacing:-.02em; }
+.site-header .site-nav__link:hover,
+.site-header .site-nav__link[aria-current] { color: var(--sm-red); }
+.site-header .site-nav__link::after { background: var(--sm-red); }
 .site-header .lang-switch { color: inherit; }
-.site-header__inner > .lang-switch a { color: #566169; }
-.site-header__inner > .lang-switch [aria-current] { color: #172126; text-decoration: underline; text-underline-offset: .5rem; }
-.site-header .menu-button { color: #172126; }
+.site-header__inner > .lang-switch a { color: var(--sm-muted); }
+.site-header__inner > .lang-switch [aria-current] { color: var(--sm-red); text-decoration: underline; text-underline-offset: .5rem; }
+.site-header .menu-button { color: var(--sm-ink); }
+.site-header .mobile-menu { --focus: var(--sm-red); color: var(--sm-ink); background: var(--sm-white); }
+.site-header .mobile-menu__nav a:hover,
+.site-header .mobile-menu__nav a[aria-current],
+.site-header .mobile-menu .lang-switch [aria-current] { color: var(--sm-red); }
+.site-header .mobile-menu__nav a[aria-current] { border-bottom-color: var(--sm-red); }
+.site-header .mobile-menu__foot > a[href^="tel:"] { display:inline-flex; align-items:center; justify-content:center; min-height:var(--sm-control-height); padding:.7rem 1.4rem; border-radius:var(--sm-radius-control); color:var(--sm-white); background:var(--sm-red); }
+.site-header .mobile-menu__foot > a[href^="tel:"]:hover { color:var(--sm-white); background:var(--sm-red-hover); }
 @media (max-width: 63.99rem) {
   .site-header .site-header__inner { width: calc(100% - 3rem); gap: 1rem; }
   .site-header .site-nav { gap: 1.1rem; }
