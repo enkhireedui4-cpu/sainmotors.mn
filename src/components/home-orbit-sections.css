@@ -42,15 +42,41 @@
 .orbit-services__intro { width:min(88%,52rem); margin-inline:auto; text-align:center; padding-bottom:clamp(2.5rem,3vw,3.5rem); }
 .orbit-services__intro h2 { max-width:26ch; margin-inline:auto; font:600 clamp(1.75rem,2.6vw,3rem)/1.2 var(--font-display); letter-spacing:-.025em; }
 .orbit-services__description { max-width:50rem; margin:2rem auto 0; font-size:clamp(.9375rem,.95vw,1.125rem); line-height:1.5; text-wrap:balance; }
-.orbit-services__grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2px; }
-.orbit-service-card { display:block; position:relative; aspect-ratio:1.8; overflow:hidden; border-radius:var(--sm-radius-card); color:var(--sm-white); background:var(--sm-black); }
-.orbit-service-card::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,#00000026,#00000026 30%,#000000a6); pointer-events:none; }
+/* Four stops on one ownership road: the cards form one panel, a single route runs through every stop. */
+.orbit-services__grid {
+  --route-gap:2px; --route-inset:clamp(1.25rem,2.5vw,3rem); --route-bottom:clamp(4.25rem,5.6vw,6.5rem); --node:11px; --route-stop:0;
+  position:relative; isolation:isolate; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:var(--route-gap);
+}
+.orbit-service-card { display:block; position:relative; aspect-ratio:1.8; overflow:hidden; border-radius:0; color:var(--sm-white); background:var(--sm-black); }
+.orbit-service-card:first-of-type { border-radius:var(--sm-radius-card) 0 0 var(--sm-radius-card); }
+.orbit-service-card:last-of-type { border-radius:0 var(--sm-radius-card) var(--sm-radius-card) 0; }
+.orbit-service-card::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,#00000014,#00000026 35%,#000000b8); pointer-events:none; }
 .orbit-service-card img { width:100%; height:100%; object-fit:cover; transition:transform .5s; }
 .orbit-service-card:hover img { transform:scale(1.035); }
 .orbit-service-card:focus-visible { outline:3px solid var(--sm-red); outline-offset:-5px; }
-.orbit-service-card__label { position:absolute; z-index:1; left:clamp(1.25rem,2.5vw,3rem); right:clamp(1.25rem,2.5vw,3rem); bottom:clamp(1.5rem,2.5vw,3rem); }
-.orbit-service-card__label::before { content:""; position:absolute; top:-.85rem; left:0; width:2rem; height:3px; background:var(--sm-red); }
+.orbit-service-card__label { position:absolute; z-index:3; left:var(--route-inset); right:var(--route-inset); top:calc(100% - var(--route-bottom)); padding-top:1.15rem; }
+.orbit-service-card__label::before { content:""; position:absolute; top:0; left:0; width:var(--node); height:var(--node); border-radius:50%; background:var(--sm-white); box-shadow:0 0 0 4px #00000059; transform:translateY(-50%); transition:background-color .3s, box-shadow .3s; }
 .orbit-service-card__label h3 { font:500 clamp(.9375rem,1.2vw,1.5rem)/1.35 var(--font-sans); letter-spacing:-.025em; max-width:24ch; text-transform:uppercase; }
+
+/* the road itself, drawn over the seams so it reads as one line */
+.orbit-services__route { position:absolute; z-index:2; left:0; right:0; bottom:calc(var(--route-bottom) - 1px); height:2px; background:#ffffff73; pointer-events:none; transform-origin:left center; }
+.orbit-services__route::before { content:""; position:absolute; inset:0 auto 0 0; width:calc((100% - 3 * var(--route-gap)) / 4 * var(--route-stop) + var(--route-gap) * var(--route-stop) + var(--route-inset) + var(--node) / 2); background:var(--sm-red); transition:width .55s cubic-bezier(.2,.7,.2,1); }
+
+/* the stop you point at, and every stop before it, is "reached" */
+.orbit-services__grid:has(.orbit-service-card:nth-child(2):is(:hover,:focus-visible)) { --route-stop:1; }
+.orbit-services__grid:has(.orbit-service-card:nth-child(3):is(:hover,:focus-visible)) { --route-stop:2; }
+.orbit-services__grid:has(.orbit-service-card:nth-child(4):is(:hover,:focus-visible)) { --route-stop:3; }
+.orbit-service-card:first-of-type .orbit-service-card__label::before,
+.orbit-service-card:is(:hover,:focus-visible) .orbit-service-card__label::before,
+.orbit-service-card:has(~ .orbit-service-card:is(:hover,:focus-visible)) .orbit-service-card__label::before { background:var(--sm-red); box-shadow:0 0 0 4px #e20a1740; }
+
+@supports (animation-timeline:view()) {
+  @media (prefers-reduced-motion:no-preference) {
+    .orbit-services__route { animation:orbit-route-draw linear both; animation-timeline:view(); animation-range:entry 20% cover 45%; }
+  }
+}
+@keyframes orbit-route-draw { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@keyframes orbit-route-draw-down { from { transform:scaleY(0); } to { transform:scaleY(1); } }
 .orbit-services__more { display:flex; justify-content:center; padding-top:2rem; }
 .orbit-services__more a { display:inline-flex; align-items:center; justify-content:center; gap:.7rem; min-height:var(--sm-control-height); padding:.7rem 1.45rem; border-radius:var(--sm-radius-control); background:var(--sm-red); color:var(--sm-white); font-size:.875rem; font-weight:400; line-height:1.25; }
 .orbit-services__more a:hover { background:var(--sm-red-hover); }
@@ -66,7 +92,8 @@
   .orbit-brands__list { width:100%; max-width:54rem; }
   .orbit-brands__list a { padding-inline:1.25rem; }
 
-  .orbit-services__grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .orbit-services__grid { --route-inset:1rem; --route-bottom:4.75rem; }
+  .orbit-service-card { aspect-ratio:1; }
 }
 @media (max-width:47.99rem) {
   .orbit-section-container { width:calc(100% - 1.75rem); }
@@ -97,10 +124,16 @@
   .orbit-services__intro { width:calc(100% - 2.25rem); padding-bottom:2.25rem; }
   .orbit-services__intro h2 { font-size:1.25rem; line-height:1.25; letter-spacing:0; }
   .orbit-services__description { margin-top:.75rem; font-size:.9375rem; line-height:1.5; }
-  .orbit-services__grid { width:calc(100% - 2.25rem); margin-inline:auto; gap:.6875rem; }
-  .orbit-service-card { aspect-ratio:.9; border-radius:var(--sm-radius-card); }
-  .orbit-service-card__label { left:1rem; right:1rem; bottom:2rem; }
-  .orbit-service-card__label h3 { font-size:.8125rem; line-height:1.4; }
+  /* the road turns vertical: one column, the line runs down through every stop */
+  .orbit-services__grid { --route-inset:1rem; width:calc(100% - 2.25rem); margin-inline:auto; grid-template-columns:1fr; }
+  .orbit-service-card { aspect-ratio:2.4; }
+  .orbit-service-card:first-of-type { border-radius:var(--sm-radius-card) var(--sm-radius-card) 0 0; }
+  .orbit-service-card:last-of-type { border-radius:0 0 var(--sm-radius-card) var(--sm-radius-card); }
+  .orbit-service-card__label { top:auto; bottom:1.25rem; padding:0 0 0 1.75rem; }
+  .orbit-service-card__label::before { top:50%; }
+  .orbit-service-card__label h3 { font-size:.875rem; line-height:1.4; }
+  .orbit-services__route { inset:0 auto 0 calc(var(--route-inset) + var(--node) / 2 - 1px); width:2px; height:auto; transform-origin:center top; animation-name:orbit-route-draw-down; }
+  .orbit-services__route::before { display:none; }
   .orbit-services__more { padding-top:1.15rem; }
   .orbit-services__more a { padding:.6rem 1.2rem; font-size:.75rem; }
 }
@@ -109,6 +142,6 @@
 }
 @media (prefers-reduced-motion:reduce) {
   .orbit-scroll-scene .orbit-statement { color:var(--sm-ink)!important; background:none!important; }
-  .orbit-service-card img { transition:none; }
+  .orbit-service-card img, .orbit-services__route::before, .orbit-service-card__label::before { transition:none; }
   .orbit-brands__list a { transition:none; }
 }
