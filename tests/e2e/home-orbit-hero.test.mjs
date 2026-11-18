@@ -27,41 +27,49 @@ test("mobile portrait and landscape keep the hero copy and touch controls inside
       const layout=await page.evaluate(()=>{
         const box=s=>document.querySelector(s).getBoundingClientRect().toJSON();
         return {
-          hero:box(".home-orbit-hero"),promise:box(".home-orbit-hero__promise"),foot:box(".home-orbit-hero__foot"),
-          social:box(".home-orbit-hero__socials a"),
+          hero:box(".home-orbit-hero"),title:box(".home-orbit-hero__title"),motto:box(".home-orbit-hero__motto"),link:box(".home-orbit-hero__discover"),
+          media:box(".cinematic-hero__media"),fit:getComputedStyle(document.querySelector(".cinematic-hero__film")).objectFit,
+          filmFilter:getComputedStyle(document.querySelector(".cinematic-hero__film")).filter,
           viewport:innerHeight,overflow:document.documentElement.scrollWidth>innerWidth+1,
         };
       });
-      assert.ok(Math.abs(layout.hero.bottom-layout.viewport)<2,locale+" "+width+"x"+height+": opening must fit one screen");
-      assert.ok(layout.foot.top>=layout.promise.bottom+8,locale+" "+width+"x"+height+": copy must not overlap");
-      assert.ok(layout.foot.bottom<=layout.viewport-8);
-      assert.ok(layout.social.width>=44&&layout.social.height>=44);
+      assert.equal(layout.fit,"cover");
+      assert.equal(layout.filmFilter,"none");
+      if (width < height) {
+        assert.ok(layout.hero.bottom < layout.viewport - 40);
+      }
+      assert.equal(layout.media.height,layout.hero.height);
+      assert.ok(layout.motto.top >= layout.title.bottom);
+      assert.ok(layout.link.top >= layout.motto.bottom);
+      assert.ok(Math.abs(layout.title.x + layout.title.width / 2 - width / 2) < 1);
+      assert.ok(Math.abs(layout.link.x + layout.link.width / 2 - width / 2) < 1);
+      assert.ok(layout.link.bottom<=layout.hero.bottom-8);
+      assert.ok(layout.link.width>=44&&layout.link.height>=44);
       assert.equal(layout.overflow,false);
     }
   }finally{await page.close();}
 });
 
-test("a touch phone loads the portrait road and switches films when rotated", async () => {
+test("a touch phone plays the Ayud Tower film in portrait and landscape", async () => {
   const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2,reducedMotion:"no-preference"});
   try {
     const requests = new Set();
     page.on("request",request => requests.add(new URL(request.url()).pathname));
     await page.goto(base+"/mn/",{waitUntil:"domcontentloaded"});
-    await page.waitForFunction(()=>document.querySelector(".cinematic-hero")?.dataset.intro==="complete");
     const artwork=await page.locator(".cinematic-hero__media img").evaluate(async img=>{
       await img.decode();
       return new URL(img.currentSrc).pathname;
     });
-    assert.equal(artwork,"/art/altai-road-mobile.webp");
-    await waitForPlayingFilm(page, "/video/hero/altai-road-mobile.mp4");
-    assert.equal(requests.has("/video/hero/altai-road.mp4"), false);
-    assert.equal(await page.locator("h1").getAttribute("aria-label"),"SAIN MOTORS");
+    assert.equal(artwork,"/art/ayud-tower.webp");
+    await waitForPlayingFilm(page, "/video/hero/ayud-tower-mobile.mp4");
+    assert.equal(requests.has("/video/hero/ayud-tower.mp4"), false);
+    assert.equal(await page.getByRole("heading",{level:1,name:"Sain Motors",exact:true}).count(),1);
     await page.getByRole("button",{name:"Цэс",exact:true}).click();
     assert.equal(await page.locator("#mobile-menu").isVisible(),true);
     await page.keyboard.press("Escape");
     await page.setViewportSize({ width: 844, height: 390 });
-    await waitForPlayingFilm(page, "/video/hero/altai-road.mp4");
-    assert.equal(await page.locator(".cinematic-hero__media img").evaluate(img=>new URL(img.currentSrc).pathname), "/art/altai-road.webp");
+    await waitForPlayingFilm(page, "/video/hero/ayud-tower-mobile.mp4");
+    assert.equal(await page.locator(".cinematic-hero__media img").evaluate(img=>new URL(img.currentSrc).pathname), "/art/ayud-tower.webp");
     assert.equal([...requests].some(path => /sain-earth|home-automotive-studio/.test(path)), false);
   }finally{await page.close();}
 });
@@ -74,15 +82,9 @@ test("without JavaScript the official Sain Motors logo, artwork and readable hea
     const films=[];
     page.on("request",r=>{if(new URL(r.url()).pathname.endsWith(".mp4"))films.push(r.url());});
     await page.goto(base+"/en/",{waitUntil:"networkidle"});
-    const logo = page.locator(".cinematic-wordmark");
-    const logoImage = logo.locator("image");
-    assert.equal(await logoImage.count(), 1, "The opening must show the official vector artwork");
-    const logoPath = await logoImage.getAttribute("href");
-    assert.match(logoPath, /\/sain-on-dark\.[\w-]+\.svg$/);
-    const logoResponse = await page.request.get(new URL(logoPath, base).href);
-    assert.equal(logoResponse.status(), 200);
-    assert.match(logoResponse.headers()["content-type"], /^image\/svg\+xml/);
-    assert.equal(await logo.evaluate(el=>getComputedStyle(el).opacity),"1");
+    assert.ok(await page.locator(".site-header .site-logo").isVisible());
+    assert.match(await page.locator(".site-header .site-logo").evaluate(el=>getComputedStyle(el).backgroundImage), /sain-on-dark/);
+    assert.ok(await page.getByRole("heading",{level:1,name:"Sain Motors",exact:true}).isVisible());
     assert.equal(await page.locator(".cinematic-hero__media").evaluate(el=>getComputedStyle(el).transform),"none");
     assert.equal(await page.locator(".site-header").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
     assert.ok(await page.locator(".cinematic-hero__media img").evaluate(img=>img.complete&&img.naturalWidth>0));
@@ -111,25 +113,42 @@ test("the home header overlays the artwork transparently and becomes solid below
 
 
 
-test("the desktop road film plays inline behind the wordmark reveal", async () => {
+test("the desktop Ayud Tower film plays behind the centered heading and introduction link", async () => {
   const page = await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:"no-preference"});
   try {
     await page.goto(base + "/en/",{waitUntil:"domcontentloaded"});
     const image = page.locator(".cinematic-hero__media img");
-    assert.equal(await image.getAttribute("src"),"/art/altai-road.webp");
-    const logo = page.locator(".cinematic-wordmark");
-    assert.equal(await logo.evaluate(el=>getComputedStyle(el).animationName),"cinematic-logo-in");
-    await page.waitForFunction(()=>document.querySelector(".cinematic-hero")?.dataset.intro==="complete");
-    assert.equal(await logo.evaluate(el=>Number(getComputedStyle(el).opacity)),1);
+    assert.equal(await image.getAttribute("src"),"/art/ayud-tower.webp");
+    const identity = page.locator(".home-orbit-hero__identity");
+    const trace = identity.locator(".cinematic-wordmark__trace");
+    assert.equal(await trace.textContent(), "S");
+    await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "running");
+    assert.equal(await trace.evaluate(el => getComputedStyle(el).animationName), "cinematic-s-draw");
+    const [lastLetter, motto, button] = await page.locator(".home-orbit-hero__foot").evaluate(el =>
+      [".cinematic-wordmark__letter:last-child", ".home-orbit-hero__motto", ".home-orbit-hero__discover"].map(selector => {
+        const timing = el.querySelector(selector).getAnimations()[0].effect.getComputedTiming();
+        return { start: timing.delay, end: timing.endTime };
+      }));
+    assert.ok(Math.abs(motto.start - lastLetter.end) < 1);
+    assert.equal(button.start, motto.start);
+    await page.locator(".home-orbit-hero__foot").evaluate(el => Promise.all(el.getAnimations({subtree:true}).map(animation => animation.finished)));
+    assert.ok(await identity.getByText("A new car for Mongolians", { exact:true }).isVisible());
+    assert.equal(await trace.evaluate(el => parseFloat(getComputedStyle(el).strokeDashoffset)), 0);
+    assert.ok(await identity.locator(".cinematic-wordmark__letter").evaluateAll(letters =>
+      letters.length === 9 && letters.every(el => getComputedStyle(el).opacity === "1")));
+    const heading = await page.getByRole("heading",{level:1,name:"Sain Motors",exact:true}).boundingBox();
+    const link = await page.locator(".home-orbit-hero__discover").boundingBox();
+    assert.ok(Math.abs(heading.x + heading.width / 2 - 720) < 1);
+    assert.ok(Math.abs(link.x + link.width / 2 - 720) < 1 && link.y > heading.y + heading.height);
     await image.evaluate(img=>img.decode());
-    await waitForPlayingFilm(page, "/video/hero/altai-road.mp4");
+    await waitForPlayingFilm(page, "/video/hero/ayud-tower.mp4");
     const film = page.locator(".cinematic-hero__film");
     assert.ok(await film.evaluate(el => el.muted && el.playsInline && el.loop && !el.controls));
   } finally {await page.close();}
 });
 
 
-test("the Sain Motors opening keeps the localized motto and static artwork under reduced motion", async () => {
+test("the Sain Motors opening shows the static wordmark and the About link under reduced motion", async () => {
   const page = await browser.newPage({ reducedMotion: "reduce" });
   try {
     for (const locale of ["en", "mn"]) {
@@ -139,24 +158,25 @@ test("the Sain Motors opening keeps the localized motto and static artwork under
       await page.goto(base + "/" + locale + "/", { waitUntil: "networkidle" });
       assert.equal(await page.locator(".home-orbit-hero").count(), 1);
       assert.equal(await page.locator("h1").count(), 1);
-      assert.equal(await page.locator("h1").getAttribute("aria-label"), "SAIN MOTORS");
       assert.equal(await page.locator(".home-video-hero, .home-brands, .brand-spotlight").count(), 0);
       assert.ok(await page.locator(".cinematic-hero__media img").evaluate(img=>img.complete&&img.naturalWidth>0));
       assert.deepEqual(mediaRequests, []);
-      assert.equal(await page.locator(".home-orbit-hero__promise").innerText(),locale === "en" ? "A NEW CAR FOR MONGOLIANS" : "МОНГОЛ ХҮНД ШИНЭ МАШИН");
-      assert.equal(await page.locator(".home-orbit-hero__description").count(),0);
-      const down=page.locator('.home-orbit-hero__discover[href="#home-company"]');
-      assert.equal(await down.count(),1);
-      await down.click();
-      await page.waitForFunction(()=>location.hash==="#home-company");
-      const target=await page.locator("#home-company").boundingBox();
-      assert.ok(target.y<130&&target.y>=0,"The restored link reaches the company section");
+      assert.ok(await page.getByRole("heading",{level:1,name:"Sain Motors",exact:true}).isVisible());
+      assert.equal(await page.locator(".home-orbit-hero").getByText(/car sales and|автомашины худалдаа/i).count(), 0);
+      assert.equal(await page.locator(".cinematic-wordmark__initial").evaluate(el => getComputedStyle(el).animationName), "none");
+      assert.doesNotMatch(await page.locator(".home-orbit-hero").innerText(), /distributor|дистрибьютор/i);
+      assert.match(await page.locator("#home-company .orbit-statement").innerText(), /11/);
+      const discover = page.getByRole("link", { name: locale === "en" ? "Discover Sain Motors" : "Сайн Моторстой танилцах", exact: true });
+      assert.equal(await discover.getAttribute("href"), `/${locale}/about/`);
+      await discover.click();
+      await page.waitForURL(base + `/${locale}/about/`);
+      await page.locator(".about-page").waitFor({ state: "visible" });
       page.off("request", collect);
     }
   } finally { await page.close(); }
 });
 
-test("a phone with data saving enabled shows the road poster without downloading a film", async () => {
+test("a phone with data saving enabled shows the Ayud Tower poster without downloading a film", async () => {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: "no-preference" });
   try {
     await page.addInitScript(() => {
@@ -168,12 +188,12 @@ test("a phone with data saving enabled shows the road poster without downloading
       if (path.endsWith(".mp4")) films.push(path);
     });
     await page.goto(base + "/en/", { waitUntil: "networkidle" });
-    await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.intro === "complete");
+    await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "reduced");
     const poster = page.locator(".cinematic-hero__media img");
     assert.equal(await poster.evaluate(async img => {
       await img.decode();
       return new URL(img.currentSrc).pathname;
-    }), "/art/altai-road-mobile.webp");
+    }), "/art/ayud-tower.webp");
     assert.deepEqual(films, []);
   } finally { await page.close(); }
 });
@@ -198,7 +218,7 @@ test("the old company and service blocks are replaced by the reference statement
   } finally { await page.close(); }
 });
 
-test("the opening remains legible on phone, tablet and desktop, with a static reduced-motion wordmark", async () => {
+test("the opening remains legible on phone, tablet and desktop under reduced motion", async () => {
   const page = await browser.newPage({ reducedMotion: "reduce" });
   try {
     for (const [width, height] of [[360, 800], [390, 844], [768, 1024], [1440, 1000], [844, 390]]) {
@@ -207,11 +227,10 @@ test("the opening remains legible on phone, tablet and desktop, with a static re
       await page.evaluate(() => document.fonts.ready);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false);
       const hero = await page.locator(".home-orbit-hero").boundingBox();
-      const motto = await page.locator(".home-orbit-hero__promise").boundingBox();
-      assert.ok(motto.width > 140 && motto.y + motto.height <= hero.y + hero.height + 1);
-      assert.ok(Math.abs(hero.y + hero.height - height) < 3 || height < 500, "The first screen fits the viewport unless it is short landscape");
-      const wordmark = await page.locator("h1").boundingBox();
-      assert.ok(wordmark.x >= 0 && wordmark.x + wordmark.width <= width + 1);
+      const title = await page.locator(".home-orbit-hero__title").boundingBox();
+      assert.ok(title.width > 140 && title.y + title.height <= hero.y + hero.height + 1);
+      assert.ok(hero.y + hero.height <= height + 1);
+      assert.ok(title.x >= 0 && title.x + title.width <= width + 1);
       assert.equal(await page.locator(".cinematic-hero").getAttribute("data-motion"), "reduced");
       assert.equal(await page.locator(".cinematic-hero").evaluate(el => el.getAnimations({subtree:true}).filter(a=>a.playState === "running").length), 0);
     }
@@ -222,13 +241,13 @@ test("motion runs automatically only while the opening is visible", async () => 
   const page = await browser.newPage({ viewport: {width:1440,height:1000}, reducedMotion:"no-preference" });
   try {
     await page.goto(base + "/en/", {waitUntil:"networkidle"});
-    await waitForPlayingFilm(page, "/video/hero/altai-road.mp4");
+    await waitForPlayingFilm(page, "/video/hero/ayud-tower.mp4");
     assert.equal(await page.getByRole('button',{name:/Pause animation|Play animation/}).count(),0);
     await page.locator("#home-company").evaluate(el => el.scrollIntoView({block:"start"}));
     await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "paused");
     assert.ok(await page.locator(".cinematic-hero__film").evaluate(film => film.paused));
     await page.evaluate(() => window.scrollTo(0,0));
-    await waitForPlayingFilm(page, "/video/hero/altai-road.mp4");
+    await waitForPlayingFilm(page, "/video/hero/ayud-tower.mp4");
   } finally { await page.close(); }
 });
 
