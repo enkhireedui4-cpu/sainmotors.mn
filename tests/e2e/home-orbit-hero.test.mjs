@@ -68,13 +68,21 @@ test("a touch phone loads the portrait road and switches films when rotated", as
 
 
 
-test("without JavaScript the complete wordmark, artwork and readable header remain available", async () => {
+test("without JavaScript the official Sain Motors logo, artwork and readable header remain available", async () => {
   const page=await browser.newPage({javaScriptEnabled:false,viewport:{width:1440,height:1000}});
   try {
     const films=[];
     page.on("request",r=>{if(new URL(r.url()).pathname.endsWith(".mp4"))films.push(r.url());});
     await page.goto(base+"/en/",{waitUntil:"networkidle"});
-    assert.equal(await page.locator(".cinematic-wordmark__letter").last().evaluate(el=>getComputedStyle(el).opacity),"1");
+    const logo = page.locator(".cinematic-wordmark");
+    const logoImage = logo.locator("image");
+    assert.equal(await logoImage.count(), 1, "The opening must show the official vector artwork");
+    const logoPath = await logoImage.getAttribute("href");
+    assert.match(logoPath, /\/sain-on-dark\.[\w-]+\.svg$/);
+    const logoResponse = await page.request.get(new URL(logoPath, base).href);
+    assert.equal(logoResponse.status(), 200);
+    assert.match(logoResponse.headers()["content-type"], /^image\/svg\+xml/);
+    assert.equal(await logo.evaluate(el=>getComputedStyle(el).opacity),"1");
     assert.equal(await page.locator(".cinematic-hero__media").evaluate(el=>getComputedStyle(el).transform),"none");
     assert.equal(await page.locator(".site-header").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
     assert.ok(await page.locator(".cinematic-hero__media img").evaluate(img=>img.complete&&img.naturalWidth>0));
@@ -109,12 +117,10 @@ test("the desktop road film plays inline behind the wordmark reveal", async () =
     await page.goto(base + "/en/",{waitUntil:"domcontentloaded"});
     const image = page.locator(".cinematic-hero__media img");
     assert.equal(await image.getAttribute("src"),"/art/altai-road.webp");
-    const letters = page.locator(".cinematic-wordmark__letter");
-    assert.equal(await letters.count(),9);
-    const delays = await letters.evaluateAll(elements => elements.map(el => parseFloat(el.style.getPropertyValue("--letter-delay"))));
-    assert.ok(delays.every((delay, index) => Number.isFinite(delay) && (index === 0 || delay > delays[index - 1])));
+    const logo = page.locator(".cinematic-wordmark");
+    assert.equal(await logo.evaluate(el=>getComputedStyle(el).animationName),"cinematic-logo-in");
     await page.waitForFunction(()=>document.querySelector(".cinematic-hero")?.dataset.intro==="complete");
-    assert.equal(await letters.last().evaluate(el=>Number(getComputedStyle(el).opacity)),1);
+    assert.equal(await logo.evaluate(el=>Number(getComputedStyle(el).opacity)),1);
     await image.evaluate(img=>img.decode());
     await waitForPlayingFilm(page, "/video/hero/altai-road.mp4");
     const film = page.locator(".cinematic-hero__film");

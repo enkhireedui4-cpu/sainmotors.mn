@@ -1,4 +1,4 @@
-/* One quiet cinematic sequence: the S is written, then the full name follows its movement. */
+/* Reveal the official logo and supporting copy over the film. */
 .cinematic-hero { position:absolute; inset:0; isolation:isolate; background:#0b1118; }
 .cinematic-hero::after {
   content:""; position:absolute; z-index:-1; inset:0; pointer-events:none;
@@ -15,27 +15,19 @@
 }
 .cinematic-hero__film { opacity:0; transition:opacity .6s ease; }
 .cinematic-hero[data-film="ready"]:is([data-motion="running"],[data-motion="paused"]) .cinematic-hero__film { opacity:1; }
-.cinematic-wordmark { display:block; width:100%; height:auto; overflow:visible; }
-.cinematic-wordmark text { font:italic 700 180px var(--font-zona),Arial,sans-serif; letter-spacing:0; }
-.cinematic-wordmark__initial { animation:cinematic-s-arrive 2.2s cubic-bezier(.65,0,.18,1) both; }
-.cinematic-wordmark__trace { animation:cinematic-s-draw 1.35s cubic-bezier(.45,0,.15,1) .18s both; }
-.cinematic-wordmark__initial-fill { animation:cinematic-s-fill .75s ease 1.08s both; }
-.cinematic-wordmark__letter { animation:cinematic-letter-in .9s cubic-bezier(.16,1,.3,1) var(--letter-delay) both; }
+.cinematic-wordmark {
+  display:block; width:100%; height:auto;
+  animation:cinematic-logo-in 1.45s cubic-bezier(.16,1,.3,1) 1.8s both;
+}
 .cinematic-hero .home-orbit-hero__service,.cinematic-hero .home-orbit-hero__promise,.cinematic-hero .home-orbit-hero__foot {
   animation:cinematic-copy-in 1.2s ease 2.05s both;
 }
 .cinematic-hero[data-motion="static"] *,.cinematic-hero[data-motion="paused"] * { animation-play-state:paused; }
-.cinematic-hero[data-intro="complete"] .cinematic-wordmark__initial,
-.cinematic-hero[data-intro="complete"] .cinematic-wordmark__trace,
-.cinematic-hero[data-intro="complete"] .cinematic-wordmark__initial-fill,
-.cinematic-hero[data-intro="complete"] .cinematic-wordmark__letter,
+.cinematic-hero[data-intro="complete"] .cinematic-wordmark,
 .cinematic-hero[data-intro="complete"] .home-orbit-hero__service,
 .cinematic-hero[data-intro="complete"] .home-orbit-hero__promise,
 .cinematic-hero[data-intro="complete"] .home-orbit-hero__foot { animation:none; opacity:1; transform:none; filter:none; }
-@keyframes cinematic-s-arrive { 0%,44% { transform:translateX(584px); } 100% { transform:translateX(0); } }
-@keyframes cinematic-s-draw { from { stroke-dashoffset:1200; opacity:.5; } to { stroke-dashoffset:0; opacity:1; } }
-@keyframes cinematic-s-fill { from { opacity:0; } to { opacity:1; } }
-@keyframes cinematic-letter-in { from { opacity:0; transform:translateX(-62px); filter:blur(7px); } to { opacity:1; transform:translateX(0); filter:blur(0); } }
+@keyframes cinematic-logo-in { from { opacity:0; transform:scale(.96); } to { opacity:1; transform:scale(1); } }
 @keyframes cinematic-copy-in { from { opacity:0; } to { opacity:1; } }
 @media (prefers-reduced-motion:reduce) {
   .cinematic-hero * { animation:none!important; transition:none!important; }

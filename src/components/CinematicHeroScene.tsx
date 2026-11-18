@@ -50,9 +50,7 @@ export function CinematicHeroScene({ children }: { children: ReactNode }) {
     const showFilm = () => { root.dataset.film = "ready"; };
     const showPoster = () => { root.dataset.film = "poster"; };
     const finish = (event: AnimationEvent) => {
-      if (event.animationName === "cinematic-letter-in" && (event.target as Element).hasAttribute("data-last-letter")) {
-        root.dataset.intro = "complete";
-      }
+      if (event.animationName === "cinematic-logo-in") root.dataset.intro = "complete";
     };
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting && entry.intersectionRatio >= .05;

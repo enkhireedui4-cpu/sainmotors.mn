@@ -6,7 +6,7 @@ import type { Photo } from "./types";
 // company building, showroom life and the first service-centre photographs.
 // Provenance: docs/content-sources.md. Alt text describes only what is visible.
 export const sitePhotos = {
-  /** Downloads WeTransfer Artboards 1–4; order requested by the user on 2026-11-17. */
+  /** User-supplied homepage artboards, in the requested order. */
   homeCompany: [
     {
       key: "home-company-g700",
@@ -14,9 +14,9 @@ export const sitePhotos = {
       status: "sourced", source: "User-supplied WeTransfer archive, Artboard 1.png, 2026-11-17", focus: "50% 50%",
     },
     {
-      key: "home-company-ti7",
-      alt: { mn: "Уул, нуурын дэргэдэх замаар явж буй BYD Ti7", en: "BYD Ti7 on a road beside a mountain lake" },
-      status: "sourced", source: "User-supplied WeTransfer archive, Artboard 2.png, 2026-11-17", focus: "50% 50%",
+      key: "home-company-ti7-sunset",
+      alt: { mn: "Нар жаргах үеэр барилгын дэргэд зогсох хар BYD Ti7", en: "Black BYD Ti7 parked beside a building at sunset" },
+      status: "sourced", source: "User-supplied Downloads/Artboard 5.png, 2026-11-18", focus: "50% 50%",
     },
     {
       key: "home-company-highland",

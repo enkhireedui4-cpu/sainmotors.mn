@@ -49,9 +49,9 @@ const PHOTOS = {
   "news-byd-signing-03": { file: "news/byd-signing-03.jpg" },
   "news-byd-signing-04": { file: "news/byd-signing-04.jpg" },
   "news-byd-signing-05": { file: "news/byd-signing-05.jpg" },
-  // User-supplied homepage strip, WeTransfer Artboards 1–4, 2026-11-17.
+  // User-supplied homepage strip, Artboards 1, 5, 3 and 4.
   "home-company-g700": { file: "site/home-company-g700.png" },
-  "home-company-ti7": { file: "site/home-company-ti7.png" },
+  "home-company-ti7-sunset": { file: "site/home-company-ti7.png" },
   "home-company-highland": { file: "site/home-company-highland.png" },
   "home-company-hongqi-offroad": { file: "site/home-company-hongqi-offroad.png" },
   "showroom-hall": { file: "showroom-6.webp", crop: { left: 0, top: 300, width: 2560, height: 1280 } },

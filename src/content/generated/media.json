@@ -399,30 +399,30 @@
         ]
       ]
     },
-    "home-company-ti7": {
+    "home-company-ti7-sunset": {
       "width": 1920,
       "height": 1080,
-      "color": "#181818",
+      "color": "#080808",
       "srcset": [
         [
           480,
-          "/media/home-company-ti7-480.webp"
+          "/media/home-company-ti7-sunset-480.webp"
         ],
         [
           768,
-          "/media/home-company-ti7-768.webp"
+          "/media/home-company-ti7-sunset-768.webp"
         ],
         [
           1080,
-          "/media/home-company-ti7-1080.webp"
+          "/media/home-company-ti7-sunset-1080.webp"
         ],
         [
           1440,
-          "/media/home-company-ti7-1440.webp"
+          "/media/home-company-ti7-sunset-1440.webp"
         ],
         [
           1920,
-          "/media/home-company-ti7-1920.webp"
+          "/media/home-company-ti7-sunset-1920.webp"
         ]
       ]
     },
