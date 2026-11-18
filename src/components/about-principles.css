@@ -7,7 +7,7 @@
  position:relative; isolation:isolate; overflow:hidden; padding:clamp(40px,3.6vw,64px) var(--ob-gutter) clamp(56px,5vw,96px); background:#fff; color:var(--sm-ink);
 }
 .about-principles__intro { max-width:min(var(--sm-content-max),1180px); margin:0 auto clamp(28px,2.6vw,44px); }
-.about-principles__intro h2 { max-width:16ch; margin:0; font:400 clamp(36px,3.6vw,64px)/1.07 var(--font-sans); letter-spacing:-.045em; text-wrap:balance; }
+.about-principles__intro h2 { max-width:none; margin:0; font:400 clamp(36px,3.6vw,64px)/1.07 var(--font-sans); letter-spacing:-.045em; text-wrap:balance; }
 .about-principles__accent { display:block; width:56px; height:3px; margin-top:20px; background:var(--sm-red); }
 
 .about-principles__grid { position:relative; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--gap); max-width:min(var(--sm-content-max),1180px); margin-inline:auto; }
