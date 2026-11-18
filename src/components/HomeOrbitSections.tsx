@@ -87,6 +87,7 @@ export function HomeOrbitSections({ locale }: { locale: Locale }) {
               <div className="orbit-service-card__label"><h3>{text.serviceLabels[index]}</h3></div>
             </Link>
           ))}
+          <span className="orbit-services__route" aria-hidden="true" />
         </div>
         <div className="orbit-services__more"><Link href={pageHref(locale, "services")} prefetch={false}>{text.allServices}<Icon name="arrowUpRight" size={17} /></Link></div>
       </section>
