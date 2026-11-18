@@ -1,17 +1,20 @@
 /* One quiet cinematic sequence: the S is written, then the full name follows its movement. */
-.cinematic-hero { position:absolute; inset:0; isolation:isolate; }
+.cinematic-hero { position:absolute; inset:0; isolation:isolate; background:#0b1118; }
 .cinematic-hero::after {
   content:""; position:absolute; z-index:-1; inset:0; pointer-events:none;
-  background:linear-gradient(90deg,#00000038,transparent 36%,#00000012 68%,#00000042),
-    linear-gradient(180deg,#00000044,transparent 28%,#00000012 52%,#000000e0 100%);
+  background:linear-gradient(180deg,rgb(3 6 10 / .66),rgb(3 6 10 / .13) 19%,transparent 39%,
+    transparent 68%,rgb(3 6 10 / .14) 83%,rgb(3 6 10 / .55));
 }
-.cinematic-hero__media { position:absolute; z-index:-3; inset:0; background:var(--sm-black); overflow:hidden; }
-.cinematic-hero__media img,.cinematic-hero__video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 50%; }
-.cinematic-hero__media img { filter:brightness(.74) saturate(.82); }
-.cinematic-hero__video { opacity:0; filter:brightness(.74) saturate(.82); transition:opacity 1.3s ease; }
-.cinematic-hero[data-media="ready"]:not([data-motion="reduced"]) .cinematic-hero__video { opacity:1; }
-.cinematic-hero__orbits { position:absolute; z-index:-2; inset:0; width:100%; height:100%; opacity:.58; pointer-events:none; }
-.cinematic-hero__orbit-light { animation:cinematic-orbit-light 38s linear infinite; }
+.cinematic-hero__media {
+  position:absolute; z-index:-2; inset:0; overflow:hidden; pointer-events:none;
+}
+.cinematic-hero__media picture { display:block; width:100%; height:100%; }
+.cinematic-hero__media img, .cinematic-hero__film {
+  position:absolute; inset:0; display:block; width:100%; height:100%;
+  object-fit:cover; object-position:center;
+}
+.cinematic-hero__film { opacity:0; transition:opacity .6s ease; }
+.cinematic-hero[data-film="ready"]:is([data-motion="running"],[data-motion="paused"]) .cinematic-hero__film { opacity:1; }
 .cinematic-wordmark { display:block; width:100%; height:auto; overflow:visible; }
 .cinematic-wordmark text { font:italic 700 180px var(--font-zona),Arial,sans-serif; letter-spacing:0; }
 .cinematic-wordmark__initial { animation:cinematic-s-arrive 2.2s cubic-bezier(.65,0,.18,1) both; }
@@ -34,16 +37,7 @@
 @keyframes cinematic-s-fill { from { opacity:0; } to { opacity:1; } }
 @keyframes cinematic-letter-in { from { opacity:0; transform:translateX(-62px); filter:blur(7px); } to { opacity:1; transform:translateX(0); filter:blur(0); } }
 @keyframes cinematic-copy-in { from { opacity:0; } to { opacity:1; } }
-@keyframes cinematic-orbit-light { to { stroke-dashoffset:-2690; } }
-@media (max-width:47.99rem) {
-  .cinematic-hero__media img,.cinematic-hero__video { object-position:18% 50%; }
-  .cinematic-hero__orbits { width:200%; left:-50%; }
-  .cinematic-hero::after { background:linear-gradient(180deg,#00000033,transparent 24%,#00000033 53%,#000000ef 100%); }
-}
-@media (orientation:landscape) and (max-height:32rem) {
-  .cinematic-hero__media img,.cinematic-hero__video { object-position:50% 50%; }
-}
 @media (prefers-reduced-motion:reduce) {
   .cinematic-hero * { animation:none!important; transition:none!important; }
-  .cinematic-hero__video { opacity:0!important; }
+  .cinematic-hero__film { display:none; }
 }

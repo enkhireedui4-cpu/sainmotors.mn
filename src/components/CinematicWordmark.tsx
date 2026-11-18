@@ -15,12 +15,12 @@ export function CinematicWordmark() {
           <linearGradient id="cinematic-name-white" x1="0" y1="45" x2="0" y2="190" gradientUnits="userSpaceOnUse">
             <stop stopColor="#fff" /><stop offset=".6" stopColor="#f7f8fb" /><stop offset="1" stopColor="#e2e9f2" />
           </linearGradient>
-          <linearGradient id="cinematic-s-gold" x1="0" y1="30" x2="130" y2="190" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#fff4d9" /><stop offset=".5" stopColor="#d8be87" /><stop offset="1" stopColor="#8b7043" />
+          <linearGradient id="cinematic-s-red" x1="0" y1="30" x2="130" y2="190" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#fff1f2" /><stop offset=".45" stopColor="var(--sm-red)" /><stop offset="1" stopColor="var(--sm-red-hover)" />
           </linearGradient>
         </defs>
         <g className="cinematic-wordmark__initial">
-          <text className="cinematic-wordmark__trace" x="8" y="180" stroke="url(#cinematic-s-gold)" strokeWidth="1.35"
+          <text className="cinematic-wordmark__trace" x="8" y="180" stroke="url(#cinematic-s-red)" strokeWidth="1.35"
             strokeDasharray="1200" strokeDashoffset="1200" fill="none">S</text>
           <text className="cinematic-wordmark__initial-fill" x="8" y="180" fill="url(#cinematic-name-white)">S</text>
         </g>

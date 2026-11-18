@@ -37,7 +37,7 @@ test('homepage keeps its global header and onward routes around the new Sain Mot
       await page.goto(base+'/'+locale+'/', { waitUntil: 'domcontentloaded' });
       await page.evaluate(()=>document.fonts.ready);
       assert.equal(await page.locator('.home-orbit-hero').count(),1);
-      assert.equal(await page.locator('.home-orbit-hero video').count(),1);
+      assert.equal(await page.locator('.cinematic-hero__media img').count(),1);
       assert.equal(await page.locator('.site-header .site-logo').getAttribute('href'),'/'+locale+'/');
       assert.equal(await page.locator('.site-header__inner > .lang-switch').isVisible(),true);
       assert.equal(await page.locator('.site-nav a[href="/'+locale+'/about/"]').count(),1);

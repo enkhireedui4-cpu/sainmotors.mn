@@ -1,4 +1,4 @@
-/* Orbis composition, rebuilt around Sain Motors' own identity. */
+/* Overlay navigation on the opening landscape. */
 body:has(.orbit-home) .site-header { --focus:var(--sm-red); position:fixed; inset:0 0 auto; background:transparent; color:var(--sm-white); border-bottom:1px solid transparent; transition:background-color .3s ease,color .3s ease,border-color .3s ease; }
 /* Use the supplied white/red artwork while retaining one semantic image. */
 body:has(.orbit-home) .site-logo { background:var(--site-logo-on-dark) left center / 100% auto no-repeat; }
@@ -22,30 +22,29 @@ body[data-orbit-scrolled="true"]:has(.orbit-home) .menu-button { color:var(--sm-
   height:100svh; min-height:42rem; color:var(--sm-white);
   background:var(--sm-black);
 }
-.home-orbit-hero::after {
-  content:""; position:absolute; z-index:-1; inset:0; pointer-events:none;
-  background:linear-gradient(180deg,#00000022,transparent 30%,transparent 70%,#000);
-}
 .home-orbit-hero__service {
-  position:absolute; left:var(--hero-gutter); top:27%; font-size:clamp(.9rem,1.65vw,1.6rem);
-  line-height:1.4; text-transform:uppercase; font-weight:400;
+  position:absolute; left:var(--hero-gutter); top:28%;
 }
 .home-orbit-hero__wordmark {
   position:absolute; left:var(--hero-gutter); right:var(--hero-gutter); top:48%; transform:translateY(-50%);
+  max-width:178svh; margin-inline:auto;
   line-height:0; color:var(--sm-white);
 }
 .home-orbit-hero__promise {
-  position:absolute; right:var(--hero-gutter); top:64%; text-align:right;
-  text-transform:uppercase; font-size:clamp(.9rem,1.6vw,1.5rem); line-height:1.4;
+  position:absolute; right:var(--hero-gutter); top:65%; text-align:right;
+}
+.home-orbit-hero__service, .home-orbit-hero__promise {
+  font-size:clamp(.94rem,1.45vw,1.5rem); line-height:1.35; font-weight:500;
+  letter-spacing:-.025em; text-transform:uppercase;
+  text-shadow:0 1px 12px rgb(0 0 0 / .64);
 }
 .home-orbit-hero__foot {
-  position:absolute; bottom:8%; inset-inline:var(--hero-gutter);
+  position:absolute; bottom:var(--hero-foot-bottom,8%); inset-inline:var(--hero-gutter);
   display:flex; align-items:center; justify-content:space-between; gap:3rem;
 }
 .home-orbit-hero__socials { display:flex; align-items:center; gap:.5rem; margin-left:-.65rem; }
 .home-orbit-hero__socials a { display:grid; place-items:center; width:2.75rem; height:2.75rem; transition:color .2s; }
 .home-orbit-hero__socials a:hover { color:var(--sm-red); }
-.home-orbit-hero__intro { display:flex; align-items:center; gap:2.4rem; max-width:34rem; }
 .home-orbit-hero__discover {
   position:relative; flex-shrink:0; width:6.5rem; height:6.5rem; display:grid; place-items:center;
   border:4px solid var(--sm-white); border-radius:50%; transition:border-color .2s,background .2s;
@@ -56,14 +55,6 @@ body[data-orbit-scrolled="true"]:has(.orbit-home) .menu-button { color:var(--sm-
   background:var(--sm-black); border-radius:50%; padding:.1rem; stroke:currentColor; stroke-width:1.6; fill:none;
 }
 .home-orbit-hero__discover:hover { border-color:var(--sm-red); background:rgb(226 10 23 / .08); }
-.home-orbit-hero__description { font-size:clamp(.72rem,.86vw,.93rem); line-height:1.5; max-width:22rem; padding-left:2.1rem; border-left:1px solid var(--sm-on-dark-line); }
-.home-orbit-hero__motion {
-  position:absolute; z-index:2; left:calc(var(--hero-gutter) + 6rem); bottom:calc(8% + 1.875rem);
-  display:grid; place-items:center; width:2.75rem; height:2.75rem; padding:0;
-  border:0; background:transparent; color:var(--sm-on-dark-muted); transform:translateY(50%);
-}
-.home-orbit-hero__motion:hover { color:var(--sm-white); }
-.home-orbit-hero__motion[hidden] { display:none; }
 .orbit-home #home-company { scroll-margin-top:-1rem; }
 .orbit-home .editorial-photo { border-radius:0; }
 .orbit-home .editorial-split { gap:clamp(2rem,6vw,6rem); }
@@ -72,53 +63,39 @@ body[data-orbit-scrolled="true"]:has(.orbit-home) .menu-button { color:var(--sm-
 }
 @media (max-width:63.99rem) {
   .home-orbit-hero { --hero-gutter:6vw; }
-  .home-orbit-hero__intro { gap:1.4rem; max-width:29rem; }
-  .home-orbit-hero__description { padding-left:1.4rem; font-size:.75rem; }
   .home-orbit-hero__discover { width:5.5rem; height:5.5rem; }
   .home-orbit-hero__discover > span { font-size:3.8rem; }
-  .home-orbit-hero__motion { bottom:calc(8% + 1.625rem); }
 }
 @media (max-width:47.99rem) {
   .home-orbit-hero { --hero-gutter:1.5rem; --hero-foot-bottom:max(1.5rem,calc(env(safe-area-inset-bottom,0px) + .75rem)); min-height:35rem; }
-  .home-orbit-hero__service { top:20%; font-size:.78rem; line-height:1.45; text-shadow:0 1px 12px #00000099; }
-  .home-orbit-hero__wordmark { top:42%; left:1.25rem; right:1.25rem; }
-  .home-orbit-hero__promise { top:55%; font-size:.76rem; text-shadow:0 1px 12px #00000099; }
-  .home-orbit-hero__foot { bottom:var(--hero-foot-bottom); flex-direction:column-reverse; align-items:stretch; gap:1.25rem; }
-  .home-orbit-hero__intro { max-width:none; width:100%; gap:1.2rem; }
-  .home-orbit-hero__description { max-width:none; padding-left:1.1rem; font-size:.78rem; line-height:1.5; }
+  .home-orbit-hero__service { top:32%; }
+  .home-orbit-hero__wordmark { top:46%; left:1.25rem; right:1.25rem; }
+  .home-orbit-hero__promise { top:58%; }
+  .home-orbit-hero__service, .home-orbit-hero__promise { font-size:.82rem; }
   .home-orbit-hero__discover { width:4.75rem; height:4.75rem; border-width:3px; }
   .home-orbit-hero__discover > span { font-size:3.3rem; }
   .home-orbit-hero__socials { gap:.15rem; }
   .home-orbit-hero__socials a { width:2.75rem; height:2.75rem; }
   .home-orbit-hero__socials svg { width:20px; height:20px; }
-  .home-orbit-hero__motion { left:auto; right:1.5rem; bottom:var(--hero-foot-bottom); transform:none; }
 }
 @media (max-height:43rem) and (min-width:48rem) {
   .home-orbit-hero { min-height:38rem; }
 }
 @media (max-width:22.5rem) {
   .home-orbit-hero { --hero-gutter:1.25rem; }
-  .home-orbit-hero__intro { gap:.75rem; }
-  .home-orbit-hero__description { padding-left:.75rem; font-size:.75rem; }
   .home-orbit-hero__discover { width:3.5rem; height:3.5rem; }
   .home-orbit-hero__discover > span { font-size:2.4rem; }
-  .home-orbit-hero__promise { top:52%; }
-  .home-orbit-hero__foot { gap:1rem; }
 }
 @media (orientation:landscape) and (max-height:32rem) and (max-width:63.99rem) {
   .home-orbit-hero { --hero-gutter:5vw; --hero-foot-bottom:max(.875rem,calc(env(safe-area-inset-bottom,0px) + .25rem)); min-height:22rem; }
-  .home-orbit-hero__service { top:26%; font-size:.75rem; line-height:1.4; }
-  .home-orbit-hero__wordmark { top:47%; left:var(--hero-gutter); right:var(--hero-gutter); }
-  .home-orbit-hero__promise { top:65%; font-size:.75rem; }
-  .home-orbit-hero__foot { bottom:var(--hero-foot-bottom); flex-direction:row; align-items:center; gap:1.5rem; }
-  .home-orbit-hero__intro { width:min(60vw,27rem); max-width:none; gap:1rem; }
-  .home-orbit-hero__description { padding-left:1rem; font-size:.75rem; line-height:1.4; }
+  .home-orbit-hero__service { top:24%; }
+  .home-orbit-hero__wordmark { top:49%; left:var(--hero-gutter); right:var(--hero-gutter); max-width:168svh; }
+  .home-orbit-hero__promise { top:66%; }
+  .home-orbit-hero__service, .home-orbit-hero__promise { font-size:.75rem; }
   .home-orbit-hero__discover { width:3.25rem; height:3.25rem; border-width:2px; }
   .home-orbit-hero__discover > span { font-size:2.4rem; }
-  .home-orbit-hero__motion { left:calc(var(--hero-gutter) + 5.75rem); right:auto; bottom:calc(var(--hero-foot-bottom) + .3rem); transform:none; }
 }
 @media (prefers-reduced-motion:reduce) {
   body:has(.orbit-home) .site-header { transition:none; }
   .home-orbit-hero__socials a, .home-orbit-hero__discover { transition:none; }
-  .home-orbit-hero__motion { display:none; }
 }

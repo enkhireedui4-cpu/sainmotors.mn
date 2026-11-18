@@ -9,6 +9,14 @@ before(async () => {
 });
 after(async () => { await browser?.close(); });
 
+async function waitForPlayingFilm(page, path) {
+  await page.waitForFunction(expected => {
+    const film = document.querySelector(".cinematic-hero__film");
+    return film?.currentSrc && new URL(film.currentSrc).pathname === expected
+      && film.videoWidth > 0 && film.currentTime > .1 && !film.paused
+      && Number(getComputedStyle(film).opacity) > .9;
+  }, path);
+}
 
 test("mobile portrait and landscape keep the hero copy and touch controls inside the opening screen", async () => {
   const page=await browser.newPage({isMobile:true,hasTouch:true,reducedMotion:"reduce"});
@@ -33,41 +41,50 @@ test("mobile portrait and landscape keep the hero copy and touch controls inside
   }finally{await page.close();}
 });
 
-test("a touch phone plays the Earth inline and finishes the same S-to-name sequence", async () => {
+test("a touch phone loads the portrait road and switches films when rotated", async () => {
   const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2,reducedMotion:"no-preference"});
   try {
+    const requests = new Set();
+    page.on("request",request => requests.add(new URL(request.url()).pathname));
     await page.goto(base+"/mn/",{waitUntil:"domcontentloaded"});
     await page.waitForFunction(()=>document.querySelector(".cinematic-hero")?.dataset.intro==="complete");
-    await page.waitForFunction(()=>{const v=document.querySelector(".cinematic-hero__video");return v.readyState>=2&&v.currentTime>.2&&!v.paused;});
-    const video=await page.locator(".cinematic-hero__video").evaluate(v=>({inline:v.playsInline,muted:v.muted,controls:v.controls,time:v.currentTime}));
-    assert.ok(video.inline&&video.muted&&!video.controls);
-    await page.waitForFunction(time=>document.querySelector(".cinematic-hero__video").currentTime>time+.15,video.time);
+    const artwork=await page.locator(".cinematic-hero__media img").evaluate(async img=>{
+      await img.decode();
+      return new URL(img.currentSrc).pathname;
+    });
+    assert.equal(artwork,"/art/altai-road-mobile.webp");
+    await waitForPlayingFilm(page, "/video/hero/altai-road-mobile.mp4");
+    assert.equal(requests.has("/video/hero/altai-road.mp4"), false);
     assert.equal(await page.locator("h1").getAttribute("aria-label"),"SAIN MOTORS");
     await page.getByRole("button",{name:"Цэс",exact:true}).click();
     assert.equal(await page.locator("#mobile-menu").isVisible(),true);
     await page.keyboard.press("Escape");
+    await page.setViewportSize({ width: 844, height: 390 });
+    await waitForPlayingFilm(page, "/video/hero/altai-road.mp4");
+    assert.equal(await page.locator(".cinematic-hero__media img").evaluate(img=>new URL(img.currentSrc).pathname), "/art/altai-road.webp");
+    assert.equal([...requests].some(path => /sain-earth|home-automotive-studio/.test(path)), false);
   }finally{await page.close();}
 });
 
 
 
-test("without JavaScript the complete wordmark, poster and readable header remain available", async () => {
+test("without JavaScript the complete wordmark, artwork and readable header remain available", async () => {
   const page=await browser.newPage({javaScriptEnabled:false,viewport:{width:1440,height:1000}});
   try {
     const films=[];
     page.on("request",r=>{if(new URL(r.url()).pathname.endsWith(".mp4"))films.push(r.url());});
     await page.goto(base+"/en/",{waitUntil:"networkidle"});
     assert.equal(await page.locator(".cinematic-wordmark__letter").last().evaluate(el=>getComputedStyle(el).opacity),"1");
-    assert.equal(await page.locator(".home-orbit-hero__motion").isVisible(),false);
+    assert.equal(await page.locator(".cinematic-hero__media").evaluate(el=>getComputedStyle(el).transform),"none");
     assert.equal(await page.locator(".site-header").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
-    assert.ok(await page.locator(".cinematic-hero__media img").evaluate(el=>el.complete&&el.naturalWidth>0));
+    assert.ok(await page.locator(".cinematic-hero__media img").evaluate(img=>img.complete&&img.naturalWidth>0));
     assert.deepEqual(films,[]);
   }finally{await page.close();}
 });
 
 
 
-test("the home header overlays the film transparently and becomes solid below it", async () => {
+test("the home header overlays the artwork transparently and becomes solid below it", async () => {
   const page=await browser.newPage({reducedMotion:"reduce"});
   try {
     for(const width of [1440,390]) {
@@ -86,37 +103,27 @@ test("the home header overlays the film transparently and becomes solid below it
 
 
 
-test("the supplied Earth film plays behind an S trace followed by individual name letters", async () => {
+test("the desktop road film plays inline behind the wordmark reveal", async () => {
   const page = await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:"no-preference"});
   try {
     await page.goto(base + "/en/",{waitUntil:"domcontentloaded"});
-    assert.equal(await page.locator(".cinematic-hero__video").count(),1);
-    await page.waitForFunction(()=>document.querySelector(".cinematic-hero")?.dataset.motion==="running");
+    const image = page.locator(".cinematic-hero__media img");
+    assert.equal(await image.getAttribute("src"),"/art/altai-road.webp");
     const letters = page.locator(".cinematic-wordmark__letter");
     assert.equal(await letters.count(),9);
-    assert.equal(await letters.last().evaluate(el=>Number(getComputedStyle(el).opacity)),0);
-    await page.waitForFunction(()=>Number(getComputedStyle(document.querySelector(".cinematic-wordmark__letter")).opacity)>.2);
-    assert.ok(await letters.last().evaluate(el=>Number(getComputedStyle(el).opacity))<.15,"The final S must wait for earlier letters");
+    const delays = await letters.evaluateAll(elements => elements.map(el => parseFloat(el.style.getPropertyValue("--letter-delay"))));
+    assert.ok(delays.every((delay, index) => Number.isFinite(delay) && (index === 0 || delay > delays[index - 1])));
     await page.waitForFunction(()=>document.querySelector(".cinematic-hero")?.dataset.intro==="complete");
     assert.equal(await letters.last().evaluate(el=>Number(getComputedStyle(el).opacity)),1);
-    const video=page.locator(".cinematic-hero__video");
-    await page.waitForFunction(()=>{const v=document.querySelector(".cinematic-hero__video");return v.readyState>=2&&!v.paused&&v.currentTime>.1;});
-    const info=await video.evaluate(v=>({path:new URL(v.currentSrc).pathname,width:v.videoWidth,height:v.videoHeight,duration:v.duration,muted:v.muted,inline:v.playsInline,loop:v.loop,time:v.currentTime}));
-    assert.equal(info.path,"/video/hero/sain-earth.mp4");
-    assert.equal(info.width,1920);assert.equal(info.height,1080);
-    assert.ok(Math.abs(info.duration-16.068209)<.1);
-    assert.ok(info.muted&&info.inline&&info.loop);
-    assert.equal(await page.locator('.home-orbit-hero__motion').count(),0,'Background film has no pause control');
-    await page.waitForFunction(time=>document.querySelector(".cinematic-hero__video").currentTime>time+.2,info.time);
-    await page.locator('.site-footer').scrollIntoViewIfNeeded();
-    await page.waitForFunction(()=>document.querySelector('.cinematic-hero__video').paused);
-    await page.locator('.home-orbit-hero').scrollIntoViewIfNeeded();
-    await page.waitForFunction(()=>!document.querySelector('.cinematic-hero__video').paused);
+    await image.evaluate(img=>img.decode());
+    await waitForPlayingFilm(page, "/video/hero/altai-road.mp4");
+    const film = page.locator(".cinematic-hero__film");
+    assert.ok(await film.evaluate(el => el.muted && el.playsInline && el.loop && !el.controls));
   } finally {await page.close();}
 });
 
 
-test("the Sain Motors opening keeps the localized motto and static poster under reduced motion", async () => {
+test("the Sain Motors opening keeps the localized motto and static artwork under reduced motion", async () => {
   const page = await browser.newPage({ reducedMotion: "reduce" });
   try {
     for (const locale of ["en", "mn"]) {
@@ -128,7 +135,7 @@ test("the Sain Motors opening keeps the localized motto and static poster under 
       assert.equal(await page.locator("h1").count(), 1);
       assert.equal(await page.locator("h1").getAttribute("aria-label"), "SAIN MOTORS");
       assert.equal(await page.locator(".home-video-hero, .home-brands, .brand-spotlight").count(), 0);
-      assert.equal(await page.locator(".home-orbit-hero video").count(), 1);
+      assert.ok(await page.locator(".cinematic-hero__media img").evaluate(img=>img.complete&&img.naturalWidth>0));
       assert.deepEqual(mediaRequests, []);
       assert.equal(await page.locator(".home-orbit-hero__promise").innerText(),locale === "en" ? "A NEW CAR FOR MONGOLIANS" : "МОНГОЛ ХҮНД ШИНЭ МАШИН");
       assert.equal(await page.locator(".home-orbit-hero__description").count(),0);
@@ -140,6 +147,28 @@ test("the Sain Motors opening keeps the localized motto and static poster under 
       assert.ok(target.y<130&&target.y>=0,"The restored link reaches the company section");
       page.off("request", collect);
     }
+  } finally { await page.close(); }
+});
+
+test("a phone with data saving enabled shows the road poster without downloading a film", async () => {
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: "no-preference" });
+  try {
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator.connection, "saveData", { get: () => true });
+    });
+    const films = [];
+    page.on("request", request => {
+      const path = new URL(request.url()).pathname;
+      if (path.endsWith(".mp4")) films.push(path);
+    });
+    await page.goto(base + "/en/", { waitUntil: "networkidle" });
+    await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.intro === "complete");
+    const poster = page.locator(".cinematic-hero__media img");
+    assert.equal(await poster.evaluate(async img => {
+      await img.decode();
+      return new URL(img.currentSrc).pathname;
+    }), "/art/altai-road-mobile.webp");
+    assert.deepEqual(films, []);
   } finally { await page.close(); }
 });
 
@@ -187,12 +216,13 @@ test("motion runs automatically only while the opening is visible", async () => 
   const page = await browser.newPage({ viewport: {width:1440,height:1000}, reducedMotion:"no-preference" });
   try {
     await page.goto(base + "/en/", {waitUntil:"networkidle"});
-    await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "running");
+    await waitForPlayingFilm(page, "/video/hero/altai-road.mp4");
     assert.equal(await page.getByRole('button',{name:/Pause animation|Play animation/}).count(),0);
     await page.locator("#home-company").evaluate(el => el.scrollIntoView({block:"start"}));
     await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "paused");
+    assert.ok(await page.locator(".cinematic-hero__film").evaluate(film => film.paused));
     await page.evaluate(() => window.scrollTo(0,0));
-    await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "running");
+    await waitForPlayingFilm(page, "/video/hero/altai-road.mp4");
   } finally { await page.close(); }
 });
 
