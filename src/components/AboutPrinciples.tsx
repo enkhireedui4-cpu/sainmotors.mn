@@ -1,3 +1,4 @@
+import {sainLogos} from "@/content";
 import {aboutCopy} from "@/content/about";
 import type {Locale} from "@/lib/i18n";
 import "./about-principles.css";
@@ -11,17 +12,19 @@ function PrincipleSymbol({kind}:{kind:"mission"|"vision"|"values"|"development"}
  </svg>;
 }
 
-/** Photo-free purpose cards; all company copy is shared by the two locales. */
+/**
+ * The four principles meet at one crossroads: a 2×2 board whose gaps are two roads,
+ * with Sain Motors at the junction and each card's inner corner cut around it.
+ */
 export function AboutPrinciples({locale}:{locale:Locale}) {
  const text=aboutCopy.value[locale];
+ const logo=sainLogos["sain-white"];
  return <section className="about-principles" aria-labelledby="about-principles-heading">
-  <svg className="about-principles__route" viewBox="0 0 1440 1200" preserveAspectRatio="none" fill="none" aria-hidden="true" focusable="false">
-   <path d="M-100 165h420c190 0 340 80 340 250S495 650 340 650 80 730 80 900s210 230 420 230h1040"/>
-   <path d="M-100 181h420c180 0 324 72 324 234S489 634 340 634 64 724 64 900s216 246 436 246h1040"/>
-   <path d="M1560 40h-280c-180 0-270 130-270 300v180c0 180 110 270 290 270h260"/>
-  </svg>
+  <header className="about-principles__intro"><h2 id="about-principles-heading">{text.purposeTitle}</h2><span className="about-principles__accent" aria-hidden="true"/></header>
   <div className="about-principles__grid">
-   <header className="about-principles__intro"><h2 id="about-principles-heading">{text.purposeTitle}</h2><span className="about-principles__accent" aria-hidden="true"/></header>
+   <span className="about-principles__road about-principles__road--x" aria-hidden="true"/>
+   <span className="about-principles__road about-principles__road--y" aria-hidden="true"/>
+   <span className="about-principles__hub" aria-hidden="true"><img src={logo.src} width={logo.width} height={logo.height} alt=""/></span>
    <article className="about-principles__card about-principles__mission" aria-labelledby="about-mission-heading">
     <div className="about-principles__card-head"><h3 id="about-mission-heading">{text.missionTitle}</h3><PrincipleSymbol kind="mission"/></div>
     <p>{text.missionBody}</p>
