@@ -36,6 +36,10 @@ const importedNewsPath = path.join(SRC, "photos", "news", "imported-photos.json"
 const importedNewsPhotos = existsSync(importedNewsPath) ? JSON.parse(await fs.readFile(importedNewsPath, "utf8")) : {};
 const PHOTOS = {
   ...importedNewsPhotos,
+  // Homepage service cards supplied by the user, 2026-11-19.
+  "home-service-cars": { file: "site/home-service-cars.jpg" },
+  "home-service-financing": { file: "site/home-service-financing.png" },
+  "home-service-warranty": { file: "site/home-service-warranty.png" },
   // Sain Motors festival and BYD agreement photographs supplied from Downloads, 2026-11-17.
   "news-mtd6-lineup": { file: "news/mtd6-lineup.jpg" },
   "news-mtd6-visitors": { file: "news/mtd6-visitors.jpg" },

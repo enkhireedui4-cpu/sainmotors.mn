@@ -6,6 +6,23 @@ import type { Photo } from "./types";
 // company building, showroom life and the first service-centre photographs.
 // Provenance: docs/content-sources.md. Alt text describes only what is visible.
 export const sitePhotos = {
+  homeServiceCards: [
+    {
+      key: "home-service-cars",
+      alt: { mn: "Сайн Моторсын автомашинууд эгнэн зогсож байна", en: "Sain Motors cars lined up on display" },
+      status: "sourced", source: "User-supplied Downloads photo, 2026-11-19", focus: "50% 65%",
+    },
+    {
+      key: "home-service-financing",
+      alt: { mn: "Шоурумд үйлчлүүлэгчид зөвлөгөө өгч буй ажилтан", en: "A showroom adviser speaking with a customer" },
+      status: "sourced", source: "User-supplied Downloads image, 2026-11-19", focus: "50% 50%",
+    },
+    {
+      key: "home-service-warranty",
+      alt: { mn: "Үйлчилгээний төвд автомашин шалгаж буй засварчин", en: "A technician inspecting a car at a service centre" },
+      status: "sourced", source: "User-supplied Downloads image, 2026-11-19", focus: "50% 50%",
+    },
+  ],
   /** User-supplied homepage artboards, in the requested order. */
   homeCompany: [
     {

@@ -2759,6 +2759,91 @@
           "/media/news-imported-mega-08-2048.webp"
         ]
       ]
+    },
+    "home-service-cars": {
+      "width": 2048,
+      "height": 1366,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/home-service-cars-480.webp"
+        ],
+        [
+          768,
+          "/media/home-service-cars-768.webp"
+        ],
+        [
+          1080,
+          "/media/home-service-cars-1080.webp"
+        ],
+        [
+          1440,
+          "/media/home-service-cars-1440.webp"
+        ],
+        [
+          1920,
+          "/media/home-service-cars-1920.webp"
+        ],
+        [
+          2048,
+          "/media/home-service-cars-2048.webp"
+        ]
+      ]
+    },
+    "home-service-financing": {
+      "width": 1672,
+      "height": 941,
+      "color": "#181818",
+      "srcset": [
+        [
+          480,
+          "/media/home-service-financing-480.webp"
+        ],
+        [
+          768,
+          "/media/home-service-financing-768.webp"
+        ],
+        [
+          1080,
+          "/media/home-service-financing-1080.webp"
+        ],
+        [
+          1440,
+          "/media/home-service-financing-1440.webp"
+        ],
+        [
+          1672,
+          "/media/home-service-financing-1672.webp"
+        ]
+      ]
+    },
+    "home-service-warranty": {
+      "width": 1672,
+      "height": 941,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/home-service-warranty-480.webp"
+        ],
+        [
+          768,
+          "/media/home-service-warranty-768.webp"
+        ],
+        [
+          1080,
+          "/media/home-service-warranty-1080.webp"
+        ],
+        [
+          1440,
+          "/media/home-service-warranty-1440.webp"
+        ],
+        [
+          1672,
+          "/media/home-service-warranty-1672.webp"
+        ]
+      ]
     }
   },
   "logos": {

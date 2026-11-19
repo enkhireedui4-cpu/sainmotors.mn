@@ -38,17 +38,13 @@ export function HomeOrbitSections({ locale }: { locale: Locale }) {
   const brands = getBrands();
   const showrooms = getLocations().filter(location => location.kind === "showroom");
   const photographs = sitePhotos.homeCompany;
-  const serviceBrandPhotos = ["jetour", "212", "aito", "byd"].map(slug => {
-    const brand = brands.find(item => item.slug === slug);
-    return brand?.cardPhoto ?? brand?.photo ?? sitePhotos.homeHero[0];
-  });
   const facts = [
     { value: brands.length, label: text.brands },
     { value: showrooms.length, label: text.showrooms },
     { value: Number(company.fourSShowrooms.value[locale]), label: text.fourS },
     { value: new Set(showrooms.map(location => location.city.en)).size, label: text.cities },
   ];
-  const servicePhotos = [serviceBrandPhotos[0], serviceBrandPhotos[3], serviceBrandPhotos[1], sitePhotos.serviceGallery[1]];
+  const servicePhotos = [...sitePhotos.homeServiceCards, sitePhotos.serviceGallery[1]];
   return (
     <OrbitScrollScene>
       <section id="home-company" className="orbit-company" aria-labelledby="orbit-company-heading">
