@@ -35,3 +35,7 @@ npm-debug.log*
 # Optional local build caches and generated visual evidence
 /.next-*/
 /docs/review/**/*.png
+
+# Local AI-agent tooling and session notes
+/.agents/
+/.superpowers/

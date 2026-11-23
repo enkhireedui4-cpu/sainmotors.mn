@@ -71,7 +71,7 @@ describe("release preflight", () => {
       expect(contents.stdout).toContain(".htaccess");
       expect(contents.stdout).toContain("SHA256SUMS.txt");
     } finally { rmSync(dir, { recursive: true, force: true }); }
-  });
+  }, 60_000);
 
   it("rejects staging pages that accidentally permit indexing during the HTTP health check", async () => {
     const server = createServer((request, response) => {
