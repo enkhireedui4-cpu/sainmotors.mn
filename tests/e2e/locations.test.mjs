@@ -148,6 +148,32 @@ test('Erdenet can be found by city in both languages without inferring which bra
   } finally { await page.close(); }
 });
 
+test("the phone directory starts with a full-width city field and compact dealer rows", async () => {
+  const context = await reviewContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  try {
+    const page = await context.newPage();
+    for (const locale of ["mn", "en"]) {
+      await page.goto(`${BASE}/${locale}/locations/#network-directory`);
+      await page.locator(".location-directory[data-ready='true']").waitFor();
+      const city = page.locator("#location-city");
+      const brand = page.locator("#location-brand");
+      assert.equal(await brand.isVisible(), false, locale);
+      const cityBox = await city.boundingBox();
+      const firstRow = await page.locator(".location-directory__toggle").first().boundingBox();
+      assert.ok(cityBox && firstRow && Math.abs(cityBox.width - firstRow.width) <= 2, locale);
+      assert.ok(firstRow.y - cityBox.y - cityBox.height <= 28, locale);
+      assert.ok(firstRow.height >= 48 && firstRow.height <= 84, locale);
+      await city.selectOption("darkhan");
+      assert.equal(await page.locator(".location-directory__row").count(), 1);
+      await page.locator(".location-directory__clear").click();
+      assert.equal(await page.locator(".location-directory__row").count(), 8);
+      await page.locator('.network-brands [data-brand="byd"]').click();
+      assert.equal(await brand.isVisible(), true, locale);
+      assert.equal(await brand.inputValue(), "byd", locale);
+    }
+  } finally { await context.close(); }
+});
+
 test("locations remain readable and keyboard operable across the approved widths", async () => {
   const context = await reviewContext();
   try {
@@ -166,7 +192,7 @@ test("locations remain readable and keyboard operable across the approved widths
           assert.ok(box && box.height >= 48, `Touch target at ${width}px`);
         }
       }
-      for (const control of await page.locator(".location-directory select").all()) {
+      for (const control of await page.locator(".location-directory select:visible").all()) {
         const box = await control.boundingBox();
         assert.ok(box && box.height >= 48, `Select at ${width}px`);
       }

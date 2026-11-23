@@ -1,5 +1,5 @@
 ﻿/* Brand pages: the company's ink and red, with the vehicle as the focal point. */
-.brand-directory,.brand-detail{--brand-ink:var(--sm-black);--brand-nav-h:5rem}
+.brand-detail{--brand-ink:var(--sm-black);--brand-nav-h:5rem}
 .brand-title{padding:3rem 0 4.5rem;background:var(--brand-ink);color:#fff}
 .brand-title .breadcrumb{margin:0 0 2.5rem;padding:0;font-size:.875rem;color:#d3dfe3}
 .brand-title .breadcrumb a{min-height:2rem;display:inline-flex;align-items:center}
@@ -8,8 +8,119 @@
 .brand-title h1{min-width:0;font-size:clamp(3.5rem,7.6vw,7.5rem);font-weight:500;line-height:1.04;letter-spacing:-.045em;overflow-wrap:anywhere}
 .brand-title a:focus-visible{outline-color:#fff}
 
-/* The homepage and directory share the same eleven official logo destinations. */
-.brand-directory__content{padding:4rem 0 6rem;background:var(--surface)}
+/* Brands directory */
+.brand-directory {
+  --focus: var(--sm-white);
+  background: var(--sm-black);
+  color: var(--sm-white);
+}
+
+.brand-directory .container { max-width: 74rem; }
+
+.brand-directory__hero {
+  padding-block: clamp(2.75rem, 6vw, 5.25rem) clamp(1.75rem, 3.5vw, 3rem);
+  text-align: center;
+}
+
+.brand-directory__hero h1 {
+  font-size: clamp(2.375rem, 5.4vw, 4.5rem);
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+
+.brand-directory__hero h1::before {
+  content: "";
+  display: block;
+  width: 2.75rem;
+  height: 3px;
+  margin: 0 auto 1rem;
+  background: var(--sm-red);
+}
+
+.brand-directory__content { padding-bottom: var(--sm-section-space); }
+
+.discovery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(.875rem, 1.65vw, 1.5rem);
+}
+
+.discovery-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  height: 100%;
+  padding: clamp(1.25rem, 2.05vw, 1.875rem);
+  border: 1px solid rgb(255 255 255 / .16);
+  border-radius: var(--sm-radius-card);
+  background: var(--sm-ink);
+  color: var(--sm-white);
+}
+.discovery-card > a { transition: border-color .2s var(--ease); }
+
+.discovery-card__identity {
+  container-type: inline-size;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 4.25rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(255 255 255 / .14);
+}
+
+.discovery-card__identity .wordmark-crop {
+  /* The widest wordmark is about 15:1. Size the entire row to fit it. */
+  --catalogue-logo-height: min(1.5rem, calc(100cqw / 15));
+  width: calc(var(--catalogue-logo-height) * var(--wordmark-aspect, 6));
+  height: var(--catalogue-logo-height);
+  max-width: 100%;
+}
+
+.discovery-card h2 {
+  margin-bottom: .5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.015em;
+}
+
+.discovery-card p {
+  color: var(--sm-on-dark-muted);
+  font-size: .9375rem;
+  line-height: 1.6;
+}
+.discovery-card > a p { margin-bottom: 1.25rem; }
+
+.discovery-card__action {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: 2.75rem;
+  margin-top: auto;
+  padding: .5rem .8rem .5rem 1rem;
+  border: 1px solid var(--sm-on-dark-line);
+  border-radius: var(--sm-radius-control);
+  font-size: .8125rem;
+  font-weight: 600;
+}
+
+.discovery-card__action svg { flex-shrink: 0; }
+.discovery-card > a:hover, .discovery-card > a:hover .discovery-card__action { border-color: var(--sm-red); }
+.discovery-card > a:focus-visible { outline: 2px solid var(--sm-white); outline-offset: 3px; }
+
+@media (max-width: 63.99rem) {
+  .discovery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 39.99rem) {
+  .discovery-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .discovery-card > a { transition: none; }
+}
 
 /* The stage tracks the visible image height so the introduction never sits behind it. */
 .brand-detail .brand-title{padding-bottom:4.5rem}
@@ -94,7 +205,6 @@
   .brand-title{padding:1.75rem 0 2.5rem}
   .brand-title .breadcrumb{margin-bottom:1.75rem;font-size:.75rem}
   .brand-title h1{font-size:clamp(2.8rem,11vw,4.25rem);line-height:1.06}
-  .brand-directory__content{padding:1.5rem 0 3.5rem}
   .brand-detail .brand-title{padding-block:1.5rem 2rem}
   .brand-detail .brand-title h1{font-size:3rem;line-height:1}
   .brand-section-nav__inner{gap:.75rem}

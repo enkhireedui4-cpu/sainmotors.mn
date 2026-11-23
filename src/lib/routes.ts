@@ -15,8 +15,8 @@ export const pagePaths = {
 
 export type PageKey = keyof typeof pagePaths;
 
-/** Site menus use Dealer network as the destination for finding showrooms. */
-export const headerPages = ["about", "locations", "services", "news", "contact"] as const satisfies readonly PageKey[];
+/** The main menu offers both brand discovery and showroom locations. */
+export const headerPages = ["about", "brands", "locations", "services", "news", "contact"] as const satisfies readonly PageKey[];
 export const footerPages = ["about", "locations", "contact"] as const satisfies readonly PageKey[];
 
 export function pageHref(locale: Locale, page: PageKey): string {
@@ -25,7 +25,7 @@ export function pageHref(locale: Locale, page: PageKey): string {
 
 /** Only these brands have a public destination ready for visitors. */
 export function isBrandSiteAvailable(slug: string): boolean {
-  return slug === "rely" || Boolean(officialBrandSite(slug));
+  return slug === "rely" || slug === "byd" || Boolean(officialBrandSite(slug));
 }
 
 export function brandHref(locale: Locale, slug: string): string | undefined {

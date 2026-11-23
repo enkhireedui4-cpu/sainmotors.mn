@@ -1,5 +1,906 @@
 {
   "photos": {
+    "news-imported-jetour-conference-01": {
+      "width": 2048,
+      "height": 1536,
+      "color": "#080818",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-jetour-conference-01-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-jetour-conference-01-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-jetour-conference-01-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-jetour-conference-01-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-jetour-conference-01-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-jetour-conference-01-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-jetour-conference-02": {
+      "width": 2048,
+      "height": 1536,
+      "color": "#383838",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-jetour-conference-02-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-jetour-conference-02-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-jetour-conference-02-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-jetour-conference-02-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-jetour-conference-02-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-jetour-conference-02-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-jetour-conference-03": {
+      "width": 2048,
+      "height": 1554,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-jetour-conference-03-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-jetour-conference-03-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-jetour-conference-03-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-jetour-conference-03-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-jetour-conference-03-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-jetour-conference-03-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-jetour-conference-04": {
+      "width": 2048,
+      "height": 1152,
+      "color": "#080818",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-jetour-conference-04-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-jetour-conference-04-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-jetour-conference-04-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-jetour-conference-04-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-jetour-conference-04-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-jetour-conference-04-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-mega-01": {
+      "width": 5168,
+      "height": 2912,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-mega-01-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-mega-01-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-mega-01-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-mega-01-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-mega-01-1920.webp"
+        ],
+        [
+          2560,
+          "/media/news-imported-mega-01-2560.webp"
+        ]
+      ]
+    },
+    "news-imported-mega-02": {
+      "width": 5168,
+      "height": 2912,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-mega-02-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-mega-02-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-mega-02-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-mega-02-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-mega-02-1920.webp"
+        ],
+        [
+          2560,
+          "/media/news-imported-mega-02-2560.webp"
+        ]
+      ]
+    },
+    "news-imported-mega-03": {
+      "width": 2048,
+      "height": 1154,
+      "color": "#e8e8e8",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-mega-03-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-mega-03-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-mega-03-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-mega-03-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-mega-03-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-mega-03-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-mega-04": {
+      "width": 2048,
+      "height": 1154,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-mega-04-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-mega-04-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-mega-04-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-mega-04-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-mega-04-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-mega-04-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-byd4s-01": {
+      "width": 2000,
+      "height": 1099,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-byd4s-01-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-byd4s-01-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-byd4s-01-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-byd4s-01-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-byd4s-01-1920.webp"
+        ],
+        [
+          2000,
+          "/media/news-imported-byd4s-01-2000.webp"
+        ]
+      ]
+    },
+    "news-imported-byd4s-02": {
+      "width": 2048,
+      "height": 1536,
+      "color": "#688888",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-byd4s-02-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-byd4s-02-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-byd4s-02-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-byd4s-02-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-byd4s-02-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-byd4s-02-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-regional-01": {
+      "width": 2048,
+      "height": 1185,
+      "color": "#f8f8f8",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-regional-01-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-regional-01-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-regional-01-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-regional-01-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-regional-01-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-regional-01-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-regional-02": {
+      "width": 2048,
+      "height": 1154,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-regional-02-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-regional-02-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-regional-02-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-regional-02-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-regional-02-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-regional-02-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-regional-03": {
+      "width": 2048,
+      "height": 1154,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-regional-03-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-regional-03-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-regional-03-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-regional-03-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-regional-03-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-regional-03-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-portfolio-01": {
+      "width": 4032,
+      "height": 2224,
+      "color": "#282828",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-portfolio-01-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-portfolio-01-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-portfolio-01-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-portfolio-01-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-portfolio-01-1920.webp"
+        ],
+        [
+          2560,
+          "/media/news-imported-portfolio-01-2560.webp"
+        ]
+      ]
+    },
+    "news-imported-portfolio-02": {
+      "width": 2048,
+      "height": 1350,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-portfolio-02-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-portfolio-02-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-portfolio-02-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-portfolio-02-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-portfolio-02-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-portfolio-02-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-portfolio-03": {
+      "width": 4031,
+      "height": 3023,
+      "color": "#689888",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-portfolio-03-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-portfolio-03-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-portfolio-03-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-portfolio-03-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-portfolio-03-1920.webp"
+        ],
+        [
+          2560,
+          "/media/news-imported-portfolio-03-2560.webp"
+        ]
+      ]
+    },
+    "news-imported-portfolio-04": {
+      "width": 1448,
+      "height": 1086,
+      "color": "#181818",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-portfolio-04-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-portfolio-04-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-portfolio-04-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-portfolio-04-1440.webp"
+        ],
+        [
+          1448,
+          "/media/news-imported-portfolio-04-1448.webp"
+        ]
+      ]
+    },
+    "news-imported-riddara-01": {
+      "width": 1600,
+      "height": 800,
+      "color": "#08d8f8",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-riddara-01-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-riddara-01-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-riddara-01-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-riddara-01-1440.webp"
+        ],
+        [
+          1600,
+          "/media/news-imported-riddara-01-1600.webp"
+        ]
+      ]
+    },
+    "news-imported-riddara-02": {
+      "width": 2048,
+      "height": 1366,
+      "color": "#38b898",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-riddara-02-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-riddara-02-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-riddara-02-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-riddara-02-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-riddara-02-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-riddara-02-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-riddara-03": {
+      "width": 2048,
+      "height": 1366,
+      "color": "#d8d8d8",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-riddara-03-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-riddara-03-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-riddara-03-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-riddara-03-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-riddara-03-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-riddara-03-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-lucky-01": {
+      "width": 1024,
+      "height": 683,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-lucky-01-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-lucky-01-768.webp"
+        ],
+        [
+          1024,
+          "/media/news-imported-lucky-01-1024.webp"
+        ]
+      ]
+    },
+    "news-imported-lucky-02": {
+      "width": 1024,
+      "height": 683,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-lucky-02-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-lucky-02-768.webp"
+        ],
+        [
+          1024,
+          "/media/news-imported-lucky-02-1024.webp"
+        ]
+      ]
+    },
+    "news-imported-lucky-03": {
+      "width": 1280,
+      "height": 853,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-lucky-03-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-lucky-03-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-lucky-03-1080.webp"
+        ],
+        [
+          1280,
+          "/media/news-imported-lucky-03-1280.webp"
+        ]
+      ]
+    },
+    "news-imported-lucky-04": {
+      "width": 1024,
+      "height": 683,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-lucky-04-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-lucky-04-768.webp"
+        ],
+        [
+          1024,
+          "/media/news-imported-lucky-04-1024.webp"
+        ]
+      ]
+    },
+    "news-imported-mega-05": {
+      "width": 2048,
+      "height": 1154,
+      "color": "#282828",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-mega-05-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-mega-05-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-mega-05-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-mega-05-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-mega-05-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-mega-05-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-mega-06": {
+      "width": 2048,
+      "height": 1366,
+      "color": "#f8f8f8",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-mega-06-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-mega-06-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-mega-06-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-mega-06-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-mega-06-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-mega-06-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-mega-07": {
+      "width": 2048,
+      "height": 1366,
+      "color": "#181818",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-mega-07-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-mega-07-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-mega-07-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-mega-07-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-mega-07-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-mega-07-2048.webp"
+        ]
+      ]
+    },
+    "news-imported-mega-08": {
+      "width": 2048,
+      "height": 1154,
+      "color": "#d8b898",
+      "srcset": [
+        [
+          480,
+          "/media/news-imported-mega-08-480.webp"
+        ],
+        [
+          768,
+          "/media/news-imported-mega-08-768.webp"
+        ],
+        [
+          1080,
+          "/media/news-imported-mega-08-1080.webp"
+        ],
+        [
+          1440,
+          "/media/news-imported-mega-08-1440.webp"
+        ],
+        [
+          1920,
+          "/media/news-imported-mega-08-1920.webp"
+        ],
+        [
+          2048,
+          "/media/news-imported-mega-08-2048.webp"
+        ]
+      ]
+    },
+    "home-service-cars": {
+      "width": 2048,
+      "height": 1366,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/home-service-cars-480.webp"
+        ],
+        [
+          768,
+          "/media/home-service-cars-768.webp"
+        ],
+        [
+          1080,
+          "/media/home-service-cars-1080.webp"
+        ],
+        [
+          1440,
+          "/media/home-service-cars-1440.webp"
+        ],
+        [
+          1920,
+          "/media/home-service-cars-1920.webp"
+        ],
+        [
+          2048,
+          "/media/home-service-cars-2048.webp"
+        ]
+      ]
+    },
+    "home-service-financing": {
+      "width": 1672,
+      "height": 941,
+      "color": "#181818",
+      "srcset": [
+        [
+          480,
+          "/media/home-service-financing-480.webp"
+        ],
+        [
+          768,
+          "/media/home-service-financing-768.webp"
+        ],
+        [
+          1080,
+          "/media/home-service-financing-1080.webp"
+        ],
+        [
+          1440,
+          "/media/home-service-financing-1440.webp"
+        ],
+        [
+          1672,
+          "/media/home-service-financing-1672.webp"
+        ]
+      ]
+    },
+    "home-service-warranty": {
+      "width": 1672,
+      "height": 941,
+      "color": "#080808",
+      "srcset": [
+        [
+          480,
+          "/media/home-service-warranty-480.webp"
+        ],
+        [
+          768,
+          "/media/home-service-warranty-768.webp"
+        ],
+        [
+          1080,
+          "/media/home-service-warranty-1080.webp"
+        ],
+        [
+          1440,
+          "/media/home-service-warranty-1440.webp"
+        ],
+        [
+          1672,
+          "/media/home-service-warranty-1672.webp"
+        ]
+      ]
+    },
     "news-mtd6-lineup": {
       "width": 2048,
       "height": 1392,
@@ -1941,907 +2842,6 @@
         [
           1280,
           "/media/mtd6-sain-flags-1280.webp"
-        ]
-      ]
-    },
-    "news-imported-jetour-conference-01": {
-      "width": 2048,
-      "height": 1536,
-      "color": "#080818",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-jetour-conference-01-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-jetour-conference-01-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-jetour-conference-01-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-jetour-conference-01-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-jetour-conference-01-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-jetour-conference-01-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-jetour-conference-02": {
-      "width": 2048,
-      "height": 1536,
-      "color": "#383838",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-jetour-conference-02-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-jetour-conference-02-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-jetour-conference-02-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-jetour-conference-02-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-jetour-conference-02-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-jetour-conference-02-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-jetour-conference-03": {
-      "width": 2048,
-      "height": 1554,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-jetour-conference-03-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-jetour-conference-03-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-jetour-conference-03-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-jetour-conference-03-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-jetour-conference-03-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-jetour-conference-03-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-jetour-conference-04": {
-      "width": 2048,
-      "height": 1152,
-      "color": "#080818",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-jetour-conference-04-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-jetour-conference-04-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-jetour-conference-04-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-jetour-conference-04-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-jetour-conference-04-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-jetour-conference-04-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-mega-01": {
-      "width": 5168,
-      "height": 2912,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-mega-01-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-mega-01-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-mega-01-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-mega-01-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-mega-01-1920.webp"
-        ],
-        [
-          2560,
-          "/media/news-imported-mega-01-2560.webp"
-        ]
-      ]
-    },
-    "news-imported-mega-02": {
-      "width": 5168,
-      "height": 2912,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-mega-02-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-mega-02-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-mega-02-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-mega-02-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-mega-02-1920.webp"
-        ],
-        [
-          2560,
-          "/media/news-imported-mega-02-2560.webp"
-        ]
-      ]
-    },
-    "news-imported-mega-03": {
-      "width": 2048,
-      "height": 1154,
-      "color": "#e8e8e8",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-mega-03-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-mega-03-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-mega-03-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-mega-03-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-mega-03-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-mega-03-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-mega-04": {
-      "width": 2048,
-      "height": 1154,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-mega-04-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-mega-04-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-mega-04-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-mega-04-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-mega-04-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-mega-04-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-byd4s-01": {
-      "width": 2000,
-      "height": 1099,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-byd4s-01-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-byd4s-01-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-byd4s-01-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-byd4s-01-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-byd4s-01-1920.webp"
-        ],
-        [
-          2000,
-          "/media/news-imported-byd4s-01-2000.webp"
-        ]
-      ]
-    },
-    "news-imported-byd4s-02": {
-      "width": 2048,
-      "height": 1536,
-      "color": "#688888",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-byd4s-02-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-byd4s-02-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-byd4s-02-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-byd4s-02-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-byd4s-02-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-byd4s-02-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-regional-01": {
-      "width": 2048,
-      "height": 1185,
-      "color": "#f8f8f8",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-regional-01-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-regional-01-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-regional-01-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-regional-01-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-regional-01-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-regional-01-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-regional-02": {
-      "width": 2048,
-      "height": 1154,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-regional-02-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-regional-02-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-regional-02-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-regional-02-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-regional-02-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-regional-02-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-regional-03": {
-      "width": 2048,
-      "height": 1154,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-regional-03-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-regional-03-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-regional-03-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-regional-03-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-regional-03-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-regional-03-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-portfolio-01": {
-      "width": 4032,
-      "height": 2224,
-      "color": "#282828",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-portfolio-01-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-portfolio-01-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-portfolio-01-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-portfolio-01-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-portfolio-01-1920.webp"
-        ],
-        [
-          2560,
-          "/media/news-imported-portfolio-01-2560.webp"
-        ]
-      ]
-    },
-    "news-imported-portfolio-02": {
-      "width": 2048,
-      "height": 1350,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-portfolio-02-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-portfolio-02-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-portfolio-02-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-portfolio-02-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-portfolio-02-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-portfolio-02-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-portfolio-03": {
-      "width": 4031,
-      "height": 3023,
-      "color": "#689888",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-portfolio-03-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-portfolio-03-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-portfolio-03-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-portfolio-03-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-portfolio-03-1920.webp"
-        ],
-        [
-          2560,
-          "/media/news-imported-portfolio-03-2560.webp"
-        ]
-      ]
-    },
-    "news-imported-portfolio-04": {
-      "width": 1448,
-      "height": 1086,
-      "color": "#181818",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-portfolio-04-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-portfolio-04-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-portfolio-04-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-portfolio-04-1440.webp"
-        ],
-        [
-          1448,
-          "/media/news-imported-portfolio-04-1448.webp"
-        ]
-      ]
-    },
-    "news-imported-riddara-01": {
-      "width": 1600,
-      "height": 800,
-      "color": "#08d8f8",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-riddara-01-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-riddara-01-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-riddara-01-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-riddara-01-1440.webp"
-        ],
-        [
-          1600,
-          "/media/news-imported-riddara-01-1600.webp"
-        ]
-      ]
-    },
-    "news-imported-riddara-02": {
-      "width": 2048,
-      "height": 1366,
-      "color": "#38b898",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-riddara-02-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-riddara-02-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-riddara-02-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-riddara-02-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-riddara-02-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-riddara-02-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-riddara-03": {
-      "width": 2048,
-      "height": 1366,
-      "color": "#d8d8d8",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-riddara-03-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-riddara-03-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-riddara-03-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-riddara-03-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-riddara-03-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-riddara-03-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-lucky-01": {
-      "width": 1024,
-      "height": 683,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-lucky-01-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-lucky-01-768.webp"
-        ],
-        [
-          1024,
-          "/media/news-imported-lucky-01-1024.webp"
-        ]
-      ]
-    },
-    "news-imported-lucky-02": {
-      "width": 1024,
-      "height": 683,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-lucky-02-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-lucky-02-768.webp"
-        ],
-        [
-          1024,
-          "/media/news-imported-lucky-02-1024.webp"
-        ]
-      ]
-    },
-    "news-imported-lucky-03": {
-      "width": 1280,
-      "height": 853,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-lucky-03-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-lucky-03-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-lucky-03-1080.webp"
-        ],
-        [
-          1280,
-          "/media/news-imported-lucky-03-1280.webp"
-        ]
-      ]
-    },
-    "news-imported-lucky-04": {
-      "width": 1024,
-      "height": 683,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-lucky-04-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-lucky-04-768.webp"
-        ],
-        [
-          1024,
-          "/media/news-imported-lucky-04-1024.webp"
-        ]
-      ]
-    },
-    "news-imported-mega-05": {
-      "width": 2048,
-      "height": 1154,
-      "color": "#282828",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-mega-05-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-mega-05-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-mega-05-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-mega-05-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-mega-05-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-mega-05-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-mega-06": {
-      "width": 2048,
-      "height": 1366,
-      "color": "#f8f8f8",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-mega-06-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-mega-06-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-mega-06-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-mega-06-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-mega-06-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-mega-06-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-mega-07": {
-      "width": 2048,
-      "height": 1366,
-      "color": "#181818",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-mega-07-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-mega-07-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-mega-07-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-mega-07-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-mega-07-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-mega-07-2048.webp"
-        ]
-      ]
-    },
-    "news-imported-mega-08": {
-      "width": 2048,
-      "height": 1154,
-      "color": "#d8b898",
-      "srcset": [
-        [
-          480,
-          "/media/news-imported-mega-08-480.webp"
-        ],
-        [
-          768,
-          "/media/news-imported-mega-08-768.webp"
-        ],
-        [
-          1080,
-          "/media/news-imported-mega-08-1080.webp"
-        ],
-        [
-          1440,
-          "/media/news-imported-mega-08-1440.webp"
-        ],
-        [
-          1920,
-          "/media/news-imported-mega-08-1920.webp"
-        ],
-        [
-          2048,
-          "/media/news-imported-mega-08-2048.webp"
-        ]
-      ]
-    },
-    "home-service-cars": {
-      "width": 2048,
-      "height": 1366,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/home-service-cars-480.webp"
-        ],
-        [
-          768,
-          "/media/home-service-cars-768.webp"
-        ],
-        [
-          1080,
-          "/media/home-service-cars-1080.webp"
-        ],
-        [
-          1440,
-          "/media/home-service-cars-1440.webp"
-        ],
-        [
-          1920,
-          "/media/home-service-cars-1920.webp"
-        ],
-        [
-          2048,
-          "/media/home-service-cars-2048.webp"
-        ]
-      ]
-    },
-    "home-service-financing": {
-      "width": 1672,
-      "height": 941,
-      "color": "#181818",
-      "srcset": [
-        [
-          480,
-          "/media/home-service-financing-480.webp"
-        ],
-        [
-          768,
-          "/media/home-service-financing-768.webp"
-        ],
-        [
-          1080,
-          "/media/home-service-financing-1080.webp"
-        ],
-        [
-          1440,
-          "/media/home-service-financing-1440.webp"
-        ],
-        [
-          1672,
-          "/media/home-service-financing-1672.webp"
-        ]
-      ]
-    },
-    "home-service-warranty": {
-      "width": 1672,
-      "height": 941,
-      "color": "#080808",
-      "srcset": [
-        [
-          480,
-          "/media/home-service-warranty-480.webp"
-        ],
-        [
-          768,
-          "/media/home-service-warranty-768.webp"
-        ],
-        [
-          1080,
-          "/media/home-service-warranty-1080.webp"
-        ],
-        [
-          1440,
-          "/media/home-service-warranty-1440.webp"
-        ],
-        [
-          1672,
-          "/media/home-service-warranty-1672.webp"
         ]
       ]
     }

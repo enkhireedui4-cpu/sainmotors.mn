@@ -71,7 +71,7 @@ export function HomeOrbitSections({ locale }: { locale: Locale }) {
         </div>
       </section>
       <HomeOrbitBrands brands={brands} locale={locale} />
-      <section className="orbit-services" aria-labelledby="orbit-services-heading">
+      <section id="home-services" className="orbit-services" aria-labelledby="orbit-services-heading">
         <div className="orbit-services__intro">
           <h2 id="orbit-services-heading">{text.service}</h2>
           <p className="orbit-services__description">{text.serviceText}</p>

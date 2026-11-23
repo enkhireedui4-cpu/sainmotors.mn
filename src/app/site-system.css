@@ -67,16 +67,7 @@
 .about-close { gap: clamp(2rem,6vw,5rem); }
 .about-close p { font-size: .95rem; line-height: 1.8; }
 
-/* Photo-led brand discovery and brand detail. */
-.brand-directory .brand-directory__content { padding-block: 3rem var(--section); }
-.discovery-controls { padding: 1.5rem; border: 0; border-radius: var(--radius-card); background: var(--surface-card); gap: 1rem; }
-.discovery-search input { border-radius: var(--radius-control); }
-.discovery-grid { gap: 1.5rem; }
-.discovery-card > a { border: 1px solid transparent; border-radius: var(--radius-card); background: var(--surface-card); overflow: hidden; }
-.discovery-card__image { border-radius: 0; }
-.discovery-card__body { padding: 1.5rem; }
-.discovery-card > a:hover { border-color: #b8b8b8; }
-.discovery-empty { border-radius: var(--radius-card); }
+/* Brand detail. */
 .brand-detail .brand-title { background: #fff; color: var(--text); padding-block: 2rem 3rem; }
 .brand-detail .brand-title .breadcrumb { color: var(--text-2); }
 .brand-detail .brand-title .breadcrumb a:hover { color: var(--red); }
@@ -164,7 +155,6 @@
   .site-banner__breadcrumb { max-width: 27%; }
   .company-introduction { gap: 3rem; }
   .about-page .timeline > li { grid-template-columns: 1fr; gap: 1rem; }
-  .discovery-controls { align-items: stretch; }
   .location-list--centres .location { grid-template-columns: 1fr; grid-template-areas: "name" "address" "reach" "hours" "actions"; padding: 1.5rem; }
 }
 @media (max-width: 47.99rem) {
@@ -189,8 +179,6 @@
   .about-page .prose-grid > section { padding: 1.5rem; }
   .about-page .timeline > li { grid-template-columns: 4.5rem 1fr; padding: 1.5rem; gap: 1rem; }
   .about-page .timeline__year { font-size: 1.75rem; }
-  .discovery-controls { padding: 1.25rem; }
-  .discovery-card__body { padding: 1.35rem; }
   .brand-detail .brand-title { padding-block: 1.5rem 2rem; }
   .brand-contact-grid { grid-template-columns: 1fr; }
   .brand-contact-grid > div { padding: 1.25rem; }

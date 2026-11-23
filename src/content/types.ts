@@ -82,6 +82,8 @@ interface BrandListing {
   order: number;
   /** Listing imagery; external brands have no local detail-page content. */
   cardPhoto?: Photo;
+  /** A short introduction for the brand directory when there is no local teaser. */
+  directoryIntro?: Block;
   links: BrandLink[];
   location?: LocationId;
   phone?: Phone;

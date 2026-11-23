@@ -237,6 +237,26 @@ test("the opening remains legible on phone, tablet and desktop under reduced mot
   } finally { await page.close(); }
 });
 
+test("the homepage service cards open directly and stay readable on a narrow phone", async () => {
+  const page = await browser.newPage({ viewport: { width: 320, height: 760 }, isMobile: true, hasTouch: true, reducedMotion: "reduce" });
+  try {
+    for (const locale of ["mn", "en"]) {
+      await page.goto(`${base}/${locale}/#home-services`);
+      const section = page.locator("#home-services");
+      assert.equal(await section.count(), 1, locale);
+      const cards = section.locator(".orbit-service-card");
+      assert.deepEqual(await cards.evaluateAll(nodes => nodes.map(node => node.getAttribute("href"))),
+        ["sales", "financing", "after-sales", "repair"].map(service => `/${locale}/services/#service-${service}`));
+      const layout = await section.evaluate(node => ({
+        columns: getComputedStyle(node.querySelector(".orbit-services__grid")).gridTemplateColumns.split(" ").length,
+        labels: Array.from(node.querySelectorAll(".orbit-service-card__label h3"), label => label.scrollWidth <= label.clientWidth),
+        overflow: document.documentElement.scrollWidth > innerWidth,
+      }));
+      assert.deepEqual(layout, { columns: 2, labels: [true, true, true, true], overflow: false }, locale);
+    }
+  } finally { await page.close(); }
+});
+
 test("motion runs automatically only while the opening is visible", async () => {
   const page = await browser.newPage({ viewport: {width:1440,height:1000}, reducedMotion:"no-preference" });
   try {

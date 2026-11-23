@@ -1,35 +1,46 @@
-import { isBrandSiteAvailable } from "@/lib/routes";
-import { BrandLink } from "./BrandLink";
-import { getBrands, getLocation } from "@/content";
-import { brandSegments, experienceCopy } from "@/content/experience";
+import Link from "next/link";
+import { getBrands } from "@/content";
 import type { Locale } from "@/lib/i18n";
-import { brandLinkLabel } from "@/lib/brand-sites";
-import { BrandCatalogue } from "./BrandCatalogue";
-import { BrandMark } from "./BrandMark";
+import { brandHref, isExternal } from "@/lib/routes";
+import { BrandWordmark } from "./BrandWordmark";
 import { Icon } from "./Icon";
-import { Picture } from "./Picture";
+
+const actions = {
+  mn: { website: "Албан ёсны сайт", details: "Дэлгэрэнгүй үзэх" },
+  en: { website: "Official website", details: "View details" },
+};
 
 export function BrandPortfolio({ locale }: { locale: Locale }) {
-  const copy = experienceCopy.value[locale];
-  const entries = getBrands().map(brand => {
-    const photo = brand.cardPhoto ?? brand.photo;
-    const description = brand.cardCopy ?? brand.teaser;
-    const location = brand.location ? getLocation(brand.location) : undefined;
-    return {
-      slug: brand.slug,
-      search: [brand.name, brand.summary?.value[locale], ...(brand.models ?? []), ...(brand.gallery ?? []).map(item => item.caption ?? "")].join(" "),
-      categories: brandSegments.filter(segment => (segment.brands as readonly string[]).includes(brand.slug)).map(segment => segment.id),
-      content: <BrandLink locale={locale} slug={brand.slug} prefetch={false} aria-label={brand.name} aria-describedby={`discover-${brand.slug}-description`}>
-        <div className="discovery-card__image">{photo && <Picture photo={photo} locale={locale} sizes="(min-width: 90rem) 26rem, (min-width: 64rem) 30vw, (min-width: 40rem) 44vw, 90vw" />}</div>
-        <div className="discovery-card__body"><div className="discovery-card__identity"><BrandMark brand={brand} locale={locale} decorative />{isBrandSiteAvailable(brand.slug) && <Icon name="arrowUpRight" size={23} />}</div>
-          <h2 className="sr-only" translate="no">{brand.name}</h2><p id={`discover-${brand.slug}-description`} data-status={description?.status}>{description ? description.value[locale].replace(/\n/g, " ") : brandLinkLabel(locale, brand.slug)}</p>
-          {brand.models?.length ? <span className="discovery-card__meta" translate="no">{brand.models.join(" / ")}</span> : location && <span className="discovery-card__meta">{location.name[locale]}</span>}
-        </div>
-      </BrandLink>,
-    };
-  });
-  return <div data-status={experienceCopy.status}>
-    <BrandCatalogue entries={entries} categories={brandSegments.map(segment => ({ id: segment.id, label: segment.label[locale] }))} labels={copy} />
-    <p className="discovery-note">{copy.availability}</p>
-  </div>;
+  const labels = actions[locale];
+  return (
+    <ul className="discovery-grid" id="brand-results" data-brand-directory>
+      {getBrands().map(brand => {
+        const description = brand.directoryIntro ?? brand.teaser;
+        const href = brandHref(locale, brand.slug);
+        const external = href !== undefined && isExternal(href);
+        const nameId = `discover-${brand.slug}-name`;
+        const actionId = `discover-${brand.slug}-action`;
+        const introduction = <>
+          <div className="discovery-card__identity">
+            <BrandWordmark brand={brand} locale={locale} />
+          </div>
+          <h2 id={nameId} translate="no">{brand.name}</h2>
+          {description && <p data-status={description.status}>{description.value[locale]}</p>}
+        </>;
+        return (
+          <li className="discovery-card" key={brand.slug}>
+            {href ? (
+              <Link className="discovery-card__body" href={href} prefetch={false} aria-labelledby={`${nameId} ${actionId}`}>
+                {introduction}
+                <span id={actionId} className="discovery-card__action">
+                  {external ? labels.website : labels.details}
+                  <Icon name={external ? "arrowUpRight" : "arrowRight"} size={17} />
+                </span>
+              </Link>
+            ) : <div className="discovery-card__body">{introduction}</div>}
+          </li>
+        );
+      })}
+    </ul>
+  );
 }

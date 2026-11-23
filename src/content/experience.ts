@@ -27,19 +27,10 @@ export const contactPresentation: Block<{
   },
 };
 
-/** Discovery labels summarize supplied brand sheets; they do not assert stock availability. */
-export const brandSegments = [
-  { id: "city", label: { mn: "Хот, гэр бүл", en: "City & family" }, brands: ["soueast", "chery", "bestune", "jetour"], status: "draft", source: "Existing brand summaries and supplied team sheets; editorial grouping" },
-  { id: "adventure", label: { mn: "Аялал, бартаат зам", en: "Travel & adventure" }, brands: ["jetour", "212"], status: "draft", source: "Existing JETOUR and 212 descriptions; editorial grouping" },
-  { id: "electric", label: { mn: "Цахилгаан, хосолсон", en: "Electric & hybrid" }, brands: ["byd", "aito", "riddara"], status: "draft", source: "Existing BYD, AITO and RIDDARA summaries; editorial grouping, not a model specification" },
-  { id: "pickup", label: { mn: "Пикап", en: "Pickups" }, brands: ["riddara", "rely", "maxus"], status: "draft", source: "Existing RIDDARA, RELY and MAXUS supplied brand copy" },
-  { id: "premium", label: { mn: "Дээд ангилал", en: "Premium" }, brands: ["hongqi", "aito"], status: "draft", source: "Existing HONGQI and AITO supplied brand copy" },
-] as const;
-
 export const experienceCopy: Block<{
   journeys: string; purchase: string; purchaseBody: string; ownership: string; ownershipBody: string;
-  visit: string; visitBody: string; portfolioLead: string; all: string; search: string; searchPlaceholder: string;
-  brandCount: string; empty: string; emptyBody: string; clear: string; availability: string;
+  visit: string; visitBody: string; portfolioLead: string; all: string;
+  brandCount: string;
   contactHeading: string; contactBody: string; intent: string; brand: string; chooseBrand: string;
   general: string; call: string; map: string; showroom: string; serviceLocation: string;
   referral: string; serviceReferral: string; financeNote: string; testDriveNote: string;
@@ -55,9 +46,7 @@ export const experienceCopy: Block<{
       ownership: "Үйлчилгээ авах", ownershipBody: "Баталгаа, засвар, сэлбэгийн талаар зөв багтай холбогдоорой.",
       visit: "Шоурумд зочлох", visitBody: "Салбарын хаяг, утас, ажиллах цагийг нэг дороос олоорой.",
       portfolioLead: "Өдөр тутмын замаас дараагийн аялал хүртэл. Өөрийн хэрэгцээнд нийцэх брэндтэй танилцаж, загварын дэлгэрэнгүйг тухайн брэндийн багаас аваарай.",
-      all: "Бүх брэнд", search: "Брэнд, загвараар хайх", searchPlaceholder: "Жишээ нь JETOUR, S08…", brandCount: "брэнд",
-      empty: "Тохирох брэнд олдсонгүй", emptyBody: "Өөр нэрээр хайх эсвэл ангиллаа сольж үзээрэй.", clear: "Шүүлтүүр арилгах",
-      availability: "Зураг нь брэндийн танилцуулга болно. Загвар, тоноглол, үнэ, бэлэн байгаа эсэхийг брэндийн багаас лавлана уу.",
+      all: "Бүх брэнд", brandCount: "брэнд",
       contactHeading: "Зөв багтайгаа холбогдоорой.", contactBody: "Юу сонирхож байгаагаа, дараа нь брэндээ сонгоно уу. Танд хэрэгтэй утас, байршлыг харуулъя.",
       intent: "Танд юугаар туслах вэ?", brand: "Сонирхож буй брэнд", chooseBrand: "Брэнд сонгох", general: "Ерөнхий холбоо барих",
       call: "Утсаар холбогдох", map: "Газрын зураг нээх", showroom: "Брэндийн шоурум", serviceLocation: "Үйлчилгээний байршил",
@@ -75,9 +64,7 @@ export const experienceCopy: Block<{
       ownership: "Care for your car", ownershipBody: "Reach the right team for warranty, maintenance and parts enquiries.",
       visit: "Visit a showroom", visitBody: "Find location details, phone numbers and opening hours in one place.",
       portfolioLead: "From your everyday drive to your next adventure. Discover a brand that fits your life, then speak with its team about the details.",
-      all: "All brands", search: "Search brands and models", searchPlaceholder: "Try JETOUR, S08…", brandCount: "brands",
-      empty: "No matching brands", emptyBody: "Try another name or change the category.", clear: "Clear filters",
-      availability: "Images introduce the brands. Ask the brand team about models, specifications, prices and current availability.",
+      all: "All brands", brandCount: "brands",
       contactHeading: "A direct line to the right team.", contactBody: "Choose what you need, then a brand. Find the relevant phone number and location below.",
       intent: "How can we help?", brand: "Brand of interest", chooseBrand: "Choose a brand", general: "General contact",
       call: "Call the team", map: "Open map", showroom: "Brand showroom", serviceLocation: "Service location",

@@ -26,6 +26,14 @@ export const brands: Brand[] = [
     kind: "external",
     slug: "jetour",
     name: "JETOUR",
+    directoryIntro: {
+      status: "draft",
+      source: "https://jetour.mn/",
+      value: {
+        mn: "JETOUR нь гэр бүлийн өдөр тутмын хэрэглээ, аялалд зориулсан SUV автомашин үйлдвэрлэдэг. X70 Plus, T2, G700 зэрэг загвартай Монгол дахь албан ёсны сайтаас танилцаарай.",
+        en: "JETOUR builds SUVs for family life and travel. Explore the X70 Plus, T2 and G700 on the brand’s official Mongolian website.",
+      },
+    },
     published: true,
     order: 4,
     links: [site("https://jetour.mn/", true, "2026-11-11")],
@@ -93,6 +101,14 @@ export const brands: Brand[] = [
     kind: "external",
     slug: "chery",
     name: "CHERY",
+    directoryIntro: {
+      status: "draft",
+      source: "https://www.cheryinternational.com/global/models/tiggo/tiggo7/index.html; Sain Motors CHERY showroom record",
+      value: {
+        mn: "CHERY-ийн TIGGO цуврал хотын өдөр тутмын хэрэглээ, гэр бүлийн аялалд зориулсан SUV загваруудтай. Сайн Моторсын CHERY шоурумаар загваруудтай танилцаж болно.",
+        en: "CHERY’s TIGGO range includes SUVs for everyday driving and family trips. Discover the local lineup at the Sain Motors CHERY showroom.",
+      },
+    },
     published: true,
     order: 3,
     links: [site("https://chery.mn/", true, "2026-11-11")],

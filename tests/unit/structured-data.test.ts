@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { serializeJsonLd, organizationGraph, locationGraph } from "@/lib/structured-data";
-import { matchesBrand } from "@/lib/brand-discovery";
 import { getLocations } from "@/content";
 
 describe("structured data", () => {
@@ -23,16 +22,5 @@ describe("structured data", () => {
     expect(byd.item.hasMap).toBe("https://maps.app.goo.gl/BkpbhfBnyKxKoxyM8");
     expect(byd.item).not.toHaveProperty("geo");
     expect(byd.item).not.toHaveProperty("openingHours");
-  });
-});
-
-describe("brand discovery", () => {
-  const brand = { slug: "soueast", search: "SOUEAST Хотын SUV S06 S07 S08", categories: ["city"] };
-  it("matches case-insensitive multiword queries and intersects the category", () => {
-    expect(matchesBrand(brand, "city", "  soueast  S08 ")).toBe(true);
-    expect(matchesBrand(brand, "city", "ХОТЫН")).toBe(true);
-    expect(matchesBrand(brand, "pickup", "S08")).toBe(false);
-    expect(matchesBrand(brand, "", "S09")).toBe(false);
-    expect(matchesBrand(brand, "", "")).toBe(true);
   });
 });

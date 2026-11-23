@@ -18,10 +18,11 @@ export function generateStaticParams() {
 /** The brand photo as social preview when one exists; otherwise the site default. */
 function socialImage(brand: InternalBrand, locale: Locale) {
   if (brand.slug === "rely") return { src: "/rely-r8/hero-1.webp", width: 2560, height: 1440, alt: "RELY R8" };
-  if (!brand.photo) return undefined;
-  const asset = getPhoto(brand.photo.key);
+  const photo = brand.slug === "byd" ? brand.gallery?.find(item => item.key === "brand-byd-sealion6") ?? brand.photo : brand.photo;
+  if (!photo) return undefined;
+  const asset = getPhoto(photo.key);
   const [width, src] = asset.srcset.filter(([w]) => w <= 1440).at(-1) ?? asset.srcset[0];
-  return { src, width, height: Math.round((width * asset.height) / asset.width), alt: brand.photo.alt[locale] };
+  return { src, width, height: Math.round((width * asset.height) / asset.width), alt: photo.alt[locale] };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

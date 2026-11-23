@@ -263,6 +263,11 @@ official-site link and shared Sain Motors contact coverage remain. Legacy MN/EN
 addresses redirect permanently. Previous source notes below are provenance,
 not active JETOUR/CHERY detail-page content.
 
+### BYD model page
+
+- The SEALION 6 specifications, available colour options and design-detail photos come from the supplied Sain Motors `Sealion_6.pdf`. The brochure lists a combined range of 1,100 km and a WLTP electric range of 80 km at 25–100% battery charge.
+- The studio renders, road photography, hybrid feature photography and interior colour photos come from [BYD Australia](https://bydautomotive.com.au/sealion-6).
+
 ## 5. Still needed
 
 - Written publication approval for everything above (status → `approved`).
