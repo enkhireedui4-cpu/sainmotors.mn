@@ -24,13 +24,14 @@ test('brand enquiry actions land at the relevant team on phone and desktop', asy
       await page.goto(`${base}/en/brands/byd/`);
       await page.locator('[data-brand-actions] a').filter({ hasText: 'Models & pricing' }).click();
       await page.waitForURL('**/en/contact/?intent=sales&brand=byd#enquiry-heading');
-      await page.locator('.enquiry-journey[data-ready=true]').waitFor();
+      await page.locator('#enquiry-heading').waitFor();
       await page.waitForFunction(() => {
-        const phone = document.querySelector('[data-enquiry-result] .enquiry-result__phone')?.getBoundingClientRect();
+        const phone = document.querySelector('[data-enquiry-contact] a[href^="tel:"]')?.getBoundingClientRect();
         const header = document.querySelector('.site-header')?.getBoundingClientRect();
         return phone && header && phone.top >= header.bottom && phone.bottom <= innerHeight;
       });
-      assert.match(await page.locator('[data-enquiry-result]').innerText(), /BYD/);
+      assert.match(await page.locator('[data-enquiry-contact]').innerText(), /BYD/);
+      assert.equal(await page.locator('#enquiry-intent, #enquiry-brand, .enquiry-journey').count(), 0);
     }
   } finally { await browser.close(); }
 });

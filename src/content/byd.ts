@@ -1,8 +1,10 @@
 import type { Localized } from "@/lib/i18n";
+import { bydProfilePath } from "./byd-profiles";
 
 const text = (mn: string, en: string): Localized => ({ mn, en });
 
 export const sealionAssets = "/byd-sealion-6";
+export const sealionPath = "brands/byd/sealion-6";
 
 export const sealion = {
   name: "SEALION 6",
@@ -13,6 +15,41 @@ export const sealion = {
     "The DM-i system combines a 1.5-litre petrol engine, an electric motor and a Blade Battery. Charge up for electric driving or use hybrid mode for longer journeys.",
   ),
 };
+
+export const bydModels: readonly {
+  id: string;
+  name: string;
+  alt: Localized;
+  details?: string;
+  detailsLabel?: Localized;
+}[] = [
+  {
+    id: "ti-7",
+    name: "TI 7",
+    alt: text("Усны эрэг дээрх хоёр BYD TI 7", "Two BYD TI 7 SUVs by the water"),
+    details: bydProfilePath("ti-7"),
+  },
+  {
+    id: "shark-6",
+    name: "SHARK 6",
+    alt: text("Шороон зам дээрх цэнхэр BYD SHARK 6 пикап", "Blue BYD SHARK 6 pickup on a dirt road"),
+    details: bydProfilePath("shark-6"),
+    detailsLabel: text("Дэлгэрэнгүй үзэх", "View details"),
+  },
+  {
+    id: "atto-3",
+    name: "ATTO 3",
+    alt: text("Тоосгон барилгын дэргэдэх цэнхэр BYD ATTO 3", "Blue BYD ATTO 3 beside a brick building"),
+    details: bydProfilePath("atto-3"),
+    detailsLabel: text("Дэлгэрэнгүй үзэх", "View details"),
+  },
+  {
+    id: "sealion-6",
+    name: sealion.name,
+    alt: text("Студид авсан мөнгөлөг BYD SEALION 6", "Silver BYD SEALION 6 in a studio"),
+    details: sealionPath,
+  },
+];
 
 // Technical figures are from Sain Motors' supplied Sealion_6.pdf.
 const metric = (mn: string, en: string, value: string, unit = "") => ({ label: text(mn, en), value, unit });

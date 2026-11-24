@@ -1,16 +1,18 @@
 import { contact, getBrands, getLocations } from "@/content";
 import { resolveBrandContact } from "@/lib/enquiries";
 import type { Locale } from "@/lib/i18n";
-import { EnquiryChooser } from "./EnquiryChooser";
+import { EnquiryContact } from "./EnquiryContact";
 
-export function ContactJourney({ locale, embedded = false }: { locale: Locale; embedded?: boolean }) {
+export function ContactJourney({ locale }: { locale: Locale }) {
   const locations = getLocations();
-  const publicRoute = (route: ReturnType<typeof resolveBrandContact>) => ({ phone: route.phone, location: route.location ? {
-    id: route.location.id, name: route.location.name, city: route.location.city, address: route.location.address,
-    landmark: route.location.landmark, map: route.location.map, hours: route.location.hours,
-  } : undefined });
-  const options = getBrands().map(brand => ({ slug: brand.slug, name: brand.name,
-    sales: publicRoute(resolveBrandContact(brand, "sales", locations)), service: publicRoute(resolveBrandContact(brand, "service", locations)),
+  const publicRoute = ({ phone, location }: ReturnType<typeof resolveBrandContact>) => ({
+    phone, location: location ? { name: location.name, map: { url: location.map.url } } : undefined,
+  });
+  const options = getBrands().map(brand => ({
+    slug: brand.slug,
+    name: brand.name,
+    sales: publicRoute(resolveBrandContact(brand, "sales", locations)),
+    service: publicRoute(resolveBrandContact(brand, "service", locations)),
   }));
-  return <EnquiryChooser locale={locale} options={options} general={contact} embedded={embedded} />;
+  return <EnquiryContact locale={locale} options={options} general={contact} />;
 }

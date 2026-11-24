@@ -267,6 +267,10 @@ not active JETOUR/CHERY detail-page content.
 
 - The SEALION 6 specifications, available colour options and design-detail photos come from the supplied Sain Motors `Sealion_6.pdf`. The brochure lists a combined range of 1,100 km and a WLTP electric range of 80 km at 25–100% battery charge.
 - The studio renders, road photography, hybrid feature photography and interior colour photos come from [BYD Australia](https://bydautomotive.com.au/sealion-6).
+- The BYD lineup uses the desktop and mobile SHARK 6, TI 7 and ATTO 3 photographs from the [BYD UAE homepage](https://www.byd.com/en-ae). The SEALION 6 photo pair comes from the [BYD SEALION 6 model page](https://www.byd.com/sc/car/sealion-6). The local WebP versions are in `public/byd-lineup/`.
+- TI 7 model-page hero and Blade Battery photos are the desktop and mobile renditions from [BYD UAE](https://www.byduae.ae/en/new-cars/byti75p027/). Feature photo pairs are from the [BYD TI 7 manufacturer page](https://www.byd.com/en-ae/car/ti-7). Specifications, equipment and paint names come from Sain Motors’ supplied TI 7 specification cards.
+- ATTO 3 model-page hero and feature photo pairs are from [BYD Global](https://www.byd.com/en/car/atto3). The specifications, equipment and paint names come from the supplied Sain Motors `Atto3.pdf`. The brochure distinguishes 420 km WLTP from 480 km NEDC.
+- The SHARK 6 side-view photo comes from [BYD Australia](https://bydautomotive.com.au/shark-6) and is saved at two sizes. The Premium specifications, equipment and colours are from the supplied Sain Motors Shark6.pdf.
 
 ## 5. Still needed
 

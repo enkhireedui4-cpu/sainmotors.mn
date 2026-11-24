@@ -265,18 +265,18 @@ export const pages = {
         en: { title: "Privacy policy", description: "What information the Sain Motors website collects and how it is used." },
       },
     } satisfies Meta,
-    /** Describes the R8 enquiry form and the site's existing external links. */
+    /** Describes the test-drive forms and the site's external links. */
     sections: [
       {
         status: "draft",
         value: {
           mn: {
             heading: "Бид ямар мэдээлэл цуглуулдаг вэ",
-            body: "RELY R8-ийн туршилтын жолоодлогын хүсэлт илгээхэд таны сонгосон хот, нэр, овог, утас болон зөвшөөрлийн мэдээллийг авна. Энэ мэдээллийг Сайн Моторс-ийн RELY борлуулалтын баг таны хүсэлтийн дагуу холбогдох, цаг товлоход ашиглана. Сайт хэрэглэгчийн бүртгэл, зочдыг хянах аналитик хэрэгсэл ашигладаггүй.",
+            body: "RELY R8 эсвэл BYD SEALION 6-ийн туршилтын жолоодлогын хүсэлт илгээхэд таны сонгосон хот, нэр, овог, утас болон зөвшөөрлийн мэдээллийг авна. Энэ мэдээллийг Сайн Моторс-ийн тухайн брэндийн борлуулалтын баг таны хүсэлтийн дагуу холбогдох, цаг товлоход ашиглана. Сайт хэрэглэгчийн бүртгэл, зочдыг хянах аналитик хэрэгсэл ашигладаггүй.",
           },
           en: {
             heading: "What we collect",
-            body: "When you submit a RELY R8 test-drive request, we collect your selected city, first and last name, phone number and consent information. The Sain Motors RELY sales team uses these details to contact you about your request and arrange a visit. The site does not provide visitor accounts or use visitor-tracking analytics.",
+            body: "When you submit a RELY R8 or BYD SEALION 6 test-drive request, we collect your selected city, first and last name, phone number and consent information. The Sain Motors sales team uses these details to contact you about your request and arrange a visit. The site does not provide visitor accounts or use visitor-tracking analytics.",
           },
         },
       },
@@ -285,11 +285,11 @@ export const pages = {
         value: {
           mn: {
             heading: "Хүсэлтийн мэдээллийг хадгалах",
-            body: "Хүсэлтийн мэдээллийг Сайн Моторс-ийн Supabase үйлчилгээнд байрласан өгөгдлийн санд хадгалж, зөвхөн эрх бүхий баг ашиглана. Таны мэдээллийг автомашин үйлдвэрлэгчийн вэбсайт руу илгээхгүй. Хүсэлтийн мэдээллээ засуулах, устгуулах эсвэл зөвшөөрлөө цуцлах бол RELY багийн 7222-8855 утсаар холбогдоно уу.",
+            body: "Хүсэлтийн мэдээллийг Сайн Моторс-ийн Supabase үйлчилгээнд байрласан өгөгдлийн санд хадгалж, зөвхөн эрх бүхий баг ашиглана. Таны мэдээллийг автомашин үйлдвэрлэгчийн вэбсайт руу илгээхгүй. Хүсэлтийн мэдээллээ засуулах, устгуулах эсвэл зөвшөөрлөө цуцлах бол RELY багтай 7222-8855, BYD багтай 7250-8855 дугаараар холбогдоно уу.",
           },
           en: {
             heading: "Storing your request",
-            body: "Requests are stored in Sain Motors' database hosted on Supabase and used by the authorized team. Your details are not sent to the vehicle manufacturer's website. To correct or delete your request or withdraw consent, contact the RELY team on +976 7222-8855.",
+            body: "Requests are stored in Sain Motors' database hosted on Supabase and used by the authorized team. Your details are not sent to the vehicle manufacturer's website. To correct or delete your request or withdraw consent, call RELY on +976 7222-8855 or BYD on +976 7250-8855.",
           },
         },
       },

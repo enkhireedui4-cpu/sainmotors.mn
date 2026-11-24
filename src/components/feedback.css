@@ -65,3 +65,18 @@
  .feedback-consent input { width:22px; height:22px; margin-top:0; }
  .feedback-consent label { gap:14px; }
 }
+
+.feedback-route {
+ display:flex;
+ flex-wrap:wrap;
+ align-items:center;
+ justify-content:space-between;
+ gap:.35rem 1.6rem;
+ padding-block:1rem;
+ border-top:1px solid #d7dade;
+}
+.feedback-route h3 { font-size:1.05rem; scroll-margin-top:.75rem; }
+.feedback-route__links { display:flex; flex-wrap:wrap; gap:0 1.25rem; }
+.feedback-route__links a { display:inline-flex; align-items:center; gap:.4rem; min-height:44px; }
+.feedback-route__links a:hover { text-decoration:underline; text-underline-offset:.2em; }
+.feedback-route__links svg { color:var(--sm-red); flex:none; }

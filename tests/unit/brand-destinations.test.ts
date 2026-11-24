@@ -56,10 +56,11 @@ describe("brand navigation availability", () => {
     }
   });
 
-  it("lists BYD and RELY brand detail pages in the sitemap", () => {
+  it("lists the BYD and RELY pages and localized BYD model pages in the sitemap", () => {
     const urls = sitemap().map(entry => entry.url).filter(url => url.includes("/brands/") && !url.endsWith("/brands/"));
     expect(urls.map(url => new URL(url).pathname).sort()).toEqual([
-      "/en/brands/byd/", "/en/brands/rely/", "/mn/brands/byd/", "/mn/brands/rely/",
+      "/en/brands/byd/", "/en/brands/byd/atto-3/", "/en/brands/byd/sealion-6/", "/en/brands/byd/shark-6/", "/en/brands/byd/ti-7/", "/en/brands/rely/",
+      "/mn/brands/byd/", "/mn/brands/byd/atto-3/", "/mn/brands/byd/sealion-6/", "/mn/brands/byd/shark-6/", "/mn/brands/byd/ti-7/", "/mn/brands/rely/",
     ]);
   });
 });

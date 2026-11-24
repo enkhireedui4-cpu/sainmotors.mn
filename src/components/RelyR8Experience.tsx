@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode, type TouchEvent } from "react";
 import { r8Content, type R8Feature } from "@/content/rely-r8";
 import type { Locale } from "@/lib/i18n";
-import { R8LeadForm } from "./R8LeadForm";
+import { TestDriveForm } from "./TestDriveForm";
 import "@/app/rely-r8.css";
 
 function R8Image({ name, alt = "", className, eager = false }: { name: string; alt?: string; className?: string; eager?: boolean }) {
@@ -149,6 +149,6 @@ export function RelyR8Experience({ locale, children }: { locale: Locale; childre
         </figure>)}</div>
       </div>
     </dialog>
-    <div className="r8-enquiry">{children}<R8LeadForm locale={locale} /></div>
+    <div className="r8-enquiry">{children}<TestDriveForm locale={locale} /></div>
   </div>;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 import { sealion, sealionAssets, sealionCabins, sealionColors, sealionComfort, sealionHighlights, sealionSpecs, type SealionFinish } from "@/content/byd";
 import type { Locale } from "@/lib/i18n";
 import { Icon } from "./Icon";
@@ -69,38 +69,12 @@ function SealionDesign({ locale }: { locale: Locale }) {
   </>;
 }
 
-export function BydExperience({ locale, enquiry, back }: {
-  locale: Locale;
-  enquiry: string;
-  back: ReactNode;
-}) {
+export function BydExperience({ locale }: { locale: Locale }) {
   const mn = locale === "mn";
   const labels = sections[locale];
-  const testDrive = mn ? "Туршилтын жолоодлого" : "Test drive";
   const modelName = `BYD ${sealion.name}`;
 
-  return <>
-    <section className="byd-hero" aria-labelledby="byd-title">
-      <div className="byd-shell byd-hero__top">
-        {back}
-        <div className="byd-hero__heading">
-          <h1 id="byd-title" translate="no">
-            <span className="sr-only">{modelName}</span>
-            <img className="byd-hero__model-mark" src={`${sealionAssets}/model-mark.webp`} width="800" height="50" alt="" />
-          </h1>
-          <p>{sealion.powertrain[locale]} <span aria-hidden="true">·</span> <span translate="no">{sealion.series}</span></p>
-        </div>
-      </div>
-      <div className="byd-hero__visual" data-model-name={sealion.name}>
-        <img src={`${sealionAssets}/hero.webp`} width="1920" height="691" alt={modelName} fetchPriority="high" />
-      </div>
-      <div className="byd-shell">
-        <div className="byd-actions byd-hero__actions">
-          <a className="byd-button byd-button--primary" href="#byd-overview">{mn ? "Загвартай танилцах" : "Explore the model"}<Icon name="arrowRight" className="byd-arrow-down" size={18} /></a>
-          <a className="byd-button byd-button--outline" href={enquiry}>{testDrive}</a>
-        </div>
-      </div>
-    </section>
+  return (
     <div className="byd-details">
       <nav className="byd-subnav" aria-label={mn ? "Загварын хэсгүүд" : "Model sections"}>
         <div className="byd-shell">
@@ -119,7 +93,6 @@ export function BydExperience({ locale, enquiry, back }: {
                 <dd>{value}<small>{displayUnit(unit, locale)}</small></dd>
               </div>)}
             </dl>
-            <p className="byd-spec-note">{mn ? "Эдгээр нь Сайн Моторсын SEALION 6 брошюрын үзүүлэлт." : "Figures are from the Sain Motors SEALION 6 brochure."}</p>
             <a className="byd-button byd-button--outline" href="#byd-technical">{labels.technical}<Icon name="arrowRight" size={17} /></a>
           </div>
           <img src={`${sealionAssets}/specifications.webp`} width="900" height="443" alt={mn ? "Цагаан BYD SEALION 6-ийн урд талын харагдац" : "White BYD SEALION 6 from the front three-quarter angle"} loading="lazy" />
@@ -171,5 +144,5 @@ export function BydExperience({ locale, enquiry, back }: {
         </details>)}
       </section>
     </div>
-  </>;
+  );
 }
