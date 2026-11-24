@@ -126,27 +126,29 @@ export default async function BydModelPage({ params }: Props) {
     {profile.id === "ti-7" && <BydBladeBattery locale={lang} />}
 
     <section className="byd-shell byd-profile__details" id="byd-technical" aria-labelledby="byd-profile-details">
-      <div>
-        <h2 id="byd-profile-details">{mn ? "Техникийн үзүүлэлт" : "Technical specifications"}</h2>
-        <dl className="byd-profile__specs">
-          {profile.specifications.map(item => <div key={item.label.en}>
-            <dt>{item.label[lang]}</dt>
-            <dd>{item.value[lang]}</dd>
-          </div>)}
-        </dl>
-      </div>
+      <h2 id="byd-profile-details">{mn ? "Техникийн үзүүлэлт" : "Technical specifications"}</h2>
+      <dl className="byd-profile__specs">
+        {profile.specifications.map(item => <div key={item.label.en}>
+          <dt>{item.label[lang]}</dt>
+          <dd>{item.value[lang]}</dd>
+        </div>)}
+      </dl>
       <div className="byd-profile__equipment">
-        <h3>{mn ? "Тоноглол" : "Equipment"}</h3>
-        <ul className="byd-profile__equipment-list" role="list">
-          {profile.equipment[lang].map(item => <li key={item}><Icon name="check" size={15} />{item}</li>)}
-        </ul>
-        <h3>{mn ? "Кузовын өнгө" : "Exterior colours"}</h3>
-        <ul className="byd-profile__colours" role="list" translate="no">
-          {profile.colors.map(([name, colour]) => <li key={name}>
-            <span className="byd-profile__swatch" style={{ backgroundColor: colour }} aria-hidden="true" />
-            {name}
-          </li>)}
-        </ul>
+        <div className="byd-profile__kit">
+          <h3>{mn ? "Тоноглол" : "Equipment"}</h3>
+          <ul className="byd-profile__equipment-list" role="list">
+            {profile.equipment[lang].map(item => <li key={item}><Icon name="check" size={16} />{item}</li>)}
+          </ul>
+        </div>
+        <div className="byd-profile__paint">
+          <h3>{mn ? "Кузовын өнгө" : "Exterior colours"}</h3>
+          <ul className="byd-profile__colours" role="list" translate="no">
+            {profile.colors.map(([name, colour]) => <li key={name}>
+              <span className="byd-profile__swatch" style={{ backgroundColor: colour }} aria-hidden="true" />
+              {name}
+            </li>)}
+          </ul>
+        </div>
       </div>
     </section>
     {features && <section className="byd-profile__faq" id="byd-faq" aria-labelledby="byd-faq-heading">

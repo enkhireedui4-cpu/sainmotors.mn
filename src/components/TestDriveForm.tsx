@@ -23,7 +23,10 @@ function bydLeadCopy(locale: Locale, name: string, phone: string, sales: boolean
     ? (sales ? "мэдээлэл авах" : "туршилтын жолоодлогын")
     : (sales ? "information" : "test-drive");
   return {
-    title: sales ? (mn ? "Мэдээлэл авах" : "Request information") : r8LeadCopy[locale].title,
+    title: sales ? (mn ? "Мэдээлэл авах" : "Request information") : (mn ? "Туршилтын жолоодлого" : "Book a test drive"),
+    intro: sales
+      ? (mn ? "Асуултаа үлдээгээрэй. BYD-ийн борлуулалтын зөвлөх тантай эргэн холбогдоно." : "Leave your question and a BYD sales advisor will get back to you.")
+      : (mn ? "Мэдээллээ үлдээгээрэй. BYD-ийн борлуулалтын зөвлөх тантай холбогдож, туршилтын жолоодлогын цагийг тохирно." : "Leave your details and a BYD sales advisor will call to arrange your test drive."),
     consent: mn
       ? "Sain Motors миний " + name + " загварын " + intent + " хүсэлттэй холбогдуулан дээрх мэдээллийг ашиглаж, надтай холбоо барихыг зөвшөөрч байна."
       : "I agree that Sain Motors may use these details to contact me about my " + name + " " + intent + " request.",
@@ -40,7 +43,8 @@ export function TestDriveForm({ locale, model, salesPhone, purpose }: Props) {
   const prefix = isSales ? "byd-enquiry" : model ? "byd" : "r8";
   const sectionId = isSales ? prefix : prefix + "-test-drive";
   const contact = salesPhone ?? { href: "tel:+97672228855", display: "7222-8855" };
-  const copy = model ? { ...r8LeadCopy[locale], ...bydLeadCopy(locale, model.name, contact.display, isSales) } : r8LeadCopy[locale];
+  const bydCopy = model ? bydLeadCopy(locale, model.name, contact.display, isSales) : undefined;
+  const copy = bydCopy ? { ...r8LeadCopy[locale], ...bydCopy } : r8LeadCopy[locale];
   const vehicle = model ? model.vehicle : {
     src: "/rely-r8/lead-vehicle.webp", width: 692, height: 305,
     alt: mn ? "Алтан шар RELY R8 пикапын хажуугийн харагдац" : "Gold RELY R8 pickup, side view",
@@ -115,14 +119,16 @@ export function TestDriveForm({ locale, model, salesPhone, purpose }: Props) {
   return <section className={sectionClasses} id={sectionId} aria-labelledby={prefix + "-lead-heading"}>
     {vehicle && <div className="r8-lead__vehicle"><img src={vehicle.src} width={vehicle.width} height={vehicle.height} alt={vehicle.alt} loading="lazy" decoding="async" /></div>}
     <div className="r8-lead__body">
-      {purpose && <>
-        <p className="byd-lead__model" translate="no">{model?.name}</p>
-        <nav className="byd-lead__choices" aria-label={mn ? "Хүсэлтийн төрөл" : "Request type"}>
+      {bydCopy ? <div className="byd-lead__head">
+        {purpose && <p className="byd-lead__model" translate="no">{model?.name}</p>}
+        <h2 id={prefix + "-lead-heading"}>{copy.title}</h2>
+        <p className="byd-lead__intro">{bydCopy.intro}</p>
+        {purpose && <nav className="byd-lead__choices" aria-label={mn ? "Хүсэлтийн төрөл" : "Request type"}>
           <a href="#byd-enquiry" aria-current={isSales ? "location" : undefined}>{mn ? "Мэдээлэл" : "Information"}</a>
           <a href="#byd-test-drive" aria-current={isSales ? undefined : "location"}>{mn ? "Туршилтын жолоодлого" : "Test drive"}</a>
-        </nav>
-      </>}
-      <h2 id={prefix + "-lead-heading"}>{copy.title}</h2>
+        </nav>}
+        <p className="r8-lead__contact">{copy.contact} <a href={contact.href}>{contact.display}</a></p>
+      </div> : <h2 id={prefix + "-lead-heading"}>{copy.title}</h2>}
       <form method="post" noValidate onSubmit={handleSubmit} data-state={state} aria-busy={state === "pending"}>
         <div className="r8-field">
           <label htmlFor={`${prefix}-city`}>{copy.city}</label>
@@ -162,7 +168,7 @@ export function TestDriveForm({ locale, model, salesPhone, purpose }: Props) {
           {state === "success" && <p data-state="success" role="status">{copy.success}</p>}
         </div>
       </form>
-      <p className="r8-lead__contact">{copy.contact}: <a href={contact.href}>{contact.display}</a></p>
+      {!bydCopy && <p className="r8-lead__contact">{copy.contact}: <a href={contact.href}>{contact.display}</a></p>}
     </div>
   </section>;
 }
