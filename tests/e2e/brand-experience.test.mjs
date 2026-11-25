@@ -58,6 +58,7 @@ test("the BYD brand opens directly on the first model without JavaScript", async
     await studioPhoto.evaluate(img => img.decode());
     assert.match(await studioPhoto.getAttribute("src"), /\/byd-sealion-6\/hero\.webp$/);
     assert.equal(await studio.getByRole("link", { name: "Туршилтын жолоодлого" }).getAttribute("href"), "#byd-test-drive");
+    assert.equal(await studio.getByRole("link", { name: "Мэдээлэл" }).getAttribute("href"), "#byd-test-drive");
     assert.ok((await studio.boundingBox()).y < (await page.locator("#byd-overview-heading").boundingBox()).y);
   } finally { await browser.close(); }
 });
@@ -119,7 +120,8 @@ test("mobile SEALION 6 has local specifications, working colour selection and re
     await specs.getByText("Powertrain and drive", { exact: true }).tap();
     assert.match(await specs.innerText(), /1,100\s*km/);
     const contact = page.locator("#byd-contact");
-    assert.equal(await contact.getByRole("link", { name: "Ask about a test drive" }).getAttribute("href"), "/en/contact/?intent=test-drive&brand=byd#enquiry-heading");
+    assert.equal(await contact.getByRole("link", { name: "Ask about a test drive" }).getAttribute("href"), "#byd-test-drive");
+    assert.equal(await contact.getByRole("link", { name: "Information" }).getAttribute("href"), "#byd-test-drive");
     assert.equal(await contact.locator('a[href^="tel:"]').getAttribute("href"), "tel:+97672508855");
     for (const image of await page.locator("main img").all()) {
       await image.scrollIntoViewIfNeeded();
@@ -209,16 +211,40 @@ test("the BYD lineup opens the localized TI 7, ATTO 3 and SHARK 6 model pages", 
           return new URL(img.currentSrc).pathname;
         }), `/byd-${id}/hero-${imageVariant}.webp`);
         assert.equal(await hero.locator("dl dd").count(), 3);
+        if (id === "shark-6") {
+          const studio = hero.locator(".byd-studio");
+          assert.equal(await studio.count(), 1);
+          const heading = await studio.getByRole("heading", { level: 1 }).boundingBox();
+          const photo = await studio.getByRole("img").boundingBox();
+          const action = await studio.locator(".byd-actions").boundingBox();
+          assert.ok(heading && photo && action);
+          assert.ok(heading.y + heading.height <= photo.y);
+          assert.ok(photo.y + photo.height <= action.y);
+          assert.ok(Math.abs((photo.x + photo.width / 2) - width / 2) < 10);
+        }
         assert.doesNotMatch(await hero.innerText(), /Сайн Моторсын танилцуулгын үзүүлэлт|Figures from the Sain Motors model sheet/);
-        assert.equal(await hero.locator('a[href="#byd-enquiry"]').innerText(), locale === "mn" ? "Мэдээлэл" : "Information");
-        for (const anchor of ["#byd-enquiry", "#byd-test-drive"]) {
-          const action = hero.locator('a[href="' + anchor + '"]');
-          assert.equal(await action.count(), 1);
+        const anchor = "#byd-test-drive";
+        for (const label of locale === "mn" ? ["Мэдээлэл", "Туршилтын жолоодлого"] : ["Information", "Test drive"]) {
+          const action = hero.getByRole("link", { name: label, exact: true });
+          assert.equal(await action.getAttribute("href"), anchor);
           await action.click();
           assert.equal(new URL(page.url()).pathname, "/" + locale + "/brands/byd/" + id + "/");
           assert.equal(new URL(page.url()).hash, anchor);
           assert.equal(await page.locator(anchor).isVisible(), true);
           assert.match(await page.locator(anchor).innerText(), new RegExp(name));
+        }
+        const lead = page.locator(anchor);
+        const leadForm = lead.locator("form");
+        assert.equal(await leadForm.evaluate(form => getComputedStyle(form).backgroundColor), "rgba(0, 0, 0, 0)");
+        const formBounds = await leadForm.boundingBox();
+        assert.ok(formBounds);
+        if (id === "ti-7") {
+          assert.ok(Math.abs(formBounds.x + formBounds.width / 2 - width / 2) < 10);
+        } else {
+          const leadPhoto = await lead.getByRole("img").boundingBox();
+          assert.ok(leadPhoto);
+          if (imageVariant === "desktop") assert.ok(leadPhoto.x + leadPhoto.width <= formBounds.x);
+          else assert.ok(leadPhoto.y + leadPhoto.height <= formBounds.y);
         }
         assert.doesNotMatch(await page.locator("main").innerText(), /Сайн Моторсын (танилцуулга|тоноглол)|Sain Motors\S? (brochure|model sheet|equipment list)/i);
         const equipment = page.locator(".byd-profile__equipment");
@@ -264,7 +290,6 @@ test("the BYD lineup opens the localized TI 7, ATTO 3 and SHARK 6 model pages", 
         } else {
           const values = await hero.locator("dl dd").allTextContents();
           assert.deepEqual(values.map(value => value.split(" ")[0]), ["431", "670", "5.7"]);
-          assert.equal(await hero.locator('.byd-profile__visual').evaluate(node => getComputedStyle(node.querySelector("img")).objectFit), "contain");
         }
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
         await hero.getByRole("link", { name: locale === "mn" ? "BYD загварууд" : "BYD models", exact: true }).click();

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BydBladeBattery } from "@/components/BydBladeBattery";
 import { BydContact } from "@/components/BydContact";
+import { BydModelActions, BydStudioHero } from "@/components/BydStudioHero";
 import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
 import { TestDriveForm } from "@/components/TestDriveForm";
@@ -49,19 +50,20 @@ export default async function BydModelPage({ params }: Props) {
   const assetPath = `/byd-${profile.id}`;
   const features = bydProfileFeatures[profile.id];
   const salesPhone = brandPhone(brand);
+  const studio = profile.id === "shark-6";
+  const backHref = `${lineup}#${profile.id}`;
+  const heroImage = { src: `${assetPath}/hero-desktop.webp`, ...profile.desktop, alt: profile.alt[lang] };
+  const mobileImage = { src: `${assetPath}/hero-mobile.webp`, ...profile.mobile };
+  const requestVehicle = profile.id === "atto-3" ? {
+    src: `${assetPath}/test-drive.png`,
+    width: 640,
+    height: 250,
+    alt: mn ? "Цэнхэр BYD ATTO 3-ын хажуугийн харагдац" : "Blue BYD ATTO 3 viewed from the side",
+  } : heroImage;
   const requestModel = {
     name: profile.name,
-    vehicle: profile.id === "ti-7" ? undefined : { src: assetPath + "/hero-desktop.webp", ...profile.desktop, alt: profile.alt[lang] },
+    vehicle: profile.id === "ti-7" ? undefined : requestVehicle,
   };
-  const testDriveModel = profile.id === "atto-3" ? {
-    name: profile.name,
-    vehicle: {
-      src: `${assetPath}/test-drive.png`,
-      width: 640,
-      height: 250,
-      alt: mn ? "Цэнхэр BYD ATTO 3-ын хажуугийн харагдац" : "Blue BYD ATTO 3 viewed from the side",
-    },
-  } : requestModel;
 
   return <div className="byd-page">
     <JsonLd data={breadcrumbGraph([
@@ -70,18 +72,21 @@ export default async function BydModelPage({ params }: Props) {
       { name: brand.name, path: lineup },
       { name: profile.name, path: localePath(lang, bydProfilePath(profile.id)) },
     ])} />
-    <section className="byd-profile" aria-labelledby="byd-profile-heading">
-      <div className="byd-profile__visual" data-model={profile.id}>
+    <section className={studio ? "byd-profile byd-profile--studio" : "byd-profile"} aria-labelledby="byd-profile-heading">
+      {studio ? <div className="byd-studio">
+        <BydStudioHero locale={lang} backHref={backHref} headingId="byd-profile-heading" name={profile.name}
+          subtitle={profile.description[lang]} image={heroImage} mobileImage={mobileImage} />
+      </div> : <div className="byd-profile__visual" data-model={profile.id}>
         <picture>
-          <source media="(max-aspect-ratio: 4/5)" srcSet={`${assetPath}/hero-mobile.webp`} {...profile.mobile} />
-          <img src={`${assetPath}/hero-desktop.webp`} {...profile.desktop} alt={profile.alt[lang]} fetchPriority="high" decoding="async" />
+          <source media="(max-aspect-ratio: 4/5)" srcSet={mobileImage.src} {...profile.mobile} />
+          <img src={heroImage.src} {...profile.desktop} alt={heroImage.alt} fetchPriority="high" decoding="async" />
         </picture>
         <div className="byd-shell byd-profile__copy">
-          <a className="byd-profile__back" href={`${lineup}#${profile.id}`}><Icon name="arrowLeft" size={17} />{mn ? "BYD загварууд" : "BYD models"}</a>
+          <a className="byd-profile__back" href={backHref}><Icon name="arrowLeft" size={17} />{mn ? "BYD загварууд" : "BYD models"}</a>
           <h1 id="byd-profile-heading" translate="no">{profile.name}</h1>
           <p>{profile.description[lang]}</p>
         </div>
-      </div>
+      </div>}
       <div className="byd-profile__summary">
         <div className="byd-shell byd-profile__summary-inner">
           <dl className="byd-profile__highlights">
@@ -90,14 +95,7 @@ export default async function BydModelPage({ params }: Props) {
               <dd>{item.value[lang]}</dd>
             </div>)}
           </dl>
-          <div className="byd-actions">
-            <a className="byd-button byd-button--primary" href="#byd-enquiry">
-              {informationLabel}<Icon name="arrowRight" size={17} />
-            </a>
-            <a className="byd-button byd-button--outline" href="#byd-test-drive">
-              {mn ? "Туршилтын жолоодлого" : "Test drive"}
-            </a>
-          </div>
+          {!studio && <BydModelActions locale={lang} />}
         </div>
       </div>
     </section>
@@ -177,7 +175,7 @@ export default async function BydModelPage({ params }: Props) {
       </div>
     </section>}
     <div className="byd-model-requests" data-model={profile.id}>
-      <TestDriveForm locale={lang} model={testDriveModel} salesPhone={salesPhone} purpose="test-drive" />
+      <TestDriveForm locale={lang} model={requestModel} salesPhone={salesPhone} purpose="test-drive" />
       <TestDriveForm locale={lang} model={requestModel} salesPhone={salesPhone} purpose="sales" />
     </div>
     <BydContact brand={brand} locale={lang} modelRequests salesLabel={informationLabel} />

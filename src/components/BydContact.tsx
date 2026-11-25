@@ -19,7 +19,7 @@ export function BydContact({ brand, locale, modelRequests = false, salesLabel }:
           <p>{mn ? "Борлуулалт, үйлдвэрийн баталгаа, засвар, сэлбэг" : "Sales, factory warranty, service and spare parts"}</p>
         </div>
         <div>
-          <BrandActions brand={brand} locale={locale} testDriveHref={enquiry} salesHref={modelRequests ? "#byd-enquiry" : undefined} salesLabel={salesLabel} />
+          <BrandActions brand={brand} locale={locale} testDriveHref={enquiry} salesHref={modelRequests ? enquiry : undefined} salesLabel={salesLabel} />
           <div className="byd-actions">
             <a className="byd-button byd-button--outline" href={phone.href}><Icon name="phone" size={18} />{mn ? phone.display : `+976 ${phone.display}`}</a>
             {location && <a className="byd-map" href={location.map.url}>{mn ? "Газрын зураг" : "Directions"}<Icon name="arrowUpRight" size={17} /></a>}

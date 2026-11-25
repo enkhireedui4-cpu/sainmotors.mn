@@ -3,7 +3,8 @@
   grid-template-rows: minmax(24rem, 1fr) auto;
   min-block-size: max(40rem, calc(100svh - var(--header-h)));
 }
-.byd-profile .byd-shell,
+.byd-profile__visual .byd-shell,
+.byd-profile__summary .byd-shell,
 .byd-profile__details.byd-shell {
   width: min(calc(100% - 2 * var(--gutter)), 100rem);
 }
@@ -213,41 +214,13 @@
   .byd-profile__summary .byd-button { padding-inline: .5rem; font-size: .8rem; }
 }
 
-.byd-profile__visual[data-model="shark-6"],
+.byd-profile--studio { display: block; min-block-size: 0; }
+.byd-profile--studio .byd-profile__summary-inner { grid-template-columns: minmax(0, 1fr); }
 .byd-studio {
   background: radial-gradient(ellipse at 52% 56%, #e6edf0, #f8fafa 67%, #fff);
   color: #17232b;
   overflow: clip;
 }
-.byd-profile__visual[data-model="shark-6"] {
-  display: grid;
-  grid-template-columns: minmax(16rem, .8fr) minmax(0, 2.2fr);
-  grid-template-areas: "intro truck";
-  align-items: center;
-  padding-inline: max(var(--gutter), calc((100% - 100rem) / 2));
-}
-.byd-profile__visual[data-model="shark-6"]::after { display: none; }
-.byd-profile__visual[data-model="shark-6"] .byd-profile__copy {
-  grid-area: intro;
-  width: 100%;
-}
-.byd-profile__visual[data-model="shark-6"] h1 {
-  font-size: clamp(2.6rem, 3.6vw, 4.4rem);
-}
-.byd-profile__visual[data-model="shark-6"] picture {
-  grid-area: truck;
-  position: relative;
-  inset: auto;
-  display: block;
-  height: auto;
-}
-.byd-profile__visual[data-model="shark-6"] img {
-  position: static;
-  display: block;
-  height: auto;
-  object-fit: contain;
-}
-
 .byd-studio { border-bottom: 1px solid var(--byd-rule); }
 .byd-studio > .byd-shell {
   padding-block: .75rem clamp(3rem, 7vw, 6.75rem);
@@ -360,18 +333,6 @@
 .byd-profile__faq details p { color: #45545e; padding-bottom: 1.15rem; line-height: 1.6; }
 
 @media (max-width: 48rem) {
-  .byd-profile__visual[data-model="shark-6"] {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "intro" "truck";
-    align-content: center;
-  }
-  .byd-profile__visual[data-model="shark-6"] .byd-profile__copy {
-    padding-bottom: .45rem;
-  }
-  .byd-profile__visual[data-model="shark-6"] picture {
-    width: 122%;
-    margin-inline: -11%;
-  }
   .byd-studio > .byd-shell { min-block-size: auto; }
   .byd-studio__heading h1 { font-size: clamp(1.85rem, 8.7vw, 3.25rem); }
   .byd-studio img {
@@ -394,51 +355,14 @@
   #byd-feature-charging picture { aspect-ratio: 16 / 9; }
 }
 
-.byd-model-requests > .byd-lead {
-  min-height: 0;
-  grid-template-columns: minmax(0, 1fr) minmax(18rem, 29rem);
-  gap: clamp(1.8rem, 5vw, 5.5rem);
-  padding: clamp(2.3rem, 6vw, 5rem) max(var(--gutter), calc((100vw - 78rem) / 2));
-}
 .byd-model-requests > .byd-lead--sales:not(:target),
 .byd-model-requests:has(> .byd-lead--sales:target) > .byd-lead--test-drive {
   display: none;
 }
-.byd-model-requests .r8-lead__vehicle {
-  padding: 0;
-  margin: 0;
-  max-width: 38rem;
-  justify-self: center;
-}
-.byd-model-requests .r8-lead__vehicle img {
+.byd-model-requests[data-model="atto-3"] .r8-lead__vehicle img {
   display: block;
-  border-radius: .75rem;
-}
-.byd-model-requests[data-model="atto-3"] .byd-lead--test-drive .r8-lead__vehicle img {
-  width: 90%;
+  width: 74%;
   margin-inline: auto;
-}
-@media (width > 48rem) {
-  .byd-model-requests[data-model="atto-3"] > .byd-lead--test-drive {
-    grid-template-columns: minmax(18rem, 29rem) minmax(0, 1fr);
-  }
-  .byd-model-requests[data-model="atto-3"] > .byd-lead--test-drive > .r8-lead__body {
-    order: -1;
-  }
-}
-.byd-model-requests .r8-lead h2 {
-  margin-bottom: 0;
-  color: var(--sm-ink);
-  font-size: clamp(1.8rem, 3vw, 2.75rem);
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -.035em;
-}
-.byd-lead__model {
-  margin-bottom: .6rem;
-  color: #45545e;
-  font-size: .95rem;
-  font-weight: 600;
 }
 .byd-lead__intro {
   max-width: 30rem;
@@ -473,22 +397,6 @@
   background: var(--sm-ink);
   color: #fff;
 }
-.byd-model-requests form {
-  margin-top: 1.6rem;
-  padding: clamp(1.3rem, 3vw, 2.2rem);
-  border-radius: 1rem;
-  background: #fff;
-  box-shadow: 0 1px 2px rgb(23 35 43 / .06), 0 1.4rem 2.8rem -1.6rem rgb(23 35 43 / .4);
-}
-.byd-model-requests form > .r8-field:first-child { margin-top: 0; }
-.byd-model-requests .byd-lead .r8-lead__consent { margin-top: 1.5rem; }
-.byd-model-requests .byd-lead .r8-lead__submit {
-  margin-top: 1.4rem;
-  border-radius: var(--sm-radius-control);
-  font-size: 1rem;
-  font-weight: 600;
-  text-transform: none;
-}
 .byd-lead .r8-lead__contact {
   margin-top: 1.6rem;
   color: #45545e;
@@ -516,28 +424,13 @@
   font-size: 1rem;
   resize: vertical;
 }
-@media (max-width: 48rem) {
-  .byd-model-requests > .byd-lead { align-items: stretch; }
-  .byd-model-requests[data-model="atto-3"] .byd-lead--test-drive .r8-lead__vehicle img { width: 72%; }
-}
-
 .byd-model-requests > .byd-lead:not(:has(> .r8-lead__vehicle)) {
   grid-template-columns: minmax(0, 1fr);
 }
 .byd-model-requests > .byd-lead:not(:has(> .r8-lead__vehicle)) .r8-lead__body {
   width: 100%;
-  max-width: 33rem;
+  max-width: 27.5rem;
   margin-inline: auto;
-}
-@media (min-width: 56rem) {
-  .byd-model-requests > .byd-lead:not(:has(> .r8-lead__vehicle)) .r8-lead__body {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(22rem, 31rem);
-    align-items: center;
-    column-gap: clamp(2.5rem, 7vw, 7rem);
-    max-width: 72rem;
-  }
-  .byd-lead:not(:has(> .r8-lead__vehicle)) .r8-lead__body > form { margin-top: 0; }
 }
 .byd-battery {
   display: grid;
