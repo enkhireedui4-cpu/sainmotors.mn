@@ -249,7 +249,7 @@ test("the BYD lineup opens the localized TI 7, ATTO 3 and SHARK 6 model pages", 
         assert.doesNotMatch(await page.locator("main").innerText(), /Сайн Моторсын (танилцуулга|тоноглол)|Sain Motors\S? (brochure|model sheet|equipment list)/i);
         const equipment = page.locator(".byd-profile__equipment");
         assert.ok(await equipment.evaluate(node => parseFloat(getComputedStyle(node).borderTopLeftRadius) <= 24));
-        assert.equal(await equipment.locator(".byd-profile__swatch").count(), id === "ti-7" ? 5 : 4);
+        if (id !== "shark-6") assert.equal(await equipment.locator(".byd-profile__swatch").count(), id === "ti-7" ? 5 : 4);
         if (id === "ti-7") {
           assert.equal(await equipment.locator("img").count(), 0);
           assert.equal(await page.locator("#byd-enquiry img, #byd-test-drive img").count(), 0);
@@ -290,6 +290,18 @@ test("the BYD lineup opens the localized TI 7, ATTO 3 and SHARK 6 model pages", 
         } else {
           const values = await hero.locator("dl dd").allTextContents();
           assert.deepEqual(values.map(value => value.split(" ")[0]), ["431", "670", "5.7"]);
+          const sections = page.getByRole("navigation", { name: locale === "mn" ? "Загварын хэсгүүд" : "Model sections" });
+          assert.equal(await sections.count(), 1);
+          const overview = page.locator("#byd-overview");
+          await sections.locator('a[href="#byd-overview"]').click();
+          assert.equal(new URL(page.url()).hash, "#byd-overview");
+          assert.equal(await overview.getByRole("heading", { name: "BYD SHARK 6 Premium" }).count(), 1);
+          const family = overview.locator(".byd-road-scene img");
+          assert.equal(await family.evaluate(async img => {
+            await img.decode();
+            return new URL(img.currentSrc).pathname;
+          }), `/byd-shark-6/family${imageVariant === "mobile" ? "-mobile" : ""}.webp`);
+          assert.equal(await page.locator("#byd-design .byd-swatches button").count(), 4);
         }
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
         await hero.getByRole("link", { name: locale === "mn" ? "BYD загварууд" : "BYD models", exact: true }).click();
@@ -299,6 +311,34 @@ test("the BYD lineup opens the localized TI 7, ATTO 3 and SHARK 6 model pages", 
     }
   } finally { await browser.close(); }
 });
+test("SHARK 6 switches between all paint angles and its cabin", async () => {
+  const browser = await chromium.launch({ executablePath });
+  try {
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
+    await page.goto(`${base}/en/brands/byd/shark-6/#byd-design`, { waitUntil: "networkidle" });
+    const viewer = page.getByRole("region", { name: "SHARK 6 exterior and cabin" });
+    const checkPhoto = async (path, width) => {
+      const photo = viewer.locator(`img[src="/byd-shark-6/${path}.webp"]`);
+      await photo.scrollIntoViewIfNeeded();
+      assert.equal(await photo.evaluate(async image => { await image.decode(); return image.naturalWidth; }), width);
+    };
+    for (const [label, colour] of [["Deep Sea Blue", "blue"], ["Great White", "white"], ["Mist Grey", "grey"], ["Tidal Black", "black"]]) {
+      await viewer.getByRole("button", { name: label, exact: true }).click();
+      await viewer.getByRole("button", { name: "Front", exact: true }).click();
+      await checkPhoto(`paint-${colour}`, 1600);
+      await viewer.getByRole("button", { name: "Side", exact: true }).click();
+      await checkPhoto(`paint-${colour}-side`, 1600);
+    }
+    await viewer.getByRole("button", { name: "Interior", exact: true }).click();
+    await checkPhoto("cabin", 1000);
+    assert.equal(await viewer.getByRole("button", { name: "Side", exact: true }).count(), 0);
+    await viewer.getByRole("button", { name: "Exterior", exact: true }).click();
+    await checkPhoto("paint-black-side", 1600);
+    assert.equal(await viewer.getByRole("button", { name: "Side", exact: true }).getAttribute("aria-pressed"), "true");
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), 390);
+  } finally { await browser.close(); }
+});
+
 test("the three BYD model pages submit requests with their own model and purpose", async () => {
   const browser = await chromium.launch({ executablePath });
   try {

@@ -28,6 +28,14 @@ export function bydProfilePath(id: BydProfileId) {
   return `brands/byd/${id}`;
 }
 
+export const sharkPaints = [
+  ["paint-blue", "Deep Sea Blue", "#176291"],
+  ["paint-white", "Great White", "#f2f1ee"],
+  ["paint-grey", "Mist Grey", "#9a9fa5"],
+  ["paint-black", "Tidal Black", "#22272b"],
+] as const;
+export const sharkCabin = { src: "/byd-shark-6/cabin.webp", width: 1000, height: 667 };
+
 // Model details are from Sain Motors’ TI 7 specification cards, Atto3.pdf and Shark6.pdf.
 export const bydProfiles: readonly BydProfile[] = [
   {
@@ -124,6 +132,6 @@ export const bydProfiles: readonly BydProfile[] = [
       mn: ["15.6 инчийн эргэдэг дэлгэц", "12 чанга яригчтай Dynaudio систем", "360° камер", "Халаалт, агааржуулалттай урд суудал", "Apple CarPlay болон Android Auto", "V2L цахилгаан гаралт", "AC Type 2 (7 кВт), DC CCS 2 (55 кВт)"],
       en: ["15.6-inch rotating display", "12-speaker Dynaudio audio", "360° camera", "Heated and ventilated front seats", "Apple CarPlay and Android Auto", "V2L power outlet", "AC Type 2 (7 kW), DC CCS 2 (55 kW)"],
     },
-    colors: [["Great White", "#f2f1ee"], ["Mist Grey", "#9a9fa5"], ["Tidal Black", "#22272b"], ["Deep Sea Blue", "#176291"]],
+    colors: sharkPaints.map(([, name, swatch]) => [name, swatch] as const),
   },
 ];

@@ -1,8 +1,6 @@
-"use client";
-
-import { useState } from "react";
-import { sealion, sealionAssets, sealionCabins, sealionColors, sealionComfort, sealionHighlights, sealionSpecs, type SealionFinish } from "@/content/byd";
+import { sealion, sealionAssets, sealionCabins, sealionColors, sealionComfort, sealionHighlights, sealionSpecs } from "@/content/byd";
 import type { Locale } from "@/lib/i18n";
+import { BydFinishSelector } from "./BydFinishSelector";
 import { Icon } from "./Icon";
 
 const sections = {
@@ -14,28 +12,6 @@ const localUnits: Record<string, string> = { hp: "м.х", "N·m": "Н·м", s: "
 
 function displayUnit(unit: string, locale: Locale) {
   return locale === "mn" ? localUnits[unit] ?? unit : unit;
-}
-
-function FinishSelector({ locale, title, finishes, interior = false }: {
-  locale: Locale;
-  title: string;
-  finishes: readonly SealionFinish[];
-  interior?: boolean;
-}) {
-  const [color, setColor] = useState(finishes[0]);
-  return <div className={`byd-design__colors${interior ? " byd-design__colors--interior" : ""}`}>
-      <div className="byd-design__picker">
-        <h3>{title}</h3>
-        <div className="byd-swatches" role="group" aria-label={title}>
-          {finishes.map(option => <button key={option.id} type="button" aria-label={option.label[locale]} aria-pressed={color.id === option.id}
-            title={option.label[locale]} onClick={() => setColor(option)}>
-            <span style={{ backgroundColor: option.swatch }} />
-          </button>)}
-        </div>
-        <p aria-live="polite">{color.label[locale]}</p>
-      </div>
-      <img src={`${sealionAssets}/${color.id}.webp`} width={color.width} height={color.height} alt={`${title} · ${color.label[locale]}`} loading="lazy" />
-  </div>;
 }
 
 function SealionDesign({ locale }: { locale: Locale }) {
@@ -55,8 +31,8 @@ function SealionDesign({ locale }: { locale: Locale }) {
         <figcaption><h3>{mn ? "Түлхүүргүй нэвтрэх" : "Keyless entry"}</h3><p>{mn ? "Түлхүүрээ гаргалгүй хаалгаа онгойлгож, машинаа асаана." : "Unlock and start the car without taking out the key."}</p></figcaption>
       </figure>
     </div>
-    <FinishSelector locale={locale} title={mn ? "Кузовын өнгө" : "Exterior colours"} finishes={sealionColors} />
-    <FinishSelector locale={locale} title={mn ? "Салоны өнгө" : "Interior colours"} finishes={sealionCabins} interior />
+    <BydFinishSelector locale={locale} title={mn ? "Кузовын өнгө" : "Exterior colours"} assetPath={sealionAssets} finishes={sealionColors} />
+    <BydFinishSelector locale={locale} title={mn ? "Салоны өнгө" : "Interior colours"} assetPath={sealionAssets} finishes={sealionCabins} interior />
     <div className="byd-comfort">
       <h2>{mn ? "Салоны тав тух" : "Cabin comfort"}</h2>
       <div>

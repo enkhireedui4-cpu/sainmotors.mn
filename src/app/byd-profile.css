@@ -249,6 +249,73 @@
 }
 .byd-studio .byd-actions { justify-content: center; }
 
+.byd-shark-overview { padding-block-start: clamp(1.35rem, 3.2vw, 3rem); }
+.byd-shark-overview .byd-intro h2 span { white-space: nowrap; }
+.byd-shark-overview .byd-hybrid-photos img:last-child { aspect-ratio: 4 / 3; }
+.byd-shark-architecture img { object-fit: contain; background: #eef1f2; }
+.byd-shark-design { padding-block-start: clamp(2rem, 4vw, 3.5rem); }
+.byd-shark-design .byd-feature__grid img { aspect-ratio: 2 / 1; }
+.byd-shark-viewer { margin-block: 1.4rem clamp(2.4rem, 5vw, 4.5rem); }
+.byd-shark-viewer__views {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: .9rem;
+  border-bottom: 1px solid var(--byd-rule);
+}
+.byd-shark-viewer__views button,
+.byd-shark-viewer__angles button {
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--byd-muted);
+  font-weight: 600;
+}
+.byd-shark-viewer__views button {
+  padding-inline: .15rem;
+  border-bottom: 2px solid transparent;
+}
+.byd-shark-viewer__views button[aria-pressed="true"] {
+  border-color: var(--byd-red);
+  color: var(--sm-ink);
+}
+.byd-shark-viewer__scene {
+  aspect-ratio: 2.35 / 1;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #1c2531;
+}
+.byd-shark-viewer__scene img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.byd-shark-viewer__scene[data-view="interior"] img { object-position: center 58%; }
+.byd-shark-viewer__controls,
+.byd-shark-viewer__colours {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .6rem 1rem;
+}
+.byd-shark-viewer__controls {
+  justify-content: space-between;
+  padding: .65rem 0;
+  border-bottom: 1px solid var(--byd-rule);
+}
+.byd-shark-viewer__colours p { color: var(--byd-muted); font-size: .9rem; }
+.byd-shark-viewer__colours .byd-swatches button[aria-pressed="true"] { border-color: var(--byd-red); }
+.byd-shark-viewer__angles {
+  display: inline-flex;
+  gap: .18rem;
+  padding: .18rem;
+  border: 1px solid var(--byd-rule);
+  border-radius: 999px;
+}
+.byd-shark-viewer__angles button { padding-inline: 1rem; border-radius: 999px; font-size: .9rem; }
+.byd-shark-viewer__angles button[aria-pressed="true"] { background: var(--sm-ink); color: white; }
+@media (max-width: 48rem) {
+  .byd-shark-viewer__scene { aspect-ratio: 4 / 3; }
+  .byd-shark-viewer__scene[data-view="exterior"] img { transform: scale(1.4); }
+  .byd-shark-viewer__colours { flex-direction: column; align-items: flex-start; gap: 0; }
+}
+.byd-profile__equipment:not(:has(> .byd-profile__paint)) { grid-template-columns: minmax(0, 1fr); }
+
 .byd-profile__nav ~ [id] { scroll-margin-top: 3rem; }
 .byd-profile__stories {
   padding-block: clamp(2.6rem, 6vw, 6.25rem) clamp(1.5rem, 4vw, 3.5rem);
@@ -359,10 +426,20 @@
 .byd-model-requests:has(> .byd-lead--sales:target) > .byd-lead--test-drive {
   display: none;
 }
+/* Place the tightly cropped ATTO 3 cutout on the same canvas as SEALION 6. */
+.byd-model-requests[data-model="atto-3"] .r8-lead__vehicle {
+  position: relative;
+  aspect-ratio: 1920 / 691;
+}
 .byd-model-requests[data-model="atto-3"] .r8-lead__vehicle img {
-  display: block;
-  width: 74%;
-  margin-inline: auto;
+  position: absolute;
+  inset-block-start: 15.5%;
+  inset-inline-start: 10.3%;
+  width: 73.5%;
+}
+/* Offset the SHARK 6 cutout's transparent margins to align the visible vehicle. */
+.byd-model-requests[data-model="shark-6"] .r8-lead__vehicle img {
+  translate: -1.8% 3.2%;
 }
 .byd-lead__intro {
   max-width: 30rem;
@@ -370,32 +447,6 @@
   color: #45545e;
   font-size: 1rem;
   line-height: 1.6;
-}
-.byd-lead__choices {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: .25rem;
-  margin-top: 1.4rem;
-  padding: .25rem;
-  border: 1px solid #c9d0d4;
-  border-radius: 999px;
-  background: rgb(255 255 255 / .6);
-}
-.byd-lead__choices a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding-inline: 1.1rem;
-  border-radius: 999px;
-  color: #45545e;
-  font-size: .875rem;
-  font-weight: 600;
-  transition: background-color .18s ease, color .18s ease;
-}
-.byd-lead__choices a:hover { color: var(--sm-ink); }
-.byd-lead__choices a[aria-current] {
-  background: var(--sm-ink);
-  color: #fff;
 }
 .byd-lead .r8-lead__contact {
   margin-top: 1.6rem;
@@ -423,14 +474,6 @@
   background: #fff;
   font-size: 1rem;
   resize: vertical;
-}
-.byd-model-requests > .byd-lead:not(:has(> .r8-lead__vehicle)) {
-  grid-template-columns: minmax(0, 1fr);
-}
-.byd-model-requests > .byd-lead:not(:has(> .r8-lead__vehicle)) .r8-lead__body {
-  width: 100%;
-  max-width: 27.5rem;
-  margin-inline: auto;
 }
 .byd-battery {
   display: grid;

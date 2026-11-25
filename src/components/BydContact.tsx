@@ -5,7 +5,13 @@ import { enquiryHref } from "@/lib/enquiries";
 import { BrandActions } from "./BrandActions";
 import { Icon } from "./Icon";
 
-export function BydContact({ brand, locale, modelRequests = false, salesLabel }: { brand: InternalBrand; locale: Locale; modelRequests?: boolean; salesLabel?: string }) {
+export function BydContact({ brand, locale, modelRequests = false, salesHref, salesLabel }: {
+  brand: InternalBrand;
+  locale: Locale;
+  modelRequests?: boolean;
+  salesHref?: string;
+  salesLabel?: string;
+}) {
   const location = brand.location ? getLocation(brand.location) : undefined;
   const phone = brandPhone(brand);
   const enquiry = modelRequests ? "#byd-test-drive" : enquiryHref(locale, "test-drive", brand.slug);
@@ -19,7 +25,7 @@ export function BydContact({ brand, locale, modelRequests = false, salesLabel }:
           <p>{mn ? "Борлуулалт, үйлдвэрийн баталгаа, засвар, сэлбэг" : "Sales, factory warranty, service and spare parts"}</p>
         </div>
         <div>
-          <BrandActions brand={brand} locale={locale} testDriveHref={enquiry} salesHref={modelRequests ? enquiry : undefined} salesLabel={salesLabel} />
+          <BrandActions brand={brand} locale={locale} testDriveHref={enquiry} salesHref={salesHref ?? (modelRequests ? enquiry : undefined)} salesLabel={salesLabel} />
           <div className="byd-actions">
             <a className="byd-button byd-button--outline" href={phone.href}><Icon name="phone" size={18} />{mn ? phone.display : `+976 ${phone.display}`}</a>
             {location && <a className="byd-map" href={location.map.url}>{mn ? "Газрын зураг" : "Directions"}<Icon name="arrowUpRight" size={17} /></a>}

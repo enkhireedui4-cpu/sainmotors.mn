@@ -203,12 +203,25 @@
 
 .byd-lead {
   --r8-unit: min(calc(100vw / 19.2), 100px);
+  --byd-lead-form-width: calc(var(--r8-unit) * 4.39);
   --lead-button: var(--byd-red);
   --lead-button-hover: var(--sm-red-hover);
   background: radial-gradient(ellipse at 28% 48%, #fff, transparent 57%), linear-gradient(140deg, #dbe0e3, #edf0f2);
 }
+/* Align the form with the sticky header by cancelling the site's 1rem anchor gap. */
+.r8-lead.byd-lead {
+  grid-template-columns: minmax(0, 1fr) var(--byd-lead-form-width);
+  scroll-margin-top: -1rem;
+}
+.byd-lead:not(:has(> .r8-lead__vehicle)) {
+  grid-template-columns: var(--byd-lead-form-width);
+  justify-content: center;
+}
 .byd-lead .r8-lead__vehicle { padding-inline: 0; }
 .byd-lead h2 { white-space: normal; }
+@media (min-width: 769px) and (max-width: 1100px) {
+  .byd-lead { --byd-lead-form-width: max(300px, 35%); }
+}
 @media (max-width: 768px) {
   .byd-lead { --r8-unit: calc(100vw / 7.5); }
 }

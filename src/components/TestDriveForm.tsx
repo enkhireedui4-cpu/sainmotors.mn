@@ -123,10 +123,6 @@ export function TestDriveForm({ locale, model, salesPhone, purpose }: Props) {
         <h2 id={prefix + "-lead-heading"}>{copy.title}</h2>
         <p className="byd-lead__intro">{bydCopy.intro}</p>
         <p className="r8-lead__contact">{copy.contact} <a href={contact.href}>{contact.display}</a></p>
-        {purpose && <nav className="byd-lead__choices" aria-label={mn ? "Хүсэлтийн төрөл" : "Request type"}>
-          <a href="#byd-enquiry" aria-current={isSales ? "location" : undefined}>{mn ? "Мэдээлэл" : "Information"}</a>
-          <a href="#byd-test-drive" aria-current={isSales ? undefined : "location"}>{mn ? "Туршилтын жолоодлого" : "Test drive"}</a>
-        </nav>}
       </div> : <h2 id={prefix + "-lead-heading"}>{copy.title}</h2>}
       <form method="post" noValidate onSubmit={handleSubmit} data-state={state} aria-busy={state === "pending"}>
         <div className="r8-field">
