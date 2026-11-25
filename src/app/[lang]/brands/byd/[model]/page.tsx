@@ -53,6 +53,15 @@ export default async function BydModelPage({ params }: Props) {
     name: profile.name,
     vehicle: profile.id === "ti-7" ? undefined : { src: assetPath + "/hero-desktop.webp", ...profile.desktop, alt: profile.alt[lang] },
   };
+  const testDriveModel = profile.id === "atto-3" ? {
+    name: profile.name,
+    vehicle: {
+      src: `${assetPath}/test-drive.png`,
+      width: 640,
+      height: 250,
+      alt: mn ? "Цэнхэр BYD ATTO 3-ын хажуугийн харагдац" : "Blue BYD ATTO 3 viewed from the side",
+    },
+  } : requestModel;
 
   return <div className="byd-page">
     <JsonLd data={breadcrumbGraph([
@@ -167,8 +176,8 @@ export default async function BydModelPage({ params }: Props) {
         </div>
       </div>
     </section>}
-    <div className="byd-model-requests">
-      <TestDriveForm locale={lang} model={requestModel} salesPhone={salesPhone} purpose="test-drive" />
+    <div className="byd-model-requests" data-model={profile.id}>
+      <TestDriveForm locale={lang} model={testDriveModel} salesPhone={salesPhone} purpose="test-drive" />
       <TestDriveForm locale={lang} model={requestModel} salesPhone={salesPhone} purpose="sales" />
     </div>
     <BydContact brand={brand} locale={lang} modelRequests salesLabel={informationLabel} />

@@ -414,6 +414,10 @@
   display: block;
   border-radius: .75rem;
 }
+.byd-model-requests[data-model="atto-3"] .byd-lead--test-drive .r8-lead__vehicle img {
+  width: 90%;
+  margin-inline: auto;
+}
 .byd-model-requests .r8-lead h2 {
   margin-bottom: 0;
   color: var(--sm-ink);
@@ -506,6 +510,7 @@
 }
 @media (max-width: 48rem) {
   .byd-model-requests > .byd-lead { align-items: stretch; }
+  .byd-model-requests[data-model="atto-3"] .byd-lead--test-drive .r8-lead__vehicle img { width: 72%; }
 }
 
 .byd-model-requests > .byd-lead:not(:has(> .r8-lead__vehicle)) {
