@@ -34,15 +34,12 @@ test("catalogue navigation, brand filters and all card destinations work in both
       const cards = page.locator(".brochure-card");
       assert.ok(await cards.count() >= 36);
       assert.deepEqual(await page.locator("#catalog-chery + ul h4").allTextContents(), ["TIGGO 4", "TIGGO 7"]);
-      const modelsWithoutPhotos = [
-        cards.filter({ has: page.getByRole("heading", { name: "TIGGO 7", exact: true }) }),
-        page.locator("#catalog-riddara + ul .brochure-card").filter({ has: page.getByText("2WD", { exact: true }) }),
-      ];
-      for (const model of modelsWithoutPhotos) {
-        assert.equal(await model.count(), 1);
-        assert.equal(await model.locator(".brochure-card__media img").count(), 0);
-        assert.equal(await model.locator("a.button--primary[target='_blank']").count(), 1);
-      }
+      const tiggo7 = cards.filter({ has: page.getByRole("heading", { name: "TIGGO 7", exact: true }) });
+      assert.equal(await tiggo7.locator("img").getAttribute("src"), "/brochure-vehicles/cutouts/chery-tiggo-7-white.webp");
+      const rd6TwoWheelDrive = page.locator("#catalog-riddara + ul .brochure-card").filter({ has: page.getByText("2WD", { exact: true }) });
+      assert.equal(await rd6TwoWheelDrive.count(), 1);
+      assert.equal(await rd6TwoWheelDrive.locator(".brochure-card__media img").count(), 0);
+      assert.equal(await rd6TwoWheelDrive.locator("a.button--primary[target='_blank']").count(), 1);
       assert.equal(await page.locator(".brochure-card__media").count(), await cards.count());
       assert.ok((await page.locator(".brochure-card__media img").evaluateAll(images =>
         images.map(image => image.width > 0 && image.getAttribute("width") === "900" && image.getAttribute("height") === "560")

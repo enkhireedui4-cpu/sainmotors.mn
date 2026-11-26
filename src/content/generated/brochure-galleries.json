@@ -11,6 +11,47 @@
       "height": 1080
     }
   ],
+  "byd-atto-3": [
+    {
+      "src": "/brochure-galleries/byd-atto-3/001.webp",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "src": "/brochure-galleries/byd-atto-3/002.webp",
+      "width": 1440,
+      "height": 900
+    }
+  ],
+  "byd-sealion-6": [
+    {
+      "src": "/brochure-galleries/byd-sealion-6/001.webp",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "src": "/brochure-galleries/byd-sealion-6/002.webp",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "src": "/brochure-galleries/byd-sealion-6/003.webp",
+      "width": 1440,
+      "height": 900
+    }
+  ],
+  "byd-shark-6": [
+    {
+      "src": "/brochure-galleries/byd-shark-6/001.webp",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "src": "/brochure-galleries/byd-shark-6/002.webp",
+      "width": 1440,
+      "height": 900
+    }
+  ],
   "chery-tiggo-4": [
     {
       "src": "/brochure-galleries/chery-tiggo-4/001.webp",

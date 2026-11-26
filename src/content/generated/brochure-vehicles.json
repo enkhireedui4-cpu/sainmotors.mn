@@ -77,21 +77,21 @@
     "view": "front-left"
   },
   "byd-atto-3": {
-    "src": "/brochure-vehicles/cutouts/byd-atto-3.webp",
+    "src": "/brochure-vehicles/cutouts/byd-atto-3-ski-white.webp",
     "width": 900,
     "height": 560,
     "layout": "cutout",
     "view": "front-left"
   },
   "byd-sealion-6": {
-    "src": "/brochure-vehicles/cutouts/byd-sealion-6.webp",
+    "src": "/brochure-vehicles/cutouts/byd-sealion-6-grey.webp",
     "width": 900,
     "height": 560,
     "layout": "cutout",
     "view": "front-left"
   },
   "byd-shark-6": {
-    "src": "/brochure-vehicles/cutouts/byd-shark-6.webp",
+    "src": "/brochure-vehicles/cutouts/byd-shark-6-white.webp",
     "width": 900,
     "height": 560,
     "layout": "cutout",
@@ -106,6 +106,13 @@
   },
   "chery-tiggo-4": {
     "src": "/brochure-vehicles/cutouts/chery-tiggo-4.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "chery-tiggo-7": {
+    "src": "/brochure-vehicles/cutouts/chery-tiggo-7-white.webp",
     "width": 900,
     "height": 560,
     "layout": "cutout",
@@ -169,6 +176,13 @@
   },
   "rely-r8": {
     "src": "/brochure-vehicles/cutouts/rely-r8.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "soueast-s06": {
+    "src": "/brochure-vehicles/cutouts/soueast-s06-grey.webp",
     "width": 900,
     "height": 560,
     "layout": "cutout",
