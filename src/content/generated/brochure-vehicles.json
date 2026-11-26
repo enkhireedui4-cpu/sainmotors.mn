@@ -20,6 +20,13 @@
     "layout": "cutout",
     "view": "front-left"
   },
+  "212-pickup-diesel": {
+    "src": "/brochure-vehicles/cutouts/212-pickup-diesel.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
   "212-standard": {
     "src": "/brochure-vehicles/cutouts/212-standard.webp",
     "width": 900,
@@ -35,7 +42,7 @@
     "view": "front-left"
   },
   "aito-m7": {
-    "src": "/brochure-vehicles/cutouts/aito-m7.webp",
+    "src": "/brochure-vehicles/cutouts/aito-7.webp",
     "width": 900,
     "height": 560,
     "layout": "cutout",
@@ -91,7 +98,7 @@
     "view": "front-left"
   },
   "byd-ti-7": {
-    "src": "/brochure-vehicles/cutouts/byd-ti-7.webp",
+    "src": "/brochure-vehicles/cutouts/byd-ti-7-cosmos-black.webp",
     "width": 900,
     "height": 560,
     "layout": "cutout",
