@@ -28,6 +28,9 @@ test("catalogue navigation, brand filters and all card destinations work in both
       const groups = page.locator(".brochure-group");
       await groups.first().waitFor();
       assert.equal(await groups.count(), 10);
+      const firstBrands = ["BYD", "CHERY", "JETOUR"];
+      assert.deepEqual((await groups.locator("h3").allTextContents()).slice(0, 3), firstBrands);
+      assert.deepEqual((await page.locator(".brochure-filters__options button").allTextContents()).slice(1, 4), firstBrands);
       assert.equal(await page.locator("#catalog-hongqi").count(), 0);
       assert.equal(await page.getByRole("searchbox").count(), 0);
       assert.equal(await page.getByText(mobile ? "PDF хараахан нэмэгдээгүй" : "PDF not yet available", { exact: true }).count(), 0);
@@ -39,6 +42,7 @@ test("catalogue navigation, brand filters and all card destinations work in both
       const rd6TwoWheelDrive = page.locator("#catalog-riddara + ul .brochure-card").filter({ has: page.getByText("2WD", { exact: true }) });
       assert.equal(await rd6TwoWheelDrive.count(), 1);
       assert.equal(await rd6TwoWheelDrive.locator(".brochure-card__media img").count(), 0);
+      assert.equal(await rd6TwoWheelDrive.locator(".brochure-card__media").textContent(), "");
       assert.equal(await rd6TwoWheelDrive.locator("a.button--primary[target='_blank']").count(), 1);
       assert.equal(await page.locator(".brochure-card__media").count(), await cards.count());
       assert.ok((await page.locator(".brochure-card__media img").evaluateAll(images =>

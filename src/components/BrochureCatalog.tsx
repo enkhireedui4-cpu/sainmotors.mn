@@ -105,11 +105,11 @@ export function BrochureCatalog({ groups, locale }: { groups: BrochureGroup[]; l
                   const fullName = [title, model.trim].filter(Boolean).join(" ");
                   const photo = model.photo ? (
                     <img src={model.photo.src} width={model.photo.width} height={model.photo.height} alt="" loading="lazy" decoding="async" />
-                  ) : <span>{copy.photoPending}</span>;
+                  ) : null;
                   return (
                     <li key={model.id} className="brochure-card">
                       <div className="brochure-card__media">
-                        {model.galleryHref ? (
+                        {photo && model.galleryHref ? (
                           <Link className="brochure-card__media-link" href={model.galleryHref} prefetch={false}
                             aria-label={copy.gallery + " · " + fullName} title={copy.gallery}>{photo}</Link>
                         ) : photo}

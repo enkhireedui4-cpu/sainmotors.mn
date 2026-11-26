@@ -27,6 +27,7 @@ export type CatalogModel = {
 // The QR catalogue supplies the named trims. The lineup supplements it with
 // models listed in our brand records, brand sites and supplied brochures.
 export const catalogModels: readonly CatalogModel[] = [
+  ...bydModels.map(({ id, name, details }) => ({ id: "byd-" + id, brand: "byd", name, details })),
   {
     id: "chery-tiggo-4", brand: "chery", name: "TIGGO 4", trim: "Luxury", officialModel: "tiggo-4",
     overview: { mn: "1.5L CVT болон 1.5T 6DCT хөдөлгүүр, хурдны хайрцгийн сонголттой.", en: "Available in 1.5L CVT and 1.5T 6DCT engine and transmission configurations." },
@@ -35,7 +36,6 @@ export const catalogModels: readonly CatalogModel[] = [
     id: "chery-tiggo-7", brand: "chery", name: "TIGGO 7", trim: "Luxury", officialModel: "tiggo-7",
     overview: { mn: "12.3 инчийн хос дэлгэц, панорам дээвэр, агаар ионжуулагчтай.", en: "Dual 12.3-inch screens, a panoramic roof and a cabin air ioniser." },
   },
-  ...bydModels.map(({ id, name, details }) => ({ id: "byd-" + id, brand: "byd", name, details })),
   { id: "jetour-t2", brand: "jetour", name: "T2", trim: "Luxury", officialModel: "t2" },
   { id: "jetour-t1", brand: "jetour", name: "T1", trim: "Comfort", officialModel: "t1" },
   { id: "jetour-x50", brand: "jetour", name: "X50", trim: "Comfort", officialModel: "x50" },

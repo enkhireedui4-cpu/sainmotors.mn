@@ -92,7 +92,6 @@
 .brochure-card__media img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
 .brochure-card__media-link { display: grid; width: 100%; height: 100%; place-items: center; }
 .brochure-card__media-link:focus-visible { outline-offset: -4px; }
-.brochure-card__media span { padding-inline: .5rem; color: var(--sm-muted); font-size: .75rem; text-align: center; }
 
 .brochure-card__body {
   display: flex;
