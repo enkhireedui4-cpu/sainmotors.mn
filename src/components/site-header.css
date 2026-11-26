@@ -19,6 +19,11 @@
 .site-header .mobile-menu__nav a[aria-current] { border-bottom-color: var(--sm-red); }
 .site-header .mobile-menu__foot > a[href^="tel:"] { display:inline-flex; align-items:center; justify-content:center; min-height:var(--sm-control-height); padding:.7rem 1.4rem; border-radius:var(--sm-radius-control); color:var(--sm-white); background:var(--sm-red); }
 .site-header .mobile-menu__foot > a[href^="tel:"]:hover { color:var(--sm-white); background:var(--sm-red-hover); }
+@media (min-width: 64rem) and (max-width: 74.99rem) {
+  .site-header .site-header__inner { gap: 1.25rem; }
+  .site-header .site-nav { gap: clamp(.65rem, 1.35vw, 1rem); }
+  .site-header .site-nav__link { font-size: .82rem; }
+}
 @media (max-width: 63.99rem) {
   .site-header .site-header__inner { width: calc(100% - 3rem); gap: 1rem; }
   .site-header .site-nav { gap: 1.1rem; }

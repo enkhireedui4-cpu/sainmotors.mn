@@ -1,6 +1,7 @@
 import { isBrandSiteAvailable } from "@/lib/routes";
 import type { MetadataRoute } from "next";
 import { getInternalBrands } from "@/content";
+import { catalogGalleries, catalogModelPath, catalogModels } from "@/content/brochures";
 import { sealionPath } from "@/content/byd";
 import { bydProfilePath, bydProfiles } from "@/content/byd-profiles";
 import { getNewsArticles } from "@/lib/news";
@@ -14,6 +15,7 @@ export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     ...Object.values(pagePaths),
+    ...catalogModels.filter(({ id }) => catalogGalleries[id]?.length).map(model => catalogModelPath(model.id)),
     ...getInternalBrands().filter(brand => isBrandSiteAvailable(brand.slug)).map(brand => `brands/${brand.slug}`),
     sealionPath,
     ...bydProfiles.map(profile => bydProfilePath(profile.id)),

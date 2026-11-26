@@ -7,6 +7,7 @@ export const ui = {
     news: { mn: "Мэдээ", en: "News" },
     about: { mn: "Бидний тухай", en: "About" },
     brands: { mn: "Брэндүүд", en: "Brands" },
+    brochures: { mn: "Каталог", en: "Catalogue" },
     services: { mn: "Үйлчилгээ", en: "Services" },
     contact: { mn: "Холбоо барих", en: "Contact" },
   },

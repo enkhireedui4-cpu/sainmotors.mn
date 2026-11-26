@@ -15,8 +15,8 @@ test("corporate home leads to real services and retains brand contact journeys",
     await page.locator('.orbit-service-card[href="/en/services/#service-repair"]').click();
     await page.waitForURL("**/en/services/#service-repair");
     assert.equal(await page.locator("#service-repair").isVisible(), true);
-    assert.deepEqual((await page.locator(".site-nav").getByRole("link").allInnerTexts()).map(t => t.trim()), ["About", "Dealer network", "Services", "News", "Contact"]);
-    await page.locator(".site-footer").getByRole("link", {name:"Brands",exact:true}).click();
+    assert.deepEqual((await page.locator(".site-nav").getByRole("link").allInnerTexts()).map(t => t.trim()), ["About", "Brands", "Catalogue", "Dealer network", "Services", "News", "Contact"]);
+    await page.locator(".site-nav").getByRole("link", {name:"Brands",exact:true}).click();
     await page.waitForURL("**/en/brands/");
     await page.locator('[data-brand-directory] a[href="/en/brands/byd/"]').click();
     await page.waitForURL("**/en/brands/byd/");

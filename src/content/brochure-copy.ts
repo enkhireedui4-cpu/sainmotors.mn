@@ -1,0 +1,58 @@
+export function catalogModelTitle(brand: string, model: string) {
+  return model === brand || model.startsWith(brand + " ") ? model : brand + " " + model;
+}
+
+export const catalogCopy = {
+  mn: {
+    title: "Автомашины каталог",
+    intro: "Сонирхсон загвараа олоод танилцуулгыг онлайнаар үзээрэй.",
+    all: "Бүх брэнд",
+    filters: "Брэндээр шүүх",
+    models: "Загварууд",
+    count: (n: number) => n + " загвар",
+    viewBrochure: "Брошур үзэх",
+    viewModel: "Загвар үзэх",
+    modelComing: "Тун удахгүй",
+    brochure: "Брошур",
+    pending: "Энэ загварын брошур хараахан нэмэгдээгүй байна.",
+    back: "Каталог руу буцах",
+    sales: "Борлуулалтын лавлагаа",
+    showroom: "Шоурум үзэх",
+    photoPending: "Зураг нэмэгдэнэ",
+    gallery: "Зургийн цомог",
+    photo: (n: number) => "Зураг " + n,
+    sections: "Каталогийн цэс",
+    faqTitle: "Түгээмэл асуулт",
+    faq: [
+      ["Брошурыг яаж үзэх вэ?", "«Брошур үзэх» холбоосоор PDF шинэ табд нээгдэнэ. PDF уншигчийн татах товчоор файлаа хадгалж болно."],
+      ["Брошур нэмэгдээгүй бол яах вэ?", "Хуудас нь бэлэн загварын мэдээллийг «Загвар үзэх» холбоосоор харна."],
+      ["Загварын хувилбарыг яаж ялгах вэ?", "Luxury, Comfort, Longwind зэрэг хувилбарын нэрийг загварын нэрийн доороос харна."],
+    ],
+  },
+  en: {
+    title: "Vehicle catalogue",
+    intro: "Find a model and read its brochure online.",
+    all: "All brands",
+    filters: "Filter by brand",
+    models: "Models",
+    count: (n: number) => n + (n === 1 ? " model" : " models"),
+    viewBrochure: "View brochure",
+    viewModel: "View model",
+    modelComing: "Coming soon",
+    brochure: "Brochure",
+    pending: "A brochure for this model has yet to be added.",
+    back: "Back to catalogue",
+    sales: "Sales enquiries",
+    showroom: "View showroom",
+    photoPending: "Image pending",
+    gallery: "Photo gallery",
+    photo: (n: number) => "Photo " + n,
+    sections: "Catalogue navigation",
+    faqTitle: "FAQs",
+    faq: [
+      ["How do I view a brochure?", "Select “View brochure” to open the PDF in a new tab. Use the PDF viewer’s download button to save it."],
+      ["What if a brochure hasn’t been added?", "Select “View model” for more information when the model page is ready."],
+      ["How do I tell trims apart?", "Trim names such as Luxury, Comfort and Longwind appear below the model name."],
+    ],
+  },
+};

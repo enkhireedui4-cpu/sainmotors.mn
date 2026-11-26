@@ -1,0 +1,184 @@
+{
+  "212-adventurer": {
+    "src": "/brochure-vehicles/cutouts/212-adventurer.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "212-full": {
+    "src": "/brochure-vehicles/cutouts/212-full-black.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "212-highland": {
+    "src": "/brochure-vehicles/cutouts/212-highland.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "212-standard": {
+    "src": "/brochure-vehicles/cutouts/212-standard.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "aito-m5": {
+    "src": "/brochure-vehicles/cutouts/aito-5-red.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "aito-m7": {
+    "src": "/brochure-vehicles/cutouts/aito-m7.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "aito-m9": {
+    "src": "/brochure-vehicles/cutouts/aito-m9.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "bestune-t77": {
+    "src": "/brochure-vehicles/cutouts/bestune-t77.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "bestune-t90": {
+    "src": "/brochure-vehicles/cutouts/bestune-t90.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "bestune-t99": {
+    "src": "/brochure-vehicles/cutouts/bestune-t99.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "byd-atto-3": {
+    "src": "/brochure-vehicles/cutouts/byd-atto-3.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "byd-sealion-6": {
+    "src": "/brochure-vehicles/cutouts/byd-sealion-6.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "byd-shark-6": {
+    "src": "/brochure-vehicles/cutouts/byd-shark-6.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "byd-ti-7": {
+    "src": "/brochure-vehicles/cutouts/byd-ti-7.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "chery-tiggo-4": {
+    "src": "/brochure-vehicles/cutouts/chery-tiggo-4.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "jetour-g700": {
+    "src": "/brochure-vehicles/cutouts/jetour-g700-black.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "jetour-t1": {
+    "src": "/brochure-vehicles/cutouts/jetour-t1.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "jetour-t1-phev": {
+    "src": "/brochure-vehicles/cutouts/jetour-t1-phev-silver.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "jetour-t2": {
+    "src": "/brochure-vehicles/cutouts/jetour-t2.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "jetour-t2-phev": {
+    "src": "/brochure-vehicles/cutouts/jetour-t2-phev.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "jetour-x50": {
+    "src": "/brochure-vehicles/cutouts/jetour-x50.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "maxus-c100": {
+    "src": "/brochure-vehicles/cutouts/maxus-c100.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "maxus-s100": {
+    "src": "/brochure-vehicles/cutouts/maxus-s100.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "rely-r8": {
+    "src": "/brochure-vehicles/cutouts/rely-r8.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "soueast-s07": {
+    "src": "/brochure-vehicles/cutouts/soueast-s07.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  },
+  "soueast-s08": {
+    "src": "/brochure-vehicles/cutouts/soueast-s08.webp",
+    "width": 900,
+    "height": 560,
+    "layout": "cutout",
+    "view": "front-left"
+  }
+}

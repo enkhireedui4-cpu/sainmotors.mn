@@ -6,6 +6,7 @@ export const pagePaths = {
   home: "",
   about: "about",
   brands: "brands",
+  brochures: "brochures",
   services: "services",
   locations: "locations",
   news: "news",
@@ -16,7 +17,7 @@ export const pagePaths = {
 export type PageKey = keyof typeof pagePaths;
 
 /** The main menu offers both brand discovery and showroom locations. */
-export const headerPages = ["about", "brands", "locations", "services", "news", "contact"] as const satisfies readonly PageKey[];
+export const headerPages = ["about", "brands", "brochures", "locations", "services", "news", "contact"] as const satisfies readonly PageKey[];
 export const footerPages = ["about", "locations", "contact"] as const satisfies readonly PageKey[];
 
 export function pageHref(locale: Locale, page: PageKey): string {
