@@ -15,6 +15,7 @@
 .news-feature__body { padding-block:clamp(40px,4.74vw,91px); }
 .news-feature__section + .news-feature__section { margin-top:28px; }
 .news-feature__section h2,.news-feature__film h2 { margin:0 0 20px; font:600 1em/1.5 var(--font-sans); letter-spacing:normal; }
+.news-feature__section > :is(p,ul) { max-inline-size:56ch; }
 .news-feature__section p { margin:0 0 24px; }
 .news-feature__section ul { margin:0 0 28px; padding-left:1.2em; list-style:disc; }
 .news-feature__section li + li { margin-top:12px; }
@@ -34,9 +35,9 @@
 .news-system-grid .news-card__media { position:relative; aspect-ratio:1.575; border-radius:var(--sm-radius-card); overflow:hidden; background:var(--sm-ink); }
 .news-system-grid .news-card__media::after { content:""; position:absolute; inset:0; background:#0005; pointer-events:none; }
 .news-system-grid .news-card__category { position:absolute; z-index:1; top:20px; left:20px; max-width:calc(100% - 40px); padding:3px 16px; border:1px solid var(--sm-red); border-radius:var(--sm-radius-control); background:var(--sm-red); color:var(--sm-white); font-size:13px; line-height:1.4; }
-.news-system-grid .news-card__date { position:absolute; z-index:1; bottom:20px; left:20px; margin:0; color:var(--sm-white); font-size:clamp(13px,.9375vw,18px); }
 .news-system-grid .news-card__body { padding:20px 12px 0; }
 .news-system-grid .news-card h2,.news-system-grid .news-card h3 { margin:0; text-align:left; text-transform:none; font:400 clamp(17px,1.25vw,24px)/1.4 var(--font-sans); letter-spacing:normal; }
+.news-system-grid .news-card__date { display:block; margin:6px 0 0; color:var(--sm-muted); font-size:clamp(13px,.9375vw,18px); line-height:1.4; }
 .news-system-grid .news-card:hover .news-card__media { opacity:.9; }
 .news-system-grid .news-card:hover h2,.news-system-grid .news-card:hover h3 { color:var(--sm-red); }
 @media (min-width:768px) and (max-width:1099px) {
@@ -58,5 +59,4 @@
  .news-system-grid { grid-template-columns:1fr; gap:32px; }
  .news-system-grid .news-card__body { padding:16px 6px 0; }
  .news-system-grid .news-card__category { top:16px; left:16px; }
- .news-system-grid .news-card__date { bottom:16px; left:16px; }
 }

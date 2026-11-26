@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { chromium } from "playwright-core";
+import sharp from "sharp";
 
 const BASE = process.env.BASE_URL ?? "http://localhost:3200";
 const ENDPOINT = "https://uzffaelpmhwffcuiqgjq.supabase.co/functions/v1/submit-r8-lead";
@@ -11,6 +12,79 @@ before(async () => {
   browser = await chromium.launch({ executablePath: process.env.CHROME_PATH ?? "C:/Program Files/Google/Chrome/Application/chrome.exe" });
 });
 after(async () => { await browser?.close(); });
+
+function luminance(red, green, blue) {
+  const [r, g, b] = [red, green, blue].map(channel => {
+    const value = channel / 255;
+    return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+test("R8 accessories intro keeps at least 4.5:1 contrast over the photo", async () => {
+  const page = await browser.newPage({ reducedMotion: "reduce" });
+  try {
+    for (const width of [1440, 769, 390]) {
+      await page.setViewportSize({ width, height: 900 });
+      for (const locale of ["en", "mn"]) {
+        await page.goto(`${BASE}/${locale}/brands/rely/`);
+        const intro = page.locator(".r8-accessories__intro");
+        const { color, lines } = await intro.evaluate(async element => {
+          await document.fonts.ready;
+          element.scrollIntoView({ block: "center", behavior: "instant" });
+          const range = document.createRange();
+          range.selectNodeContents(element);
+          const lines = Array.from(range.getClientRects(), rect => rect.toJSON());
+          return { color: getComputedStyle(element).color, lines };
+        });
+        const foreground = luminance(...color.match(/\d+/g).slice(0, 3).map(Number));
+        // Hide the glyphs while sampling the pixels directly behind each text line.
+        const screenshot = await page.screenshot({ scale: "css", style: ".r8-accessories__intro { color: transparent !important; }" });
+        const { data, info } = await sharp(screenshot).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+        let lowestContrast = Infinity;
+        for (const { left, right, top, bottom } of lines) {
+          assert.ok(left >= 0 && top >= 0 && right <= info.width && bottom <= info.height);
+          for (let y = Math.ceil(top); y < Math.floor(bottom); y++) {
+            for (let x = Math.ceil(left); x < Math.floor(right); x++) {
+              const pixel = (y * info.width + x) * info.channels;
+              const background = luminance(data[pixel], data[pixel + 1], data[pixel + 2]);
+              const ratio = (Math.max(foreground, background) + 0.05) / (Math.min(foreground, background) + 0.05);
+              lowestContrast = Math.min(lowestContrast, ratio);
+            }
+          }
+        }
+        assert.ok(Number.isFinite(lowestContrast) && lowestContrast >= 4.5, `${locale} at ${width}px: ${lowestContrast.toFixed(2)}:1`);
+      }
+    }
+  } finally { await page.close(); }
+});
+
+test("R8 mobile feature labels are readable and fit in both languages", async () => {
+  const page = await browser.newPage({ reducedMotion: "reduce" });
+  try {
+    for (const width of [320, 390]) {
+      await page.setViewportSize({ width, height: 844 });
+      for (const [locale, text] of [["en", "Explore"], ["mn", "Дэлгэрэнгүй"]]) {
+        await page.goto(`${BASE}/${locale}/brands/rely/`);
+        const label = page.locator(".r8-feature__explore > span:last-child").first();
+        assert.equal(await label.textContent(), text);
+        const { fontSize, fits } = await label.evaluate(async element => {
+          await document.fonts.ready;
+          const badge = element.parentElement.getBoundingClientRect();
+          const range = document.createRange();
+          range.selectNodeContents(element);
+          const label = range.getBoundingClientRect();
+          return {
+            fontSize: parseFloat(getComputedStyle(element).fontSize),
+            fits: label.left >= badge.left && label.right <= badge.right && label.top >= badge.top && label.bottom <= badge.bottom,
+          };
+        });
+        assert.ok(fontSize >= 12, `${locale} at ${width}px: ${fontSize}px`);
+        assert.ok(fits, `${locale} label must fit its control at ${width}px`);
+      }
+    }
+  } finally { await page.close(); }
+});
 
 test("R8 selectors change the photographic content and details in both languages", async () => {
   for (const locale of ["en", "mn"]) {

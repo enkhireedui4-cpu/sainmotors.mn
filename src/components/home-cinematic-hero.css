@@ -8,6 +8,18 @@
   .cinematic-hero__media img,.cinematic-hero__film { object-position:28% center; }
 }
 .cinematic-hero__film { opacity:0; }
+.cinematic-hero__playback {
+  position:absolute; z-index:1; inset-block-end:1rem;
+  inset-inline-end:max(var(--sm-gutter), calc((100% - var(--sm-content-max)) / 2));
+  display:inline-flex; align-items:center; justify-content:center; gap:.375rem;
+  min-inline-size:8.25rem; min-block-size:2.75rem; padding:.375rem .875rem;
+  border:0; border-radius:999px; background:rgb(0 0 0 / .62); color:var(--sm-white);
+  font-size:.75rem; font-weight:600; line-height:1.25; white-space:nowrap; cursor:pointer;
+}
+@media (hover:hover) {
+  .cinematic-hero__playback:hover { background:rgb(0 0 0 / .8); }
+}
+.cinematic-hero__playback:focus-visible { outline:2px solid var(--sm-white); outline-offset:4px; }
 .cinematic-wordmark { display:block; width:100%; height:auto; }
 .cinematic-wordmark text { font:italic 700 180px var(--font-zona),Arial,sans-serif; letter-spacing:0; }
 .cinematic-wordmark__trace { opacity:0; }
@@ -16,20 +28,12 @@
   .cinematic-hero:not([data-motion="reduced"]) .cinematic-wordmark__trace { animation:cinematic-s-draw 1.35s cubic-bezier(.45,0,.15,1) .18s both; }
   .cinematic-hero:not([data-motion="reduced"]) .cinematic-wordmark__initial-fill { animation:cinematic-s-fill .75s ease 1.08s both; }
   .cinematic-hero:not([data-motion="reduced"]) .cinematic-wordmark__letter { animation:cinematic-letter-in .9s cubic-bezier(.16,1,.3,1) var(--letter-delay) both; }
-  /* The final wordmark letter settles at 3.45s. */
-  .cinematic-hero:not([data-motion="reduced"]) :is(.home-orbit-hero__motto, .home-orbit-hero__discover) {
-    animation:cinematic-copy-in .25s ease-out 3.45s both;
-  }
-  .cinematic-hero:is([data-motion="static"],[data-motion="paused"]) :is(.cinematic-wordmark *, .home-orbit-hero__motto, .home-orbit-hero__discover) { animation-play-state:paused; }
+  .cinematic-hero:is([data-motion="static"],[data-motion="paused"]) .cinematic-wordmark * { animation-play-state:paused; }
 }
 @keyframes cinematic-s-arrive { 0%,44% { transform:translateX(584px); } 100% { transform:translateX(0); } }
 @keyframes cinematic-s-draw { from { stroke-dashoffset:1200; opacity:.5; } to { stroke-dashoffset:0; opacity:1; } }
 @keyframes cinematic-s-fill { from { opacity:0; } to { opacity:1; } }
 @keyframes cinematic-letter-in { from { opacity:0; transform:translateX(-62px); } to { opacity:1; transform:translateX(0); } }
-@keyframes cinematic-copy-in {
-  from { visibility:hidden; opacity:0; transform:translateX(-.65rem); }
-  to { visibility:visible; opacity:1; transform:translateX(0); }
-}
 .cinematic-hero[data-film="ready"]:is([data-motion="running"],[data-motion="paused"]) .cinematic-hero__film { opacity:1; }
 @media (prefers-reduced-motion:reduce) {
   .cinematic-hero__film { display:none; }

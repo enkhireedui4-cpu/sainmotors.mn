@@ -13,9 +13,11 @@ export function NewsList({ articles, locale, headingLevel = "h3" }: { articles: 
       <div className="news-card__media">
         <Picture photo={article.cover} locale={locale} sizes="(min-width: 64rem) 28vw, (min-width: 48rem) 44vw, 90vw" />
         <span className="news-card__category">{newsCategoryLabels[article.category][locale]}</span>
+      </div>
+      <div className="news-card__body">
+        <Heading>{article.title[locale]}</Heading>
         {article.date && <time className="news-card__date" dateTime={article.date.value}>{newsDate(article,locale)}</time>}
       </div>
-      <div className="news-card__body"><Heading>{article.title[locale]}</Heading></div>
     </Link>
   </article>)}</div>;
 }

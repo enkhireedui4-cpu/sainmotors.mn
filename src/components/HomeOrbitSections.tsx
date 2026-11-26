@@ -13,7 +13,6 @@ const copy = {
     who: "Бид хэн бэ",
     about: "Бидний тухай",
     numbers: "Тоогоор харахад",
-    numbersText: "Бид дараах 11 автомашины брэндтэй хамтран ажилладаг.",
     brands: "Автомашины брэнд", showrooms: "Албан ёсны шоурум", fourS: "4S шоурум", cities: "Үйл ажиллагаа явуулдаг хот",
     service: "Таны автомашинд зориулсан үйлчилгээ",
     serviceText: "Шинэ автомашин сонгохоос эхлээд санхүүжилтийн зөвлөгөө, үйлдвэрийн баталгаа, засвар үйлчилгээ хүртэл бүх шатанд мэргэжлийн үйлчилгээ үзүүлнэ.",
@@ -24,7 +23,6 @@ const copy = {
     who: "Who are we",
     about: "About us",
     numbers: "At a glance",
-    numbersText: "We work with the following 11 automotive brands.",
     brands: "Automotive brands", showrooms: "Official showrooms", fourS: "4S showrooms", cities: "Cities in our network",
     service: "Car care services",
     serviceText: "Professional service at every stage — from choosing your new car to financing advice, factory warranty and maintenance.",
@@ -65,7 +63,7 @@ export function HomeOrbitSections({ locale }: { locale: Locale }) {
             {photographs.map(photo => <figure key={photo.key}><Picture photo={photo} locale={locale} sizes="(max-width: 47.99rem) 44vw, 22vw" /></figure>)}
           </div>
           <div className="orbit-numbers">
-            <div className="orbit-numbers__intro"><h2>{text.numbers}</h2><p>{text.numbersText}</p></div>
+            <div className="orbit-numbers__intro"><h2>{text.numbers}</h2></div>
             <dl className="orbit-facts">{facts.map(fact => <div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>
           </div>
         </div>

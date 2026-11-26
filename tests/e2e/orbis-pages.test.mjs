@@ -34,3 +34,31 @@ test("long Mongolian titles wrap at 360px without sideways scroll", async () => 
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${locale}/${route}`);
   }
 });
+
+test("PageBand breadcrumb links stay readable at rest and on hover", async () => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  for (const locale of ["mn", "en"]) {
+    await page.goto(`${base}/${locale}/about/`);
+    const link = page.locator(".page-band__crumbs a").first();
+    const measure = () => link.evaluate(el => {
+      const band = el.closest(".page-band");
+      const channels = color => color.match(/[\d.]+/g).slice(0, 3).map(Number);
+      const luminance = rgb => rgb.map(channel => {
+        const value = channel / 255;
+        return value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4;
+      }).reduce((sum, value, index) => sum + value * [.2126, .7152, .0722][index], 0);
+      const background = channels(getComputedStyle(band).backgroundColor);
+      let opacity = 1;
+      for (let node = el; node && node !== band; node = node.parentElement) opacity *= Number(getComputedStyle(node).opacity);
+      const text = channels(getComputedStyle(el).color).map((value, index) => value * opacity + background[index] * (1 - opacity));
+      const values = [luminance(text), luminance(background)];
+      return (Math.max(...values) + .05) / (Math.min(...values) + .05);
+    });
+    const normal = await measure();
+    await link.hover();
+    await link.evaluate(el => Promise.all(el.getAnimations().map(animation => animation.finished)));
+    const hover = await measure();
+    assert.ok(normal >= 4.5, `${locale} normal contrast: ${normal.toFixed(2)}:1`);
+    assert.ok(hover >= normal, `${locale} hover contrast: ${hover.toFixed(2)}:1`);
+  }
+});

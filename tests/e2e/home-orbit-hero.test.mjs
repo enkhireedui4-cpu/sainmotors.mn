@@ -64,6 +64,15 @@ test("a touch phone plays the Ayud Tower film in portrait and landscape", async 
     await waitForPlayingFilm(page, "/video/hero/ayud-tower-mobile.mp4");
     assert.equal(requests.has("/video/hero/ayud-tower.mp4"), false);
     assert.equal(await page.getByRole("heading",{level:1,name:"Sain Motors",exact:true}).count(),1);
+    const pauseVideo = page.getByRole("button", { name: "Видеог түр зогсоох", exact: true });
+    assert.equal(await pauseVideo.isVisible(), true);
+    assert.equal(await pauseVideo.innerText(), "Түр зогсоох");
+    await pauseVideo.tap();
+    assert.ok(await page.locator(".cinematic-hero__film").evaluate(film => film.paused));
+    const playVideo = page.getByRole("button", { name: "Видеог тоглуулах", exact: true });
+    assert.equal(await playVideo.innerText(), "Тоглуулах");
+    await playVideo.tap();
+    await waitForPlayingFilm(page, "/video/hero/ayud-tower-mobile.mp4");
     await page.getByRole("button",{name:"Цэс",exact:true}).click();
     assert.equal(await page.locator("#mobile-menu").isVisible(),true);
     await page.keyboard.press("Escape");
@@ -113,7 +122,7 @@ test("the home header overlays the artwork transparently and becomes solid below
 
 
 
-test("the desktop Ayud Tower film plays behind the centered heading and introduction link", async () => {
+test("the desktop Ayud Tower hero exposes its motto and brand link during the wordmark animation", async () => {
   const page = await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:"no-preference"});
   try {
     await page.goto(base + "/en/",{waitUntil:"domcontentloaded"});
@@ -124,14 +133,24 @@ test("the desktop Ayud Tower film plays behind the centered heading and introduc
     assert.equal(await trace.textContent(), "S");
     await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "running");
     assert.equal(await trace.evaluate(el => getComputedStyle(el).animationName), "cinematic-s-draw");
-    const [lastLetter, motto, button] = await page.locator(".home-orbit-hero__foot").evaluate(el =>
-      [".cinematic-wordmark__letter:last-child", ".home-orbit-hero__motto", ".home-orbit-hero__discover"].map(selector => {
-        const timing = el.querySelector(selector).getAnimations()[0].effect.getComputedTiming();
-        return { start: timing.delay, end: timing.endTime };
-      }));
-    assert.ok(Math.abs(motto.start - lastLetter.end) < 1);
-    assert.equal(button.start, motto.start);
-    await page.locator(".home-orbit-hero__foot").evaluate(el => Promise.all(el.getAnimations({subtree:true}).map(animation => animation.finished)));
+    const foot = page.locator(".home-orbit-hero__foot");
+    const copyAtStart = await foot.evaluate(el => {
+      for (const animation of el.getAnimations({ subtree: true })) {
+        animation.pause();
+        animation.currentTime = 0;
+      }
+      return [".home-orbit-hero__motto", ".home-orbit-hero__discover"].map(selector => {
+        const { visibility, opacity } = getComputedStyle(el.querySelector(selector));
+        return { visibility, opacity };
+      });
+    });
+    assert.deepEqual(copyAtStart, [{ visibility: "visible", opacity: "1" }, { visibility: "visible", opacity: "1" }]);
+    await foot.locator(".home-orbit-hero__discover").click({ trial: true, timeout: 2_000 });
+    await foot.evaluate(async el => {
+      const animations = el.getAnimations({ subtree: true });
+      for (const animation of animations) animation.play();
+      await Promise.all(animations.map(animation => animation.finished));
+    });
     assert.ok(await identity.getByText("A new car for Mongolians", { exact:true }).isVisible());
     assert.equal(await trace.evaluate(el => parseFloat(getComputedStyle(el).strokeDashoffset)), 0);
     assert.ok(await identity.locator(".cinematic-wordmark__letter").evaluateAll(letters =>
@@ -148,7 +167,7 @@ test("the desktop Ayud Tower film plays behind the centered heading and introduc
 });
 
 
-test("the Sain Motors opening shows the static wordmark and the About link under reduced motion", async () => {
+test("the Sain Motors opening shows the static wordmark and links to localized brand pages under reduced motion", async () => {
   const page = await browser.newPage({ reducedMotion: "reduce" });
   try {
     for (const locale of ["en", "mn"]) {
@@ -161,16 +180,18 @@ test("the Sain Motors opening shows the static wordmark and the About link under
       assert.equal(await page.locator(".home-video-hero, .home-brands, .brand-spotlight").count(), 0);
       assert.ok(await page.locator(".cinematic-hero__media img").evaluate(img=>img.complete&&img.naturalWidth>0));
       assert.deepEqual(mediaRequests, []);
+      assert.equal(await page.locator(".home-orbit-hero button").count(), 0);
       assert.ok(await page.getByRole("heading",{level:1,name:"Sain Motors",exact:true}).isVisible());
       assert.equal(await page.locator(".home-orbit-hero").getByText(/car sales and|автомашины худалдаа/i).count(), 0);
       assert.equal(await page.locator(".cinematic-wordmark__initial").evaluate(el => getComputedStyle(el).animationName), "none");
       assert.doesNotMatch(await page.locator(".home-orbit-hero").innerText(), /distributor|дистрибьютор/i);
       assert.match(await page.locator("#home-company .orbit-statement").innerText(), /11/);
-      const discover = page.getByRole("link", { name: locale === "en" ? "Discover Sain Motors" : "Сайн Моторстой танилцах", exact: true });
-      assert.equal(await discover.getAttribute("href"), `/${locale}/about/`);
+      const discover = page.locator(".home-orbit-hero__discover");
+      assert.equal(await discover.getAttribute("href"), `/${locale}/brands/`);
+      assert.equal(await discover.innerText(), locale === "en" ? "Explore brands" : "Брэндүүдтэй танилцах");
       await discover.click();
-      await page.waitForURL(base + `/${locale}/about/`);
-      await page.locator(".about-page").waitFor({ state: "visible" });
+      await page.waitForURL(base + `/${locale}/brands/`);
+      await page.locator(".brand-directory h1").waitFor({ state: "visible" });
       page.off("request", collect);
     }
   } finally { await page.close(); }
@@ -207,6 +228,16 @@ test("the old company and service blocks are replaced by the reference statement
       assert.equal(await page.locator("#home-company .orbit-statement").count(), 1);
       assert.equal(await page.locator(".orbit-photo-strip img").count(), 4);
       assert.deepEqual(await page.locator(".orbit-facts dd").allTextContents(), ["11","7","2","3"]);
+      const brandHeading = locale === "mn"
+        ? "Бид дараах 11 автомашины брэндтэй хамтран ажилладаг."
+        : "We work with the following 11 automotive brands.";
+      const brands = page.getByRole("region", { name: brandHeading, exact: true });
+      assert.equal(await page.getByText(brandHeading, { exact: true }).count(), 1, locale);
+      assert.equal(await brands.getByRole("heading", { name: brandHeading, exact: true }).isVisible(), true);
+      const brandList = brands.getByRole("list");
+      assert.equal(await brandList.getByRole("listitem").count(), 11);
+      const brandLinks = await brandList.getByRole("link").evaluateAll(links => links.map(link => link.getAttribute("href")));
+      assert.deepEqual(brandLinks.sort(), [`/${locale}/brands/byd/`, `/${locale}/brands/rely/`, "https://chery.mn/", "https://jetour.mn/"]);
       const services = page.locator(".orbit-service-card");
       assert.equal(await services.count(), 4);
       for (const card of await services.all()) {
@@ -257,16 +288,36 @@ test("the homepage service cards open directly and stay readable on a narrow pho
   } finally { await page.close(); }
 });
 
-test("motion runs automatically only while the opening is visible", async () => {
+test("the hero film only autoplays on screen and respects a manual pause", async () => {
   const page = await browser.newPage({ viewport: {width:1440,height:1000}, reducedMotion:"no-preference" });
   try {
     await page.goto(base + "/en/", {waitUntil:"networkidle"});
     await waitForPlayingFilm(page, "/video/hero/ayud-tower.mp4");
-    assert.equal(await page.getByRole('button',{name:/Pause animation|Play animation/}).count(),0);
     await page.locator("#home-company").evaluate(el => el.scrollIntoView({block:"start"}));
     await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "paused");
     assert.ok(await page.locator(".cinematic-hero__film").evaluate(film => film.paused));
     await page.evaluate(() => window.scrollTo(0,0));
+    await waitForPlayingFilm(page, "/video/hero/ayud-tower.mp4");
+    const pauseVideo = page.getByRole("button", { name: "Pause video", exact: true });
+    assert.equal(await pauseVideo.isVisible(), true);
+    await pauseVideo.press("Enter");
+    const film = page.locator(".cinematic-hero__film");
+    assert.ok(await film.evaluate(video => video.paused && getComputedStyle(video).opacity === "1"));
+    await page.locator("#home-company").evaluate(el => el.scrollIntoView({ block: "start" }));
+    await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "paused");
+    await page.evaluate(() => window.scrollTo(0,0));
+    await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "running");
+    assert.ok(await film.evaluate(video => video.paused));
+    const playVideo = page.getByRole("button", { name: "Play video", exact: true });
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "reduced");
+    await playVideo.waitFor({ state: "hidden" });
+    assert.equal(await film.getAttribute("src"), null);
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.waitForFunction(() => document.querySelector(".cinematic-hero")?.dataset.motion === "running");
+    await playVideo.waitFor({ timeout: 2_000 });
+    assert.ok(await film.evaluate(video => video.paused));
+    await playVideo.press("Enter");
     await waitForPlayingFilm(page, "/video/hero/ayud-tower.mp4");
   } finally { await page.close(); }
 });
