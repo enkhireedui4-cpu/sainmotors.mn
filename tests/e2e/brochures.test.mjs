@@ -60,6 +60,13 @@ test("catalogue navigation, brand filters and all card destinations work in both
       assert.deepEqual(await brand212.locator("h4").allTextContents(), ["212", "212", "Adventurer", "T01", "Pickup", "Highland"]);
       assert.equal(await brand212.locator('a[target="_blank"][href="/brochures/212-longwind/brochure.pdf"]').count(), 2);
       assert.equal(await brand212.locator('a[target="_blank"][href="/brochures/212-adventurer/brochure.pdf"]').count(), 1);
+      const pickup = brand212.locator(".brochure-card").filter({ has: page.getByRole("heading", { name: "Pickup", exact: true }) });
+      const pickupPdf = pickup.locator('a[target="_blank"][href="/brochures/212-pickup-diesel/brochure.pdf"]');
+      assert.equal(await pickupPdf.count(), 1);
+      assert.equal(await pickupPdf.getAttribute("download"), null);
+      const pickupResponse = await page.request.head(base + await pickupPdf.getAttribute("href"));
+      assert.equal(pickupResponse.status(), 200);
+      assert.match(pickupResponse.headers()["content-type"], /application\/pdf/);
       assert.equal(await page.locator('#catalog-bestune + ul a[target="_blank"]').count(), 3);
       assert.deepEqual(await page.locator("#catalog-bestune + ul h4").allTextContents(), ["T77", "T90", "T99"]);
       const aito = page.locator("#catalog-aito + ul .brochure-card");
