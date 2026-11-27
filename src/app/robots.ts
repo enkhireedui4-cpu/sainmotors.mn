@@ -3,7 +3,7 @@ import { IS_INDEXABLE, SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-/** Only an approved release built for the genuine production origin is indexable. */
+/** Advertise the sitemap only when the public site is open to crawlers. */
 export default function robots(): MetadataRoute.Robots {
   if (!IS_INDEXABLE) return { rules: { userAgent: "*", disallow: "/" } };
   return {

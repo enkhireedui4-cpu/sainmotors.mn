@@ -43,15 +43,21 @@ describe("publication review registry", () => {
   });
 });
 
-describe("preview indexing", () => {
+describe("public-site indexing", () => {
   it.each([
-    [undefined, undefined, false],
-    ["0", "https://sainmotors.mn", false],
-    ["1", "https://staging.sainmotors.mn", false],
-    ["1", "https://sainmotors.mn/", true],
-  ])("release=%s origin=%s permits indexing=%s", async (release, origin, indexable) => {
+    [undefined, undefined, undefined, undefined, false],
+    ["0", "https://sainmotors.mn", undefined, undefined, false],
+    ["1", "https://staging.sainmotors.mn", undefined, undefined, false],
+    ["1", "https://sainmotors.mn/", undefined, undefined, true],
+    [undefined, undefined, "production", "sainmotors.mn", true],
+    [undefined, undefined, "production", "another-site.vercel.app", false],
+    [undefined, "https://staging.sainmotors.mn", "production", "sainmotors.mn", false],
+    ["1", "https://sainmotors.mn", "preview", "sainmotors.mn", false],
+  ])("release=%s origin=%s environment=%s domain=%s permits indexing=%s", async (release, origin, environment, domain, indexable) => {
     vi.stubEnv("SITE_RELEASE", release);
     vi.stubEnv("NEXT_PUBLIC_SITE_URL", origin);
+    vi.stubEnv("VERCEL_ENV", environment);
+    vi.stubEnv("VERCEL_PROJECT_PRODUCTION_URL", domain);
     const { default: robots } = await import("@/app/robots");
     const result = robots();
     expect(result.rules).toEqual(indexable ? { userAgent: "*", allow: "/" } : { userAgent: "*", disallow: "/" });
