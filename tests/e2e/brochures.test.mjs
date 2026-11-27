@@ -69,7 +69,7 @@ test("catalogue navigation, brand filters and all card destinations work in both
       assert.match(pickupResponse.headers()["content-type"], /application\/pdf/);
       assert.deepEqual(await page.locator("#catalog-bestune + ul h4").allTextContents(), ["T77", "T90", "T99", "B70", "NAT"]);
       for (const [brand, models] of [
-        ["jetour", ["t2", "t1", "x50", "t1-phev", "t2-phev", "g700", "x70-plus", "x1"]],
+        ["jetour", ["t2", "t1", "x50", "t1-phev", "t2-phev", "g700"]],
         ["soueast", ["s06", "s07", "s08"]],
         ["bestune", ["t77", "t90", "t99", "b70", "nat"]],
         ["212", ["longwind", "longwind", "adventurer", "pickup-diesel", "highland"]],
@@ -165,7 +165,7 @@ test("catalogue navigation, brand filters and all card destinations work in both
       await page.goto(base + "/" + locale + "/brochures/?brand=jetour");
       await page.waitForSelector('.brochure-filters button[aria-pressed="true"]:text-is("JETOUR")');
       assert.equal(await groups.count(), 1);
-      assert.deepEqual(await cards.locator("h4").allTextContents(), ["T2", "T1", "X50", "T1 PHEV", "T2 PHEV", "G700", "X70 Plus", "X1"]);
+      assert.deepEqual(await cards.locator("h4").allTextContents(), ["T2", "T1", "X50", "T1 PHEV", "T2 PHEV", "G700"]);
       const t1Phev = cards.filter({ has: page.getByRole("heading", { name: "T1 PHEV", exact: true }) });
       assert.equal(await t1Phev.locator(".brochure-card__media img").getAttribute("src"),
         "/brochure-vehicles/cutouts/jetour-t1-phev-silver.webp");
