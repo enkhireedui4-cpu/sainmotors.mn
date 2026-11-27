@@ -67,8 +67,24 @@ test("catalogue navigation, brand filters and all card destinations work in both
       const pickupResponse = await page.request.head(base + await pickupPdf.getAttribute("href"));
       assert.equal(pickupResponse.status(), 200);
       assert.match(pickupResponse.headers()["content-type"], /application\/pdf/);
-      assert.equal(await page.locator('#catalog-bestune + ul a[target="_blank"]').count(), 3);
-      assert.deepEqual(await page.locator("#catalog-bestune + ul h4").allTextContents(), ["T77", "T90", "T99"]);
+      assert.deepEqual(await page.locator("#catalog-bestune + ul h4").allTextContents(), ["T77", "T90", "T99", "B70", "NAT"]);
+      for (const [brand, models] of [
+        ["jetour", ["t2", "t1", "x50", "t1-phev", "t2-phev", "g700", "x70-plus", "x1"]],
+        ["soueast", ["s06", "s07", "s08"]],
+        ["bestune", ["t77", "t90", "t99", "b70", "nat"]],
+        ["212", ["longwind", "longwind", "adventurer", "pickup-diesel", "highland"]],
+      ]) {
+        const urls = await page.locator(`#catalog-${brand} + ul a.button--primary[target="_blank"]`).evaluateAll(links =>
+          links.map(link => link.pathname));
+        assert.deepEqual(urls, models.map(id => `/brochures/${brand}-${id}/brochure.pdf`));
+        for (const url of new Set(urls)) {
+          const response = await page.request.get(base + url, { headers: { Range: "bytes=0-4" } });
+          assert.equal(response.status(), 206, url);
+          assert.match(response.headers()["content-type"], /application\/pdf/, url);
+          assert.equal((await response.body()).toString("ascii"), "%PDF-", url);
+          await response.dispose();
+        }
+      }
       const aito = page.locator("#catalog-aito + ul .brochure-card");
       const aitoNames = ["AITO 5", "AITO 7", "AITO 9"];
       assert.deepEqual(await aito.locator("h4").allTextContents(), aitoNames);
@@ -149,19 +165,21 @@ test("catalogue navigation, brand filters and all card destinations work in both
       await page.goto(base + "/" + locale + "/brochures/?brand=jetour");
       await page.waitForSelector('.brochure-filters button[aria-pressed="true"]:text-is("JETOUR")');
       assert.equal(await groups.count(), 1);
-      assert.deepEqual(await cards.locator("h4").allTextContents(), ["T2", "T1", "X50", "T1 PHEV", "T2 PHEV", "G700"]);
+      assert.deepEqual(await cards.locator("h4").allTextContents(), ["T2", "T1", "X50", "T1 PHEV", "T2 PHEV", "G700", "X70 Plus", "X1"]);
       const t1Phev = cards.filter({ has: page.getByRole("heading", { name: "T1 PHEV", exact: true }) });
       assert.equal(await t1Phev.locator(".brochure-card__media img").getAttribute("src"),
         "/brochure-vehicles/cutouts/jetour-t1-phev-silver.webp");
-      assert.deepEqual(await cards.locator(".brochure-model-link").evaluateAll(items => items.map(link => link.href)),
+      assert.deepEqual(await cards.locator("a.brochure-model-link").evaluateAll(items => items.map(link => link.href)),
         ["t2","t1","x50","t1-phev","t2-phev","g700"].map(id => "https://jetour.mn/models/" + id));
       assert.deepEqual(await page.locator(".brochure-card__media a").evaluateAll(links => links.map(link => link.pathname)),
         ["t2", "t1", "x50", "t1-phev"].map(id => "/" + locale + "/brochures/models/jetour-" + id + "/"));
-      const pending = page.locator(".brochure-card__actions a[href$='/jetour-t2/']").first();
+      await page.goto(base + "/" + locale + "/brochures/?brand=byd");
+      await page.waitForSelector('.brochure-filters button[aria-pressed="true"]:text-is("BYD")');
+      const pending = page.locator(".brochure-card__actions a[href$='/byd-ti-7/']");
       assert.equal(await pending.textContent(), brochureLabel);
       assert.equal(await pending.getAttribute("target"), null);
       await pending.click();
-      await page.waitForURL("**/brochures/jetour-t2/");
+      await page.waitForURL("**/brochures/byd-ti-7/");
       await page.locator(".brochure-reader__pending").waitFor();
       assert.equal(await page.locator(".brochure-reader a[target='_blank']").count(), 0);
     }
