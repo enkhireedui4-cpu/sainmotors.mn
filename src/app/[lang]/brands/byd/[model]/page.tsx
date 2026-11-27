@@ -9,11 +9,9 @@ import { BydModelActions, BydStudioHero } from "@/components/BydStudioHero";
 import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
 import { TestDriveForm } from "@/components/TestDriveForm";
-import { VehiclePricing } from "@/components/VehiclePricing";
 import { brandPhone, getInternalBrand, ui } from "@/content";
 import { bydProfileFeatures } from "@/content/byd-profile-features";
 import { bydProfilePath, bydProfiles } from "@/content/byd-profiles";
-import { vehiclePrices } from "@/content/vehicle-prices";
 import { enquiryHref } from "@/lib/enquiries";
 import { isLocale, localePath } from "@/lib/i18n";
 import { pageHref } from "@/lib/routes";
@@ -102,8 +100,6 @@ export default async function BydModelPage({ params }: Props) {
         </div>
       </div>
     </section>
-
-    <VehiclePricing locale={lang} phone={salesPhone} prices={vehiclePrices[profile.id]} enquiryHref="#byd-enquiry" />
 
     <div>
       {studio && <BydSharkDetails locale={lang} />}

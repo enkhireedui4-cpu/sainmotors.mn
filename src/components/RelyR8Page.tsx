@@ -1,6 +1,6 @@
 import { brandPhone, getBrands, getLocation, ui } from "@/content";
 import type { InternalBrand } from "@/content/types";
-import { vehiclePrices } from "@/content/vehicle-prices";
+import { relyR8Prices } from "@/content/vehicle-prices";
 import type { Locale } from "@/lib/i18n";
 import { pageHref } from "@/lib/routes";
 import { breadcrumbGraph } from "@/lib/structured-data";
@@ -21,7 +21,7 @@ export function RelyR8Page({ brand, locale }: { brand: InternalBrand; locale: Lo
       { name: brand.name, path: `/${locale}/brands/rely/` },
     ])} />
     <div id="brand-models"><RelyR8Experience locale={locale} pricing={
-      <VehiclePricing locale={locale} phone={phone} prices={vehiclePrices["rely-r8"]} />
+      <VehiclePricing locale={locale} phone={phone} prices={relyR8Prices} />
     }>
       <section className="r8-intro" id="brand-overview" aria-labelledby="rely-local-heading">
         <div className="r8-intro__grid">
