@@ -27,7 +27,7 @@ function FeatureDetails({ feature }: { feature: R8Feature }) {
   </div>;
 }
 
-export function RelyR8Experience({ locale, children }: { locale: Locale; children?: ReactNode }) {
+export function RelyR8Experience({ locale, children, pricing }: { locale: Locale; children?: ReactNode; pricing?: ReactNode }) {
   const copy = r8Content[locale];
   const [terrain, setTerrain] = useState(0);
   const [selectedFeature, setSelectedFeature] = useState<number | null>(null);
@@ -87,6 +87,8 @@ export function RelyR8Experience({ locale, children }: { locale: Locale; childre
       <R8Image name="hero-1-clean" alt={copy.heroAlt} eager />
       <div className="r8-hero__copy"><h1 className="r8-hero__brand" translate="no">RELY R8</h1><p className="r8-hero__tagline">{copy.heroTagline}</p></div>
     </section>
+
+    {pricing}
 
     <section className="r8-mission" aria-labelledby="r8-mission-heading">
       <R8Image name="mission-mark" alt="RELY" className="r8-mission__mark" />

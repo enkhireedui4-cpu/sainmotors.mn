@@ -12,12 +12,21 @@ test('news categories filter real stories and the footer works across languages 
       await page.setViewportSize({width,height:960});
       await page.goto(`${base}/${locale}/news/`,{waitUntil:'networkidle'});
       assert.equal(await page.locator('.news-directory__filters button').count(),4);
+      if (width <= 768) {
+        const row = page.locator('.news-directory__filters');
+        const tops = await row.locator('button').evaluateAll(buttons => buttons.map(button => button.getBoundingClientRect().top));
+        assert.equal(new Set(tops).size, 1, `${locale}/${width}: categories stay on one row`);
+        assert.equal(await row.locator('[aria-pressed="true"]').evaluate(button => getComputedStyle(button).backgroundColor), 'rgb(255, 255, 255)');
+      }
       assert.equal(await page.locator('.news-list article:visible').count(),11);
       await page.locator('[data-news-category="media"]').click();
       assert.equal(await page.locator('.news-list article:visible').count(),2);
       assert.equal(await page.locator('.news-directory__empty').count(),0);
       await page.locator('[data-news-category="csr"]').click();
       assert.equal(await page.locator('.news-list article:visible').count(),2);
+      if (width <= 390) {
+        assert.ok(await page.locator('.news-directory__band .page-band__extra').evaluate(row => row.scrollLeft > 0));
+      }
       await page.locator('[data-news-category="news"]').click();
       assert.equal(await page.locator('.news-list article:visible').count(),7);
       assert.equal(await page.locator('.orbis-footer nav a').count(),3);

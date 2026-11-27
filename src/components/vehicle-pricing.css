@@ -1,0 +1,84 @@
+.vehicle-pricing {
+  background: var(--sm-surface);
+  color: var(--sm-ink);
+  border-block: 1px solid var(--sm-line);
+}
+
+.vehicle-pricing__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem clamp(2rem, 5vw, 5rem);
+  padding-block: clamp(1.75rem, 3vw, 3rem);
+}
+
+.vehicle-pricing__details h2 {
+  margin: 0;
+  font: 500 clamp(1.4rem, 2.25vw, 2rem)/1.2 var(--font-display);
+  letter-spacing: -.025em;
+}
+
+.vehicle-pricing__details p {
+  margin-top: .6rem;
+  color: var(--sm-muted);
+  line-height: 1.55;
+}
+
+.vehicle-pricing__prices {
+  display: grid;
+  max-width: 42rem;
+  margin-top: 1rem;
+}
+
+.vehicle-pricing__prices > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .3rem 1.25rem;
+  padding-block: .7rem;
+  border-top: 1px solid var(--sm-line);
+}
+
+.vehicle-pricing__prices dd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .25rem .6rem;
+}
+
+.vehicle-pricing__prices dd span { color: var(--sm-muted); font-size: .875rem; }
+
+.vehicle-pricing__prices data {
+  font: 600 clamp(1.35rem, 2.4vw, 2.1rem)/1.1 var(--font-display);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.vehicle-pricing__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: .65rem 1rem;
+}
+
+.vehicle-pricing__actions .button { min-height: var(--sm-control-height); }
+.vehicle-pricing__actions .button svg { flex: none; }
+
+.vehicle-pricing__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  color: var(--sm-muted);
+  font-size: .875rem;
+  white-space: nowrap;
+}
+
+a.vehicle-pricing__phone { min-height: 44px; }
+a.vehicle-pricing__phone:hover { color: var(--sm-red-hover); }
+
+@media (max-width: 44rem) {
+  .vehicle-pricing__inner { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .vehicle-pricing__actions { justify-content: flex-start; }
+}

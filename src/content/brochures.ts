@@ -42,6 +42,8 @@ export const catalogModels: readonly CatalogModel[] = [
   { id: "jetour-t1-phev", brand: "jetour", name: "T1 PHEV", officialModel: "t1-phev" },
   { id: "jetour-t2-phev", brand: "jetour", name: "T2 PHEV", officialModel: "t2-phev" },
   { id: "jetour-g700", brand: "jetour", name: "G700", officialModel: "g700" },
+  { id: "jetour-x70-plus", brand: "jetour", name: "X70 Plus" },
+  { id: "jetour-x1", brand: "jetour", name: "X1" },
   { id: "rely-r8", brand: "rely", name: "R8", details: "brands/rely" },
   { id: "soueast-s06", brand: "soueast", name: "S06" },
   { id: "soueast-s07", brand: "soueast", name: "S07" },

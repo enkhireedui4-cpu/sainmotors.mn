@@ -3,43 +3,60 @@ import { getBrands, getLocation, services, ui } from "@/content";
 import { enquiryHref } from "@/lib/enquiries";
 import { pageHref } from "@/lib/routes";
 import { Icon } from "./Icon";
-import type { Service } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 import { draftAttr } from "@/lib/content-status";
-/** Brand coverage in words: "All brands" when it is every published brand. */
-function coverage(service: Service, locale: Locale): string {
-  const published = getBrands();
-  if (published.every((b) => service.brands.includes(b.slug))) return ui.brand.allBrands[locale];
-  return published.filter((b) => service.brands.includes(b.slug)).map((b) => b.name).join(", ");
-}
 
-function where(service: Service, locale: Locale): string {
-  if (!service.locations) return ui.services.atShowroom[locale];
-  return service.locations.map((id) => getLocation(id).name[locale]).join(", ");
-}
+const actions = {
+  sales: { intent: "sales", label: ui.services.salesAction },
+  financing: { intent: "finance", label: ui.services.financeAction },
+  "after-sales": { intent: "service", label: ui.services.warrantyAction },
+  repair: { intent: "service", label: ui.services.serviceAction },
+} as const;
 
 /** Service-page coverage by brand and location. */
 export function ServiceList({ locale, headingLevel = "h3" }: { locale: Locale; headingLevel?: "h2" | "h3" }) {
   const Heading = headingLevel;
+  const brands = getBrands();
   return (
     <ul className="service-list">
-      {services.map((service) => (
-        <li key={service.id} id={`service-${service.id}`} className="service" data-status={draftAttr(service)}>
-          <Heading className="service__title">{service.title[locale]}</Heading>
-          <p>{service.body[locale]}</p>
-          <dl className="service__facts">
-            <div>
-              <dt>{ui.services.brands[locale]}</dt>
-              <dd className="service__brands" aria-label={coverage(service, locale)}>{getBrands().filter(brand => service.brands.includes(brand.slug)).map(brand => <Link key={brand.slug} href={enquiryHref(locale, service.id === "sales" ? "sales" : service.id === "financing" ? "finance" : "service", brand.slug)} prefetch={false} translate="no">{brand.name}<Icon name="chevronRight" size={13} /></Link>)}</dd>
+      {services.map((service) => {
+        const { intent, label } = actions[service.id];
+        const actionHref = service.id === "sales" ? pageHref(locale, "brochures") : enquiryHref(locale, intent);
+        return (
+          <li key={service.id} id={`service-${service.id}`} className="service" data-status={draftAttr(service)}>
+            <Heading className="service__title">{service.title[locale]}</Heading>
+            <div className="service__detail">
+              <p>{service.body[locale]}</p>
+              <Link className="text-link service__action" href={actionHref} prefetch={false}>
+                {label[locale]}<Icon name="chevronRight" size={18} />
+              </Link>
+              <dl className="service__facts">
+                <div>
+                  <dt>{ui.services.brands[locale]}</dt>
+                  <dd className="service__brands">
+                    {brands.filter(brand => service.brands.includes(brand.slug)).map(brand => (
+                      <Link key={brand.slug} href={enquiryHref(locale, intent, brand.slug)} prefetch={false} translate="no">
+                        {brand.name}<Icon name="chevronRight" size={13} />
+                      </Link>
+                    ))}
+                  </dd>
+                </div>
+                <div>
+                  <dt>{ui.services.where[locale]}</dt>
+                  <dd>{service.locations ? service.locations.map((id, index) => (
+                    <span key={id}>
+                      {index > 0 && ", "}
+                      <Link className="service__place" href={`${pageHref(locale, "locations")}#${id}`} prefetch={false}>
+                        {getLocation(id).name[locale]}
+                      </Link>
+                    </span>
+                  )) : ui.services.atShowroom[locale]}</dd>
+                </div>
+              </dl>
             </div>
-            <div>
-              <dt>{ui.services.where[locale]}</dt>
-              <dd>{service.locations ? service.locations.map((id, index) => <span key={id}>{index > 0 && ", "}<Link className="service__place" href={`${pageHref(locale, "locations")}#${id}`} prefetch={false}>{getLocation(id).name[locale]}</Link></span>) : where(service, locale)}</dd>
-            </div>
-          </dl>
-          <Link className="text-link service__action" href={enquiryHref(locale, service.id === "financing" ? "finance" : service.id === "sales" ? "sales" : "service")} prefetch={false}>{service.id === "financing" ? ui.services.financeAction[locale] : service.id === "sales" ? ui.services.salesAction[locale] : ui.services.brandAction[locale]}<Icon name="arrowUpRight" size={18} /></Link>
-        </li>
-      ))}
+          </li>
+        );
+      })}
     </ul>
   );
 }

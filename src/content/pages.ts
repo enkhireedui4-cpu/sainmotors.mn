@@ -176,8 +176,8 @@ export const pages = {
     lead: {
       status: "draft",
       value: {
-        mn: "Үйлчилгээ брэнд, байршлаас хамаарч өөр. Тодорхой асуултаа брэндийн борлуулалтын утсаар лавлана уу.",
-        en: "Services differ by brand and location. For specific questions, call the brand’s sales line.",
+        mn: "Автомашин худалдан авах, санхүүжилт, баталгаа, засвар үйлчилгээний талаар хаана, хэнд хандахаа эндээс хараарай.",
+        en: "Find the right team for buying a car, arranging finance, asking about warranty or getting your vehicle serviced.",
       },
     } satisfies Block,
     team: {

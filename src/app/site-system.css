@@ -88,26 +88,8 @@
 .brand-enquiries .location { border: 0; background: var(--surface-card); padding: 1.75rem; border-radius: var(--radius-card); }
 .brand-related .brand-panel { border-radius: var(--radius-card); }
 
-/* Four service routes first; confirmed centres and people follow. */
-.services-design-page .service-jump { gap: .65rem; padding-block: 1.75rem 0; }
-.services-design-page .page-band .service-jump a { padding:.7rem 1.25rem; min-height:var(--sm-control-height); height:auto; max-width:100%; border:1px solid var(--sm-on-dark-line); border-radius:var(--sm-radius-control); font-size:.875rem; line-height:1.4; color:var(--sm-white); white-space:normal; text-align:center; }
-.services-design-page .page-band .service-jump a:hover { color:var(--sm-white); border-color:var(--sm-red); background:var(--sm-red); }
-.services-design-page .services-section { padding-top: 2rem; }
+/* Service centres and workshop team. */
 .services-design-page .services-page { display: block; }
-.services-design-page .service-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem; }
-.services-design-page .service { display:flex; flex-direction:column; align-items:flex-start; padding:clamp(1.5rem,3vw,2.5rem); border:1px solid var(--sm-line); border-top:3px solid var(--sm-red); border-radius:var(--radius-card); background:var(--sm-white); scroll-margin-top:calc(var(--header-h) + 24px); }
-.services-design-page .service__title { font: 500 1.75rem/1.25 var(--font-display); }
-.services-design-page .service > p { font-size: .95rem; line-height: 1.8; }
-.services-design-page .service__facts { margin-bottom: 1rem; }
-.services-design-page .service__facts > div { grid-template-columns: 6.5rem 1fr; }
-.services-design-page .service__brands { gap: .15rem .45rem; }
-.services-design-page .service__brands a { padding: .15rem 0; }
-.services-design-page .service__action { margin-top: auto; }
-.services-design-page .service__action { color:var(--sm-red); }
-.services-design-page .service__action svg { flex:none; width:32px; height:32px; padding:7px; border-radius:50%; background:var(--sm-red); color:var(--sm-white); }
-.services-design-page .service__action:hover { color:var(--sm-red-hover); }
-.services-design-page .services-page__note { margin-block: 1.5rem 0; }
-.services-design-page .services-page__aside { padding-top: var(--section); }
 .service-centres-heading { margin-bottom: 2rem; }
 .location-list--centres { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem; }
 .location-list--centres .location { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); grid-template-areas: "name name" "address reach" "hours actions"; gap: 1rem 2rem; padding: 2rem; border: 0; border-radius: var(--radius-card); background: var(--surface-card); }
@@ -182,12 +164,7 @@
   .brand-detail .brand-title { padding-block: 1.5rem 2rem; }
   .brand-contact-grid { grid-template-columns: 1fr; }
   .brand-contact-grid > div { padding: 1.25rem; }
-  .services-design-page .service-list,.location-list--centres { grid-template-columns: 1fr; }
-  .services-design-page .service-jump { gap: .5rem; padding-top: 1.25rem; }
-  .services-design-page .service-jump a { font-size: .75rem; padding-inline: .9rem; }
-  .services-design-page .service__title { font-size: 1.5rem; }
-  .services-design-page .service__facts > div { grid-template-columns: 1fr; gap: .35rem; }
-  .services-design-page .services-page__note { font-size: .8rem; }
+  .location-list--centres { grid-template-columns: 1fr; }
   .location-directory { padding-top: 2rem; }
   .location-directory .location-directory__filters,.location-directory .location-directory__row { padding: 1.5rem; }
   .news-design-page .news-page { padding-top: 2rem; }

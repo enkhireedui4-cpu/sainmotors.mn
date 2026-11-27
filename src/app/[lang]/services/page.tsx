@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ServiceList } from "@/components/ServiceList";
 import { LocationCard } from "@/components/LocationCard";
 import { PageBand } from "@/components/PageBand";
 import { Picture } from "@/components/Picture";
-import { getLocation, pages, services, sitePhotos, ui } from "@/content";
+import { getLocation, pages, sitePhotos, ui } from "@/content";
 import { experienceCopy } from "@/content/experience";
+import { draftAttr } from "@/lib/content-status";
 import type { Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
+import "./services.css";
 
 type Props = { params: Promise<{ lang: string }> };
 
@@ -24,26 +25,33 @@ export default async function ServicesPage({ params }: Props) {
 
   return (
     <div className="services-design-page">
-      <PageBand locale={locale} title={page.meta.value[locale].title}>
-        <nav className="service-jump ob-chips" aria-label={ui.nav.services[locale]}>{services.map(service => <Link key={service.id} className="ob-chip" href={`#service-${service.id}`} prefetch={false}>{service.title[locale]}</Link>)}</nav>
+      <PageBand locale={locale} title={page.meta.value[locale].title} className="services-intro">
+        <p className="services-intro__lead" data-status={draftAttr(page.lead)}>{page.lead.value[locale]}</p>
+        <Picture
+          photo={sitePhotos.servicesHeader}
+          locale={locale}
+          className="services-intro__photo"
+          sizes="(min-width: 106rem) 49rem, (min-width: 48rem) 48vw, 86vw"
+          priority
+        />
       </PageBand>
-      <section className="section services-section">
-        <div className="container services-page">
-          <div>
-            <ServiceList locale={locale} headingLevel="h2" />
-            <p className="services-page__note">{ui.services.others[locale]}</p>
-          </div>
 
-          {/* The two places that repair and supply parts, with their own hours and lines. */}
-          <aside className="services-page__aside" aria-label={ui.services.where[locale]}>
-            <h2 className="display-2 service-centres-heading">{experienceCopy.value[locale].serviceLocation}</h2>
+      <div className="services-page">
+        <section className="container services-section" aria-label={ui.nav.services[locale]}>
+          <ServiceList locale={locale} headingLevel="h2" />
+          <p className="services-page__note">{ui.services.others[locale]}</p>
+        </section>
+
+        <section className="services-centres" aria-labelledby="service-centres-heading">
+          <div className="container">
+            <h2 id="service-centres-heading" className="display-2 service-centres-heading">{experienceCopy.value[locale].serviceLocation}</h2>
             <div className="location-list location-list--centres">
               <LocationCard location={getLocation("service-centre")} locale={locale} />
               <LocationCard location={getLocation("byd-4s")} locale={locale} />
             </div>
-          </aside>
-        </div>
-      </section>
+          </div>
+        </section>
+      </div>
 
       <section className="services-team" aria-labelledby="team-heading">
         <div className="container section-head section-head--split services-team__head">

@@ -1,5 +1,6 @@
 import { brandPhone, getBrands, getLocation, ui } from "@/content";
 import type { InternalBrand } from "@/content/types";
+import { vehiclePrices } from "@/content/vehicle-prices";
 import type { Locale } from "@/lib/i18n";
 import { pageHref } from "@/lib/routes";
 import { breadcrumbGraph } from "@/lib/structured-data";
@@ -8,6 +9,7 @@ import { Icon } from "./Icon";
 import { JsonLd } from "./JsonLd";
 import { LocationCard } from "./LocationCard";
 import { RelyR8Experience } from "./RelyR8Experience";
+import { VehiclePricing } from "./VehiclePricing";
 
 export function RelyR8Page({ brand, locale }: { brand: InternalBrand; locale: Locale }) {
   const location = brand.location ? getLocation(brand.location) : undefined;
@@ -18,7 +20,9 @@ export function RelyR8Page({ brand, locale }: { brand: InternalBrand; locale: Lo
       { name: ui.nav.brands[locale], path: `/${locale}/brands/` },
       { name: brand.name, path: `/${locale}/brands/rely/` },
     ])} />
-    <div id="brand-models"><RelyR8Experience locale={locale}>
+    <div id="brand-models"><RelyR8Experience locale={locale} pricing={
+      <VehiclePricing locale={locale} phone={phone} prices={vehiclePrices["rely-r8"]} />
+    }>
       <section className="r8-intro" id="brand-overview" aria-labelledby="rely-local-heading">
         <div className="r8-intro__grid">
           <div className="r8-intro__identity"><h2 id="rely-local-heading" translate="no">RELY × Sain Motors</h2><a className="r8-intro__phone" href={phone.href}><Icon name="phone" size={18} />{locale === "en" ? "+976 " : ""}{phone.display}</a></div>

@@ -7,8 +7,10 @@ import { BydExperience } from "@/components/BydExperience";
 import { BydStudioHero } from "@/components/BydStudioHero";
 import { JsonLd } from "@/components/JsonLd";
 import { TestDriveForm } from "@/components/TestDriveForm";
+import { VehiclePricing } from "@/components/VehiclePricing";
 import { brandPhone, getInternalBrand, ui } from "@/content";
 import { sealion, sealionAssets, sealionPath } from "@/content/byd";
+import { vehiclePrices } from "@/content/vehicle-prices";
 import { isLocale, localePath } from "@/lib/i18n";
 import { pageHref } from "@/lib/routes";
 import { excerpt, pageMetadata } from "@/lib/seo";
@@ -51,6 +53,7 @@ export default async function SealionPage({ params }: Props) {
       <BydStudioHero locale={lang} backHref={lineupPath + "#sealion-6"} headingId="sealion-studio-heading"
         name={modelName} subtitle={sealion.powertrain[lang]} image={studioImage} />
     </section>
+    <VehiclePricing locale={lang} phone={brandPhone(brand)} prices={vehiclePrices["sealion-6"]} />
     <BydExperience locale={lang} />
     <TestDriveForm locale={lang} salesPhone={brandPhone(brand)} model={{
       name: modelName,
