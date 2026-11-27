@@ -119,7 +119,11 @@ export function CinematicHeroScene({ children, locale }: { children: ReactNode; 
   return (
     <div ref={rootRef} className="cinematic-hero" data-motion="static" data-film="poster">
       <div className="cinematic-hero__media" aria-hidden="true">
-        <img src="/art/ayud-tower.webp" width={1600} height={900} alt="" fetchPriority="high" />
+        <picture>
+          <source media="(max-width: 47.99rem) and (max-aspect-ratio: 4/7)"
+            srcSet="/art/ayud-tower-mobile.webp" width={720} height={900} />
+          <img src="/art/ayud-tower.webp" width={1600} height={900} alt="" fetchPriority="high" />
+        </picture>
         <video ref={videoRef} id={filmId} className="cinematic-hero__film" preload="none" muted playsInline loop
           disablePictureInPicture tabIndex={-1} />
       </div>

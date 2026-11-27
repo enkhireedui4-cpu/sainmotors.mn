@@ -60,7 +60,8 @@ test("a touch phone plays the Ayud Tower film in portrait and landscape", async 
       await img.decode();
       return new URL(img.currentSrc).pathname;
     });
-    assert.equal(artwork,"/art/ayud-tower.webp");
+    assert.equal(artwork,"/art/ayud-tower-mobile.webp");
+    assert.equal(requests.has("/art/ayud-tower.webp"), false);
     await waitForPlayingFilm(page, "/video/hero/ayud-tower-mobile.mp4");
     assert.equal(requests.has("/video/hero/ayud-tower.mp4"), false);
     assert.equal(await page.getByRole("heading",{level:1,name:"Sain Motors",exact:true}).count(),1);
@@ -77,8 +78,11 @@ test("a touch phone plays the Ayud Tower film in portrait and landscape", async 
     assert.equal(await page.locator("#mobile-menu").isVisible(),true);
     await page.keyboard.press("Escape");
     await page.setViewportSize({ width: 844, height: 390 });
+    await page.waitForFunction(() => {
+      const poster = document.querySelector(".cinematic-hero__media img");
+      return poster.currentSrc.endsWith("/art/ayud-tower.webp") && poster.complete;
+    });
     await waitForPlayingFilm(page, "/video/hero/ayud-tower-mobile.mp4");
-    assert.equal(await page.locator(".cinematic-hero__media img").evaluate(img=>new URL(img.currentSrc).pathname), "/art/ayud-tower.webp");
     assert.equal([...requests].some(path => /sain-earth|home-automotive-studio/.test(path)), false);
   }finally{await page.close();}
 });
