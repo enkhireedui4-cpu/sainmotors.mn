@@ -24,7 +24,7 @@ export const bydProfileFeatures: Partial<Record<BydProfileId, {
         id: "exterior",
         title: text("Хотын замд ч, хотоос гарахад ч", "From city streets to the open road"),
         copy: text(
-          "Босоо урд нүүр, өргөн LED гэрэл, дугуйн нуман хамгаалалт нь TI 7-ийн гадна төрхийг тодорхойлно. Бүх дугуйн хөтлөгчтэй. Газраас машины доод талын хамгийн нам цэг хүртэлх зай 190 мм.",
+          "Босоо урд нүүр, өргөн LED гэрэл, дугуйн нуман хамгаалалт нь TI 7-ийн гадна төрхийг тодорхойлно. Бүх дугуйн хөтлөгчтэй. Газраас тэнхлэг хүртэлх зай 190 мм.",
           "An upright front, wide LED lamps and pronounced wheel arches define the TI 7. It pairs all-wheel drive with 190 mm of ground clearance.",
         ),
         alt: text("Хотын гудамжинд яваа ногоон BYD TI 7", "Green BYD TI 7 on a city street"),
